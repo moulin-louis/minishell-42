@@ -1,6 +1,7 @@
 # Prerequisites
 ../.vscode
 .vscode
+*/.vscode
 .DS_Store
 .nfs*
 *.d
