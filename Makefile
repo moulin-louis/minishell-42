@@ -6,7 +6,7 @@
 #    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/09/27 12:01:29 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/09/27 12:31:18 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ DEPS 		= $ $(C_FILES:.c=.d)
 #                FLAGS               #
 # ################################## #
 CFLAGS		= -Wall -Wextra -Werror -g3 -MMD
+LFLAGS		= 
 CINCLUDES	= -I ./inc	\
 			  -I ./libft \
 
@@ -73,7 +74,7 @@ check:	LFLAGS		+=  -g3
 check:	${NAME}
 
 $(NAME):	$(O_DIR) $(OBJS) $(LIBFT)
-			$(CC) $(OBJS) $(CFLAGS) $(LIBFT) $(CLIBS) -o $@
+			$(CC) $(OBJS) $(LFLAGS) $(CLIBS) -o $@
 
 $(O_DIR):
 			$(MKDIR) $(O_DIR)
