@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/27 14:51:23 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/09/27 16:22:01 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,9 @@
 # include <term.h>
 # include <errno.h>
 
-/* bi_pwd */
+/* Builtins bi_*.c */
 int	bi_pwd(void);
-
-/* bi_env */
 int	bi_env(char **envp);
+int	bi_unset(char **envp);
 
 #endif

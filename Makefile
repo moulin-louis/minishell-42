@@ -6,7 +6,7 @@
 #    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/09/27 13:49:55 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/09/27 16:22:18 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ C_DIR		= src
 C_FILES		= main.c		\
 			  bi_pwd.c		\
 			  bi_env.c		\
+			  bi_unset.c	\
 
 
 SRCS		= $(patsubst %, $(C_DIR)/%, $(C_FILES))
