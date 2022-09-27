@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
+#    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/09/27 10:13:57 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/09/27 12:00:54 by loumouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ NAME		= minishell
 C_DIR		= src
 C_FILES		= main.c		\
 			  bi_pwd.c		\
-			  
+
 
 SRCS		= $(patsubst %, $(C_DIR)/%, $(C_FILES))
 
@@ -44,9 +44,11 @@ DEPS 		= $ $(C_FILES:.c=.d)
 #                FLAGS               #
 # ################################## #
 CFLAGS		= -Wall -Wextra -Werror -g3 -MMD
-CINCLUDES	= -I ./inc
+CINCLUDES	=	-I ./inc \
+				-I ./libft
 
-LIBFT		= ./lib/libft/libft.a
+
+LIBFT		= ./libft/libft.a
 
 # ################################## #
 #                RULES               #
@@ -70,7 +72,7 @@ check:	LFLAGS		+=  -fsanitize=undefined
 check:	LFLAGS		+=  -g3
 check:	${NAME}
 
-$(NAME):	$(O_DIR) $(OBJS) $(LIBFT)
+$(NAME):	$(LIBFT) $(O_DIR) $(OBJS)
 			$(CC) $(OBJS) $(CFLAGS) $(LIBFT) -o $@
 
 $(O_DIR):
@@ -81,8 +83,8 @@ $(O_DIR):
 # ################################## #
 
 $(LIBFT):
-			@make -C ./lib/libft --no-print-directory
-			
+			@make -C libft --no-print-directory
+
 # ################################## #
 #                CLEAN               #
 # ################################## #
