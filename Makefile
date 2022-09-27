@@ -6,7 +6,7 @@
 #    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/09/27 12:31:18 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/09/27 13:49:55 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,7 @@ NAME		= minishell
 C_DIR		= src
 C_FILES		= main.c		\
 			  bi_pwd.c		\
+			  bi_env.c		\
 
 
 SRCS		= $(patsubst %, $(C_DIR)/%, $(C_FILES))
@@ -44,7 +45,7 @@ DEPS 		= $ $(C_FILES:.c=.d)
 #                FLAGS               #
 # ################################## #
 CFLAGS		= -Wall -Wextra -Werror -g3 -MMD
-LFLAGS		= 
+LFLAGS		=
 CINCLUDES	= -I ./inc	\
 			  -I ./libft \
 
