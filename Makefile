@@ -6,7 +6,7 @@
 #    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/09/27 12:00:54 by loumouli         ###   ########.fr        #
+#    Updated: 2022/09/27 12:03:41 by loumouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -91,9 +91,11 @@ $(LIBFT):
 
 clean:
 			$(RM) $(O_DIR)
+			@make -C libft --no-print-directory
 
 fclean:		clean
 			$(RM) $(NAME)
+			$(RM) $(LIBFT)
 
 re:			fclean all
 
