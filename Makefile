@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
+#    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/09/27 12:03:41 by loumouli         ###   ########.fr        #
+#    Updated: 2022/09/27 12:01:29 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,11 +44,11 @@ DEPS 		= $ $(C_FILES:.c=.d)
 #                FLAGS               #
 # ################################## #
 CFLAGS		= -Wall -Wextra -Werror -g3 -MMD
-CINCLUDES	=	-I ./inc \
-				-I ./libft
-
+CINCLUDES	= -I ./inc	\
+			  -I ./libft \
 
 LIBFT		= ./libft/libft.a
+CLIBS		= -L ./libft -lft
 
 # ################################## #
 #                RULES               #
@@ -72,18 +72,14 @@ check:	LFLAGS		+=  -fsanitize=undefined
 check:	LFLAGS		+=  -g3
 check:	${NAME}
 
-$(NAME):	$(LIBFT) $(O_DIR) $(OBJS)
-			$(CC) $(OBJS) $(CFLAGS) $(LIBFT) -o $@
+$(NAME):	$(O_DIR) $(OBJS) $(LIBFT)
+			$(CC) $(OBJS) $(CFLAGS) $(LIBFT) $(CLIBS) -o $@
 
 $(O_DIR):
 			$(MKDIR) $(O_DIR)
 
-# ################################## #
-#             DEPENDECIES...         #
-# ################################## #
-
 $(LIBFT):
-			@make -C libft --no-print-directory
+			make -C ./libft
 
 # ################################## #
 #                CLEAN               #
@@ -91,11 +87,10 @@ $(LIBFT):
 
 clean:
 			$(RM) $(O_DIR)
-			@make -C libft --no-print-directory
+			make -C ./libft fclean
 
 fclean:		clean
 			$(RM) $(NAME)
-			$(RM) $(LIBFT)
 
 re:			fclean all
 
