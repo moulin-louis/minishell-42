@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_tolower.c                                       :+:      :+:    :+:   */
+/*   bi_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/02 17:58:34 by loumouli          #+#    #+#             */
-/*   Updated: 2022/05/06 17:17:08 by loumouli         ###   ########.fr       */
+/*   Created: 2022/09/28 13:00:52 by bschoeff          #+#    #+#             */
+/*   Updated: 2022/09/28 14:42:43 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-int	ft_tolower(int c)
+void	bi_exit(int status)
 {
-	if (c >= 65 && c <= 90)
-		c = c + 32;
-	return (c);
+	return ;
 }
