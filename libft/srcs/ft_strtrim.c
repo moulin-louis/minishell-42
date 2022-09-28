@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/04 13:02:07 by loumouli          #+#    #+#             */
-/*   Updated: 2022/09/04 21:29:53 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/09/28 12:04:57 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ char	*ft_strtrim(char const*s1, char const *set)
 	if (!((char *)s1)[i])
 	{
 		result = malloc(1);
+		if (!result)
+			return (NULL);
 		result[0] = '\0';
 		return (result);
 	}
