@@ -6,7 +6,7 @@
 #    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/09/27 12:31:18 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/09/28 15:18:43 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,12 +44,8 @@ DEPS 		= $ $(C_FILES:.c=.d)
 #                FLAGS               #
 # ################################## #
 CFLAGS		= -Wall -Wextra -Werror -g3 -MMD
-LFLAGS		= 
+LFLAGS		=
 CINCLUDES	= -I ./inc	\
-			  -I ./libft \
-
-LIBFT		= ./libft/libft.a
-CLIBS		= -L ./libft -lft
 
 # ################################## #
 #                RULES               #
@@ -73,14 +69,11 @@ check:	LFLAGS		+=  -fsanitize=undefined
 check:	LFLAGS		+=  -g3
 check:	${NAME}
 
-$(NAME):	$(O_DIR) $(OBJS) $(LIBFT)
-			$(CC) $(OBJS) $(LFLAGS) $(CLIBS) -o $@
+$(NAME):	$(O_DIR) $(OBJS)
+			$(CC) $(OBJS) $(LFLAGS) -o $@
 
 $(O_DIR):
 			$(MKDIR) $(O_DIR)
-
-$(LIBFT):
-			make -C ./libft
 
 # ################################## #
 #                CLEAN               #
@@ -88,7 +81,6 @@ $(LIBFT):
 
 clean:
 			$(RM) $(O_DIR)
-			make -C ./libft fclean
 
 fclean:		clean
 			$(RM) $(NAME)
