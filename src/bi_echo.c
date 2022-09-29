@@ -6,13 +6,13 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 11:20:35 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/29 13:13:21 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/09/29 16:00:21 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	is_arg(char *str);
+static int	is_arg(char *str)
 {
 	int		i;
 	char	*ref;

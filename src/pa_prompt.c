@@ -1,27 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   pa_prompt.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 10:16:50 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/29 15:47:54 by bschoeff         ###   ########.fr       */
+/*   Created: 2022/09/29 12:51:41 by loumouli          #+#    #+#             */
+/*   Updated: 2022/09/29 13:11:04 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int ac, char **av, char **envp)
-{
-	char	**array;
 
-	(void)ac;
-	(void)av;
-	array = ft_split("Je ne sais pas pourqoi");
-	bi_pwd();
-	bi_env(envp);
-	bi_echo(array);
-	free(array);
-	return (0);
+void	run_prompt(void)
+{
+	char	*u_input;
+
+	write(1, "$> ", 3);
+	while(1)
+	{
+		u_input = get_next_line(0);
+		free(u_input);
+		write(1, "$> ", 3);
+	}
 }

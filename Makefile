@@ -6,7 +6,7 @@
 #    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/09/28 15:16:50 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/09/29 16:00:05 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,10 @@ C_FILES		= main.c		\
 			  bi_pwd.c		\
 			  bi_env.c		\
 			  bi_unset.c	\
+			  bi_echo.c		\
+			  utils_gnl.c	\
+			  utils_split.c	\
+			  pa_prompt.c	\
 
 
 SRCS		= $(patsubst %, $(C_DIR)/%, $(C_FILES))
