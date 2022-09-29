@@ -1,27 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   bi_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 10:16:50 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/29 15:47:54 by bschoeff         ###   ########.fr       */
+/*   Created: 2022/09/29 11:20:35 by bschoeff          #+#    #+#             */
+/*   Updated: 2022/09/29 16:00:21 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int ac, char **av, char **envp)
+static int	is_arg(char *str)
 {
-	char	**array;
+	int		i;
+	char	*ref;
 
-	(void)ac;
-	(void)av;
-	array = ft_split("Je ne sais pas pourqoi");
-	bi_pwd();
-	bi_env(envp);
-	bi_echo(array);
-	free(array);
+	ref = "-n";
+	i = -1;
+	while (str[++i])
+		if (str[i] != ref[i])
+			return (0);
+	return (1);
+}
+
+int	bi_echo(char **args)
+{
+	int	i;
+	int	len;
+	int	n_line;
+
+	i = -1;
+	n_line = 0;
+	if (is_arg(args[0]))
+		n_line = 1;
+	while (args[++i])
+	{
+		len = 0;
+		while (args[i][len])
+			len++;
+		write(1, args[i], len);
+		if (args[i + 1])
+			write(1, " ", 1);
+	}
+	if (n_line)
+		write(1, "\n", 1);
 	return (0);
 }

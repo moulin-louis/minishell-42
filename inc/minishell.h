@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/29 14:41:25 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/09/29 22:30:50 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,20 +33,25 @@
 # include <term.h>
 # include <errno.h>
 
-/* Builtins bi_*.c */
+/* Builtins */
 int		bi_pwd(void);
 int		bi_env(char **envp);
 int		bi_echo(char **args);
 int		bi_unset(char **envp);
 
-/*runing prompt*/
+/* Utils */
+char	*get_next_line(int fd);
+char	**ft_split(char *str);
+
+/* Parsing */
 void	run_prompt(void);
 
-/*files for utils fn*/
-char	*get_next_line(int fd);
 
 typedef struct s_fds {
-	int	x;
+	int		in_pipe[2];
+	int		out_pipe[2];
+	int		in_fd;
+	int		out_fd;
 }			t_fds;
 
 typedef struct s_envp
@@ -56,17 +61,18 @@ typedef struct s_envp
 }				t_envp;
 
 typedef struct s_mini {
-	char	**cmd;
-	char	*path_cmd;
-	char	*path_file;
-	t_fds	*fds;
-	t_envp	*envp;
-	int		in_file;
-	int		in_heredoc;
-	int		in_pipe;
-	int		out_append;
-	int		out_trunc;
-	int		out_pipe;
-	t_mini	*next;
+	char		**cmd;
+	char		*path_cmd;
+	char		*path_file;
+	t_fds		*fds;
+	t_envp		*envp;
+	int			in_file;
+	int			in_heredoc;
+	int			in_pipe;
+	int			out_append;
+	int			out_trunc;
+	int			out_pipe;
+	struct s_mini	*next;
 }				t_mini;
+
 #endif

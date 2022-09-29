@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
+#    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/09/29 13:00:36 by loumouli         ###   ########.fr        #
+#    Updated: 2022/09/29 22:35:10 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,7 +30,9 @@ C_FILES		= main.c		\
 			  bi_pwd.c		\
 			  bi_env.c		\
 			  bi_unset.c	\
+			  bi_echo.c		\
 			  utils_gnl.c	\
+			  utils_split.c	\
 			  pa_prompt.c	\
 
 
@@ -48,7 +50,10 @@ DEPS 		= $ $(C_FILES:.c=.d)
 #                FLAGS               #
 # ################################## #
 CFLAGS		= -Wall -Wextra -Werror -g3 -MMD
-LFLAGS		=
+
+# ################################## #
+#                INCLUDES            #
+# ################################## #
 CINCLUDES	= -I ./inc	\
 
 # ################################## #
@@ -67,14 +72,10 @@ check:	CFLAGS		+=  -fsanitize=address
 check:	CFLAGS		+=  -fsanitize=leak
 check:	CFLAGS		+=  -fsanitize=undefined
 check:	CFLAGS		+=  -g3
-check:	LFLAGS		+=  -fsanitize=address
-check:	LFLAGS		+=  -fsanitize=leak
-check:	LFLAGS		+=  -fsanitize=undefined
-check:	LFLAGS		+=  -g3
 check:	${NAME}
 
 $(NAME):	$(O_DIR) $(OBJS)
-			$(CC) $(OBJS) $(LFLAGS) -o $@
+			$(CC) $(OBJS) -o $@
 
 $(O_DIR):
 			$(MKDIR) $(O_DIR)
