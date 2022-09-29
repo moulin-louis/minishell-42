@@ -49,7 +49,6 @@ CFLAGS		= -Wall -Wextra -Werror -g3 -MMD
 LFLAGS		=
 CINCLUDES	= -I ./inc	\
 
-
 # ################################## #
 #                RULES               #
 # ################################## #
