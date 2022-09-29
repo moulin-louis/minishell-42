@@ -6,7 +6,7 @@
 #    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/09/29 22:35:10 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/09/29 22:46:13 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,7 +29,6 @@ C_DIR		= src
 C_FILES		= main.c		\
 			  bi_pwd.c		\
 			  bi_env.c		\
-			  bi_unset.c	\
 			  bi_echo.c		\
 			  utils_gnl.c	\
 			  utils_split.c	\

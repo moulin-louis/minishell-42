@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 11:20:35 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/29 16:00:21 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/09/29 22:41:15 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ static int	is_arg(char *str)
 	i = -1;
 	while (str[++i])
 		if (str[i] != ref[i])
-			return (0);
-	return (1);
+			return (1);
+	return (0);
 }
 
 int	bi_echo(char **args)
@@ -34,7 +34,10 @@ int	bi_echo(char **args)
 	i = -1;
 	n_line = 0;
 	if (is_arg(args[0]))
+	{
 		n_line = 1;
+		i++;
+	}
 	while (args[++i])
 	{
 		len = 0;

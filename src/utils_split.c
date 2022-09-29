@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:15:26 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/29 16:08:31 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/09/29 22:53:42 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,10 @@ static int	word_len(char *str, int j)
 
 	len = 0;
 	while (str[j] && str[j] != ' ')
+	{
 		len++;
+		j++;
+	}
 	return (len);
 }
 
@@ -58,8 +61,10 @@ static int	do_the_split(char **array, char *str, int words)
 				len++;
 				j++;
 			}
+			array[i][len] = '\0';
 		}
 	}
+	printf("leaving do_the_split\n");
 	return (1);
 }
 
@@ -74,13 +79,14 @@ static int word_count(char *str, char c)
 	i = -1;
 	while (str[++i])
 	{
-		if (str[i] && str[i] != c)
+		if (str[i] != c)
 		{
 			count++;
-			while (str[i] && str[i] != c)
+			while (str[i + 1] && str[i] != c)
 				i++;
 		}
 	}
+	printf("count in word_count: %i\n", count);
 	return (count);
 }
 
@@ -99,6 +105,7 @@ char	**ft_split(char *str)
 	if (!array)
 		return (NULL);
 	array[words] = 0;
+	printf("going into do_the_split in ft_split\n");
 	if (do_the_split(array, str, words))
 		return (array);
 	return (NULL);
