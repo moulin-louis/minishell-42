@@ -1,23 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   bi_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 10:16:50 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/27 16:22:29 by bschoeff         ###   ########.fr       */
+/*   Created: 2022/09/27 14:15:43 by bschoeff          #+#    #+#             */
+/*   Updated: 2022/09/27 15:09:21 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int ac, char **av, char **envp)
+int	bi_env(char **envp)
 {
-	(void)ac;
-	(void)av;
-	bi_pwd();
-	bi_env(envp);
-	bi_unset(envp);
+	int	i;
+
+	if (!envp || !*envp)
+		return (1);
+	i = -1;
+	while (envp[++i])
+		printf("%s\n", envp[i]);
 	return (0);
 }

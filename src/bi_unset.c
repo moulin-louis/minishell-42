@@ -1,23 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   bi_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 10:16:50 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/27 16:22:29 by bschoeff         ###   ########.fr       */
+/*   Created: 2022/09/27 15:48:15 by bschoeff          #+#    #+#             */
+/*   Updated: 2022/09/27 17:10:51 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int ac, char **av, char **envp)
+static int	search_path(char *s1, char *s2)
 {
-	(void)ac;
-	(void)av;
-	bi_pwd();
-	bi_env(envp);
-	bi_unset(envp);
+	int	i;
+
+	i = -1;
+	while (++i < 5)
+		if (s1[i] != s2[i])
+			return (0);
+	return (1);
+}
+
+int	bi_unset(char **envp)
+{
+	int	i;
+
+	if (!envp || !*envp)
+		return (1);
+	i = -1;
+	while (envp[++i])
+		if (search_path(envp[i], "PATH="))
+			envp[i] = "\n";
+	printf("PATH: %s\n", envp[i]);
 	return (0);
 }

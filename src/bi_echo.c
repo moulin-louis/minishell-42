@@ -1,23 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   bi_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 10:16:50 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/27 16:22:29 by bschoeff         ###   ########.fr       */
+/*   Created: 2022/09/29 11:20:35 by bschoeff          #+#    #+#             */
+/*   Updated: 2022/09/29 12:23:24 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int ac, char **av, char **envp)
+static 
+
+int	bi_echo(char **args)
 {
-	(void)ac;
-	(void)av;
-	bi_pwd();
-	bi_env(envp);
-	bi_unset(envp);
-	return (0);
+	int	i;
+	int	j;
+	int	len;
+	int	n_line;
+
+	i = -1;
+	n_line = 0;
+	while (args[++i])
+		if (is_arg(args[i]))
+			n_line = 1;
 }
