@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/27 16:22:01 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/09/29 12:18:24 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@
 /* Builtins bi_*.c */
 int	bi_pwd(void);
 int	bi_env(char **envp);
+int	bi_echo(char **args);
 int	bi_unset(char **envp);
 
 #endif
