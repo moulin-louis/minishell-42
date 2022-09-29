@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
+#    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/09/28 15:16:50 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/09/29 13:00:36 by loumouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,8 @@ C_FILES		= main.c		\
 			  bi_pwd.c		\
 			  bi_env.c		\
 			  bi_unset.c	\
+			  utils_gnl.c	\
+			  pa_prompt.c	\
 
 
 SRCS		= $(patsubst %, $(C_DIR)/%, $(C_FILES))
