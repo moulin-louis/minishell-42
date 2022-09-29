@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/29 14:41:25 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/09/29 15:48:19 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,6 @@
 # include <term.h>
 # include <errno.h>
 
-/* Builtins bi_*.c */
-int		bi_pwd(void);
-int		bi_env(char **envp);
-int		bi_echo(char **args);
-int		bi_unset(char **envp);
-
-/*runing prompt*/
-void	run_prompt(void);
-
-/*files for utils fn*/
-char	*get_next_line(int fd);
-
 typedef struct s_fds {
 	int	x;
 }			t_fds;
@@ -55,7 +43,7 @@ typedef struct s_envp
 	int		i;
 }				t_envp;
 
-typedef struct s_mini {
+typedef struct s_cati {
 	char	**cmd;
 	char	*path_cmd;
 	char	*path_file;
@@ -67,6 +55,25 @@ typedef struct s_mini {
 	int		out_append;
 	int		out_trunc;
 	int		out_pipe;
-	t_mini	*next;
-}				t_mini;
+	struct s_cati	*next;
+}				t_cati;
+
+/* Builtins bi_*.c */
+int		bi_pwd(void);
+int		bi_env(char **envp);
+int		bi_echo(char **args);
+int		bi_unset(char **envp);
+
+/*runing prompt*/
+void	run_prompt(void);
+void	ft_parsing(char *input);
+
+/*files for utils fn*/
+char	*get_next_line(int fd);
+
+/*utils linked list*/
+t_cati	*ft_lstnew(void);
+void	ft_lst_add_back(t_cati **mini, t_cati *node);
+void	ft_lstclear(t_cati **mini);
+
 #endif

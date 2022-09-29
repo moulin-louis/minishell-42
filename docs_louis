@@ -1,0 +1,10 @@
+-	read a line
+-	create token out of input with the quoting rules and separated by metachar
+-	parse token for execve
+-	create linked list
+
+metachar = ‘|’ ‘&’ ‘<’ ‘>’
+
+double quote = all metachar between doublequote are ignored except $
+simple quote = all metachar between singlequote are ignored
+

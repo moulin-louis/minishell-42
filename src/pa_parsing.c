@@ -1,27 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pa_prompt.c                                        :+:      :+:    :+:   */
+/*   pa_parsing.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/29 12:51:41 by loumouli          #+#    #+#             */
-/*   Updated: 2022/09/29 15:35:05 by loumouli         ###   ########.fr       */
+/*   Created: 2022/09/29 15:01:14 by loumouli          #+#    #+#             */
+/*   Updated: 2022/09/29 15:59:48 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	run_prompt(void)
+void	ft_parsing(char *input)
 {
-	char	*u_input;
+	t_cati *mini;
+	(void)input;
 
-	write(1, "$> ", 3);
-	while(1)
-	{
-		u_input = get_next_line(0);
-		ft_parsing(u_input);
-		free(u_input);
-		write(1, "$> ", 3);
-	}
+	
+	ft_lstclear(&mini);
 }
