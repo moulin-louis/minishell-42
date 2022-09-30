@@ -6,21 +6,21 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 14:15:43 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/30 23:51:35 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/01 00:36:47 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdio.h>
 
-int	bi_env(char **envp)
+int	bi_env(t_envp *envp)
 {
 	int	i;
 
-	if (!envp || !*envp)
+	if (!envp->envp[0])
 		return (1);
 	i = -1;
-	while (envp[++i])
-		printf("%s\n", envp[i]);
+	while (envp->envp[++i])
+		printf("%s\n", envp->envp[i]);
 	return (0);
 }
