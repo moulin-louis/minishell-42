@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/30 12:18:32 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/09/30 12:50:08 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,6 @@
 # include <term.h>
 # include <errno.h>
 
-/* Builtins */
-int		bi_pwd(void);
-int		bi_env(char **envp);
-int		bi_echo(char **args);
-int		bi_unset(char **envp);
-
-/* Utils */
-char	*get_next_line(int fd);
-char	**ft_split(char *str);
-char	*ft_strcpy(char *s2);
-
-/* Environment */
-
-/* Parsing */
-void	run_prompt(void);
-
-
 typedef struct s_fds {
 	int		in_pipe[2];
 	int		out_pipe[2];
@@ -64,18 +47,38 @@ typedef struct s_envp
 }				t_envp;
 
 typedef struct s_mini {
-	char		**cmd;
-	char		*path_cmd;
-	char		*path_file;
-	t_fds		*fds;
-	t_envp		*envp;
-	int			in_file;
-	int			in_heredoc;
-	int			in_pipe;
-	int			out_append;
-	int			out_trunc;
-	int			out_pipe;
+	char			**cmd;
+	char			*path_cmd;
+	char			*path_file;
+	t_fds			*fds;
+	t_envp			*envp;
+	int				in_file;
+	int				in_heredoc;
+	int				in_pipe;
+	int				out_append;
+	int				out_trunc;
+	int				out_pipe;
 	struct s_mini	*next;
 }				t_mini;
+
+/* Builtins */
+int		bi_pwd(void);
+int		bi_env(char **envp);
+int		bi_echo(char **args);
+int		bi_unset(char **envp);
+
+/* Utils */
+char	*get_next_line(int fd);
+char	**ft_split(char *str);
+char	*ft_strcpy(char *s2);
+
+/* Environment */
+int		build_env(char **env, t_envp **envp);
+
+/* Cleanup */
+
+
+/* Parsing */
+void	run_prompt(void);
 
 #endif
