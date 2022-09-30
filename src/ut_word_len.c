@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ut_strcpy.c                                        :+:      :+:    :+:   */
+/*   ut_word_len.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/30 09:01:34 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/30 23:54:51 by bschoeff         ###   ########.fr       */
+/*   Created: 2022/09/30 23:37:06 by bschoeff          #+#    #+#             */
+/*   Updated: 2022/09/30 23:38:15 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdlib.h>
 
-char	*ft_strcpy(char *s2)
+int	word_len(char *str)
 {
-	char	*str;
-	int		i;
-	int		len;
+	int	i;
 
-	if (!s2)
-		return (NULL);
-	len = 0;
-	while (s2[len])
-		len++;
-	str = malloc(len + 1);
-	if (!str)
-		return (perror("Strcpy malloc"), NULL);
 	i = 0;
-	while (s2[i])
-	{
-		str[i] = s2[i];
+	while (str[i] && str[i] != ' ')
 		i++;
-	}
-	str[i] = '\0';
-	return (str);
+	return (i);
 }

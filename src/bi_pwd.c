@@ -6,11 +6,14 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 08:55:02 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/27 11:07:28 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/09/30 23:53:50 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
 
 int	bi_pwd(void)
 {

@@ -6,7 +6,7 @@
 #    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/09/30 12:38:13 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/09/30 23:38:51 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ C_FILES		= main.c		\
 			  ut_gnl.c		\
 			  ut_split.c	\
 			  ut_strcpy.c	\
+			  ut_word_len.c	\
 
 
 SRCS		= $(patsubst %, $(C_DIR)/%, $(C_FILES))

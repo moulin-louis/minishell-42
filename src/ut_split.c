@@ -6,36 +6,13 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:15:26 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/30 22:28:05 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/09/30 23:38:01 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
 #include <stdio.h>
-
-static void	clean_split(char **arr)
-{
-	int	i;
-
-	i = 0;
-	while (arr[i])
-		i++;
-	i--;
-	while (i >= 0)
-		free(arr[i]);
-	free(arr);
-}
-
-static int	word_len(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i] && str[i] != ' ')
-		i++;
-	return (i);
-}
 
 static int	word_count(char *str)
 {

@@ -6,11 +6,12 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 11:20:35 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/30 22:36:37 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/09/30 23:39:51 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <unistd.h>
 
 static int	is_arg(char *str)
 {
@@ -54,5 +55,6 @@ int	bi_echo(char **args)
 	}
 	if (n_line)
 		write(1, "\n", 1);
+	clean_split(args);
 	return (0);
 }
