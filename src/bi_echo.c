@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 11:20:35 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/29 22:41:15 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/09/30 11:14:36 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,11 @@ static int	is_arg(char *str)
 	char	*ref;
 
 	ref = "-n";
-	i = -1;
+	if (str[0] != ref[0] || str[1] != ref[1])
+		return (1);
+	i = 1;
 	while (str[++i])
-		if (str[i] != ref[i])
+		if (str[i] != ref[1])
 			return (1);
 	return (0);
 }
