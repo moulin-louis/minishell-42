@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 11:20:35 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/30 18:19:56 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/09/30 22:36:37 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,9 @@ int	bi_echo(char **args)
 	int	len;
 	int	n_line;
 
-	i = -1;
+	i = 0;
 	n_line = 1;
-	if (!is_arg(args[0]))
+	if (!is_arg(args[1]))
 	{
 		n_line = 0;
 		i++;

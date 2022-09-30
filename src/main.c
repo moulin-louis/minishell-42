@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:16:50 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/30 22:30:35 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/09/30 22:38:24 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int ac, char **av, char **env)
 	(void)av;
 	(void)env;
 	array = NULL;
-	array = ft_split("     -nnnnnnnnnnn a nnnnnnnn\tje peux        pa  ");
+	array = ft_split("\techo     -nnnnnnnnnnn a nnnnnnnn\tje peux        pa  ");
 	bi_echo(array);
 	i = -1;
 	while (--i >= 0)
