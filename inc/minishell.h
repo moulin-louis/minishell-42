@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/01 00:03:09 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/01 00:27:37 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ char	*ft_strcpy(char *s2);
 int		word_len(char *str);
 
 /* Environment */
-int		ev_build_env(char **env, t_envp **envp);
+int		ev_build_env(char **env, t_envp *envp);
 
 /* Cleanup */
 void	clean_split(char **arr);
