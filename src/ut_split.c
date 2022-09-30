@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:15:26 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/29 22:53:42 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/09/30 09:02:17 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,10 +85,7 @@ static int word_count(char *str, char c)
 			while (str[i + 1] && str[i] != c)
 				i++;
 		}
-	}
-	printf("count in word_count: %i\n", count);
-	return (count);
-}
+	}>
 
 char	**ft_split(char *str)
 {

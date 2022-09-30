@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/29 22:30:50 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/09/30 09:03:10 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ int		bi_unset(char **envp);
 /* Utils */
 char	*get_next_line(int fd);
 char	**ft_split(char *str);
+char	*ft_strcpy(char *s1, char *s2);
 
 /* Parsing */
 void	run_prompt(void);
