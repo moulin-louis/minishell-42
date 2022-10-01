@@ -6,12 +6,13 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 17:29:13 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/30 23:54:36 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/01 13:36:57 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
+#include <unistd.h>
 
 static int	str_len(char *str)
 {

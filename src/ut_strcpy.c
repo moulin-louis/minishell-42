@@ -6,12 +6,13 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 09:01:34 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/30 23:54:51 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/01 13:37:20 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 char	*ft_strcpy(char *s2)
 {
