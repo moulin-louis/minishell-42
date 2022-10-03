@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 14:15:43 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/01 00:36:47 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/03 11:22:30 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,13 @@
 
 int	bi_env(t_envp *envp)
 {
-	int	i;
+	t_envp	*tmp;
 
-	if (!envp->envp[0])
-		return (1);
-	i = -1;
-	while (envp->envp[++i])
-		printf("%s\n", envp->envp[i]);
+	tmp = envp;
+	while (tmp)
+	{
+		printf("%s\n", tmp->var);
+		tmp = tmp->next;
+	}
 	return (0);
 }

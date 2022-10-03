@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/03 08:52:08 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/03 11:40:46 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ typedef struct s_fds {
 
 typedef struct s_envp
 {
-	char	**envp;
+	char			*var;
+	struct s_envp	*next;
 }				t_envp;
 
 typedef struct s_mini {
@@ -50,15 +51,18 @@ int		bi_unset(char **envp);
 /* Utils */
 char	*get_next_line(int fd);
 char	**ft_split(char *str);
-char	*ft_strcpy(char *s2);
+int		ft_strcpy(char *s1, char *s2);
 int		word_len(char *str);
+int		lstnew(t_envp *new);
+void	lstaddback(t_envp **envp, t_envp *new);
+void	lstclear(t_envp **envp);
 
 /* Environment */
-int		ev_build_env(char **env, t_envp *envp);
+int		ev_build_env(char **env, t_envp **envp);
 
 /* Cleanup */
 void	clean_split(char **arr);
-void	clean_env(t_envp *envp);
+void	clean_env(t_envp **envp);
 
 /* Parsing */
 void	run_prompt(void);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ut_s1cpy.c                                        :+:      :+:    :+:   */
+/*   ut_list.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/30 09:01:34 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/03 11:38:43 by bschoeff         ###   ########.fr       */
+/*   Created: 2022/10/03 09:55:52 by bschoeff          #+#    #+#             */
+/*   Updated: 2022/10/03 11:45:37 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,44 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int	ft_strcpy(char *s1, char *s2)
+int	lstnew(t_envp *new)
 {
-	int		i;
-	int		len;
-
-	if (!s2)
-		return (1);
-	len = 0;
-	while (s2[len])
-		len++;
-	s1 = malloc(len + 1);
-	if (!s1)
-		return (0);
-	i = 0;
-	while (s2[i])
+	new = malloc(sizeof(t_envp));
+	if (!new)
 	{
-		s1[i] = s2[i];
-		i++;
+		return(perror("New envp node malloc"), 0);
 	}
-	s1[i] = '\0';
+	new->next = NULL;
+	new->var = NULL;
 	return (1);
+}
+
+
+void	lstaddback(t_envp **envp, t_envp *new)
+{
+	t_envp	*tmp;
+
+	if (!*envp)
+	{
+		*envp = new;
+		return ;
+	}
+	tmp = *envp;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = new;
+}
+
+void	lstclear(t_envp **envp)
+{
+	t_envp	*tmp;
+
+	while (*envp)
+	{
+		tmp = *envp;
+		*envp = (*envp)->next;
+		if (tmp->var)
+			free(tmp->var);
+		free(tmp);
+	}
 }

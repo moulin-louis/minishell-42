@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:15:26 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/03 09:07:50 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/03 10:44:36 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ static int word_count(char *str)
 	i = 0;
 	while (str[i])
 	{
-		while (str[i] != '\0' && (str[i] == ' ' || str[i] == '\t'))
+		while (str[i] != '\0' && str[i] == ' ')
 			i++;
-		if (str[i] && (str[i] != ' ' || str[i] != '\t'))
+		if (str[i] && str[i] != ' ')
 		{
 			count++;
-			while (str[i] && (str[i] != ' ' || str[i] != '\t'))
+			while (str[i] && str[i] != ' ')
 				i++;
 		}
 	}
@@ -72,7 +72,7 @@ char **ft_split(char *str)
 	while (++i < words)
 	{
 		if (*str)
-			while (*str == ' ' || *str == '\t')
+			while (*str == ' ')
 				str++;
 		len = word_len(str);
 		arr[i] = do_the_split(str, len);
