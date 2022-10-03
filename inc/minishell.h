@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/03 14:03:15 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/03 14:28:17 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ char	*ft_strcpy(char *s2);
 int		word_len(char *str);
 void	lstaddback(t_envp **envp, t_envp *new);
 void	lstclear(t_envp **envp);
+int		ft_strlen(char *str);
 
 /* Environment */
 int		ev_build_env(char **env, t_envp **envp);

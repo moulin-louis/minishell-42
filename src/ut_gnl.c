@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ut_gnl.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 17:29:13 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/01 13:36:57 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/03 14:28:31 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-static int	str_len(char *str)
+int	ft_strlen(char *str)
 {
 	int	i;
 
@@ -32,7 +32,7 @@ static char	*ft_join(char *str, char *buff)
 	int		i;
 	int		len;
 
-	len = str_len(str);
+	len = ft_strlen(str);
 	i = 0;
 	res = malloc(len + 2);
 	while (i < len)

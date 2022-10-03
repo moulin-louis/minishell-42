@@ -3,17 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
+#    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/03 13:43:21 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/10/03 14:49:52 by loumouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 # ################################## #
 #               COMMAND              #
 # ################################## #
-CC			= cc
+CC			= gcc
 MKDIR		= mkdir -p
 RM			= rm -rf
 
@@ -30,7 +30,6 @@ C_FILES		= main.c		\
 			  bi_echo.c		\
 			  bi_env.c		\
 			  bi_pwd.c		\
-			  bi_unset.c	\
 			  cl_clean_all.c	\
 			  ev_build_env.c	\
 			  ut_gnl.c		\
@@ -38,7 +37,7 @@ C_FILES		= main.c		\
 			  ut_strcpy.c	\
 			  ut_word_len.c	\
 			  ut_list.c		\
-
+			  pa_prompt.c
 
 SRCS		= $(patsubst %, $(C_DIR)/%, $(C_FILES))
 
@@ -58,7 +57,10 @@ CFLAGS		= -Wall -Wextra -Werror -g3 -MMD
 # ################################## #
 #                INCLUDES            #
 # ################################## #
-CINCLUDES	= -I ./inc	\
+CINCLUDES	=	-I ./inc	\
+				-I /usr/local/include
+
+CLIBS		=	-L/usr/local/lib -lreadline
 
 # ################################## #
 #                RULES               #
@@ -79,7 +81,7 @@ check:	CFLAGS		+=  -g3
 check:	${NAME}
 
 $(NAME):	$(O_DIR) $(OBJS)
-			$(CC) $(OBJS) -o $@
+			$(CC) $(OBJS) $(CINCLUDES) $(CLIBS) -o $@
 
 $(O_DIR):
 			$(MKDIR) $(O_DIR)

@@ -1,0 +1,160 @@
+READLINE FONCTION :
+
+	-	char *readline(char *prompt) :
+			#include <stdio.h> #include <readline/readline.h> #include <readline/history.h>
+			permet de lire une ligne de l'utilisateur actuel sur le terminal actuel, retourne la ligne malloc sans le \n a la fin, doit etre free.
+
+	-	void rl_clear_history(void) :
+			#include <stdio.h> #include <readline/readline.h> #include <readline/history.h>
+			permet de clear l'historique de readline, meme les infos prives de RL.
+
+	-	int rl_on_new_line(void) :
+			#include <stdio.h> #include <readline/readline.h> #include <readline/history.h>
+			informe qu'on a bouge sur une nouvelle ligne vide.
+
+	-	void rl_replace_line(char *text, int clear_undo) :
+			#include <stdio.h> #include <readline/readline.h> #include <readline/history.h>
+			repalce le buffer de la ligne lue par *text*.
+
+	-	void rl_redisplay(void) :
+			#include <stdio.h> #include <readline/readline.h> #include <readline/history.h>
+			affiche ce qu'il y a dans le buffer lue.
+
+	-	void add_history(char *str) :
+			#include <stdio.h> #include <readline/readline.h> #include <readline/history.h>
+			ajoute dans l'historique de RL la string
+
+FORK/SIGNAL FONCTION :
+
+	-	int access(char *path, int mode) :
+			#include <unistd.h>
+			verifie si le mode d'accessibilite du fichier dans path.
+
+	-	pid_t wait(int *status) :
+			#include <sys/types.h> #include <sys/wait.h>
+			suspend le processus actuel jusqu'a la fin d'un de ses fils.
+
+	-	pid_t waitpid(pid_t pid, int *status) :
+			#include <sys/types.h> #include <sys/wait.h>
+			suspend le processus actuel jusqu'a la fin du fils associe au PID.
+
+	-	pid_t wait3(int *status, int options, struc rusage *rus) :
+			#include <sys/types.h> #include <sys/time.h> #include <sys/resource.h> #include <sys/wait.h>
+			suspend le processus actuel jusqu'a la fin d'un de ses fils et remplis des infos dans la struc rus.
+
+	-	pid_t wait3(pid_t pid, int *status, int options, struc rusage *rus) :
+			#include <sys/types.h> #include <sys/time.h> #include <sys/resource.h> #include <sys/wait.h>
+			suspend le processus actuel jusqu'a la fin du fils associe au PID et remplis des infos dans la struc rus.
+
+	-	void signal(int sig, void &foo(int)) :
+			#include <signal.h>
+			permet de bind la fonction foo qui recoit le signal en parametre quand on recoit le signal sig.
+
+	-	int sigaction(int sig, struc sigaction *act, NULL) :
+			#include <signal.h>
+			permet de setup le comportement definit dans la struc act lors de la reception du signal sig.
+
+	-	int sigemptyset(sigset_t *set) :
+			#include <signal.h>
+			met a NULL la champ sigset_t dans la structure sigaction.
+
+	-	int	sigaddset(sigset_t *set, int signum) :
+			#include <signal.h>
+			met a signum le champ sigset_t dans la structure sigaction.
+
+	-	int kill(pid_t pid, int sig) :
+			#include <signal.h>
+			envoie le signal sig au processus lie au PID pid.
+
+DIR/FILE FONCTION :
+
+	-	char *getcwd(char *buf, size_t size) :
+			#include <unistd.h>
+			copie le chemin du repetoire courant dans buffer qui est de longueur size.
+
+	-	int chdir(char *path) :
+			#include <unistd.h>
+			change le repetoire courant de travail vers path.
+
+	-	int stat(char *path, struct stat *buf) :
+			#include <sys/stat.h>
+			remplis la struct buf d'info lie au fichie pointe par path.
+
+	-	int lstat(char *path, struct stat *buf) :
+			#include <sys/stat.h>
+			meme chose que stat mais pour des liens symboliques.
+
+	-	int fstat(int fildes, struct stat *buf) :
+			#include <sys/stat.h>
+			remplis la struct buf d'info lie au fichie ouvert avec le fd fildes.
+
+	-	int unlink(char *path) :
+			#include <sys/stat.h>
+			suprime le fichier pointe par path.
+
+	-	dir *opendir(char *name) :
+			#include <sys/types.h> #include <dirent.h>
+			retourne un ptr vers le dossier name.
+
+	-	struct dirent *readdir(dir *dir):
+			#include <dirent.h>
+			retourne un ptr vers struct dirent representant le dossier suivant dans le flux de dossiers.
+
+	-	int closedir(dir *dir) :
+			#include <sys/types.h> #include <dirent.h>
+			ferme le flux de dossier lie a dir.
+
+TERMINAL FONCTIO :
+
+	-	int isatty(int fd) :
+			#include <unistd.h>
+			check si le fd correspond a un terminal.
+
+	-	char *ttyname(int fd) :
+			#include <unistd.h>
+			retourne une string du chemin du terminal actuel.
+
+	-	int ttyslot(void) :
+			#include <unistd.h>
+			returne l'index du terminal actuel.
+
+	-	ioctl(int fd, int request, ...) :
+			#include <sys/ioctl.h>
+			permet de controler le peripheriques lie au fd (souvent des terminaux/tty) en envoyant la requete request.
+
+	-	int tcgetattr(int fd, struct termios *termios_p) :
+			#include <termios.h> #include <unistd.h>
+			remplis la structure termios_p d'info lie au tty lie au fd.
+
+	-	int tcsetattr(int fd, int optional_actions, struct termios *termios_p) :
+			#include <termios.h> #include <unistd.h>
+			set les parametres dans la stuct termios_p au terminal lie au fd.
+
+OTHER :
+
+	-	int tgetent(char *bp, char *name) :
+			#include <curses.h> #include <term.h>
+			charge name et ignore bp.
+
+	-	int tgetflag(char *id) :
+			#include <curses.h> #include <term.h>
+			verifie si l'id est dans la database ou pas.
+
+	-	int tgetnum(char *id) :
+			#include <curses.h> #include <term.h>
+			retourne l'entre num de ID.
+
+	-	char *tgetstr(char *id, char **area) :
+			#include <curses.h> #include <term.h>
+			retourne la string lie a l'id et la copie dans area.
+
+	-	char *tgoto(char *cap, int col, int row) :
+			#include <curses.h> #include <term.h>
+			permet d'ettendre les possibilite avec les mode. (rien compris a cette fonction).
+
+	-	int tputs(char *str, int (*putc)(int)) :
+			#include <curses.h> #include <term.h>
+			affiche des string retourne par tgoto/tgetstr. (faut eviter printf avec ses string)
+
+
+
