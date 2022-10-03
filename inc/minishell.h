@@ -6,74 +6,66 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/29 15:48:19 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/03 13:25:40 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-# include <stdio.h>
-# include <unistd.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <sys/wait.h>
-# include <sys/types.h>
-# include <sys/time.h>
-# include <sys/resource.h>
-# include <signal.h>
-# include <sys/stat.h>
-# include <dirent.h>
-# include <string.h>
-# include <sys/ioctl.h>
-# include <termios.h>
-# include <curses.h>
-# include <term.h>
-# include <errno.h>
-
 typedef struct s_fds {
-	int	x;
+	int		in_pipe[2];
+	int		out_pipe[2];
+	int		in_fd;
+	int		out_fd;
 }			t_fds;
 
 typedef struct s_envp
 {
-	char	**envp;
-	int		i;
+	char			*var;
+	int				place;
+	int				length;
+	struct s_envp	*next;
 }				t_envp;
 
-typedef struct s_cati {
-	char	**cmd;
-	char	*path_cmd;
-	char	*path_file;
-	t_fds	*fds;
-	t_envp	*envp;
-	int		in_file;
-	int		in_heredoc;
-	int		in_pipe;
-	int		out_append;
-	int		out_trunc;
-	int		out_pipe;
-	struct s_cati	*next;
-}				t_cati;
+typedef struct s_mini {
+	char			**cmd;
+	int				builtin;
+	char			*path_cmd;
+	char			*path_file;
+	t_fds			*fds;
+	t_envp			*envp;
+	int				in_file;
+	int				in_heredoc;
+	int				in_pipe;
+	int				out_append;
+	int				out_trunc;
+	int				out_pipe;
+	struct s_mini	*next;
+}				t_mini;
 
-/* Builtins bi_*.c */
+/* Builtins */
 int		bi_pwd(void);
-int		bi_env(char **envp);
+int		bi_env(t_envp **envp);
 int		bi_echo(char **args);
 int		bi_unset(char **envp);
 
-/*runing prompt*/
-void	run_prompt(void);
-void	ft_parsing(char *input);
-
-/*files for utils fn*/
+/* Utils */
 char	*get_next_line(int fd);
+char	**ft_split(char *str);
+char	*ft_strcpy(char *s2);
+int		word_len(char *str);
+void	lstaddback(t_envp **envp, t_envp *new);
+void	lstclear(t_envp **envp);
 
-/*utils linked list*/
-t_cati	*ft_lstnew(void);
-void	ft_lst_add_back(t_cati **mini, t_cati *node);
-void	ft_lstclear(t_cati **mini);
+/* Environment */
+int		ev_build_env(char **env, t_envp **envp);
+
+/* Cleanup */
+void	clean_split(char **arr);
+void	clean_env(t_envp **envp);
+
+/* Parsing */
+void	run_prompt(void);
 
 #endif
