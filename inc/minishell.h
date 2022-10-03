@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/03 12:32:50 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/03 14:03:15 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ typedef struct s_mini {
 int		bi_pwd(void);
 int		bi_env(t_envp **envp);
 int		bi_echo(char **args);
-int		bi_unset(char **envp);
+int		bi_unset(t_envp **envp, char *var);
 
 /* Utils */
 char	*get_next_line(int fd);
