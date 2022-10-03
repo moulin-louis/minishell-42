@@ -6,7 +6,7 @@
 #    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/03 10:39:26 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/10/03 13:43:21 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ C_FILES		= main.c		\
 			  bi_echo.c		\
 			  bi_env.c		\
 			  bi_pwd.c		\
+			  bi_unset.c	\
 			  cl_clean_all.c	\
 			  ev_build_env.c	\
 			  ut_gnl.c		\
