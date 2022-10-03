@@ -155,6 +155,3 @@ OTHER :
 	-	int tputs(char *str, int (*putc)(int)) :
 			#include <curses.h> #include <term.h>
 			affiche des string retourne par tgoto/tgetstr. (faut eviter printf avec ses string)
-
-
-
