@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cl_clean_all.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:36:37 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/03 10:28:23 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/03 13:41:07 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	clean_split(char **arr)
 	free(arr);
 }
 
-void	clean_env(t_envp **envp)
-{
-	lstclear(envp);
-}
+// void	clean_env(t_envp **envp)
+// {
+// 	lstclear(envp);
+// }
