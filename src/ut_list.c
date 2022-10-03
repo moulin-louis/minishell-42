@@ -6,26 +6,13 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 09:55:52 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/03 11:45:37 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/03 12:12:03 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
 #include <stdio.h>
-
-int	lstnew(t_envp *new)
-{
-	new = malloc(sizeof(t_envp));
-	if (!new)
-	{
-		return(perror("New envp node malloc"), 0);
-	}
-	new->next = NULL;
-	new->var = NULL;
-	return (1);
-}
-
 
 void	lstaddback(t_envp **envp, t_envp *new)
 {

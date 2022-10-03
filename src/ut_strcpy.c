@@ -14,19 +14,20 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int	ft_strcpy(char *s1, char *s2)
+char	*ft_strcpy(char *s2)
 {
 	int		i;
 	int		len;
+	char	*s1;
 
 	if (!s2)
-		return (1);
+		return (NULL);
 	len = 0;
 	while (s2[len])
 		len++;
 	s1 = malloc(len + 1);
 	if (!s1)
-		return (0);
+		return (NULL);
 	i = 0;
 	while (s2[i])
 	{
@@ -34,5 +35,9 @@ int	ft_strcpy(char *s1, char *s2)
 		i++;
 	}
 	s1[i] = '\0';
-	return (1);
+	/* printf("s2 in strcpy: %s\n", s2);
+	printf("pointer s2 in strcpy: %p\n", s2);
+	printf("s1 in strcpy: %s\n", s1);
+	printf("pointer s1 in strcpy: %p\n", s1); */
+	return (s1);
 }

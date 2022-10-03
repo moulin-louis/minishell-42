@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:16:50 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/03 11:25:40 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/03 12:24:22 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int ac, char **av, char **env)
 	bi_echo(array);
 	if (!ev_build_env(env, &envp))
 		return (1);
-	bi_env(envp);
+	bi_env(&envp);
 	clean_env(&envp);
 	return (0);
 }

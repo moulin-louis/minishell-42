@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/03 11:40:46 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/03 12:32:50 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ typedef struct s_fds {
 typedef struct s_envp
 {
 	char			*var;
+	int				place;
+	int				length;
 	struct s_envp	*next;
 }				t_envp;
 
@@ -44,16 +46,15 @@ typedef struct s_mini {
 
 /* Builtins */
 int		bi_pwd(void);
-int		bi_env(t_envp *envp);
+int		bi_env(t_envp **envp);
 int		bi_echo(char **args);
 int		bi_unset(char **envp);
 
 /* Utils */
 char	*get_next_line(int fd);
 char	**ft_split(char *str);
-int		ft_strcpy(char *s1, char *s2);
+char	*ft_strcpy(char *s2);
 int		word_len(char *str);
-int		lstnew(t_envp *new);
 void	lstaddback(t_envp **envp, t_envp *new);
 void	lstclear(t_envp **envp);
 
