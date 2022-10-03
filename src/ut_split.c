@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:15:26 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/30 23:38:01 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/03 09:07:50 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static int	word_count(char *str)
+static int word_count(char *str)
 {
-	int	i;
-	int	count;
+	int i;
+	int count;
 
 	count = 0;
 	if (!str || !*str)
@@ -25,22 +25,22 @@ static int	word_count(char *str)
 	i = 0;
 	while (str[i])
 	{
-		while (str[i] != '\0' && str[i] == ' ')
+		while (str[i] != '\0' && (str[i] == ' ' || str[i] == '\t'))
 			i++;
-		if (str[i] && str[i] != ' ')
+		if (str[i] && (str[i] != ' ' || str[i] != '\t'))
 		{
 			count++;
-			while (str[i] && str[i] != ' ')
+			while (str[i] && (str[i] != ' ' || str[i] != '\t'))
 				i++;
 		}
 	}
 	return (count);
 }
 
-static char	*do_the_split(char *s2, int len)
+static char *do_the_split(char *s2, int len)
 {
-	int		i;
-	char	*s1;
+	int i;
+	char *s1;
 
 	s1 = malloc(len + 1);
 	if (!s1)
@@ -55,12 +55,12 @@ static char	*do_the_split(char *s2, int len)
 	return (s1);
 }
 
-char	**ft_split(char *str)
+char **ft_split(char *str)
 {
-	char	**arr;
-	int		words;
-	int		i;
-	int		len;
+	char **arr;
+	int words;
+	int i;
+	int len;
 
 	arr = NULL;
 	words = word_count(str);
@@ -72,7 +72,7 @@ char	**ft_split(char *str)
 	while (++i < words)
 	{
 		if (*str)
-			while (*str == ' ')
+			while (*str == ' ' || *str == '\t')
 				str++;
 		len = word_len(str);
 		arr[i] = do_the_split(str, len);
