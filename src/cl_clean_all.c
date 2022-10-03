@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bi_pwd.c                                           :+:      :+:    :+:   */
+/*   cl_clean_all.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 08:55:02 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/30 23:53:50 by bschoeff         ###   ########.fr       */
+/*   Created: 2022/09/30 12:36:37 by bschoeff          #+#    #+#             */
+/*   Updated: 2022/10/03 10:28:23 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
-#include <unistd.h>
 #include <stdlib.h>
 
-int	bi_pwd(void)
+void	clean_split(char **arr)
 {
-	char	*pwd;
-	char	*buff;
-	size_t	size;
+	int	i;
 
-	pwd = getenv("PWD");
-	if (!pwd)
-	{
-		size = 1;
-		buff = NULL;
-		pwd = getcwd(buff, size);
-		while (!pwd)
-		{
-			size++;
-			pwd = getcwd(buff, size);
-		}
-		return (printf("%s\n", pwd), free(pwd), 0);
-	}
-	return (printf("%s\n", pwd), 0);
+	if (!arr)
+		return ;
+	i = 0;
+	while (arr[i])
+		i++;
+	while (--i >= 0)
+		free(arr[i]);
+	free(arr);
+}
+
+void	clean_env(t_envp **envp)
+{
+	lstclear(envp);
 }

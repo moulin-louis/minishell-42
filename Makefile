@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
+#    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/09/29 13:00:36 by loumouli         ###   ########.fr        #
+#    Updated: 2022/10/03 10:39:26 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,11 +27,16 @@ NAME		= minishell
 # ################################## #
 C_DIR		= src
 C_FILES		= main.c		\
-			  bi_pwd.c		\
+			  bi_echo.c		\
 			  bi_env.c		\
-			  bi_unset.c	\
-			  utils_gnl.c	\
-			  pa_prompt.c	\
+			  bi_pwd.c		\
+			  cl_clean_all.c	\
+			  ev_build_env.c	\
+			  ut_gnl.c		\
+			  ut_split.c	\
+			  ut_strcpy.c	\
+			  ut_word_len.c	\
+			  ut_list.c		\
 
 
 SRCS		= $(patsubst %, $(C_DIR)/%, $(C_FILES))
@@ -48,7 +53,10 @@ DEPS 		= $ $(C_FILES:.c=.d)
 #                FLAGS               #
 # ################################## #
 CFLAGS		= -Wall -Wextra -Werror -g3 -MMD
-LFLAGS		=
+
+# ################################## #
+#                INCLUDES            #
+# ################################## #
 CINCLUDES	= -I ./inc	\
 
 # ################################## #
@@ -67,14 +75,10 @@ check:	CFLAGS		+=  -fsanitize=address
 check:	CFLAGS		+=  -fsanitize=leak
 check:	CFLAGS		+=  -fsanitize=undefined
 check:	CFLAGS		+=  -g3
-check:	LFLAGS		+=  -fsanitize=address
-check:	LFLAGS		+=  -fsanitize=leak
-check:	LFLAGS		+=  -fsanitize=undefined
-check:	LFLAGS		+=  -g3
 check:	${NAME}
 
 $(NAME):	$(O_DIR) $(OBJS)
-			$(CC) $(OBJS) $(LFLAGS) -o $@
+			$(CC) $(OBJS) -o $@
 
 $(O_DIR):
 			$(MKDIR) $(O_DIR)

@@ -1,38 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bi_pwd.c                                           :+:      :+:    :+:   */
+/*   ut_list.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 08:55:02 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/30 23:53:50 by bschoeff         ###   ########.fr       */
+/*   Created: 2022/10/03 09:55:52 by bschoeff          #+#    #+#             */
+/*   Updated: 2022/10/03 12:12:03 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
-#include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
 
-int	bi_pwd(void)
+void	lstaddback(t_envp **envp, t_envp *new)
 {
-	char	*pwd;
-	char	*buff;
-	size_t	size;
+	t_envp	*tmp;
 
-	pwd = getenv("PWD");
-	if (!pwd)
+	if (!*envp)
 	{
-		size = 1;
-		buff = NULL;
-		pwd = getcwd(buff, size);
-		while (!pwd)
-		{
-			size++;
-			pwd = getcwd(buff, size);
-		}
-		return (printf("%s\n", pwd), free(pwd), 0);
+		*envp = new;
+		return ;
 	}
-	return (printf("%s\n", pwd), 0);
+	tmp = *envp;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = new;
+}
+
+void	lstclear(t_envp **envp)
+{
+	t_envp	*tmp;
+
+	while (*envp)
+	{
+		tmp = *envp;
+		*envp = (*envp)->next;
+		if (tmp->var)
+			free(tmp->var);
+		free(tmp);
+	}
 }

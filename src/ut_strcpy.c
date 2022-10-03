@@ -1,38 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bi_pwd.c                                           :+:      :+:    :+:   */
+/*   ut_s1cpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 08:55:02 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/30 23:53:50 by bschoeff         ###   ########.fr       */
+/*   Created: 2022/09/30 09:01:34 by bschoeff          #+#    #+#             */
+/*   Updated: 2022/10/03 11:38:43 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
-#include <unistd.h>
 #include <stdlib.h>
+#include <stdio.h>
 
-int	bi_pwd(void)
+char	*ft_strcpy(char *s2)
 {
-	char	*pwd;
-	char	*buff;
-	size_t	size;
+	int		i;
+	int		len;
+	char	*s1;
 
-	pwd = getenv("PWD");
-	if (!pwd)
+	if (!s2)
+		return (NULL);
+	len = 0;
+	while (s2[len])
+		len++;
+	s1 = malloc(len + 1);
+	if (!s1)
+		return (NULL);
+	i = 0;
+	while (s2[i])
 	{
-		size = 1;
-		buff = NULL;
-		pwd = getcwd(buff, size);
-		while (!pwd)
-		{
-			size++;
-			pwd = getcwd(buff, size);
-		}
-		return (printf("%s\n", pwd), free(pwd), 0);
+		s1[i] = s2[i];
+		i++;
 	}
-	return (printf("%s\n", pwd), 0);
+	s1[i] = '\0';
+	/* printf("s2 in strcpy: %s\n", s2);
+	printf("pointer s2 in strcpy: %p\n", s2);
+	printf("s1 in strcpy: %s\n", s1);
+	printf("pointer s1 in strcpy: %p\n", s1); */
+	return (s1);
 }

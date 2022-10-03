@@ -35,6 +35,7 @@
 *.exe
 *.out
 *.app
+test
 minishell
 
 # Swap
