@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/01 13:36:13 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/03 08:52:08 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int		ev_build_env(char **env, t_envp *envp);
 
 /* Cleanup */
 void	clean_split(char **arr);
+void	clean_env(t_envp *envp);
 
 /* Parsing */
 void	run_prompt(void);

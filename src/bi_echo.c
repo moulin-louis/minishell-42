@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 11:20:35 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/30 23:39:51 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/03 08:57:42 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int	bi_echo(char **args)
 	}
 	while (args[++i])
 	{
-		len = -1;
-		while (args[i][++len])
+		len = 0;
+		while (args[i][len])
 			len++;
 		write(1, args[i], len);
 		if (args[i + 1])

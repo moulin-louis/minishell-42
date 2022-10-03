@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:36:37 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/09/30 23:39:23 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/03 09:01:11 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,17 @@ void	clean_split(char **arr)
 	while (--i >= 0)
 		free(arr[i]);
 	free(arr);
+}
+
+void	clean_env(t_envp *envp)
+{
+	int	i;
+
+	if (envp->envp[0])
+	{
+		i = -1;
+		while (envp->envp[++i])
+			free(envp->envp[i]);
+	}
+	free(envp->envp);
 }
