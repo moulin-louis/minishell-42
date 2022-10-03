@@ -1,39 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ut_s1cpy.c                                        :+:      :+:    :+:   */
+/*   bi_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/30 09:01:34 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/03 11:38:43 by bschoeff         ###   ########.fr       */
+/*   Created: 2022/10/03 13:42:31 by bschoeff          #+#    #+#             */
+/*   Updated: 2022/10/03 14:24:05 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
-#include <stdio.h>
 
-char	*ft_strcpy(char *s2)
+int	bi_unset(t_envp **envp, char *var)
 {
+	t_envp	*tmp;
 	int		i;
 	int		len;
-	char	*s1;
+	int		match;
 
-	if (!s2)
-		return (NULL);
+	if (!var || !*var)
+		return (1);
 	len = 0;
-	while (s2[len])
+	while (var[len])
 		len++;
-	s1 = malloc(len + 1);
-	if (!s1)
-		return (NULL);
-	i = 0;
-	while (s2[i])
+	tmp = *envp;
+	while (tmp)
 	{
-		s1[i] = s2[i];
-		i++;
+		i = -1;
+		match = 1;
+		while (++i < len)
+		{
+			if (tmp->var[i] != var[i])
+			{
+				match = 0;
+				break ;
+			}
+		}
 	}
-	s1[i] = '\0';
-	return (s1);
 }

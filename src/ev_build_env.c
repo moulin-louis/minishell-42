@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 11:38:34 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/03 13:27:56 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/03 14:23:00 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	fill_length(t_envp **envp)
 
 static int	case_env(char *env, t_envp **envp)
 {
-	t_envp *new;
+	t_envp	*new;
 
 	new = malloc(sizeof(t_envp));
 	if (!new)

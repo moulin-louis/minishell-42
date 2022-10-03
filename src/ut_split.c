@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:15:26 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/03 10:44:36 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/03 14:22:35 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static int word_count(char *str)
+static int	word_count(char *str)
 {
-	int i;
-	int count;
+	int	i;
+	int	count;
 
 	count = 0;
 	if (!str || !*str)
@@ -37,10 +37,10 @@ static int word_count(char *str)
 	return (count);
 }
 
-static char *do_the_split(char *s2, int len)
+static char	*do_the_split(char *s2, int len)
 {
-	int i;
-	char *s1;
+	int		i;
+	char	*s1;
 
 	s1 = malloc(len + 1);
 	if (!s1)
@@ -55,14 +55,13 @@ static char *do_the_split(char *s2, int len)
 	return (s1);
 }
 
-char **ft_split(char *str)
+char	**ft_split(char *str)
 {
-	char **arr;
-	int words;
-	int i;
-	int len;
+	char	**arr;
+	int		words;
+	int		i;
+	int		len;
 
-	arr = NULL;
 	words = word_count(str);
 	arr = malloc(sizeof(char *) * (words + 1));
 	if (!arr)
