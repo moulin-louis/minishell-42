@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:36:37 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/04 14:26:55 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/04 15:14:15 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ void	clean_env(t_envp **envp)
 
 void	clean_mini(t_cati **mini)
 {
-	t_cati *tmp;
+	t_cati	*tmp;
 
 	if (!*mini)
 		return ;

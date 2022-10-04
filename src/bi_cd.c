@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:19:57 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/04 15:00:39 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/04 15:11:48 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void	change_pwd(t_cati **mini, char *str)
 {
 	t_cati	*tmp;
 
+	tmp = *mini;
 	
 }
 
