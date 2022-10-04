@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/04 11:20:12 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/04 14:27:19 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,12 @@ typedef struct s_cati {
 }				t_cati;
 
 /* Builtins */
-int		bi_pwd(t_cati **mini);
+int		bi_cd(t_cati **mini, char *str);
+int		bi_echo(t_cati **mini, char *str);
 int		bi_env(t_cati **mini);
-int		bi_export(t_cati **mini);
-int		bi_echo(t_cati **mini);
-int		bi_unset(t_cati **mini);
+int		bi_export(t_cati **mini, char *str);
+int		bi_pwd(t_cati **mini);
+int		bi_unset(t_cati **mini, char *str);
 
 /* Utils */
 char	*get_next_line(int fd);
@@ -63,6 +64,7 @@ int		ev_build_env(char **env, t_envp **envp);
 /* Cleanup */
 void	clean_split(char **arr);
 void	clean_env(t_envp **envp);
+void	clean_mini(t_cati **mini);
 
 /* Parsing */
 void	run_prompt(void);

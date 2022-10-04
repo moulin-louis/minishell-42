@@ -6,14 +6,15 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 13:42:31 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/04 11:14:47 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/04 14:33:42 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
+#include <stdio.h>
 
-static  void	delone(t_envp *tmp)
+static void	delone(t_envp *tmp)
 {
 	if (tmp->var)
 		free(tmp->var);
@@ -51,13 +52,15 @@ static void	remove_node(t_envp *envp, t_envp *tmp)
 	delone(tmp);
 }
 
-int	bi_unset(t_cati **mini)
+int	bi_unset(t_cati **mini, char *str)
 {
 	t_envp	*tmp;
 	t_envp	*del;
 	int		i;
 
-	if (!(*mini)->cmd || !(*mini)->cmd[0])
+	if (!((*mini)->cmd = ft_split(str)))
+		return (perror("unset split malloc"), 1);
+	if (!(*mini)->cmd[0])
 		return (1);
 	i = 0;
 	while ((*mini)->cmd[++i])

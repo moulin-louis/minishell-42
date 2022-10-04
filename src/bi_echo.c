@@ -6,12 +6,13 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 11:20:35 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/04 10:52:40 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/04 14:43:13 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <unistd.h>
+#include <stdio.h>
 
 static int	is_arg(char *str)
 {
@@ -31,12 +32,14 @@ static int	is_arg(char *str)
 	return (0);
 }
 
-int	bi_echo(t_cati **mini)
+int	bi_echo(t_cati **mini, char *str)
 {
 	int	i;
 	int	len;
 	int	n_line;
 
+	if (!((*mini)->cmd = ft_split(str)))
+		return (perror("echo split malloc"), 1);
 	i = 0;
 	n_line = 1;
 	if (!is_arg((*mini)->cmd[1]))
