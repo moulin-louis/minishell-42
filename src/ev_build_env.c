@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 11:38:34 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/03 14:23:00 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/04 09:17:04 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static int	case_env(char *env, t_envp **envp)
 	new->var = ft_strcpy(env);
 	if (!new->var)
 		return (0);
-	lstaddback(envp, new);
+	env_lstaddback(envp, new);
 	return (1);
 }
 

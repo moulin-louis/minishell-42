@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/03 15:18:12 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/04 09:15:58 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_envp
 	struct s_envp	*next;
 }				t_envp;
 
-typedef struct s_mini {
+typedef struct s_cati {
 	char			**cmd;
 	int				builtin;
 	char			*path_cmd;
@@ -41,8 +41,8 @@ typedef struct s_mini {
 	int				out_append;
 	int				out_trunc;
 	int				out_pipe;
-	struct s_mini	*next;
-}				t_mini;
+	struct s_cati	*next;
+}				t_cati;
 
 /* Builtins */
 int		bi_pwd(void);
@@ -55,8 +55,8 @@ char	*get_next_line(int fd);
 char	**ft_split(char *str);
 char	*ft_strcpy(char *s2);
 int		word_len(char *str);
-void	lstaddback(t_envp **envp, t_envp *new);
-void	lstclear(t_envp **envp);
+void	env_lstaddback(t_envp **envp, t_envp *new);
+void	env_lstclear(t_envp **envp);
 
 /* Environment */
 int		ev_build_env(char **env, t_envp **envp);

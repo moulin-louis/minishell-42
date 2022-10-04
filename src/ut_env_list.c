@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ut_list.c                                          :+:      :+:    :+:   */
+/*   ut_env_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 09:55:52 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/03 12:12:03 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/04 09:16:18 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-void	lstaddback(t_envp **envp, t_envp *new)
+void	env_lstaddback(t_envp **envp, t_envp *new)
 {
 	t_envp	*tmp;
 
@@ -29,7 +29,7 @@ void	lstaddback(t_envp **envp, t_envp *new)
 	tmp->next = new;
 }
 
-void	lstclear(t_envp **envp)
+void	env_lstclear(t_envp **envp)
 {
 	t_envp	*tmp;
 

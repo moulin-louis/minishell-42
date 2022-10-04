@@ -6,7 +6,7 @@
 #    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/03 13:43:21 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/10/04 09:18:03 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -33,11 +33,11 @@ C_FILES		= main.c		\
 			  bi_unset.c	\
 			  cl_clean_all.c	\
 			  ev_build_env.c	\
+			  ut_env_list.c		\
 			  ut_gnl.c		\
 			  ut_split.c	\
 			  ut_strcpy.c	\
 			  ut_word_len.c	\
-			  ut_list.c		\
 
 
 SRCS		= $(patsubst %, $(C_DIR)/%, $(C_FILES))
