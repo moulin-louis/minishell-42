@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:16:50 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/04 11:17:39 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/04 11:34:52 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	main(int ac, char **av, char **env)
 	mini->cmd = ft_split("env");
 	bi_env(&mini);
 	clean_split(mini->cmd);
-	mini->cmd = ft_split("unset USER PATH");
-	bi_unset(&mini);
+	mini->cmd = ft_split("export JOHN=coucou PATRICK");
+	bi_export(&mini);
 	clean_split(mini->cmd);
 	mini->cmd = ft_split("env");
 	bi_env(&mini);

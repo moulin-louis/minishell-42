@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/04 10:49:35 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/04 11:20:12 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ typedef struct s_cati {
 /* Builtins */
 int		bi_pwd(t_cati **mini);
 int		bi_env(t_cati **mini);
+int		bi_export(t_cati **mini);
 int		bi_echo(t_cati **mini);
 int		bi_unset(t_cati **mini);
 
