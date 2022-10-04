@@ -6,7 +6,7 @@
 #    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/04 11:19:53 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/10/04 12:07:27 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,7 @@ DEPS 		= $ $(C_FILES:.c=.d)
 #                FLAGS               #
 # ################################## #
 CFLAGS		= -Wall -Wextra -Werror -g3 -MMD
+LFLAGS		=
 
 # ################################## #
 #                INCLUDES            #
@@ -77,10 +78,15 @@ check:	CFLAGS		+=  -fsanitize=address
 check:	CFLAGS		+=  -fsanitize=leak
 check:	CFLAGS		+=  -fsanitize=undefined
 check:	CFLAGS		+=  -g3
+check:	LFLAGS		+=  -pedantic -ansi
+check:	LFLAGS		+=  -fsanitize=address
+check:	LFLAGS		+=  -fsanitize=leak
+check:	LFLAGS		+=  -fsanitize=undefined
+check:	LFLAGS		+=  -g3
 check:	${NAME}
 
 $(NAME):	$(O_DIR) $(OBJS)
-			$(CC) $(OBJS) -o $@
+			$(CC) $(OBJS) $(LFLAGS) -o $@
 
 $(O_DIR):
 			$(MKDIR) $(O_DIR)
