@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bi_env.c                                           :+:      :+:    :+:   */
+/*   bi_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/27 14:15:43 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/04 10:37:50 by bschoeff         ###   ########.fr       */
+/*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
+/*   Updated: 2022/10/04 09:35:10 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdio.h>
+#include <stdlib.h>
 
-int	bi_env(t_cati **mini)
+int	bi_export(t_envp **envp, char **cmd)
 {
-	t_envp	*tmp;
-	int		i;
-
-	tmp = (*mini)->envp;
-	i = -1;
-	while (tmp)
-	{
-		printf("%s\n", tmp->var);
-		tmp = tmp->next;
-	}
-	return (0);
+	
 }

@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 13:42:31 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/03 15:46:10 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/04 11:14:47 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,31 +38,43 @@ static int	pathcmp(char *s1, char *s2)
 	return (1);
 }
 
-static void	remove_node(t_envp **envp, t_envp *tmp)
+static void	remove_node(t_envp *envp, t_envp *tmp)
 {
 	t_envp	*iter;
 
+	iter = envp;
 	if (!tmp->next)
 		delone(tmp);
-	iter = *envp;
 	while (iter->next != tmp)
 		iter = iter->next;
 	iter->next = tmp->next;
 	delone(tmp);
 }
 
-int	bi_unset(t_envp **envp, char *var)
+int	bi_unset(t_cati **mini)
 {
 	t_envp	*tmp;
+	t_envp	*del;
+	int		i;
 
-	if (!var || !*var)
+	if (!(*mini)->cmd || !(*mini)->cmd[0])
 		return (1);
-	tmp = *envp;
-	while (tmp)
+	i = 0;
+	while ((*mini)->cmd[++i])
 	{
-		if (pathcmp(tmp->var, var))
-			return (remove_node(envp, tmp), 0);
-		tmp = tmp->next;
+		tmp = (*mini)->envp;
+		while (tmp)
+		{
+			if (pathcmp(tmp->var, (*mini)->cmd[i]))
+			{
+				del = tmp;
+				tmp = tmp->next;
+				remove_node((*mini)->envp, del);
+				break ;
+			}
+			else
+				tmp = tmp->next;
+		}
 	}
 	return (0);
 }

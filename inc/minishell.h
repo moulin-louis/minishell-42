@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/04 09:15:58 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/04 10:49:35 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ typedef struct s_fds {
 typedef struct s_envp
 {
 	char			*var;
-	int				place;
-	int				length;
 	struct s_envp	*next;
 }				t_envp;
 
@@ -45,10 +43,10 @@ typedef struct s_cati {
 }				t_cati;
 
 /* Builtins */
-int		bi_pwd(void);
-int		bi_env(t_envp **envp);
-int		bi_echo(char **args);
-int		bi_unset(t_envp **envp, char *var);
+int		bi_pwd(t_cati **mini);
+int		bi_env(t_cati **mini);
+int		bi_echo(t_cati **mini);
+int		bi_unset(t_cati **mini);
 
 /* Utils */
 char	*get_next_line(int fd);

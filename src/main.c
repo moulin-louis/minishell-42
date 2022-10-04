@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:16:50 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/04 09:19:55 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/04 11:17:39 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,16 @@ int	main(int ac, char **av, char **env)
 		return (1);
 	mini = malloc(sizeof(t_cati));
 	mini->envp = envp;
-	mini->cmd = ft_split("\techo     -nnnnnnnnnnn a nnnnnnnn\tje peux        pa  ");
-	bi_echo(mini->cmd);
-	bi_env(&mini->envp);
-	bi_unset(&mini->envp, "USER");
-	bi_env(&mini->envp);
+	mini->cmd = ft_split("env");
+	bi_env(&mini);
+	clean_split(mini->cmd);
+	mini->cmd = ft_split("unset USER PATH");
+	bi_unset(&mini);
+	clean_split(mini->cmd);
+	mini->cmd = ft_split("env");
+	bi_env(&mini);
 	clean_env(&mini->envp);
+	clean_split(mini->cmd);
 	free(mini);
 	return (0);
 }
