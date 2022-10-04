@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:15:26 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/04 13:51:27 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/04 20:25:03 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ static char	*do_the_split(char *s2, int len)
 	return (s1);
 }
 
-char	**ft_split(char *str)
+char	**ut_split(char *str)
 {
 	char	**arr;
 	int		words;
@@ -73,7 +73,7 @@ char	**ft_split(char *str)
 		if (*str)
 			while (*str == ' ')
 				str++;
-		len = word_len(str);
+		len = ut_word_len(str);
 		arr[i] = do_the_split(str, len);
 		if (!arr[i])
 			return (clean_split(arr), NULL);

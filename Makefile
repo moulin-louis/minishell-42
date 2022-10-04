@@ -6,7 +6,7 @@
 #    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/04 13:27:17 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/10/04 20:29:02 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,6 +39,7 @@ C_FILES		= main.c		\
 			  ut_gnl.c		\
 			  ut_split.c	\
 			  ut_strcpy.c	\
+			  ut_strjoin.c	\
 			  ut_word_len.c	\
 
 

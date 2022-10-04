@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/04 14:27:19 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/04 20:25:51 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,11 @@ int		bi_pwd(t_cati **mini);
 int		bi_unset(t_cati **mini, char *str);
 
 /* Utils */
-char	*get_next_line(int fd);
-char	**ft_split(char *str);
-char	*ft_strcpy(char *s2);
-int		word_len(char *str);
+char	*ut_gnl(int fd);
+char	**ut_split(char *str);
+char	*ut_strcpy(char *s2);
+char	*ut_strjoin(char *s1, char *s2);
+int		ut_word_len(char *str);
 void	env_lstaddback(t_envp **envp, t_envp *new);
 void	env_lstclear(t_envp **envp);
 

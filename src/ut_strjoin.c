@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ev_build_env.c                                     :+:      :+:    :+:   */
+/*   ut_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/30 11:38:34 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/04 20:24:30 by bschoeff         ###   ########.fr       */
+/*   Created: 2022/10/04 20:13:20 by bschoeff          #+#    #+#             */
+/*   Updated: 2022/10/04 20:37:04 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,31 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static int	case_env(char *env, t_envp **envp)
-{
-	t_envp	*new;
-
-	new = malloc(sizeof(t_envp));
-	if (!new)
-		return (perror("Env new node malloc"), 0);
-	new->next = NULL;
-	new->var = ut_strcpy(env);
-	if (!new->var)
-		return (0);
-	env_lstaddback(envp, new);
-	return (1);
-}
-
-int	ev_build_env(char **env, t_envp **envp)
+char	*ut_strjoin(char *s1, char *s2)
 {
 	int		i;
+	int		j;
+	char	*res;
 
-	if (!*env)
-		*envp = NULL;
-	else
+	if (!s1 && !s2)
+		return (NULL);
+	if (!s1)
+		return (s2);
+	if (!s2)
+		return (s1);
+	res = malloc(ut_word_len(s1) + ut_word_len(s2) + 1);
+	if (!res)
+		return (perror("Strjoin malloc"), NULL);
+	i = -1;
+	while (s1[++i])
+		res[i] = s1[i];
+	j = 0;
+	while (s2[j])
 	{
-		i = -1;
-		while (env[++i])
-			if (!case_env(env[i], envp))
-				return (0);
+		res[i] = s2[j];
+		i++;
+		j++;
 	}
-	return (1);
+	res[i] = '\0';
+	return (res);
 }

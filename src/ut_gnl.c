@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 17:29:13 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/01 13:36:57 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/04 20:23:20 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static char	*ft_join(char *str, char *buff)
 	return (res);
 }
 
-char	*get_next_line(int fd)
+char	*ut_gnl(int fd)
 {
 	char	buff[1];
 	char	*line;

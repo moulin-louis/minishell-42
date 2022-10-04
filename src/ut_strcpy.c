@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-char	*ft_strcpy(char *s2)
+char	*ut_strcpy(char *s2)
 {
 	int		i;
 	int		len;

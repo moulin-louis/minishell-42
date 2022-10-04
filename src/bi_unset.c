@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 13:42:31 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/04 14:33:42 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/04 20:24:10 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	bi_unset(t_cati **mini, char *str)
 	t_envp	*del;
 	int		i;
 
-	if (!((*mini)->cmd = ft_split(str)))
+	if (!((*mini)->cmd = ut_split(str)))
 		return (perror("unset split malloc"), 1);
 	if (!(*mini)->cmd[0])
 		return (1);
