@@ -6,7 +6,7 @@
 #    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/05 08:33:57 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/10/05 14:28:42 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ NAME		= minishell
 #               SOURCES              #
 # ################################## #
 C_DIR		= src
-C_FILES		= main.c		\
+C_FILES		= minishell.c		\
 			  bi_cd.c		\
 			  bi_echo.c		\
 			  bi_env.c		\
