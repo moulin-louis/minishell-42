@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:16:50 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/05 14:09:49 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/05 15:05:30 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,13 @@ static void	init_mini(t_cati **mini)
 int	main(int ac, char **av, char **env)
 {
 	t_envp	*envp;
+	t_envp	*expt_ev;
 	t_cati	*mini;
 
 	(void)ac;
 	(void)av;
 	envp = NULL;
+	expt_ev = NULL;
 	if (!ev_build_env(env, &envp))
 		return (1);
 	mini = NULL;
