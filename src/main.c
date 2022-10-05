@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:16:50 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/05 13:27:40 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/05 14:09:49 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,11 @@ int	main(int ac, char **av, char **env)
 	mini = NULL;
 	init_mini(&mini);
 	mini->envp = envp;
-	mini->cmd = ut_split("cd /mnt/nfs");
-	bi_cd(&mini);
-	bi_pwd(&mini);
+	mini->cmd = ut_split("unset PWD");
+	bi_unset(&mini);
+	clean_split(mini->cmd);
+	mini->cmd = ut_split("env");
+	bi_env(&mini);
 	clean_mini(&mini);
 	clean_env(&envp);
 	return (0);
