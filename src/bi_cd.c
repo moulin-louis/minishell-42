@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:19:57 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/05 10:38:51 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/05 14:01:45 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,32 +15,41 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+static void	join(t_cati *tmp, char *ref, char *pwd)
+{
+	int	i;
+
+	i = -1;
+	while (ref[++i])
+		tmp->envp->var[i] = ref[i];
+	i = -1;
+	while (pwd[++i])
+		tmp->envp->var[i + 4] = pwd[i];
+	tmp->envp->var[i + 4] = '\0';
+}
+
 static int	change_var(t_cati *tmp)
 {
 	int		i;
 	char	*pwd;
 	char	*buff;
+	char	*ref;
 
 	free(tmp->envp->var);
 	i = 1;
 	buff = NULL;
-	pwd = getcwd(buff, i);;
+	ref = "PWD=";
+	pwd = NULL;
 	while (!pwd)
 	{
-		i++;
 		pwd = getcwd(buff, i);
+		i++;
 	}
-	tmp->envp->var = malloc(i + 6);
+	i = ut_word_len(pwd);
+	tmp->envp->var = malloc(i + 5);
 	if (!tmp->envp->var)
 		return (perror("cd change var malloc"), 0);
-	tmp->envp->var[i + 5] = '\0';
-	tmp->envp->var[0] = 'P';
-	tmp->envp->var[1] = 'W';
-	tmp->envp->var[2] = 'D';
-	tmp->envp->var[3] = '=';
-	i = -1;
-	while (pwd[++i])
-		tmp->envp->var[i + 4] = pwd[i];
+	join(tmp, ref, pwd);
 	free(pwd);
 	return (1);
 }
