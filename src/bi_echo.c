@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 11:20:35 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/04 20:24:10 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/05 09:54:30 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,12 @@ static int	is_arg(char *str)
 	return (0);
 }
 
-int	bi_echo(t_cati **mini, char *str)
+int	bi_echo(t_cati **mini)
 {
 	int	i;
 	int	len;
 	int	n_line;
 
-	(*mini)->cmd = ut_split(str);
-	if (!((*mini)->cmd))
-		return (perror("echo split malloc"), 1);
 	i = 0;
 	n_line = 1;
 	if (!is_arg((*mini)->cmd[1]))

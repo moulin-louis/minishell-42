@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/04 20:24:30 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/05 09:55:36 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int	bi_export(t_cati **mini, char *str)
+int	bi_export(t_cati **mini)
 {
 	int		i;
 	int		ret;
 	t_envp	*new;
 
-	if (!((*mini)->cmd = ut_split(str)))
-		return (perror("export split malloc"), 1);
 	i = 0;
 	ret = 0;
 	while ((*mini)->cmd[++i])

@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 13:42:31 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/04 20:24:10 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/05 09:55:55 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,14 +52,12 @@ static void	remove_node(t_envp *envp, t_envp *tmp)
 	delone(tmp);
 }
 
-int	bi_unset(t_cati **mini, char *str)
+int	bi_unset(t_cati **mini)
 {
 	t_envp	*tmp;
 	t_envp	*del;
 	int		i;
 
-	if (!((*mini)->cmd = ut_split(str)))
-		return (perror("unset split malloc"), 1);
 	if (!(*mini)->cmd[0])
 		return (1);
 	i = 0;

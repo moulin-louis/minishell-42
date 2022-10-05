@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:16:50 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/04 14:49:30 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/05 10:42:26 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,12 @@ int	main(int ac, char **av, char **env)
 	if (!ev_build_env(env, &envp))
 		return (1);
 	mini = malloc(sizeof(t_cati));
+	if (!mini)
+		return (1);
 	mini->envp = envp;
-	bi_cd(&mini, "cd /mnt/nfs");
-	bi_env(&mini);
+	mini->cmd = ut_split("cd /mnt/nfs");
+	bi_cd(&mini);
+	bi_pwd(&mini);
 	clean_mini(&mini);
 	return (0);
 }
