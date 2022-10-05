@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-char	*ft_strcpy(char *s2)
+char	*ut_strcpy(char *s2)
 {
 	int		i;
 	int		len;
@@ -35,9 +35,5 @@ char	*ft_strcpy(char *s2)
 		i++;
 	}
 	s1[i] = '\0';
-	/* printf("s2 in strcpy: %s\n", s2);
-	printf("pointer s2 in strcpy: %p\n", s2);
-	printf("s1 in strcpy: %s\n", s1);
-	printf("pointer s1 in strcpy: %p\n", s1); */
 	return (s1);
 }

@@ -1,23 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ut_word_len.c                                      :+:      :+:    :+:   */
+/*   ut_env_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/30 23:37:06 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/05 09:56:54 by bschoeff         ###   ########.fr       */
+/*   Created: 2022/10/03 09:55:52 by bschoeff          #+#    #+#             */
+/*   Updated: 2022/10/04 09:16:18 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <stdlib.h>
+#include <stdio.h>
 
-int	ut_word_len(char *str)
+void	env_lstaddback(t_envp **envp, t_envp *new)
 {
-	int	i;
+	t_envp	*tmp;
 
-	i = 0;
-	while (str[i] && str[i] != ' ')
-		i++;
-	return (i);
+	if (!*envp)
+	{
+		*envp = new;
+		return ;
+	}
+	tmp = *envp;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = new;
+}
+
+void	env_lstclear(t_envp **envp)
+{
+	t_envp	*tmp;
+
+	while (*envp)
+	{
+		tmp = *envp;
+		*envp = (*envp)->next;
+		if (tmp->var)
+			free(tmp->var);
+		free(tmp);
+	}
 }

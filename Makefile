@@ -6,7 +6,7 @@
 #    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/03 13:43:21 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/10/05 14:28:42 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,18 +26,20 @@ NAME		= minishell
 #               SOURCES              #
 # ################################## #
 C_DIR		= src
-C_FILES		= main.c		\
+C_FILES		= minishell.c		\
+			  bi_cd.c		\
 			  bi_echo.c		\
 			  bi_env.c		\
+			  bi_export.c	\
 			  bi_pwd.c		\
 			  bi_unset.c	\
 			  cl_clean_all.c	\
 			  ev_build_env.c	\
+			  ut_env_list.c		\
 			  ut_gnl.c		\
 			  ut_split.c	\
 			  ut_strcpy.c	\
 			  ut_word_len.c	\
-			  ut_list.c		\
 
 
 SRCS		= $(patsubst %, $(C_DIR)/%, $(C_FILES))
@@ -54,6 +56,7 @@ DEPS 		= $ $(C_FILES:.c=.d)
 #                FLAGS               #
 # ################################## #
 CFLAGS		= -Wall -Wextra -Werror -g3 -MMD
+LFLAGS		=
 
 # ################################## #
 #                INCLUDES            #
@@ -76,10 +79,15 @@ check:	CFLAGS		+=  -fsanitize=address
 check:	CFLAGS		+=  -fsanitize=leak
 check:	CFLAGS		+=  -fsanitize=undefined
 check:	CFLAGS		+=  -g3
+check:	LFLAGS		+=  -pedantic -ansi
+check:	LFLAGS		+=  -fsanitize=address
+check:	LFLAGS		+=  -fsanitize=leak
+check:	LFLAGS		+=  -fsanitize=undefined
+check:	LFLAGS		+=  -g3
 check:	${NAME}
 
 $(NAME):	$(O_DIR) $(OBJS)
-			$(CC) $(OBJS) -o $@
+			$(CC) $(OBJS) $(LFLAGS) -o $@
 
 $(O_DIR):
 			$(MKDIR) $(O_DIR)

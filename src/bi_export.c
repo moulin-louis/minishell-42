@@ -1,44 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ut_list.c                                          :+:      :+:    :+:   */
+/*   bi_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/03 09:55:52 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/03 12:12:03 by bschoeff         ###   ########.fr       */
+/*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
+/*   Updated: 2022/10/05 09:55:36 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdlib.h>
 #include <stdio.h>
+#include <stdlib.h>
 
-void	lstaddback(t_envp **envp, t_envp *new)
+int	bi_export(t_cati **mini)
 {
-	t_envp	*tmp;
+	int		i;
+	int		ret;
+	t_envp	*new;
 
-	if (!*envp)
+	i = 0;
+	ret = 0;
+	while ((*mini)->cmd[++i])
 	{
-		*envp = new;
-		return ;
+		new = malloc(sizeof(t_envp));
+		if (!new)
+		{
+			printf("%s ", (*mini)->cmd[i]);
+			perror("export malloc");
+			ret++;
+			break ;
+		}
+		new->next = NULL;
+		new->var = ut_strcpy((*mini)->cmd[i]);
+		if (!new->var)
+			return (perror("Fatal error export malloc"), ret);
+		env_lstaddback(&(*mini)->envp, new);
 	}
-	tmp = *envp;
-	while (tmp->next)
-		tmp = tmp->next;
-	tmp->next = new;
-}
-
-void	lstclear(t_envp **envp)
-{
-	t_envp	*tmp;
-
-	while (*envp)
-	{
-		tmp = *envp;
-		*envp = (*envp)->next;
-		if (tmp->var)
-			free(tmp->var);
-		free(tmp);
-	}
+	return (ret);
 }

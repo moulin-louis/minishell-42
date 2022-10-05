@@ -6,19 +6,19 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 14:15:43 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/03 13:26:28 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/04 10:37:50 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdio.h>
 
-int	bi_env(t_envp **envp)
+int	bi_env(t_cati **mini)
 {
 	t_envp	*tmp;
 	int		i;
 
-	tmp = *envp;
+	tmp = (*mini)->envp;
 	i = -1;
 	while (tmp)
 	{
