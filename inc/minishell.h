@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/05 09:57:35 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/05 15:14:39 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_cati {
 	char			*path_file;
 	t_fds			*fds;
 	t_envp			*envp;
+	t_envp			*expt_ev;
 	int				in_file;
 	int				in_heredoc;
 	int				in_pipe;
