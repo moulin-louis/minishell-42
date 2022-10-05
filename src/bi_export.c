@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/05 09:55:36 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/05 15:10:28 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	bi_export(t_cati **mini)
 
 	i = 0;
 	ret = 0;
+	if (!(*mini)->cmd[1])
+		return (ret);
 	while ((*mini)->cmd[++i])
 	{
 		new = malloc(sizeof(t_envp));
