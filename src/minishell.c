@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:16:50 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/06 11:10:35 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/06 13:50:43 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	main(int ac, char **av, char **env)
 	expt_ev = NULL;
 	if (!ev_build_env(env, &envp))
 		return (1);
-	if (!ev_build_env(env, &expt_ev))
+	if (!ev_build_expt(env, &expt_ev))
 		return (1);
 	mini = NULL;
 	init_mini(&mini);
@@ -78,8 +78,8 @@ int	main(int ac, char **av, char **env)
 	{
 		bi_export(&mini);
 		clean_split(mini->cmd);
-		mini->cmd = ut_split("env");
-		bi_env(&mini);
+		mini->cmd = ut_split("export");
+		bi_export(&mini);
 	}
 	else if (cmp("pwd", mini->cmd[0]))
 		bi_pwd(&mini);

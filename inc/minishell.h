@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/06 11:40:13 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/06 12:20:56 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	env_lstclear(t_envp **envp);
 
 /* Environment */
 int		ev_build_env(char **env, t_envp **envp);
+int		ev_build_expt(char **env, t_envp **envp);
 
 /* Cleanup */
 void	clean_split(char **arr);

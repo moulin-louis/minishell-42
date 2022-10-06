@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/06 11:11:49 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/06 13:49:46 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,29 @@ static void	no_arg(t_cati **mini)
 		display_expt_ev(mini);
 }
 
+static int	set_var(t_envp *new, char *var)
+{
+	int		i;
+	char	*ref;
+
+	ref = "declare -x ";
+	i = 0;
+	while (var[i])
+		i++;
+	new->next = NULL;
+	new->var = malloc(i + 12);
+	if (!new->var)
+		return (0);
+	new->var[i + 11] = '\0';
+	i = -1;
+	while (ref[++i])
+		new->var[i] = ref[i];
+	i = -1;
+	while (var[++i])
+		new->var[i + 11] = var[i];
+	return (1);
+}
+
 int	bi_export(t_cati **mini)
 {
 	int		i;
@@ -60,13 +83,30 @@ int	bi_export(t_cati **mini)
 			break ;
 		}
 		new->next = NULL;
-		new->var = ut_strcpy((*mini)->cmd[i]);
-		if (!new->var)
-			return (perror("Fatal error export malloc"), (*mini)->ret);
 		if (is_set((*mini)->cmd[i]))
+		{
+			new->var = ut_strcpy((*mini)->cmd[i]);
+			if (!new->var)
+				return (perror("Fatal error export malloc"), (*mini)->ret);
 			env_lstaddback(&(*mini)->envp, new);
+		}
+
+		if (!is_set((*mini)->cmd[i]))
+		{
+
+				return (0);
+			(*mini)->ret++;
+		}
 		else
-			env_lstaddback(&(*mini)->expt_ev, new);
+		{
+			if (!set_var(new, (*mini)->cmd[i]))
+			{
+				(*mini)->ret++;
+				break ;
+			}
+			else
+				env_lstaddback(&(*mini)->expt_ev, new);
+		}
 	}
 	return ((*mini)->ret);
 }
