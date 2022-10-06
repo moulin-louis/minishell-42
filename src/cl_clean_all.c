@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:36:37 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/05 14:04:08 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/06 10:19:53 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	clean_mini(t_cati **mini)
 		if (tmp->path_cmd)
 			free(tmp->path_cmd);
 		if (tmp->path_file)
-			free(tmp->path_cmd);
+			free(tmp->path_file);
 		free(tmp);
 	}
 }
