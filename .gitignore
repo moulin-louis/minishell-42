@@ -43,5 +43,7 @@ minishell
 
 # Checkers & misc
 test.c
+tester.c
+tester
 
 

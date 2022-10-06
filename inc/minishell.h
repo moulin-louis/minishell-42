@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/05 15:14:39 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/06 11:09:39 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ typedef struct s_cati {
 	int				out_append;
 	int				out_trunc;
 	int				out_pipe;
+	int				ret;
 	struct s_cati	*next;
 }				t_cati;
 
