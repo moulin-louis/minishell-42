@@ -6,7 +6,7 @@
 #    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/06 11:40:49 by loumouli         ###   ########.fr        #
+#    Updated: 2022/10/06 13:57:29 by loumouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,12 +36,14 @@ C_FILES		= minishell.c		\
 			  cl_clean_all.c	\
 			  ev_build_env.c	\
 			  pa_main.c			\
-			  pa_prompt.cc		\
+			  pa_prompt.c		\
 			  ut_env_list.c		\
 			  ut_gnl.c		\
+			  ut_mini_list.c \
 			  ut_split.c	\
 			  ut_strcpy.c	\
 			  ut_word_len.c	\
+
 
 
 
@@ -93,7 +95,7 @@ check:	LFLAGS		+=  -g3
 check:	${NAME}
 
 $(NAME):	$(O_DIR) $(OBJS)
-			$(CC) $(OBJS) $(LFLAGS) -o $@
+			$(CC) $(OBJS) $(LFLAGS) $(CINCLUDES) $(CLIBS) -o $@
 
 $(O_DIR):
 			$(MKDIR) $(O_DIR)

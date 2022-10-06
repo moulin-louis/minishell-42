@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/06 11:40:13 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/06 15:23:19 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,9 @@ char	*ut_strcpy(char *s2);
 int		ut_word_len(char *str);
 void	env_lstaddback(t_envp **envp, t_envp *new);
 void	env_lstclear(t_envp **envp);
+t_cati	*mini_lstnew(char *str);
+void	mini_lstaddback(t_cati **mini, t_cati *node);
+int		ft_strlen(char *str);
 
 /* Environment */
 int		ev_build_env(char **env, t_envp **envp);

@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:51:41 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/06 11:38:02 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/06 16:11:09 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ void	handle_sigint(int sig)
 	rl_redisplay();
 }
 
+void	do_nothing(int sig)
+{
+	(void)sig;
+}
+
 void	run_prompt(void)
 {
 	struct sigaction	sa;
@@ -36,11 +41,19 @@ void	run_prompt(void)
 	sa.sa_handler = &handle_sigint;
 	sa.sa_flags = SA_RESTART;
 	sigaction(SIGINT, &sa, NULL);
+	// sa.sa_handler = &do_nothing;
+	// sigaction(SIGQUIT, &sa, NULL);
 	while (1)
 	{
-		u_input = readline("minishell>");
+		u_input = readline("minishell> ");
+		if (u_input == 0)
+		{
+			rl_clear_history();
+			exit(1);
+		}
 		if (u_input)
 		{
+			printf("u input exist bitch\n");
 			parsing(u_input);
 			if (ft_strlen(u_input) > 0)
 				add_history(u_input);
