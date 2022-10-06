@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
+#    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/05 14:28:42 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/10/06 11:40:49 by loumouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,11 +35,14 @@ C_FILES		= minishell.c		\
 			  bi_unset.c	\
 			  cl_clean_all.c	\
 			  ev_build_env.c	\
+			  pa_main.c			\
+			  pa_prompt.cc		\
 			  ut_env_list.c		\
 			  ut_gnl.c		\
 			  ut_split.c	\
 			  ut_strcpy.c	\
 			  ut_word_len.c	\
+
 
 
 SRCS		= $(patsubst %, $(C_DIR)/%, $(C_FILES))
@@ -61,7 +64,10 @@ LFLAGS		=
 # ################################## #
 #                INCLUDES            #
 # ################################## #
-CINCLUDES	= -I ./inc	\
+CINCLUDES	=	-I ./inc	\
+				-I /usr/local/include
+
+CLIBS		=	-L/usr/local/lib -lreadline
 
 # ################################## #
 #                RULES               #
