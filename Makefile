@@ -6,7 +6,7 @@
 #    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/03 14:49:52 by loumouli         ###   ########.fr        #
+#    Updated: 2022/10/05 12:04:54 by loumouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,8 @@ C_FILES		= main.c		\
 			  ut_strcpy.c	\
 			  ut_word_len.c	\
 			  ut_list.c		\
-			  pa_prompt.c
+			  pa_prompt.c	\
+			  pa_main.c
 
 SRCS		= $(patsubst %, $(C_DIR)/%, $(C_FILES))
 

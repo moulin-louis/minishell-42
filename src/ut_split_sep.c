@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 12:49:56 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/03 13:44:10 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/05 11:56:32 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,17 +104,4 @@ char	**ft_split_sep(char *str, char *sep)
 		str += len;
 	}
 	return (result);
-}
-
-int	main(void)
-{
-	char **temp = ft_split_sep("test vite.fait", " .");
-	int x = 0;
-	while (temp[x])
-	{
-		printf("%s\n", temp[x]);
-		free(temp[x]);
-		x++;
-	}
-	free(temp);
 }
