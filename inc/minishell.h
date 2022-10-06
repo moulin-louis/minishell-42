@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/03 14:28:17 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/05 12:04:37 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,6 @@ void	clean_env(t_envp **envp);
 
 /* Parsing */
 void	run_prompt(void);
+void	parsing(char *input);
 
 #endif
