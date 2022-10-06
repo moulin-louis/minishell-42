@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:16:50 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/06 13:50:43 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/06 13:53:34 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int	main(int ac, char **av, char **env)
 		clean_split(mini->cmd);
 		mini->cmd = ut_split("export");
 		bi_export(&mini);
+		bi_env(&mini);
 	}
 	else if (cmp("pwd", mini->cmd[0]))
 		bi_pwd(&mini);

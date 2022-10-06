@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/06 12:20:56 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/06 15:20:17 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,12 @@ int		bi_unset(t_cati **mini);
 /* Utils */
 char	*ut_gnl(int fd);
 char	**ut_split(char *str);
+int		ut_strcmp(char *s1, char *s2);
 char	*ut_strcpy(char *s2);
 int		ut_word_len(char *str);
 void	env_lstaddback(t_envp **envp, t_envp *new);
 void	env_lstclear(t_envp **envp);
+void	env_lstdelone(t_envp **envp, t_envp *tmp);
 
 /* Environment */
 int		ev_build_env(char **env, t_envp **envp);
