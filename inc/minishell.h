@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/06 11:40:13 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/07 09:57:25 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,24 @@ int		bi_cd(t_cati **mini);
 int		bi_echo(t_cati **mini);
 int		bi_env(t_cati **mini);
 int		bi_export(t_cati **mini);
+int		bi_expt_expt(t_cati **mini, char *str);
+int		bi_expt_env(t_cati **mini, char *str);
 int		bi_pwd(t_cati **mini);
 int		bi_unset(t_cati **mini);
 
 /* Utils */
 char	*ut_gnl(int fd);
 char	**ut_split(char *str);
+int		ut_strcmp(char *s1, char *s2);
 char	*ut_strcpy(char *s2);
 int		ut_word_len(char *str);
 void	env_lstaddback(t_envp **envp, t_envp *new);
 void	env_lstclear(t_envp **envp);
+void	env_lstdelone(t_envp **envp, t_envp *tmp);
 
 /* Environment */
 int		ev_build_env(char **env, t_envp **envp);
+int		ev_build_expt(char **env, t_envp **envp);
 
 /* Cleanup */
 void	clean_split(char **arr);

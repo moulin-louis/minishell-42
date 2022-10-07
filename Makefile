@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
+#    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/06 11:40:49 by loumouli         ###   ########.fr        #
+#    Updated: 2022/10/07 09:58:28 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,15 +31,16 @@ C_FILES		= minishell.c		\
 			  bi_echo.c		\
 			  bi_env.c		\
 			  bi_export.c	\
+			  bi_export2.c	\
 			  bi_pwd.c		\
 			  bi_unset.c	\
 			  cl_clean_all.c	\
 			  ev_build_env.c	\
-			  pa_main.c			\
-			  pa_prompt.cc		\
+			  ev_build_expt.c	\
 			  ut_env_list.c		\
 			  ut_gnl.c		\
 			  ut_split.c	\
+			  ut_strcmp.c	\
 			  ut_strcpy.c	\
 			  ut_word_len.c	\
 
@@ -93,7 +94,7 @@ check:	LFLAGS		+=  -g3
 check:	${NAME}
 
 $(NAME):	$(O_DIR) $(OBJS)
-			$(CC) $(OBJS) $(LFLAGS) -o $@
+			$(CC) $(OBJS) $(LFLAGS) $(CLIBS) -o $@
 
 $(O_DIR):
 			$(MKDIR) $(O_DIR)
