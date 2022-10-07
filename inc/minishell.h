@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/07 12:23:20 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/07 13:51:17 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ typedef struct s_fds {
 	int		out_pipe[2];
 	int		in_fd;
 	int		out_fd;
+	int		status;
 }			t_fds;
 
 typedef struct s_envp

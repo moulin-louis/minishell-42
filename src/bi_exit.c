@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:12:28 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/07 13:05:25 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/07 13:54:18 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,17 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>
+
+static int	alphanum(char *str)
+{
+	int	i;
+
+	i = -1;
+	while (str[++i])
+		if (str[i] <= '0' || str[i] >= '9')
+			return (0);
+	return (1);
+}
 
 static unsigned char	statouc(char *str)
 {
@@ -40,19 +51,22 @@ static unsigned char	statouc(char *str)
 
 int	bi_exit(t_cati **mini)
 {
-	int	status;
-
-	status = 0;
 	if ((*mini)->cmd[1])
 	{
-		status = statouc((*mini)->cmd[1]);
+		if (!alphanum((*mini)->cmd[1]))
+		{
+			printf("bash: exit: %s: numeric argument required\n",
+				(*mini)->cmd[1]);
+			clean_mini(mini);
+			exit(2);
+		}
+		(*mini)->fds->status = statouc((*mini)->cmd[1]);
 		if ((*mini)->cmd[2])
 		{
 			printf("bash: exit: too many arguments\n");
-			errno = 1;
-			return (clean_mini(mini), 1);
+			return (1);
 		}
 	}
 	clean_mini(mini);
-	exit(status);
+	exit((*mini)->fds->status);
 }
