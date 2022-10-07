@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 09:55:52 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/06 15:23:37 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/07 10:00:44 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	env_lstclear(t_envp **envp)
 
 void	env_lstdelone(t_envp **envp, t_envp *tmp)
 {
-	t_envp *tmp2;
+	t_envp	*tmp2;
 
 	tmp2 = *envp;
 	while (tmp2)

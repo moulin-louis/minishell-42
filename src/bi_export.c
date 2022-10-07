@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/06 15:26:22 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/07 10:09:15 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,82 +37,59 @@ static void	display_expt_ev(t_cati **mini)
 	}
 }
 
-static int	set_var(t_envp *new, char *var)
+static int	var_cmp(char *s1, char *s2)
 {
-	int		i;
-	char	*ref;
+	int	i;
 
-	ref = "declare -x ";
-	i = 0;
-	while (var[i])
-		i++;
-	new->next = NULL;
-	new->var = malloc(i + 12);
-	if (!new->var)
-		return (perror("new->var malloc"), 0);
-	new->var[i + 11] = '\0';
 	i = -1;
-	while (ref[++i])
-		new->var[i] = ref[i];
-	i = -1;
-	while (var[++i])
-		new->var[i + 11] = var[i];
+	while (s1[++i] && s1[i] != '=')
+		if (s1[i] != s2[i])
+			return (0);
 	return (1);
 }
 
-static int	proper_export(t_cati **mini, t_envp *new, char *s)
+static void	already_exists(t_cati **mini, char *str)
 {
-	t_envp	*new2;
 	t_envp	*tmp;
 
 	tmp = (*mini)->envp;
 	while (tmp)
 	{
-		if (ut_strcmp(tmp->var, s))
-		{
+		if (var_cmp(tmp->var, str))
 			env_lstdelone(&(*mini)->envp, tmp);
-			env_lstdelone(&(*mini)->expt_ev, tmp);
-		}
 		tmp = tmp->next;
 	}
-	new2 = malloc(sizeof(t_envp));
-	if (!new2)
-		return (perror("Export new malloc"), 0);
-	new2->next = NULL;
-	new2->var = ut_strcpy(s);
-	if (!new2)
-		return (perror("Export new->var malloc"), 0);
-	if (!set_var(new, s))
-		return (0);
-	env_lstaddback(&(*mini)->expt_ev, new);
-	env_lstaddback(&(*mini)->envp, new2);
-	return (1);
+	tmp = (*mini)->expt_ev;
+	while (tmp)
+	{
+		if (var_cmp(tmp->var, str))
+			env_lstdelone(&(*mini)->expt_ev, tmp);
+		tmp = tmp->next;
+	}
 }
 
 int	bi_export(t_cati **mini)
 {
 	int		i;
-	t_envp	*new;
-	t_envp	*tmp;
 
 	if (!(*mini)->cmd[1])
 		return (display_expt_ev(mini), (*mini)->ret);
 	i = 0;
 	while ((*mini)->cmd[++i])
 	{
-		new = malloc(sizeof(t_envp));
-		if (!new)
-			return (perror("Export new malloc"), (*mini)->ret);
-		new->next = NULL;
+		already_exists(mini, (*mini)->cmd[i]);
 		if (!is_set((*mini)->cmd[i]))
 		{
-			if (!set_var(new, (*mini)->cmd[i]))
-				return ((*mini)->ret);
-			env_lstaddback(&(*mini)->expt_ev, new);
+			if (!bi_expt_env(mini, (*mini)->cmd[i]))
+				(*mini)->ret++;
 		}
 		else
-			if (!proper_export(mini, new, (*mini)->cmd[i]))
-				return ((*mini)->ret);
+		{
+			if (!bi_expt_expt(mini, (*mini)->cmd[i]))
+				(*mini)->ret++;
+			if (!bi_expt_env(mini, (*mini)->cmd[i]))
+				(*mini)->ret++;
+		}
 	}
 	return ((*mini)->ret);
 }
