@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/07 09:57:25 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/07 11:21:47 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int		bi_cd(t_cati **mini);
 int		bi_echo(t_cati **mini);
 int		bi_env(t_cati **mini);
 int		bi_export(t_cati **mini);
-int		bi_expt_expt(t_cati **mini, char *str);
+int		bi_expt_expt(t_cati **mini, char *str, int flag);
 int		bi_expt_env(t_cati **mini, char *str);
 int		bi_pwd(t_cati **mini);
 int		bi_unset(t_cati **mini);

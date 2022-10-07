@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:16:50 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/06 13:53:34 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/07 11:15:34 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,5 @@ int	main(int ac, char **av, char **env)
 		bi_env(&mini);
 	}
 	clean_mini(&mini);
-	clean_env(&envp);
-	clean_env(&expt_ev);
 	return (0);
 }

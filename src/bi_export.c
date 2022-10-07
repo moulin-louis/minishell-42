@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/07 10:09:15 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/07 11:24:09 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,12 +80,12 @@ int	bi_export(t_cati **mini)
 		already_exists(mini, (*mini)->cmd[i]);
 		if (!is_set((*mini)->cmd[i]))
 		{
-			if (!bi_expt_env(mini, (*mini)->cmd[i]))
+			if (!bi_expt_expt(mini, (*mini)->cmd[i], 0))
 				(*mini)->ret++;
 		}
 		else
 		{
-			if (!bi_expt_expt(mini, (*mini)->cmd[i]))
+			if (!bi_expt_expt(mini, (*mini)->cmd[i], 1))
 				(*mini)->ret++;
 			if (!bi_expt_env(mini, (*mini)->cmd[i]))
 				(*mini)->ret++;
