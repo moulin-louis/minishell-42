@@ -6,13 +6,25 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 09:25:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/07 11:26:04 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/07 11:33:14 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+static void	end_of_string(t_envp *new, int i, int flag)
+{
+	if (flag)
+	{
+		new->var[i + 11] = '"';
+		new->var[i + 12] = '"';
+		new->var[i + 13] = '\0';
+	}
+	else
+		new->var[i + 11] = '\0';
+}
 
 int	bi_expt_expt(t_cati **mini, char *str, int flag)
 {
@@ -37,14 +49,7 @@ int	bi_expt_expt(t_cati **mini, char *str, int flag)
 	i = -1;
 	while (str[++i])
 		new->var[i + 11] = str[i];
-	if (flag)
-	{
-		new->var[i + 11] = '"';
-		new->var[i + 12] = '"';
-		new->var[i + 13] = '\0';
-	}
-	else
-		new->var[i + 11] = '\0';
+	end_of_string(new, i, flag);
 	env_lstaddback(&(*mini)->expt_ev, new);
 	return (1);
 }
