@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pa_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli < loumouli@student.42.fr >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/06 15:18:30 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/09 13:57:55 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,99 +14,72 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-void	add_i(char *str, int *i)
+int	mini_len(t_cati *mini)
 {
-	if (str[(*i) - 1] == 34)
-	{
-		while (str[*i] && str[*i] != 34)
-			(*i)++;
-	}
-	if (str[(*i) - 1] == 39)
-	{
-		while (str[*i] && str[*i] != 39)
-			(*i)++;
-	}
-	(*i)++;
-}
-
-char	*ft_return_token(char *str, int *i)
-{
-	int		temp;
-	int		len;
-	char	*result;
-
-	temp = *i;
-	add_i(str, i);
-	len = (*i) - temp;
-	result = malloc(len + 1);
-	if (!result)
-		return (NULL);
-	result[len] = '\0';
-	len = 0;
-	while (temp < *i)
-	{
-		result[len] = str[temp];
-		len++;
-		temp++;
-	}
-	return (result);
-}
-
-char	*ft_return_str(char *str, int *i)
-{
-	int		temp;
-	char	*result;
-
-	temp = *i;
-	while (str[temp] && str[temp] != ' ' && str[temp] != 34 && str[temp] != 39)
-		temp++;
-	result = malloc(sizeof(char) * ((temp - *i) + 1));
-	if (!result)
-		return (NULL);
-	result[(temp - *i)] = '\0';
-	temp = 0;
-	while (str[*i] && str[*i] != ' ' && str[*i] != 34 && str[*i] != 39)
-	{
-		result[temp] = str[*i];
-		(*i)++;
-		temp++;
-	}
-	return (result);
-}
-
-int	find_nbr_token(char *str, t_cati **lst)
-{
-	int	i;
-	int	result;
-
-	i = 0;
+	int		result;
+	t_cati	*temp;
+	
 	result = 0;
-	while (str[i])
+	temp = mini;
+	while(temp)
 	{
-		if (str[i] == 34 || str[i] == 39)
-		{
-			result++;
-			ft_return_token(str, &i);
-		}
-		else if (str[i] != ' ' && str[i] != 34 && str[i] != 39)
-		{
-			result ++;
-			mini_lstaddback(lst, mini_lstnew(ft_return_str(str, &i)));
-		}
-		else
-			i++;
+		result++;
+		temp = temp->next;
 	}
-	return (result);
+	return(result);
 }
 
-t_cati	*tokenize_string(char *str)
+void	handle_redirection(t_cati **mini)
 {
-	int		nbr_token;
-	t_cati	*result;
+	t_cati	*temp;
+	t_cati	*temp2;
+	int	len;
+	
+	len = mini_len(*mini);
+	temp = *mini;
+	if(len > 2 && temp->next->path_cmd[0] == '<')
+	{
+		temp->path_file = ut_strdup(temp->next->next->path_cmd);
+		temp = (*mini)->next;
+		temp2 = (*mini)->next->next;
+		(*mini)->next =  (*mini)->next->next->next;
+		mini_delone(temp);
+		mini_delone(temp2);		
+	}
 
+}
+
+void	parse_options(t_cati  *mini)
+{
+	t_cati	*temp;
+	int		nbr_opt;
+	char	**result;
+	int		i;
+
+	temp = mini;
+	nbr_opt = 0;
 	result = NULL;
-	nbr_token = find_nbr_token(str, &result);
-	return (result);
+	while (temp && (ft_strncmp(temp->path_cmd, "|", 2) || ft_strncmp(temp->path_cmd,
+		"<", 2) || ft_strncmp(temp->path_cmd, ">", 2)))
+	{
+		nbr_opt++;
+		temp = temp->next;
+	}
+	result = malloc(sizeof(char *) * (nbr_opt + 1));
+	if (!result)
+		return ;
+	result[nbr_opt] = NULL;
+	i = 0;
+	temp = mini;
+	while (i < nbr_opt)
+	{
+		result[i] = ut_strdup(temp->path_cmd);
+		if (!result[i])
+			return ;
+		temp = temp->next;
+		i++;
+	}
+	mini->cmd = result;
 }
 
 void	parsing(char *input)
@@ -114,11 +87,18 @@ void	parsing(char *input)
 	t_cati	*mini;
 
 	mini = tokenize_string(input);
+	handle_redirection(&mini);
+	parse_options(mini);
 	t_cati *temp = mini;
-	while (temp)
+	printf("%s\n", temp->path_cmd);
+	if (temp->cmd)
 	{
-		printf("%s\n", temp->path_cmd);
-		temp = temp->next;
+		int i = 0;
+		while (temp->cmd[i])
+		{
+			printf("[%s]\n", temp->cmd[i]);
+			i++;
+		}
 	}
-	(void)mini;
+	clean_mini(&mini);
 }

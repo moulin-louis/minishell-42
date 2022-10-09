@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ut_mini_list.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli < loumouli@student.42.fr >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:51:29 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/06 14:00:58 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/08 20:53:25 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	ft_strlen(char *str)
 	return (i);
 }
 
-void	ft_bzero(void *s, size_t n)
+void	ft_bzero(void *s, int n)
 {
 	char	*temp;
 
@@ -36,6 +36,17 @@ void	ft_bzero(void *s, size_t n)
 		temp++;
 		n--;
 	}
+}
+
+void	mini_delone(t_cati	*node)
+{
+	if (node->cmd)
+		clean_split(node->cmd);
+	if (node->path_cmd)
+		free(node->path_cmd);
+	if (node->path_file)
+		free(node->path_file);
+	free(node);
 }
 
 void	mini_lstaddback(t_cati **mini, t_cati *node)
