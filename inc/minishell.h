@@ -3,10 +3,9 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli < loumouli@student.42.fr >        +#+  +:+       +#+        */
+/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/08 20:53:30 by loumouli         ###   ########.fr       */
+/*   Created: 2022/09/26 10:15:4
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +17,7 @@ typedef struct s_fds {
 	int		out_pipe[2];
 	int		in_fd;
 	int		out_fd;
+	int		status;
 }			t_fds;
 
 typedef struct s_envp
@@ -48,17 +48,22 @@ typedef struct s_cati {
 int		bi_cd(t_cati **mini);
 int		bi_echo(t_cati **mini);
 int		bi_env(t_cati **mini);
+int		bi_exit(t_cati **mini);
 int		bi_export(t_cati **mini);
+int		bi_expt_expt(t_cati **mini, char *str, int flag);
+int		bi_expt_env(t_cati **mini, char *str);
 int		bi_pwd(t_cati **mini);
 int		bi_unset(t_cati **mini);
 
 /* Utils */
 char	*ut_gnl(int fd);
 char	**ut_split(char *str);
+int		ut_strcmp(char *s1, char *s2);
 char	*ut_strcpy(char *s2);
 int		ut_word_len(char *str);
 void	env_lstaddback(t_envp **envp, t_envp *new);
 void	env_lstclear(t_envp **envp);
+void	env_lstdelone(t_envp **envp, t_envp *tmp);
 t_cati	*mini_lstnew(char *str);
 void	mini_lstaddback(t_cati **mini, t_cati *node);
 void	mini_delone(t_cati	*node);
@@ -69,6 +74,7 @@ void	ft_bzero(void *s, int n);
 
 /* Environment */
 int		ev_build_env(char **env, t_envp **envp);
+int		ev_build_expt(char **env, t_envp **envp);
 
 /* Cleanup */
 void	clean_split(char **arr);

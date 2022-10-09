@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/06 11:11:49 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/07 11:24:09 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,36 +37,59 @@ static void	display_expt_ev(t_cati **mini)
 	}
 }
 
-static void	no_arg(t_cati **mini)
+static int	var_cmp(char *s1, char *s2)
 {
-	if (!(*mini)->cmd[1])
-		display_expt_ev(mini);
+	int	i;
+
+	i = -1;
+	while (s1[++i] && s1[i] != '=')
+		if (s1[i] != s2[i])
+			return (0);
+	return (1);
+}
+
+static void	already_exists(t_cati **mini, char *str)
+{
+	t_envp	*tmp;
+
+	tmp = (*mini)->envp;
+	while (tmp)
+	{
+		if (var_cmp(tmp->var, str))
+			env_lstdelone(&(*mini)->envp, tmp);
+		tmp = tmp->next;
+	}
+	tmp = (*mini)->expt_ev;
+	while (tmp)
+	{
+		if (var_cmp(tmp->var, str))
+			env_lstdelone(&(*mini)->expt_ev, tmp);
+		tmp = tmp->next;
+	}
 }
 
 int	bi_export(t_cati **mini)
 {
 	int		i;
-	t_envp	*new;
 
+	if (!(*mini)->cmd[1])
+		return (display_expt_ev(mini), (*mini)->ret);
 	i = 0;
-	no_arg(mini);
 	while ((*mini)->cmd[++i])
 	{
-		new = malloc(sizeof(t_envp));
-		if (!new)
+		already_exists(mini, (*mini)->cmd[i]);
+		if (!is_set((*mini)->cmd[i]))
 		{
-			perror("export malloc");
-			(*mini)->ret++;
-			break ;
+			if (!bi_expt_expt(mini, (*mini)->cmd[i], 0))
+				(*mini)->ret++;
 		}
-		new->next = NULL;
-		new->var = ut_strcpy((*mini)->cmd[i]);
-		if (!new->var)
-			return (perror("Fatal error export malloc"), (*mini)->ret);
-		if (is_set((*mini)->cmd[i]))
-			env_lstaddback(&(*mini)->envp, new);
 		else
-			env_lstaddback(&(*mini)->expt_ev, new);
+		{
+			if (!bi_expt_expt(mini, (*mini)->cmd[i], 1))
+				(*mini)->ret++;
+			if (!bi_expt_env(mini, (*mini)->cmd[i]))
+				(*mini)->ret++;
+		}
 	}
 	return ((*mini)->ret);
 }
