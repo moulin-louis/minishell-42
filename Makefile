@@ -6,7 +6,7 @@
 #    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/07 09:58:28 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/10/08 11:32:58 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ C_FILES		= minishell.c		\
 			  bi_cd.c		\
 			  bi_echo.c		\
 			  bi_env.c		\
+			  bi_exit.c		\
 			  bi_export.c	\
 			  bi_export2.c	\
 			  bi_pwd.c		\
@@ -94,7 +95,7 @@ check:	LFLAGS		+=  -g3
 check:	${NAME}
 
 $(NAME):	$(O_DIR) $(OBJS)
-			$(CC) $(OBJS) $(LFLAGS) $(CLIBS) -o $@
+			$(CC) $(OBJS) $(CFLAGS) $(LFLAGS) $(CLIBS) -o $@
 
 $(O_DIR):
 			$(MKDIR) $(O_DIR)

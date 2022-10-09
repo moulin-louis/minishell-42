@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:16:50 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/06 13:53:34 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/07 13:53:37 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,16 @@ int	main(int ac, char **av, char **env)
 	t_envp	*envp;
 	t_envp	*expt_ev;
 	t_cati	*mini;
+	int		ret;
+	t_fds	*fds;
 
 	(void)ac;
 	(void)av;
+	fds = malloc (sizeof(t_fds));
+	if (!fds)
+		return (1);
+	fds->status = 0;
+	ret = 0;
 	envp = NULL;
 	expt_ev = NULL;
 	if (!ev_build_env(env, &envp))
@@ -62,6 +69,7 @@ int	main(int ac, char **av, char **env)
 	init_mini(&mini);
 	mini->envp = envp;
 	mini->expt_ev = expt_ev;
+	mini->fds = fds;
 	mini->cmd = ut_split(av[1]);
 	if (cmp("cd", mini->cmd[0]))
 	{
@@ -91,8 +99,8 @@ int	main(int ac, char **av, char **env)
 		mini->cmd = ut_split("env");
 		bi_env(&mini);
 	}
+	else if (cmp("exit", mini->cmd[0]))
+		ret = bi_exit(&mini);
 	clean_mini(&mini);
-	clean_env(&envp);
-	clean_env(&expt_ev);
-	return (0);
+	return (ret);
 }
