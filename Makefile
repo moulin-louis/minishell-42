@@ -6,7 +6,7 @@
 #    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/08 11:32:58 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/10/09 15:35:05 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,11 +38,16 @@ C_FILES		= minishell.c		\
 			  cl_clean_all.c	\
 			  ev_build_env.c	\
 			  ev_build_expt.c	\
+			  pa_init.c			\
+			  pa_main.c			\
+			  pa_prompt.c		\
 			  ut_env_list.c		\
 			  ut_gnl.c		\
+			  ut_mini_list.c	\
 			  ut_split.c	\
 			  ut_strcmp.c	\
 			  ut_strcpy.c	\
+			  ut_strstuff.c	\
 			  ut_word_len.c	\
 
 

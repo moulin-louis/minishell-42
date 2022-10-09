@@ -5,8 +5,7 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 10:15:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/07 13:51:17 by bschoeff         ###   ########.fr       */
+/*   Created: 2022/09/26 10:15:4
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +64,13 @@ int		ut_word_len(char *str);
 void	env_lstaddback(t_envp **envp, t_envp *new);
 void	env_lstclear(t_envp **envp);
 void	env_lstdelone(t_envp **envp, t_envp *tmp);
+t_cati	*mini_lstnew(char *str);
+void	mini_lstaddback(t_cati **mini, t_cati *node);
+void	mini_delone(t_cati	*node);
+int		ft_strlen(char *str);
+char	*ut_strdup(char *str);
+int		ft_strncmp(const char *s1, const char *s2, int n);
+void	ft_bzero(void *s, int n);
 
 /* Environment */
 int		ev_build_env(char **env, t_envp **envp);
@@ -78,5 +84,6 @@ void	clean_mini(t_cati **mini);
 /* Parsing */
 void	run_prompt(void);
 void	parsing(char *input);
+t_cati	*tokenize_string(char *str);
 
 #endif
