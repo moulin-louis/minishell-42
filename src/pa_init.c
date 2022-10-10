@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pa_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli < loumouli@student.42.fr >        +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 10:41:05 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/09 13:56:33 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/10 09:58:41 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 void	add_i(char *str, int *i)
 {
+
 	if (str[(*i) - 1] == 34)
 	{
 		while (str[*i] && str[*i] != 34)
@@ -22,6 +23,7 @@ void	add_i(char *str, int *i)
 	}
 	if (str[(*i) - 1] == 39)
 	{
+		(*i)++;
 		while (str[*i] && str[*i] != 39)
 			(*i)++;
 	}
