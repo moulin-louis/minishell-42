@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:12:28 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/07 14:32:58 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/10 09:08:08 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static int	alphanum(char *str)
 	int	i;
 
 	i = -1;
+	if (str[0] == '-')
+		i++;
 	while (str[++i])
 		if (str[i] <= '0' || str[i] >= '9')
 			return (0);
@@ -44,12 +46,14 @@ static unsigned char	statouc(char *str)
 		n *= 10;
 		n += str[i] - '0';
 	}
-	printf("%i\n", (unsigned char)(n * sign));
 	return (n * sign);
 }
 
 int	bi_exit(t_cati **mini)
 {
+	unsigned char	status;
+
+	status = 0;
 	if ((*mini)->cmd[1])
 	{
 		if (!alphanum((*mini)->cmd[1]))
@@ -59,7 +63,7 @@ int	bi_exit(t_cati **mini)
 			clean_mini(mini);
 			exit(2);
 		}
-		(*mini)->fds->status = statouc((*mini)->cmd[1]);
+		status = statouc((*mini)->cmd[1]);
 		if ((*mini)->cmd[2])
 		{
 			printf("bash: exit: too many arguments\n");
@@ -67,5 +71,5 @@ int	bi_exit(t_cati **mini)
 		}
 	}
 	clean_mini(mini);
-	exit((*mini)->fds->status);
+	exit(status);
 }
