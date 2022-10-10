@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:04 by                   #+#    #+#             */
-/*   Updated: 2022/10/10 09:52:01 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/10 11:12:52 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	env_lstdelone(t_envp **envp, t_envp *tmp);
 t_cati	*mini_lstnew(char *str);
 void	mini_lstaddback(t_cati **mini, t_cati *node);
 void	mini_delone(t_cati	*node);
+int		mini_len(t_cati *mini);
 int		ft_strlen(char *str);
 char	*ut_strdup(char *str);
 int		ft_strncmp(const char *s1, const char *s2, int n);

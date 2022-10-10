@@ -3,15 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ut_strstuff.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli < loumouli@student.42.fr >        +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 12:32:42 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/08 16:12:36 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/10 11:11:50 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
+
+int	ft_strlen(char *str)
+{
+	int	i;
+
+	if (!str)
+		return (0);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
 
 char	*ut_strdup(char *str)
 {
