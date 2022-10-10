@@ -78,12 +78,15 @@ int		ev_build_expt(char **env, t_envp **envp);
 
 /* Cleanup */
 void	clean_split(char **arr);
-void	clean_env(t_envp **envp);
+void	clean_fds(t_cati *tmp);
 void	clean_mini(t_cati **mini);
 
 /* Parsing */
 void	run_prompt(t_envp *envp, t_envp *expt_ev, t_fds *fds);
 void	parsing(char *input, t_envp *envp, t_envp *expt_ev, t_fds *fds);
 t_cati	*tokenize_string(char *str);
+
+/* Execute */
+int		execute(t_cati **mini);
 
 #endif
