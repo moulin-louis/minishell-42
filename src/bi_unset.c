@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 13:42:31 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/05 09:55:55 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/10 15:00:12 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,6 @@ static void	remove_node(t_envp *envp, t_envp *tmp)
 	t_envp	*iter;
 
 	iter = envp;
-	if (!tmp->next)
-		delone(tmp);
 	while (iter->next != tmp)
 		iter = iter->next;
 	iter->next = tmp->next;
