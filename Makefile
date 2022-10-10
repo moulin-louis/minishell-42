@@ -6,7 +6,7 @@
 #    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/09 15:35:05 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/10/10 10:01:01 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ C_FILES		= minishell.c		\
 			  cl_clean_all.c	\
 			  ev_build_env.c	\
 			  ev_build_expt.c	\
+			  execute.c		\
 			  pa_init.c			\
 			  pa_main.c			\
 			  pa_prompt.c		\
