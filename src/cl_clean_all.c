@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:36:37 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/10 11:42:47 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/10 13:18:44 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,6 @@ void	clean_split(char **arr)
 	while (--i >= 0)
 		free(arr[i]);
 	free(arr);
-}
-
-void	clean_fds(t_cati *tmp)
-{
-	free(tmp->fds);
 }
 
 void	clean_mini(t_cati **mini)
