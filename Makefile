@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
+#    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/10 10:01:01 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/10/10 11:44:50 by loumouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -84,8 +84,11 @@ CLIBS		=	-L/usr/local/lib -lreadline
 $(O_DIR)/%.o: $(C_DIR)/%.c
 			$(CC) $(CFLAGS) $(CINCLUDES) -c $< -o $@
 
+$(NAME):	$(O_DIR) $(OBJS)
+			$(CC) $(OBJS) $(CFLAGS) $(LFLAGS) $(CLIBS) -o $@
 
-all:		$(NAME)
+all:	$(NAME)
+
 
 check:	fclean
 check:	CFLAGS		+=  -pedantic -ansi
@@ -99,9 +102,6 @@ check:	LFLAGS		+=  -fsanitize=leak
 check:	LFLAGS		+=  -fsanitize=undefined
 check:	LFLAGS		+=  -g3
 check:	${NAME}
-
-$(NAME):	$(O_DIR) $(OBJS)
-			$(CC) $(OBJS) $(CFLAGS) $(LFLAGS) $(CLIBS) -o $@
 
 $(O_DIR):
 			$(MKDIR) $(O_DIR)
