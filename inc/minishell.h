@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:04 by                   #+#    #+#             */
-/*   Updated: 2022/10/10 10:03:40 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/10 09:52:01 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,8 +82,8 @@ void	clean_fds(t_cati *tmp);
 void	clean_mini(t_cati **mini);
 
 /* Parsing */
-void	run_prompt(void);
-void	parsing(char *input);
+void	run_prompt(t_envp *envp, t_envp *expt_ev, t_fds *fds);
+void	parsing(char *input, t_envp *envp, t_envp *expt_ev, t_fds *fds);
 t_cati	*tokenize_string(char *str);
 
 /* Execute */
