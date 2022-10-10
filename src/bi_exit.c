@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:12:28 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/10 09:08:08 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/10 13:45:37 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	alphanum(char *str)
 	if (str[0] == '-')
 		i++;
 	while (str[++i])
-		if (str[i] <= '0' || str[i] >= '9')
+		if (str[i] < '0' || str[i] > '9')
 			return (0);
 	return (1);
 }
@@ -70,6 +70,8 @@ int	bi_exit(t_cati **mini)
 			return (1);
 		}
 	}
+	env_lstclear(&(*mini)->envp);
+	env_lstclear(&(*mini)->expt_ev);
 	clean_mini(mini);
 	exit(status);
 }
