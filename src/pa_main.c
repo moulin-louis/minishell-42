@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pa_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli < loumouli@student.42.fr >        +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/09 13:57:55 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/10 10:38:21 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	mini_len(t_cati *mini)
 {
 	int		result;
 	t_cati	*temp;
-	
+
 	result = 0;
 	temp = mini;
 	while(temp)
@@ -34,7 +34,7 @@ void	handle_redirection(t_cati **mini)
 	t_cati	*temp;
 	t_cati	*temp2;
 	int	len;
-	
+
 	len = mini_len(*mini);
 	temp = *mini;
 	if(len > 2 && temp->next->path_cmd[0] == '<')
@@ -44,7 +44,7 @@ void	handle_redirection(t_cati **mini)
 		temp2 = (*mini)->next->next;
 		(*mini)->next =  (*mini)->next->next->next;
 		mini_delone(temp);
-		mini_delone(temp2);		
+		mini_delone(temp2);
 	}
 
 }
@@ -80,25 +80,40 @@ void	parse_options(t_cati  *mini)
 		i++;
 	}
 	mini->cmd = result;
+	i = 1;
+	temp = mini->next;
+	t_cati *temp2;
+	while (i < nbr_opt)
+	{
+		temp2 = temp->next;
+		free(temp);
+		temp = temp2;
+		i++;
+	}
+	mini->next = NULL;
 }
 
-void	parsing(char *input)
+void	init_env_fd(t_cati *mini, t_envp *envp, t_envp *expt_ev, t_fds *fds)
+{
+	t_cati	*temp;
+
+	temp = mini;
+	while (temp)
+	{
+		temp->envp = envp;
+		temp->expt_ev = expt_ev;
+		temp->fds = fds;
+		temp = temp->next;
+	}
+}
+
+void	parsing(char *input, t_envp *envp, t_envp *expt_ev, t_fds *fds)
 {
 	t_cati	*mini;
 
 	mini = tokenize_string(input);
 	handle_redirection(&mini);
 	parse_options(mini);
-	t_cati *temp = mini;
-	printf("%s\n", temp->path_cmd);
-	if (temp->cmd)
-	{
-		int i = 0;
-		while (temp->cmd[i])
-		{
-			printf("[%s]\n", temp->cmd[i]);
-			i++;
-		}
-	}
-	clean_mini(&mini);
+	init_env_fd(mini, envp, expt_ev, fds);
+	execute(&mini);
 }

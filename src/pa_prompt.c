@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pa_prompt.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli < loumouli@student.42.fr >        +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:51:41 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/08 15:51:31 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/10 10:38:52 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	do_nothing(int sig)
 	(void)sig;
 }
 
-void	run_prompt(void)
+void	run_prompt(t_envp *envp, t_envp *expt_ev, t_fds *fds)
 {
 	struct sigaction	sa;
 	char				*u_input;
@@ -53,7 +53,7 @@ void	run_prompt(void)
 		}
 		if (u_input)
 		{
-			parsing(u_input);
+			parsing(u_input, envp, expt_ev, fds);
 			if (ft_strlen(u_input) > 0)
 				add_history(u_input);
 			free(u_input);
