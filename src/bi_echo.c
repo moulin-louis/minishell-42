@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 11:20:35 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/05 09:54:30 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/10 14:14:21 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,13 @@ int	bi_echo(t_cati **mini)
 
 	i = 0;
 	n_line = 1;
-	if (!is_arg((*mini)->cmd[1]))
-	{
-		n_line = 0;
-		i++;
-	}
 	while ((*mini)->cmd[++i])
 	{
+		while (!is_arg((*mini)->cmd[i]))
+		{
+			n_line = 0;
+			i++;
+		}
 		len = 0;
 		while ((*mini)->cmd[i][len])
 			len++;
