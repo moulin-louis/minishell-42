@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:04 by                   #+#    #+#             */
-/*   Updated: 2022/10/10 09:06:55 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/10 10:03:40 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,15 @@ int		ev_build_expt(char **env, t_envp **envp);
 
 /* Cleanup */
 void	clean_split(char **arr);
-void	clean_env(t_envp **envp);
+void	clean_fds(t_cati *tmp);
 void	clean_mini(t_cati **mini);
 
 /* Parsing */
 void	run_prompt(void);
 void	parsing(char *input);
 t_cati	*tokenize_string(char *str);
+
+/* Execute */
+int		execute(t_cati **mini);
 
 #endif
