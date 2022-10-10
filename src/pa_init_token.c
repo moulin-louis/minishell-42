@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 10:41:05 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/10 11:13:39 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/10 12:21:30 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,27 +75,21 @@ char	*ft_return_str(char *str, int *i)
 	return (result);
 }
 
-void	find_nbr_token(char *str, t_cati **lst)
+t_tok	*init_token_list(char *str)
 {
-	int	i;
+	int		i;
+	t_tok	*result;
 
 	i = 0;
+	result = NULL;
 	while (str[i])
 	{
 		if (str[i] == 34 || str[i] == 39)
-			mini_lstaddback(lst, mini_lstnew(ft_return_token(str, &i)));
+			tok_addback(&result, tok_new(ft_return_token(str, &i)));
 		else if (str[i] != ' ' && str[i] != 34 && str[i] != 39)
-			mini_lstaddback(lst, mini_lstnew(ft_return_str(str, &i)));
+			tok_addback(&result, tok_new(ft_return_str(str, &i)));
 		else
 			i++;
 	}
-}
-
-t_cati	*tokenize_string(char *str)
-{
-	t_cati	*result;
-
-	result = NULL;
-	find_nbr_token(str, &result);
 	return (result);
 }

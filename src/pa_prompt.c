@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:51:41 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/10 11:10:11 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/10 14:40:22 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,17 @@ void	do_nothing(int sig)
 	(void)sig;
 }
 
-void	run_prompt(t_envp *envp, t_envp *expt_ev, t_fds *fds)
+void	ft_create_node(t_cati **mini, t_envp *envp, t_envp *expt_ev, t_fds *fds)
+{
+	*mini = mini_lstnew();
+	(*mini)->envp = envp;
+	(*mini)->expt_ev = expt_ev;
+	(*mini)->fds = fds;
+}
+
+void	setup_sig(void)
 {
 	struct sigaction	sa;
-	char				*u_input;
 
 	sigemptyset(&sa.sa_mask);
 	sa.sa_handler = &handle_sigint;
@@ -43,17 +50,28 @@ void	run_prompt(t_envp *envp, t_envp *expt_ev, t_fds *fds)
 	sigaction(SIGINT, &sa, NULL);
 	sa.sa_handler = &do_nothing;
 	sigaction(SIGQUIT, &sa, NULL);
+}
+
+void	run_prompt(t_envp *envp, t_envp *expt_ev, t_fds *fds)
+{
+	char				*u_input;
+	t_cati				*mini;
+
+	setup_sig();
 	while (1)
 	{
 		u_input = readline("minishell> ");
 		if (u_input == 0)
 		{
 			rl_clear_history();
-			exit(1);
+			env_lstclear(&envp);
+			env_lstclear(&expt_ev);
+			exit(0);
 		}
 		if (u_input)
 		{
-			parsing(u_input, envp, expt_ev, fds);
+			ft_create_node(&mini, envp, expt_ev, fds);
+			parsing(u_input, &mini);
 			if (ft_strlen(u_input) > 0)
 				add_history(u_input);
 			free(u_input);
