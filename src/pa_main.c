@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pa_main.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/10 11:33:09 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/10 11:51:40 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,21 @@ void	handle_redirection(t_cati **mini)
 	}
 }
 
+int	ft_is_sep(char *str)
+{
+	if (ft_strncmp(str, "|", 2))
+		return (1);
+	if (ft_strncmp(str, "<", 2))
+		return (1);
+	if (ft_strncmp(str, ">", 2))
+		return (1);
+	if (ft_strncmp(str, "<<", 3))
+		return (1);
+	if (ft_strncmp(str, ">>", 3))
+		return (1);
+	return (0);
+}
+
 void	parse_options(t_cati *mini)
 {
 	t_cati	*temp;
@@ -43,8 +58,7 @@ void	parse_options(t_cati *mini)
 	temp = mini;
 	nbr_opt = 0;
 	result = NULL;
-	while (temp && (ft_strncmp(temp->path_cmd, "|", 2) || ft_strncmp(temp->path_cmd,
-		"<", 2) || ft_strncmp(temp->path_cmd, ">", 2)))
+	while (temp && ft_is_sep(temp->path_cmd))
 	{
 		nbr_opt++;
 		temp = temp->next;
