@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/10 10:38:21 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/10 11:18:04 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,26 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-int	mini_len(t_cati *mini)
-{
-	int		result;
-	t_cati	*temp;
-
-	result = 0;
-	temp = mini;
-	while(temp)
-	{
-		result++;
-		temp = temp->next;
-	}
-	return(result);
-}
-
 void	handle_redirection(t_cati **mini)
 {
 	t_cati	*temp;
 	t_cati	*temp2;
-	int	len;
+	int		len;
 
 	len = mini_len(*mini);
 	temp = *mini;
-	if(len > 2 && temp->next->path_cmd[0] == '<')
+	if (len > 2 && temp->next->path_cmd[0] == '<')
 	{
 		temp->path_file = ut_strdup(temp->next->next->path_cmd);
 		temp = (*mini)->next;
 		temp2 = (*mini)->next->next;
-		(*mini)->next =  (*mini)->next->next->next;
+		(*mini)->next = (*mini)->next->next->next;
 		mini_delone(temp);
 		mini_delone(temp2);
 	}
-
 }
 
-void	parse_options(t_cati  *mini)
+void	parse_options(t_cati *mini)
 {
 	t_cati	*temp;
 	int		nbr_opt;
@@ -116,4 +100,5 @@ void	parsing(char *input, t_envp *envp, t_envp *expt_ev, t_fds *fds)
 	parse_options(mini);
 	init_env_fd(mini, envp, expt_ev, fds);
 	execute(&mini);
+	clean_mini(&mini);
 }
