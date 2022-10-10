@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:36:37 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/07 11:15:24 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/10 09:08:42 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ void	clean_split(char **arr)
 	free(arr);
 }
 
-void	clean_env(t_envp **envp)
+void	clean_fds(t_cati *tmp)
 {
-	env_lstclear(envp);
+	free(tmp->fds);
 }
 
 void	clean_mini(t_cati **mini)
@@ -52,6 +52,8 @@ void	clean_mini(t_cati **mini)
 			env_lstclear(&tmp->envp);
 		if (tmp->expt_ev)
 			env_lstclear(&tmp->expt_ev);
+		if (tmp->fds)
+			clean_fds(tmp);
 		free(tmp);
 	}
 }
