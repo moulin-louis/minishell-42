@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ut_mini_list.c                                     :+:      :+:    :+:   */
+/*   ut_token_list.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 11:51:29 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/10 12:02:42 by loumouli         ###   ########.fr       */
+/*   Created: 2022/10/10 12:04:37 by loumouli          #+#    #+#             */
+/*   Updated: 2022/10/10 14:41:14 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
 
-int	mini_len(t_cati *mini)
+int	tok_len(t_tok *lst)
 {
 	int		result;
-	t_cati	*temp;
+	t_tok	*temp;
 
 	result = 0;
-	temp = mini;
+	temp = lst;
 	while (temp)
 	{
 		result++;
@@ -28,52 +28,50 @@ int	mini_len(t_cati *mini)
 	return (result);
 }
 
-void	ft_bzero(void *s, int n)
+void	tok_delone(t_tok *node)
 {
-	char	*temp;
-
-	temp = s;
-	while (n)
-	{
-		*temp = 0;
-		temp++;
-		n--;
-	}
-}
-
-void	mini_delone(t_cati	*node)
-{
-	if (node->cmd)
-		clean_split(node->cmd);
-	if (node->path_cmd)
-		free(node->path_cmd);
-	if (node->path_file)
-		free(node->path_file);
+	if (node->str)
+		free(node->str);
 	free(node);
 }
 
-void	mini_lstaddback(t_cati **mini, t_cati *node)
+void	clean_tok(t_tok **lst)
 {
-	t_cati	*temp;
+	t_tok	*temp;
 
-	if (!*mini)
+	while (*lst)
 	{
-		*mini = node;
+		temp = (*lst)->next;
+		if ((*lst)->str)
+			free((*lst)->str);
+		free((*lst));
+		*lst = temp;
+	}
+}
+
+void	tok_addback(t_tok **lst, t_tok *node)
+{
+	t_tok	*temp;
+
+	if (!(*lst))
+	{
+		*lst = node;
 		return ;
 	}
-	temp = *mini;
+	temp = *lst;
 	while (temp->next)
 		temp = temp->next;
 	temp->next = node;
 }
 
-t_cati	*mini_lstnew(void)
+t_tok	*tok_new(char *str)
 {
-	t_cati	*result;
+	t_tok	*result;
 
-	result = malloc(sizeof(t_cati));
+	result = malloc(sizeof(t_tok));
 	if (!result)
 		return (NULL);
-	ft_bzero(result, sizeof(t_cati));
+	result->str = str;
+	result->next = NULL;
 	return (result);
 }
