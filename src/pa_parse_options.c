@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:55:44 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/11 10:10:51 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/11 11:17:10 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,7 @@
 
 int	ft_is_sep(char *str)
 {
-	if (ut_strcmp(str, "|"))
-		return (1);
-	else if (ut_strcmp(str, "<"))
-		return (1);
-	else if (ut_strcmp(str, ">"))
-		return (1);
-	else if (ut_strcmp(str, "<<"))
-		return (1);
-	else if (ut_strcmp(str, ">>"))
+	if (ut_strcmp(str, "|") || ut_strcmp(str, ">") || ut_strcmp(str, ">>"))
 		return (1);
 	return (0);
 }
@@ -63,7 +55,7 @@ void	clean_lst(t_tok **lst)
 	}
 }
 
-void	parse_options(t_tok **lst, t_cati *mini)
+void	setup_node(t_tok **lst, t_cati *mini)
 {
 	char	**result;
 	int		nbr_opt;
@@ -78,7 +70,6 @@ void	parse_options(t_tok **lst, t_cati *mini)
 		nbr_opt++;
 		temp = temp->next;
 	}
-	printf("nbr_opt = %d\n", nbr_opt);
 	result = malloc(sizeof(char *) * (nbr_opt + 1));
 	if (!result)
 		return ;
@@ -86,4 +77,28 @@ void	parse_options(t_tok **lst, t_cati *mini)
 	fill_result(result, *lst, nbr_opt);
 	clean_lst(lst);
 	mini->cmd = result;
+	mini->path_cmd = ut_strdup(mini->cmd[0]);
+}
+
+void	parse_options(t_tok **lst, t_cati **mini)
+{
+	int		nbr_cmd;
+	t_tok	*temp;
+
+	nbr_cmd = 1;
+	temp = *lst;
+	while (temp)
+	{
+		if (ft_is_sep(temp->str))
+			nbr_cmd++;
+		temp = temp->next;
+	}
+	setup_node(lst, mini_lstlast(*mini));
+	nbr_cmd--;
+	while (nbr_cmd > 0)
+	{
+		mini_lstaddback(mini, mini_lstnew());
+		setup_node(lst, mini_lstlast(*mini));
+		nbr_cmd--;
+	}
 }

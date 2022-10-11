@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:04 by                   #+#    #+#             */
-/*   Updated: 2022/10/11 10:13:58 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/11 11:02:56 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,12 @@ typedef struct s_envp
 
 typedef struct s_cati {
 	char			**cmd;
-	int				builtin;
 	char			*path_cmd;
 	char			*path_file;
 	t_fds			*fds;
 	t_envp			*envp;
 	t_envp			*expt_ev;
+	int				builtin;
 	int				in_file;
 	int				in_heredoc;
 	int				in_pipe;
@@ -78,7 +78,7 @@ void	env_lstdelone(t_envp **envp, t_envp *tmp);
 t_cati	*mini_lstnew(void);
 void	mini_lstaddback(t_cati **mini, t_cati *node);
 void	mini_delone(t_cati	*node);
-int		mini_len(t_cati *mini);
+t_cati	*mini_lstlast(t_cati *mini);
 int		tok_len(t_tok *lst);
 void	tok_delone(t_tok *node);
 void	tok_addback(t_tok **lst, t_tok *node);
@@ -97,9 +97,11 @@ void	clean_mini(t_cati **mini);
 void	run_prompt(t_envp *envp, t_envp *expt_ev, t_fds *fds);
 void	parsing(char *input, t_cati **mini);
 t_tok	*init_token_list(char *str);
-void	parse_options(t_tok **lst, t_cati *mini);
+void	parse_options(t_tok **lst, t_cati **mini);
 
 /* Execute */
 int		execute(t_cati **mini);
 
+/*UTILITAIRE TEMP*/
+void	printfmini(t_cati mini);
 #endif
