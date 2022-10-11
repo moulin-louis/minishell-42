@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 09:25:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/07 11:33:14 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/11 10:16:54 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,20 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+static int	is_declared(char *s, int set)
+{
+	int	i;
+
+	i = -1;
+	while (s[++i])
+		if (s[i] == '=' && s[i + 1])
+			return (1);
+	return (0);
+}
+
 static void	end_of_string(t_envp *new, int i, int flag)
 {
-	if (flag)
+	if (!flag)
 	{
 		new->var[i + 11] = '"';
 		new->var[i + 12] = '"';
@@ -26,23 +37,32 @@ static void	end_of_string(t_envp *new, int i, int flag)
 		new->var[i + 11] = '\0';
 }
 
-int	bi_expt_expt(t_cati **mini, char *str, int flag)
+static int	allocate_node(t_envp *new, char *str, int flag)
+{
+	if (flag)
+		new->var = malloc(ut_word_len(str) + 12);
+	else
+		new->var = malloc(ut_word_len(str) + 14);
+	if (!new->var)
+		return (perror("export malloc"), 0);
+	return (1);
+}
+
+int	bi_expt_expt(t_cati **mini, char *str, int set)
 {
 	t_envp	*new;
 	char	*ref;
 	int		i;
+	int		flag;
 
 	new = malloc(sizeof(t_envp));
 	if (!new)
 		return (perror("export malloc"), 0);
 	new->next = NULL;
 	ref = "declare -x ";
-	if (!flag)
-		new->var = malloc(ut_word_len(str) + 12);
-	else
-		new->var = malloc(ut_word_len(str) + 14);
-	if (!new->var)
-		return (perror("export malloc"), 0);
+	flag = is_declared(str, set);
+	if (!allocate_node(new, str, flag))
+		return (0);
 	i = -1;
 	while (ref[++i])
 		new->var[i] = ref[i];
