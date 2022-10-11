@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 09:25:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/11 10:16:54 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/11 10:20:23 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static int	is_declared(char *s, int set)
+static int	is_declared(char *s)
 {
 	int	i;
 
@@ -25,9 +25,9 @@ static int	is_declared(char *s, int set)
 	return (0);
 }
 
-static void	end_of_string(t_envp *new, int i, int flag)
+static void	end_of_string(t_envp *new, int i, int flag, int set)
 {
-	if (!flag)
+	if (!flag && !set)
 	{
 		new->var[i + 11] = '"';
 		new->var[i + 12] = '"';
@@ -60,7 +60,7 @@ int	bi_expt_expt(t_cati **mini, char *str, int set)
 		return (perror("export malloc"), 0);
 	new->next = NULL;
 	ref = "declare -x ";
-	flag = is_declared(str, set);
+	flag = is_declared(str);
 	if (!allocate_node(new, str, flag))
 		return (0);
 	i = -1;
@@ -69,7 +69,7 @@ int	bi_expt_expt(t_cati **mini, char *str, int set)
 	i = -1;
 	while (str[++i])
 		new->var[i + 11] = str[i];
-	end_of_string(new, i, flag);
+	end_of_string(new, i, flag, set);
 	env_lstaddback(&(*mini)->expt_ev, new);
 	return (1);
 }
