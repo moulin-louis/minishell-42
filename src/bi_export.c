@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/07 11:24:09 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/11 10:13:48 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static int	var_cmp(char *s1, char *s2)
 	int	i;
 
 	i = -1;
-	while (s1[++i] && s1[i] != '=')
+	while (s1[++i] != '=' && s2[i] != '=' && s1[i] && s2[i])
 		if (s1[i] != s2[i])
 			return (0);
 	return (1);
@@ -56,14 +56,20 @@ static void	already_exists(t_cati **mini, char *str)
 	while (tmp)
 	{
 		if (var_cmp(tmp->var, str))
+		{
 			env_lstdelone(&(*mini)->envp, tmp);
+			break ;
+		}
 		tmp = tmp->next;
 	}
 	tmp = (*mini)->expt_ev;
 	while (tmp)
 	{
 		if (var_cmp(tmp->var, str))
+		{
 			env_lstdelone(&(*mini)->expt_ev, tmp);
+			break ;
+		}
 		tmp = tmp->next;
 	}
 }
@@ -80,12 +86,12 @@ int	bi_export(t_cati **mini)
 		already_exists(mini, (*mini)->cmd[i]);
 		if (!is_set((*mini)->cmd[i]))
 		{
-			if (!bi_expt_expt(mini, (*mini)->cmd[i], 0))
+			if (!bi_expt_expt(mini, (*mini)->cmd[i]), 0)
 				(*mini)->ret++;
 		}
 		else
 		{
-			if (!bi_expt_expt(mini, (*mini)->cmd[i], 1))
+			if (!bi_expt_expt(mini, (*mini)->cmd[i]), 1)
 				(*mini)->ret++;
 			if (!bi_expt_env(mini, (*mini)->cmd[i]))
 				(*mini)->ret++;
