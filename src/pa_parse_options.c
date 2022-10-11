@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:55:44 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/10 15:02:47 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/11 10:10:51 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,35 +14,17 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int	ft_strcmp(char *str1, char *str2)
-{
-	int	i;
-
-	i = 0;
-	while (str1[i] && str2[i])
-	{
-		if (str1[i] != str2[i])
-			return (0);
-		i++;
-	}
-	if (str1[i])
-		return (0);
-	else if (str2[i])
-		return (0);
-	return (1);
-}
-
 int	ft_is_sep(char *str)
 {
-	if (ft_strcmp(str, "|"))
+	if (ut_strcmp(str, "|"))
 		return (1);
-	else if (ft_strcmp(str, "<"))
+	else if (ut_strcmp(str, "<"))
 		return (1);
-	else if (ft_strcmp(str, ">"))
+	else if (ut_strcmp(str, ">"))
 		return (1);
-	else if (ft_strcmp(str, "<<"))
+	else if (ut_strcmp(str, "<<"))
 		return (1);
-	else if (ft_strcmp(str, ">>"))
+	else if (ut_strcmp(str, ">>"))
 		return (1);
 	return (0);
 }
