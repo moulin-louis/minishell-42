@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/11 10:48:17 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/11 11:23:49 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static int	var_cmp(char *s1, char *s2, int flag)
 	else
 	{
 		while (s1[++i] && s2[i] && s2[i] != '=')
-			if (s1[i] != s2[i])
+			if (s1[i + 11] != s2[i])
 				return (0);
 	}
 	return (1);
