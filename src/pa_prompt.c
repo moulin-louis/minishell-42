@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:51:41 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/10 14:40:22 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/11 10:07:09 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	run_prompt(t_envp *envp, t_envp *expt_ev, t_fds *fds)
 	setup_sig();
 	while (1)
 	{
-		u_input = readline("minishell> ");
+		u_input = readline("shellnado> ");
 		if (u_input == 0)
 		{
 			rl_clear_history();
@@ -70,10 +70,12 @@ void	run_prompt(t_envp *envp, t_envp *expt_ev, t_fds *fds)
 		}
 		if (u_input)
 		{
-			ft_create_node(&mini, envp, expt_ev, fds);
-			parsing(u_input, &mini);
 			if (ft_strlen(u_input) > 0)
+			{
+				ft_create_node(&mini, envp, expt_ev, fds);
+				parsing(u_input, &mini);
 				add_history(u_input);
+			}
 			free(u_input);
 		}
 	}
