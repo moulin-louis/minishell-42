@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/11 10:18:48 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/11 10:48:17 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,23 @@ static void	display_expt_ev(t_cati **mini)
 	}
 }
 
-static int	var_cmp(char *s1, char *s2)
+static int	var_cmp(char *s1, char *s2, int flag)
 {
 	int	i;
 
 	i = -1;
-	while (s1[++i] != '=' && s2[i] != '=' && s1[i] && s2[i])
+	if (!flag)
+	{
+		while (s1[++i] && s2[i] != '=')
 		if (s1[i] != s2[i])
 			return (0);
+	}
+	else
+	{
+		while (s1[++i] && s2[i] && s2[i] != '=')
+			if (s1[i] != s2[i])
+				return (0);
+	}
 	return (1);
 }
 
@@ -55,7 +64,7 @@ static void	already_exists(t_cati **mini, char *str)
 	tmp = (*mini)->envp;
 	while (tmp)
 	{
-		if (var_cmp(tmp->var, str))
+		if (var_cmp(tmp->var, str, 0))
 		{
 			env_lstdelone(&(*mini)->envp, tmp);
 			break ;
@@ -65,7 +74,7 @@ static void	already_exists(t_cati **mini, char *str)
 	tmp = (*mini)->expt_ev;
 	while (tmp)
 	{
-		if (var_cmp(tmp->var, str))
+		if (var_cmp(tmp->var, str, 1))
 		{
 			env_lstdelone(&(*mini)->expt_ev, tmp);
 			break ;
