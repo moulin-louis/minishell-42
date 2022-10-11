@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 09:25:48 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/11 10:20:23 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/11 10:23:47 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int	is_declared(char *s)
 
 static void	end_of_string(t_envp *new, int i, int flag, int set)
 {
-	if (!flag && !set)
+	if (!flag && set)
 	{
 		new->var[i + 11] = '"';
 		new->var[i + 12] = '"';
