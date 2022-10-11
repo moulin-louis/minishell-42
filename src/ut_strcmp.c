@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 15:12:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/06 15:14:19 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/11 10:15:21 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	ut_strcmp(char *s1, char *s2)
 	{
 		if (s1[i] != s2[i])
 			return (0);
+		i++;
 	}
 	return (1);
 }

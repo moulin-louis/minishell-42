@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 09:55:52 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/07 11:32:26 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/11 09:37:20 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	env_lstdelone(t_envp **envp, t_envp *tmp)
 				free(tmp->var);
 			free(tmp);
 		}
-		tmp2 = tmp2->next;
+		if (tmp2)
+			tmp2 = tmp2->next;
 	}
 }
