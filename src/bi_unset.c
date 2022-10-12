@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 13:42:31 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/12 11:07:47 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/12 15:22:36 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,6 @@ static void	already_exists(t_cati **mini, char *str)
 		if (var_cmp(tmp->var, str, 0))
 		{
 			env_lstdelone(&(*mini)->envp, tmp);
-			break ;
-		}
-		tmp = tmp->next;
-	}
-	tmp = (*mini)->expt_ev;
-	while (tmp)
-	{
-		if (var_cmp(tmp->var, str, 1))
-		{
-			env_lstdelone(&(*mini)->expt_ev, tmp);
 			break ;
 		}
 		tmp = tmp->next;

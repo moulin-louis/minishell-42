@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/12 15:11:39 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/12 15:18:56 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,8 @@ static void	already_exists(t_cati **mini, char *str)
 	{
 		i = -1;
 		while (str[++i] && str[i] != '=')
-		{
 			if (tmp->var[0][i] != str[i])
 				break ;
-		}
 		if (tmp->var[0][i] == '\0' && (str[i] == '\0' || str[i] == '='))
 		{
 			env_lstdelone(&(*mini)->envp, tmp);
