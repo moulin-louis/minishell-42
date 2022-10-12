@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
+#    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
 #    Updated: 2022/10/11 12:05:12 by loumouli         ###   ########.fr        #
