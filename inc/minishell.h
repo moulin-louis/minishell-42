@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:04 by                   #+#    #+#             */
-/*   Updated: 2022/10/12 10:11:15 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/12 10:18:45 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,17 +22,18 @@ typedef struct s_fds {
 
 typedef struct s_envp
 {
-	char			**var;
+	char			*var;
 	struct s_envp	*next;
 }				t_envp;
 
 typedef struct s_cati {
 	char			**cmd;
-	int				builtin;
 	char			*path_cmd;
 	char			*path_file;
 	t_fds			*fds;
 	t_envp			*envp;
+	t_envp			*expt_ev;
+	int				builtin;
 	int				in_file;
 	int				in_heredoc;
 	int				in_pipe;
@@ -61,10 +62,10 @@ int		bi_unset(t_cati **mini);
 
 /* Utils */
 char	*ut_gnl(int fd);
-char	**ut_split(char *str, char c);
+char	**ut_split(char *str);
 int		ut_strcmp(char *s1, char *s2);
 char	*ut_strcpy(char *s2);
-int		ut_word_len(char *str, char c);
+int		ut_word_len(char *str);
 int		ft_strlen(char *str);
 char	*ut_strdup(char *str);
 int		ft_strncmp(const char *s1, const char *s2, int n);
@@ -77,7 +78,7 @@ void	env_lstdelone(t_envp **envp, t_envp *tmp);
 t_cati	*mini_lstnew(void);
 void	mini_lstaddback(t_cati **mini, t_cati *node);
 void	mini_delone(t_cati	*node);
-int		mini_len(t_cati *mini);
+t_cati	*mini_lstlast(t_cati *mini);
 int		tok_len(t_tok *lst);
 void	tok_delone(t_tok *node);
 void	tok_addback(t_tok **lst, t_tok *node);
@@ -86,18 +87,21 @@ void	clean_tok(t_tok **lst);
 
 /* Environment */
 int		ev_build_env(char **env, t_envp **envp);
+int		ev_build_expt(char **env, t_envp **envp);
 
 /* Cleanup */
 void	clean_split(char **arr);
 void	clean_mini(t_cati **mini);
 
 /* Parsing */
-void	run_prompt(t_envp *envp, t_fds *fds);
+void	run_prompt(t_envp *envp, t_envp *expt_ev, t_fds *fds);
 void	parsing(char *input, t_cati **mini);
 t_tok	*init_token_list(char *str);
-void	parse_options(t_tok **lst, t_cati *mini);
+void	parse_options(t_tok **lst, t_cati **mini);
 
 /* Execute */
 int		execute(t_cati **mini);
 
+/*UTILITAIRE TEMP*/
+void	printfmini(t_cati mini);
 #endif
