@@ -6,26 +6,21 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:51:29 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/10 12:02:42 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/11 11:17:18 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
 
-int	mini_len(t_cati *mini)
+t_cati	*mini_lstlast(t_cati *mini)
 {
-	int		result;
 	t_cati	*temp;
 
-	result = 0;
 	temp = mini;
-	while (temp)
-	{
-		result++;
+	while (temp->next)
 		temp = temp->next;
-	}
-	return (result);
+	return (temp);
 }
 
 void	ft_bzero(void *s, int n)

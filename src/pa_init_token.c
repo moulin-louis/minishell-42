@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pa_init.c                                          :+:      :+:    :+:   */
+/*   pa_init_token.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 10:41:05 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/10 12:21:30 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/11 11:22:35 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	add_i(char *str, int *i)
 	}
 	if (str[(*i) - 1] == 39)
 	{
-		(*i)++;
 		while (str[*i] && str[*i] != 39)
 			(*i)++;
 	}
+	(*i)++;
 }
 
 char	*ft_return_token(char *str, int *i)
@@ -34,7 +34,6 @@ char	*ft_return_token(char *str, int *i)
 	int		len;
 	char	*result;
 
-	(*i)++;
 	temp = *i;
 	add_i(str, i);
 	len = (*i) - temp;
@@ -49,7 +48,6 @@ char	*ft_return_token(char *str, int *i)
 		len++;
 		temp++;
 	}
-	(*i)++;
 	return (result);
 }
 

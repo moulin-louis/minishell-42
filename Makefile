@@ -6,7 +6,7 @@
 #    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/10 14:17:36 by loumouli         ###   ########.fr        #
+#    Updated: 2022/10/11 12:05:12 by loumouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,9 +43,11 @@ C_FILES		= minishell.c		\
 			  pa_main.c			\
 			  pa_parse_options.c	\
 			  pa_prompt.c		\
+			  pa_split_lst_operator.c	\
 			  ut_env_list.c		\
 			  ut_gnl.c		\
 			  ut_mini_list.c	\
+			  ut_split_sep.c	\
 			  ut_split.c	\
 			  ut_strcmp.c	\
 			  ut_strcpy.c	\
