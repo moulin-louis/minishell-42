@@ -6,18 +6,18 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 23:37:06 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/12 09:18:58 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/12 11:00:00 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ut_word_len(char *str, char c)
+int	ut_word_len(char *str)
 {
 	int	i;
 
 	i = 0;
-	while (str[i] && str[i] != c)
+	while (str[i] && str[i] != ' ')
 		i++;
 	return (i);
 }
