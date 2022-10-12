@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 08:55:02 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/05 14:01:33 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/12 12:36:38 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static int	pwd_cmp(char *str)
 	char	*ref;
 	int		i;
 
-	ref = "PWD=";
+	ref = "PWD";
 	i = -1;
-	while (++i < 4)
+	while (++i < 3)
 		if (str[i] != ref[i])
 			return (0);
 	return (1);
@@ -31,18 +31,12 @@ static int	pwd_cmp(char *str)
 static char	*ft_getenv(t_envp *envp)
 {
 	t_envp	*tmp;
-	char	*res;
 
-	if (!envp)
-		return (NULL);
 	tmp = envp;
 	while (tmp)
 	{
-		if (pwd_cmp(tmp->var))
-		{
-			res = tmp->var + 4;
-			return (res);
-		}
+		if (pwd_cmp(tmp->var[0]))
+			return (envp->var[1]);
 		tmp = tmp->next;
 	}
 	return (NULL);

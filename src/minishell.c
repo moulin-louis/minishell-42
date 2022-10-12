@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:16:50 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/12 10:16:56 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/12 11:46:14 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,14 @@
 int	main(int ac, char **av, char **env)
 {
 	t_envp	*envp;
-	t_envp	*expt_ev;
 	t_fds	fds;
 
 	(void)av;
 	if (ac > 1)
 		return (printf("./minishell takes no argument, you twat\n"), 1);
 	envp = NULL;
-	expt_ev = NULL;
 	if (!ev_build_env(env, &envp))
 		return (2);
-	if (!ev_build_expt(env, &expt_ev))
-		return (3);
-	run_prompt(envp, expt_ev, &fds);
+	run_prompt(envp, &fds);
 	return (0);
 }

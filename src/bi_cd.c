@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:19:57 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/12 10:19:34 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/12 12:33:44 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,15 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static void	join(t_cati *tmp, char *ref, char *pwd)
-{
-	int	i;
-
-	i = -1;
-	while (ref[++i])
-		tmp->envp->var[i] = ref[i];
-	i = -1;
-	while (pwd[++i])
-		tmp->envp->var[i + 4] = pwd[i];
-	tmp->envp->var[i + 4] = '\0';
-}
-
 static int	change_var(t_cati *tmp)
 {
 	int		i;
 	char	*pwd;
 	char	*buff;
-	char	*ref;
 
-	free(tmp->envp->var);
+	free(tmp->envp->var[1]);
 	i = 1;
 	buff = NULL;
-	ref = "PWD=";
 	pwd = NULL;
 	while (!pwd)
 	{
@@ -46,11 +31,10 @@ static int	change_var(t_cati *tmp)
 		i++;
 	}
 	i = ut_word_len(pwd);
-	tmp->envp->var = malloc(i + 5);
-	if (!tmp->envp->var)
-		return (perror("cd change var malloc"), 0);
-	join(tmp, ref, pwd);
-	free(pwd);
+	tmp->envp->var[1] = malloc(i);
+	if (!tmp->envp->var[1])
+		return (perror("cd change var[1] malloc"), 0);
+	tmp->envp->var[1] = pwd;
 	return (1);
 }
 
@@ -62,7 +46,7 @@ static int	find_node(t_cati *tmp)
 	ref = "PWD=";
 	i = -1;
 	while (ref[++i])
-		if (tmp->envp->var[i] != ref[i])
+		if (tmp->envp->var[0][i] != ref[i])
 			return (0);
 	return (1);
 }
