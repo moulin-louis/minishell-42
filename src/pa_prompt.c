@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:51:41 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/12 11:49:14 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/12 14:08:37 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <signal.h>
 #include <unistd.h>
 
-void	handle_sigint(int sig)
+static void	handle_sigint(int sig)
 {
 	(void)sig;
 	printf("\n");
@@ -27,7 +27,7 @@ void	handle_sigint(int sig)
 	rl_redisplay();
 }
 
-void	do_nothing(int sig)
+static void	do_nothing(int sig)
 {
 	(void)sig;
 }
@@ -39,7 +39,7 @@ void	ft_create_node(t_cati **mini, t_envp *envp, t_fds *fds)
 	(*mini)->fds = fds;
 }
 
-void	setup_sig(void)
+static void	setup_sig(void)
 {
 	struct sigaction	sa;
 

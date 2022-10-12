@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:55:44 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/12 10:52:19 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/12 11:50:27 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-int	ft_is_sep(char *str)
+static int	ft_is_sep(char *str)
 {
 	if (ut_strcmp(str, "|") || ut_strcmp(str, ">") || ut_strcmp(str, ">>"))
 		return (1);
@@ -23,7 +23,7 @@ int	ft_is_sep(char *str)
 	return (0);
 }
 
-void	fill_result(char **result, t_tok *lst, int nbr)
+static void	fill_result(char **result, t_tok *lst, int nbr)
 {
 	int		i;
 	t_tok	*temp;
@@ -38,7 +38,7 @@ void	fill_result(char **result, t_tok *lst, int nbr)
 	}
 }
 
-void	clean_lst(t_tok **lst)
+static void	clean_lst(t_tok **lst)
 {
 	t_tok	*temp;
 
@@ -57,7 +57,7 @@ void	clean_lst(t_tok **lst)
 	}
 }
 
-void	setup_node(t_tok **lst, t_cati *mini)
+static void	setup_node(t_tok **lst, t_cati *mini)
 {
 	char	**result;
 	int		nbr_opt;
