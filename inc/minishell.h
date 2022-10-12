@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:04 by                   #+#    #+#             */
-/*   Updated: 2022/10/12 11:06:15 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/12 13:46:13 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int		ft_strlen(char *str);
 char	*ut_strdup(char *str);
 int		ft_strncmp(const char *s1, const char *s2, int n);
 void	ft_bzero(void *s, int n);
-char	**ut_split_sep(char *str, char *sep);
+char	**extract_sep(char *str);
 
 /*linked list utils/function*/
 void	env_lstaddback(t_envp **envp, t_envp *new);
@@ -98,8 +98,7 @@ void	clean_mini(t_cati **mini);
 void	run_prompt(t_envp *envp, t_envp *expt_ev, t_fds *fds);
 void	parsing(char *input, t_cati **mini);
 t_tok	*init_token_list(char *str);
-int		ft_is_sep(char *str);
-void	split_lst_operator(t_tok **lst);
+void	split_lst_operator(t_tok *lst);
 void	parse_options(t_tok **lst, t_cati **mini);
 
 /* Execute */

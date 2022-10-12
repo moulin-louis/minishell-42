@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pa_prompt.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:51:41 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/12 10:59:39 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/12 11:51:14 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 #include <signal.h>
 #include <unistd.h>
 
-void	handle_sigint(int sig)
+static void	handle_sigint(int sig)
 {
 	(void)sig;
 	printf("\n");
@@ -27,12 +27,12 @@ void	handle_sigint(int sig)
 	rl_redisplay();
 }
 
-void	do_nothing(int sig)
+static void	do_nothing(int sig)
 {
 	(void)sig;
 }
 
-void	ft_create_node(t_cati **mini, t_envp *envp, t_envp *expt_ev, t_fds *fds)
+static void	ft_create_node(t_cati **mini, t_envp *envp, t_envp *expt_ev, t_fds *fds)
 {
 	*mini = mini_lstnew();
 	(*mini)->envp = envp;
@@ -40,7 +40,7 @@ void	ft_create_node(t_cati **mini, t_envp *envp, t_envp *expt_ev, t_fds *fds)
 	(*mini)->fds = fds;
 }
 
-void	setup_sig(void)
+static void	setup_sig(void)
 {
 	struct sigaction	sa;
 
