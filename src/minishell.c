@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:16:50 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/12 09:35:18 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/12 10:12:28 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,6 @@ int	main(int ac, char **av, char **env)
 	envp = NULL;
 	if (!ev_build_env(env, &envp))
 		return (2);
-	run_prompt(envp, expt_ev, &fds);
+	run_prompt(envp, &fds);
 	return (0);
 }
