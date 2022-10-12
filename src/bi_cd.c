@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:19:57 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/05 14:01:45 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/12 09:21:23 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	change_var(t_cati *tmp)
 		pwd = getcwd(buff, i);
 		i++;
 	}
-	i = ut_word_len(pwd);
+	i = ut_word_len(pwd, '\0');
 	tmp->envp->var = malloc(i + 5);
 	if (!tmp->envp->var)
 		return (perror("cd change var malloc"), 0);

@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:04 by                   #+#    #+#             */
-/*   Updated: 2022/10/11 10:13:58 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/12 09:44:04 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct s_fds {
 
 typedef struct s_envp
 {
-	char			*var;
+	char			**var;
 	struct s_envp	*next;
 }				t_envp;
 
@@ -33,7 +33,6 @@ typedef struct s_cati {
 	char			*path_file;
 	t_fds			*fds;
 	t_envp			*envp;
-	t_envp			*expt_ev;
 	int				in_file;
 	int				in_heredoc;
 	int				in_pipe;
@@ -62,10 +61,10 @@ int		bi_unset(t_cati **mini);
 
 /* Utils */
 char	*ut_gnl(int fd);
-char	**ut_split(char *str);
+char	**ut_split(char *str, char c);
 int		ut_strcmp(char *s1, char *s2);
 char	*ut_strcpy(char *s2);
-int		ut_word_len(char *str);
+int		ut_word_len(char *str, char c);
 int		ft_strlen(char *str);
 char	*ut_strdup(char *str);
 int		ft_strncmp(const char *s1, const char *s2, int n);
@@ -87,7 +86,6 @@ void	clean_tok(t_tok **lst);
 
 /* Environment */
 int		ev_build_env(char **env, t_envp **envp);
-int		ev_build_expt(char **env, t_envp **envp);
 
 /* Cleanup */
 void	clean_split(char **arr);

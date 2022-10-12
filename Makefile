@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
+#    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/10 14:17:36 by loumouli         ###   ########.fr        #
+#    Updated: 2022/10/12 09:34:46 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,6 @@ C_FILES		= minishell.c		\
 			  bi_unset.c	\
 			  cl_clean_all.c	\
 			  ev_build_env.c	\
-			  ev_build_expt.c	\
 			  execute.c		\
 			  pa_init_token.c			\
 			  pa_main.c			\
