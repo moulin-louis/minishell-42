@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:04 by                   #+#    #+#             */
-/*   Updated: 2022/10/12 13:46:13 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/12 14:07:53 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef struct s_fds {
 
 typedef struct s_envp
 {
-	char			*var;
+	char			**var;
 	struct s_envp	*next;
 }				t_envp;
 
@@ -32,7 +32,6 @@ typedef struct s_cati {
 	char			*path_file;
 	t_fds			*fds;
 	t_envp			*envp;
-	t_envp			*expt_ev;
 	int				builtin;
 	int				in_file;
 	int				in_heredoc;
@@ -54,11 +53,8 @@ int		bi_cd(t_cati **mini);
 int		bi_echo(t_cati **mini);
 int		bi_env(t_cati **mini);
 int		bi_exit(t_cati **mini);
-int		bi_export(t_cati **mini);
-int		bi_expt_expt(t_cati **mini, char *str, int set);
-int		bi_expt_env(t_cati **mini, char *str);
 int		bi_pwd(t_cati **mini);
-int		bi_unset(t_cati **mini);
+int		bi_launcher(t_cati **mini);
 
 /* Utils */
 char	*ut_gnl(int fd);
@@ -88,17 +84,18 @@ void	clean_tok(t_tok **lst);
 
 /* Environment */
 int		ev_build_env(char **env, t_envp **envp);
-int		ev_build_expt(char **env, t_envp **envp);
+char	**ut_env_split(char *str);
 
 /* Cleanup */
 void	clean_split(char **arr);
 void	clean_mini(t_cati **mini);
 
 /* Parsing */
-void	run_prompt(t_envp *envp, t_envp *expt_ev, t_fds *fds);
+void	run_prompt(t_envp *envp, t_fds *fds);
 void	parsing(char *input, t_cati **mini);
 t_tok	*init_token_list(char *str);
 void	split_lst_operator(t_tok *lst);
+int		ft_is_sep(char *str);
 void	parse_options(t_tok **lst, t_cati **mini);
 
 /* Execute */
