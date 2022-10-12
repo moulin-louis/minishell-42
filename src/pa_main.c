@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/11 10:11:06 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/12 10:52:52 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,53 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+void	printfmini(t_cati mini)
+{
+	int	i;
+
+	printf("cmd_path = %s\n", mini.path_cmd);
+	if (mini.cmd)
+	{
+		i = 0;
+		while (mini.cmd[i])
+		{
+			printf("cmd[%d] = %s\n", i, mini.cmd[i]);
+			i++;
+		}
+	}
+	printf("path_file = %s\n", mini.path_file);
+	printf("builtin = %d\n", mini.builtin);
+	printf("in_file = %d\n", mini.in_file);
+	printf("in_heredoc = %d\n", mini.in_heredoc);
+	printf("in_pipe = %d\n", mini.in_pipe);
+	printf("out_append = %d\n", mini.out_append);
+	printf("out_trunc = %d\n", mini.out_trunc);
+	printf("out_pipe = %d\n", mini.out_pipe);
+	printf("next = %p\n", mini.next);
+	printf("\n");
+}
+
 void	parsing(char *input, t_cati **mini)
 {
 	t_tok	*lst;
 	//t_cati	*temp;
 
 	lst = init_token_list(input);
-	(void)mini;
-	// handle_redirection(&mini);
-	parse_options(&lst, *mini);
-	if ((*mini)->cmd)
-	{
-		int i = 0;
-		while ((*mini)->cmd[i])
-		{
-			printf("cmd[%d] = [%s]\n", i, (*mini)->cmd[i]);
-			i++;
-		}
-	}
+	//split_lst_operator(&lst);
+	//handle_in_redirection(&mini);
+	parse_options(&lst, mini);
+	//handle_out_redirection(mini, &lst);
+	// temp = *mini;
+	// while (temp)
+	// {
+	// 	printfmini(*temp);
+	// 	temp = temp->next;
+	// }
 	execute(mini);
 	clean_mini(mini);
 	clean_tok(&lst);
 }
+
+//SI ON FAIT "'"'""'"'" JE M'ARRETE A LA PREMIERE "
+//PAS BIEN
+//A FIX
