@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:55:44 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/12 11:50:27 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/12 15:43:32 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,8 @@ static void	setup_node(t_tok **lst, t_cati *mini)
 	t_tok	*temp;
 
 	nbr_opt = 0;
+	if (!*lst)
+		return ;
 	temp = *lst;
 	while (temp && !ft_is_sep(temp->str))
 	{

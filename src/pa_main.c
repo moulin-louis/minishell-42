@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/12 13:52:48 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/12 15:50:11 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,16 +46,16 @@ void	parsing(char *input, t_cati **mini)
 	t_tok	*lst;
 
 	lst = init_token_list(input);
-	//split_lst_operator(lst);
-	//handle_in_redirection(&mini);
+	split_lst_operator(lst);
+	handle_in_redirection(&lst, *mini);
 	parse_options(&lst, mini);
 	//handle_out_redirection(mini, &lst);
-	//t_tok *temp = *mini;
-	// while (temp)
-	// {
-	// 	printfmini(*temp);
-	// 	temp = temp->next;
-	// }
+	t_cati *temp = *mini;
+	while (temp)
+	{
+		printfmini(*temp);
+		temp = temp->next;
+	}
 	execute(mini);
 	clean_mini(mini);
 	clean_tok(&lst);
