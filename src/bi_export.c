@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/12 11:07:31 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/12 15:11:39 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,69 +14,55 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static int	is_set(char *str)
-{
-	int	i;
-
-	i = -1;
-	while (str[++i])
-		if (str[i] == '=')
-			return (1);
-	return (0);
-}
-
 static void	display_expt_ev(t_cati **mini)
-{
-	t_envp	*tmp;
-
-	tmp = (*mini)->expt_ev;
-	while (tmp)
-	{
-		printf("%s\n", tmp->var);
-		tmp = tmp->next;
-	}
-}
-
-static int	var_cmp(char *s1, char *s2, int flag)
-{
-	int	i;
-
-	i = -1;
-	if (!flag)
-	{
-		while (s1[++i] && s2[i] != '=')
-			if (s1[i] != s2[i])
-				return (0);
-	}
-	else
-	{
-		while (s1[++i] && s2[i] && s2[i] != '=')
-			if (s1[i + 11] != s2[i])
-				return (0);
-	}
-	return (1);
-}
-
-static void	already_exists(t_cati **mini, char *str)
 {
 	t_envp	*tmp;
 
 	tmp = (*mini)->envp;
 	while (tmp)
 	{
-		if (var_cmp(tmp->var, str, 0))
-		{
-			env_lstdelone(&(*mini)->envp, tmp);
-			break ;
-		}
+		printf("declare -x ");
+		printf("%s", tmp->var[0]);
+		printf("=\"");
+		if (tmp->var[1])
+			printf("%s", tmp->var[1]);
+		printf("\"\n");
 		tmp = tmp->next;
 	}
-	tmp = (*mini)->expt_ev;
+}
+
+static int	do_the_expt(t_cati **mini, char *str)
+{
+	t_envp	*new;
+
+	new = malloc(sizeof(t_envp));
+	if (!new)
+		return (perror("Envp new node malloc"), 0);
+	new->next = NULL;
+	new->var = ut_env_split(str);
+	if (!new->var)
+		return (perror("Env new node malloc"), 0);
+	env_lstaddback(&(*mini)->envp, new);
+	return (1);
+}
+
+static void	already_exists(t_cati **mini, char *str)
+{
+	t_envp	*tmp;
+	int		i;
+
+	tmp = (*mini)->envp;
 	while (tmp)
 	{
-		if (var_cmp(tmp->var, str, 1))
+		i = -1;
+		while (str[++i] && str[i] != '=')
 		{
-			env_lstdelone(&(*mini)->expt_ev, tmp);
+			if (tmp->var[0][i] != str[i])
+				break ;
+		}
+		if (tmp->var[0][i] == '\0' && (str[i] == '\0' || str[i] == '='))
+		{
+			env_lstdelone(&(*mini)->envp, tmp);
 			break ;
 		}
 		tmp = tmp->next;
@@ -85,7 +71,7 @@ static void	already_exists(t_cati **mini, char *str)
 
 int	bi_export(t_cati **mini)
 {
-	int		i;
+	int	i;
 
 	if (!(*mini)->cmd[1])
 		return (display_expt_ev(mini), (*mini)->ret);
@@ -93,18 +79,8 @@ int	bi_export(t_cati **mini)
 	while ((*mini)->cmd[++i])
 	{
 		already_exists(mini, (*mini)->cmd[i]);
-		if (!is_set((*mini)->cmd[i]))
-		{
-			if (!bi_expt_expt(mini, (*mini)->cmd[i], 0))
-				(*mini)->ret++;
-		}
-		else
-		{
-			if (!bi_expt_expt(mini, (*mini)->cmd[i], 1))
-				(*mini)->ret++;
-			if (!bi_expt_env(mini, (*mini)->cmd[i]))
-				(*mini)->ret++;
-		}
+		if (!do_the_expt(mini, (*mini)->cmd[i]))
+			return ((*mini)->ret);
 	}
 	return ((*mini)->ret);
 }

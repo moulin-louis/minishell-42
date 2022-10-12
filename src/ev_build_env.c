@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 11:38:34 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/12 13:19:12 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/12 14:59:44 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	case_env(char *env, t_envp **envp)
 	new->next = NULL;
 	new->var = ut_env_split(env);
 	if (!new->var)
-		return (0);
+		return (perror("Env new node malloc"), 0);
 	env_lstaddback(envp, new);
 	return (1);
 }
