@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:19:57 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/12 12:33:44 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/12 13:36:08 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,11 @@ static int	change_var(t_cati *tmp)
 static int	find_node(t_cati *tmp)
 {
 	char	*ref;
-	int		i;
 
-	ref = "PWD=";
-	i = -1;
-	while (ref[++i])
-		if (tmp->envp->var[0][i] != ref[i])
-			return (0);
-	return (1);
+	ref = "PWD";
+	if (ut_strcmp(tmp->envp->var[0], ref))
+		return (1);
+	return (0);
 }
 
 static void	change_env(t_cati **mini)

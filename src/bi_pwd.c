@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 08:55:02 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/12 12:36:38 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/12 13:38:59 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char	*ft_getenv(t_envp *envp)
 	while (tmp)
 	{
 		if (pwd_cmp(tmp->var[0]))
-			return (envp->var[1]);
+			return (tmp->var[1]);
 		tmp = tmp->next;
 	}
 	return (NULL);

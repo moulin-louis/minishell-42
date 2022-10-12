@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ut_ev_split.c                                      :+:      :+:    :+:   */
+/*   ut_env_split.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:15:26 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/12 12:21:39 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/12 13:37:17 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static int	word_count(char *str)
 	{
 		if (str[i] == '=')
 			return (2);
+	}
 	return (1);
 }
 
@@ -59,14 +60,14 @@ static int	fill_value(char **arr, char *str)
 	arr[1] = malloc(j + 1);
 	if (!arr[1])
 		return (perror("arr[1] ev_split malloc"), 0);
-	j = i - 1;
+	j = i;
 	while (str[++j])
-		arr[1][j - i] = str[j];
+		arr[1][j - i - 1] = str[j];
 	arr[1][j - i] = '\0';
 	return (1);
 }
 
-char	**ut_ev_split(char *str)
+char	**ut_env_split(char *str)
 {
 	char	**arr;
 	int		words;
@@ -76,10 +77,10 @@ char	**ut_ev_split(char *str)
 	if (!arr)
 		return (perror("Ev_split malloc"), arr);
 	arr[words] = NULL;
-	if (!fill_var(&arr, str))
-		bi_exit (2);
-	if (words == 2);
-		if (!fill_value(&arr, str))
-			bi_exit(3);
+	if (!fill_var(arr, str))
+		return (arr);
+	if (words == 2)
+		if (!fill_value(arr, str))
+			return (arr);
 	return (arr);
 }

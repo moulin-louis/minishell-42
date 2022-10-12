@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:04 by                   #+#    #+#             */
-/*   Updated: 2022/10/12 12:23:28 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/12 13:10:46 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int		bi_echo(t_cati **mini);
 int		bi_env(t_cati **mini);
 int		bi_exit(t_cati **mini);
 int		bi_pwd(t_cati **mini);
-int		bi_unset(t_cati **mini);
 
 /* Utils */
 char	*ut_gnl(int fd);
@@ -84,7 +83,7 @@ void	clean_tok(t_tok **lst);
 
 /* Environment */
 int		ev_build_env(char **env, t_envp **envp);
-char	**ut_ev_split(char *str);
+char	**ut_env_split(char *str);
 
 /* Cleanup */
 void	clean_split(char **arr);
