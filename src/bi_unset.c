@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 13:42:31 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/10 15:00:12 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/11 12:09:29 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,66 +14,63 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static void	delone(t_envp *tmp)
-{
-	if (tmp->var)
-		free(tmp->var);
-	free(tmp);
-}
-
-static int	pathcmp(char *s1, char *s2)
+static int	var_cmp(char *s1, char *s2, int flag)
 {
 	int	i;
 
-	if (!s1 || !s2)
-		return (0);
 	i = 0;
-	while (s2[i])
+	if (!flag)
 	{
-		if (s1[i] != s2[i])
-			return (0);
-		i++;
+		while (s2[i] && (s2[i] == s1[i]))
+			i++;
+		if (s1[i] == '=')
+			return (1);
+
 	}
-	if (s1[i] != '=')
-		return (0);
-	return (1);
+	else
+	{
+		while (s2[i] && (s2[i] == s1[i + 11]))
+			i++;
+		if (!s1[i + 11] || s1[i + 11] == '=')
+			return (1);
+	}
+	return (0);
 }
 
-static void	remove_node(t_envp *envp, t_envp *tmp)
+static void	already_exists(t_cati **mini, char *str)
 {
-	t_envp	*iter;
+	t_envp	*tmp;
 
-	iter = envp;
-	while (iter->next != tmp)
-		iter = iter->next;
-	iter->next = tmp->next;
-	delone(tmp);
+	tmp = (*mini)->envp;
+	while (tmp)
+	{
+		if (var_cmp(tmp->var, str, 0))
+		{
+			env_lstdelone(&(*mini)->envp, tmp);
+			break ;
+		}
+		tmp = tmp->next;
+	}
+	tmp = (*mini)->expt_ev;
+	while (tmp)
+	{
+		if (var_cmp(tmp->var, str, 1))
+		{
+			env_lstdelone(&(*mini)->expt_ev, tmp);
+			break ;
+		}
+		tmp = tmp->next;
+	}
 }
 
 int	bi_unset(t_cati **mini)
 {
-	t_envp	*tmp;
-	t_envp	*del;
 	int		i;
 
-	if (!(*mini)->cmd[0])
+	if (!(*mini)->cmd[1])
 		return (1);
 	i = 0;
 	while ((*mini)->cmd[++i])
-	{
-		tmp = (*mini)->envp;
-		while (tmp)
-		{
-			if (pathcmp(tmp->var, (*mini)->cmd[i]))
-			{
-				del = tmp;
-				tmp = tmp->next;
-				remove_node((*mini)->envp, del);
-				break ;
-			}
-			else
-				tmp = tmp->next;
-		}
-	}
+		already_exists(mini, (*mini)->cmd[i]);
 	return (0);
 }
