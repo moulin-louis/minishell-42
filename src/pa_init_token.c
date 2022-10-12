@@ -6,14 +6,14 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 10:41:05 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/11 11:22:35 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/12 11:50:39 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
 
-void	add_i(char *str, int *i)
+static void	add_i(char *str, int *i)
 {
 	if (str[(*i) - 1] == 34)
 	{
@@ -28,7 +28,7 @@ void	add_i(char *str, int *i)
 	(*i)++;
 }
 
-char	*ft_return_token(char *str, int *i)
+static char	*ft_return_token(char *str, int *i)
 {
 	int		temp;
 	int		len;
@@ -51,7 +51,7 @@ char	*ft_return_token(char *str, int *i)
 	return (result);
 }
 
-char	*ft_return_str(char *str, int *i)
+static char	*ft_return_str(char *str, int *i)
 {
 	int		temp;
 	char	*result;

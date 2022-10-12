@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/12 10:52:52 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/12 13:50:04 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@ void	printfmini(t_cati mini)
 		i = 0;
 		while (mini.cmd[i])
 		{
-			printf("cmd[%d] = %s\n", i, mini.cmd[i]);
+			printf("cmd[%d] = %s\t", i, mini.cmd[i]);
 			i++;
 		}
+		printf("\n");
 	}
 	printf("path_file = %s\n", mini.path_file);
 	printf("builtin = %d\n", mini.builtin);
@@ -43,20 +44,20 @@ void	printfmini(t_cati mini)
 void	parsing(char *input, t_cati **mini)
 {
 	t_tok	*lst;
-	//t_cati	*temp;
+	t_cati	*temp;
 
 	lst = init_token_list(input);
-	//split_lst_operator(&lst);
+	split_lst_operator(lst);
 	//handle_in_redirection(&mini);
-	parse_options(&lst, mini);
+	parse_options(lst, mini);
 	//handle_out_redirection(mini, &lst);
-	// temp = *mini;
-	// while (temp)
-	// {
-	// 	printfmini(*temp);
-	// 	temp = temp->next;
-	// }
-	execute(mini);
+	temp = *mini;
+	while (temp)
+	{
+		printfmini(*temp);
+		temp = temp->next;
+	}
+	//execute(mini);
 	clean_mini(mini);
 	clean_tok(&lst);
 }
