@@ -1,30 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   bi_launcher.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 10:16:50 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/12 11:46:14 by bschoeff         ###   ########.fr       */
+/*   Created: 2022/10/12 13:43:55 by bschoeff          #+#    #+#             */
+/*   Updated: 2022/10/12 13:47:42 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
-#include <stdlib.h>
 
-int	main(int ac, char **av, char **env)
+static int	cmp(char *s1, char *s2)
 {
-	t_envp	*envp;
-	t_fds	fds;
+	int	i;
 
-	(void)av;
-	if (ac > 1)
-		return (printf("./minishell takes no argument, you twat\n"), 1);
-	envp = NULL;
-	if (!ev_build_env(env, &envp))
-		return (2);
-	run_prompt(envp, &fds);
+	i = -1;
+	while (s1[++i])
+		if (s1[i] != s2[i])
+			return (0);
+	return (1);
+}
+
+int	bi_launcher(t_cati **mini)
+{
+	if (cmp("cd", (*mini)->cmd[0]))
+		bi_cd(mini);
+	else if (cmp("echo", (*mini)->cmd[0]))
+		bi_echo(mini);
+	else if (cmp("env", (*mini)->cmd[0]))
+		bi_env(mini);
+	else if (cmp("pwd", (*mini)->cmd[0]))
+		bi_pwd(mini);
+	else if (cmp("exit", (*mini)->cmd[0]))
+		return (bi_exit(mini));
 	return (0);
 }

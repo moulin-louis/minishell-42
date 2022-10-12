@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pa_prompt.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:51:41 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/12 11:51:14 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/12 14:08:37 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,10 @@ static void	do_nothing(int sig)
 	(void)sig;
 }
 
-static void	ft_create_node(t_cati **mini, t_envp *envp, t_envp *expt_ev, t_fds *fds)
+void	ft_create_node(t_cati **mini, t_envp *envp, t_fds *fds)
 {
 	*mini = mini_lstnew();
 	(*mini)->envp = envp;
-	(*mini)->expt_ev = expt_ev;
 	(*mini)->fds = fds;
 }
 
@@ -52,7 +51,7 @@ static void	setup_sig(void)
 	sigaction(SIGQUIT, &sa, NULL);
 }
 
-void	run_prompt(t_envp *envp, t_envp *expt_ev, t_fds *fds)
+void	run_prompt(t_envp *envp, t_fds *fds)
 {
 	char				*u_input;
 	t_cati				*mini;
@@ -65,14 +64,13 @@ void	run_prompt(t_envp *envp, t_envp *expt_ev, t_fds *fds)
 		{
 			rl_clear_history();
 			env_lstclear(&envp);
-			env_lstclear(&expt_ev);
 			exit(0);
 		}
 		if (u_input)
 		{
 			if (ft_strlen(u_input) > 0)
 			{
-				ft_create_node(&mini, envp, expt_ev, fds);
+				ft_create_node(&mini, envp, fds);
 				parsing(u_input, &mini);
 				add_history(u_input);
 			}

@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:12:28 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/10 13:45:37 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/12 12:34:02 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int	bi_exit(t_cati **mini)
 		}
 	}
 	env_lstclear(&(*mini)->envp);
-	env_lstclear(&(*mini)->expt_ev);
 	clean_mini(mini);
 	exit(status);
 }

@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 09:55:52 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/11 09:37:20 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/12 13:32:31 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	env_lstclear(t_envp **envp)
 		tmp = *envp;
 		*envp = (*envp)->next;
 		if (tmp->var)
-			free(tmp->var);
+			clean_split(tmp->var);
 		free(tmp);
 	}
 }
