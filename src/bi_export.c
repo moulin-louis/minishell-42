@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/12 15:18:56 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/13 08:49:57 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,13 @@ static void	display_expt_ev(t_cati **mini)
 	{
 		printf("declare -x ");
 		printf("%s", tmp->var[0]);
-		printf("=\"");
 		if (tmp->var[1])
+		{
+			printf("=\"");
 			printf("%s", tmp->var[1]);
-		printf("\"\n");
+			printf("\"");
+		}
+		printf("\n");
 		tmp = tmp->next;
 	}
 }

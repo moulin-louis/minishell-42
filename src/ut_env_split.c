@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:15:26 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/12 13:37:17 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/13 09:05:11 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,17 @@ static int	fill_var(char **arr, char *str)
 	return (1);
 }
 
+static void	case_var_not_set(char **arr)
+{
+	arr[1] = malloc(1);
+	if (!arr[1])
+	{
+		perror("split env malloc");
+		return ;
+	}
+	arr[1][0] = '\0';
+}
+
 static int	fill_value(char **arr, char *str)
 {
 	int	i;
@@ -54,6 +65,8 @@ static int	fill_value(char **arr, char *str)
 	i = 0;
 	while (str[i] != '=')
 		i++;
+	if (!str[i + 1])
+		return (case_var_not_set(arr), 1);
 	j = i;
 	while (str[j])
 		j++;
