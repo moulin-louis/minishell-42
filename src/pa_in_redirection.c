@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 15:01:06 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/12 16:20:57 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/13 11:56:36 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,12 @@ static void	token_is_first(t_tok**lst, t_cati *mini)
 	free(temp);
 }
 
-static void	token_is_second(t_tok **lst, t_cati *mini)
+static void	token_is_second(t_tok *lst, t_cati *mini)
 {
 	t_tok	*temp;
 	t_tok	*temp2;
 
-	temp = *lst;
+	temp = lst;
 	while (temp && !ut_strcmp(temp->next->str, "<"))
 		temp = temp->next;
 	mini->path_file = ut_strdup(temp->next->next->str);
@@ -60,8 +60,18 @@ static void	token_is_second(t_tok **lst, t_cati *mini)
 
 void	handle_in_redirection(t_tok **lst, t_cati *mini)
 {
+	t_tok	*temp;
+
 	if (is_infile((*lst)->str))
 		token_is_first(lst, mini);
-	else if (is_infile((*lst)->next->str))
-		token_is_second(lst, mini);
+	else
+	{
+		temp = *lst;
+		while (temp)
+		{
+			if (temp->next && is_infile(temp->next->str))
+				token_is_second(temp, mini);
+			temp = temp->next;
+		}
+	}
 }
