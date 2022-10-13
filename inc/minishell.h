@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:04 by                   #+#    #+#             */
-/*   Updated: 2022/10/12 14:27:17 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/13 14:37:50 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,9 @@ void	clean_tok(t_tok **lst);
 /* Environment */
 int		ev_build_env(char **env, t_envp **envp);
 char	**ut_env_split(char *str);
+int		set_new1(t_envp *new1);
+int		set_new2(t_envp *new2);
+int		set_new3(t_envp *new3);
 
 /* Cleanup */
 void	clean_split(char **arr);

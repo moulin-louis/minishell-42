@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/13 12:08:11 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/13 14:02:39 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static int	check_compliance(t_cati **mini, char *str)
 	char	*ref;
 
 	j = -1;
-	ref = "!@#$%^&*()`~-|[]{};:,./<>?\'\"";
+	ref = "!@#$%^&*()`~-|[]{};:,./<>?";
 	while (str[++j] && str[j] != '=')
 	{
 		k = -1;
