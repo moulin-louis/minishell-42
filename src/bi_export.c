@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/13 08:49:57 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/13 12:08:11 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,30 @@ static void	already_exists(t_cati **mini, char *str)
 	}
 }
 
+static int	check_compliance(t_cati **mini, char *str)
+{
+	int		j;
+	int		k;
+	char	*ref;
+
+	j = -1;
+	ref = "!@#$%^&*()`~-|[]{};:,./<>?\'\"";
+	while (str[++j] && str[j] != '=')
+	{
+		k = -1;
+		while (ref[++k])
+		{
+			if (ref[k] == str[j])
+			{
+				(*mini)->ret = 1;
+				printf("bash: export: \"%s\": not a valid identifier\n", str);
+				return (0);
+			}
+		}
+	}
+	return (1);
+}
+
 int	bi_export(t_cati **mini)
 {
 	int	i;
@@ -80,8 +104,9 @@ int	bi_export(t_cati **mini)
 	while ((*mini)->cmd[++i])
 	{
 		already_exists(mini, (*mini)->cmd[i]);
-		if (!do_the_expt(mini, (*mini)->cmd[i]))
-			return ((*mini)->ret);
+		if (check_compliance(mini, (*mini)->cmd[i]))
+			if (!do_the_expt(mini, (*mini)->cmd[i]))
+				return ((*mini)->ret);
 	}
 	return ((*mini)->ret);
 }
