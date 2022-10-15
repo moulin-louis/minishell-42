@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:15:26 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/15 13:23:57 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/15 14:33:29 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ static int	fill_value(char **arr, char *str)
 	j = i;
 	while (str[j])
 		j++;
-	arr[1] = malloc(j + 1);
+	arr[1] = ut_calloc(j + 1, 1);
 	if (!arr[1])
 		return (perror("arr[1] ev_split malloc"), 0);
 	arr[1][j] = '\0';

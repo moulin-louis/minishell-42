@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:04 by                   #+#    #+#             */
-/*   Updated: 2022/10/15 13:08:50 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/15 14:36:11 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int		bi_unset(t_cati **mini);
 int		bi_launcher(t_cati **mini);
 
 /* Utils */
+void	*ut_calloc(int nb, int sz);
 char	*ut_gnl(int fd);
 char	**ut_split(char *str);
 int		ut_strcmp(char *s1, char *s2);

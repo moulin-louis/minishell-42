@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
+#    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/15 13:09:14 by loumouli         ###   ########.fr        #
+#    Updated: 2022/10/15 14:33:10 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +44,7 @@ C_FILES		= minishell.c				\
 			  pa_parse_options.c		\
 			  pa_prompt.c				\
 			  pa_split_lst_operator.c	\
+			  ut_calloc.c				\
 			  ut_env_list.c				\
 			  ut_env_split.c			\
 			  ut_gnl.c					\
