@@ -6,7 +6,7 @@
 #    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/15 12:52:50 by loumouli         ###   ########.fr        #
+#    Updated: 2022/10/15 13:09:14 by loumouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,11 +31,14 @@ C_FILES		= minishell.c				\
 			  bi_echo.c					\
 			  bi_env.c					\
 			  bi_exit.c					\
-			  bi_launcher.c				\
+			  bi_export.c				\
 			  bi_pwd.c					\
+			  bi_unset.c				\
 			  cl_clean_all.c			\
 			  ev_build_env.c			\
-			  execute.c					\
+			  ev_build_env2.c			\
+			  exe_execute.c				\
+			  exe_launcher.c			\
 			  pa_init_token.c			\
 			  pa_main.c					\
 			  pa_parse_options.c		\

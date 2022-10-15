@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:04 by                   #+#    #+#             */
-/*   Updated: 2022/10/14 13:22:43 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/15 13:08:50 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,9 @@ int		bi_cd(t_cati **mini);
 int		bi_echo(t_cati **mini);
 int		bi_env(t_cati **mini);
 int		bi_exit(t_cati **mini);
+int		bi_export(t_cati **mini);
 int		bi_pwd(t_cati **mini);
+int		bi_unset(t_cati **mini);
 int		bi_launcher(t_cati **mini);
 
 /* Utils */
@@ -85,6 +87,9 @@ void	clean_tok(t_tok **lst);
 /* Environment */
 int		ev_build_env(char **env, t_envp **envp);
 char	**ut_env_split(char *str);
+int		set_new1(t_envp *new1);
+int		set_new2(t_envp *new2);
+int		set_new3(t_envp *new3);
 
 /* Cleanup */
 void	clean_split(char **arr);
