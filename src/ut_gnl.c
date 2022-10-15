@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 17:29:13 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/04 20:23:20 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/15 14:45:09 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static char	*ft_join(char *str, char *buff)
 
 	len = str_len(str);
 	i = 0;
-	res = malloc(len + 2);
+	res = ut_calloc(len + 2, 1);
 	while (i < len)
 	{
 		res[i] = str[i];

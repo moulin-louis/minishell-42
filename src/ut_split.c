@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:15:26 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/12 10:19:06 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/15 14:46:51 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static char	*do_the_split(char *s2, int len)
 	int		i;
 	char	*s1;
 
-	s1 = malloc(len + 1);
+	s1 = ut_calloc(len + 1, 1);
 	if (!s1)
 		return (NULL);
 	i = 0;
@@ -63,7 +63,7 @@ char	**ut_split(char *str)
 	int		len;
 
 	words = word_count(str);
-	arr = malloc(sizeof(char *) * (words + 1));
+	arr = ut_calloc(words + 1, sizeof(char *));
 	if (!arr)
 		return (perror("Split malloc"), arr);
 	arr[words] = 0;

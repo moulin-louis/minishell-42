@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ut_split_sep.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:53:30 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/12 13:21:54 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/15 14:45:50 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ static char	*split_this_op(char *str, int len)
 	int		i;
 	char	*result;
 
-	result = malloc(len + 1);
+	result = ut_calloc(len + 1, 1);
 	if (!result)
 		return (NULL);
 	result[len] = '\0';
@@ -91,7 +91,7 @@ char	**extract_sep(char *str)
 	i = 0;
 	len = 0;
 	words = count_token(str);
-	result = malloc(sizeof(char *) * (words + 1));
+	result = ut_calloc(words + 1, sizeof(char *));
 	if (!result)
 		return (NULL);
 	result[words] = 0;

@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 14:25:02 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/15 14:36:24 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/15 14:48:14 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdlib.h>
 #include <stddef.h>
 
-static void bzr(void *s, int n)
+static void	bzr(void *s, int n)
 {
 	char	*str;
 
@@ -30,7 +30,7 @@ static void bzr(void *s, int n)
 void	*ut_calloc(int nb, int sz)
 {
 	void	*ptr;
-	int	check;
+	int		check;
 
 	check = nb * sz;
 	ptr = NULL;

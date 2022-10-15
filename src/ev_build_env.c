@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 11:38:34 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/13 14:23:05 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/15 14:41:15 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@ static int	case_no_env(t_envp **envp)
 	t_envp	*new2;
 	t_envp	*new3;
 
-	new1 = malloc(sizeof(t_envp));
-	new2 = malloc(sizeof(t_envp));
-	new3 = malloc(sizeof(t_envp));
+	new1 = ut_calloc(1, sizeof(t_envp));
+	new2 = ut_calloc(1, sizeof(t_envp));
+	new3 = ut_calloc(1, sizeof(t_envp));
 	if (!new1 || !new2 || !new3)
 		return (perror("Env build malloc"), 0);
 	if (!set_new1(new1) || !set_new2(new2) || !set_new3(new3))
@@ -37,7 +37,7 @@ static int	case_env(char *env, t_envp **envp)
 {
 	t_envp	*new;
 
-	new = malloc(sizeof(t_envp));
+	new = ut_calloc(1, sizeof(t_envp));
 	if (!new)
 		return (perror("Env new node malloc"), 0);
 	new->next = NULL;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ut_strstuff.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 12:32:42 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/10 11:11:50 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/15 14:47:23 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*ut_strdup(char *str)
 	i = -1;
 	result = NULL;
 	len = ft_strlen(str);
-	result = malloc(len + 1);
+	result = ut_calloc(len + 1, 1);
 	if (!result)
 		return (NULL);
 	result[len] = 0;

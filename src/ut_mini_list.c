@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ut_mini_list.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:51:29 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/11 11:17:18 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/15 14:46:14 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ t_cati	*mini_lstnew(void)
 {
 	t_cati	*result;
 
-	result = malloc(sizeof(t_cati));
+	result = ut_calloc(1, sizeof(t_cati));
 	if (!result)
 		return (NULL);
 	ft_bzero(result, sizeof(t_cati));

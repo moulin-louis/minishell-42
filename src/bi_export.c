@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/15 14:38:41 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/15 14:40:03 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static int	do_the_expt(t_cati **mini, char *str)
 {
 	t_envp	*new;
 
-	new = malloc(sizeof(t_envp));
+	new = ut_calloc(1, sizeof(t_envp));
 	if (!new)
 		return (perror("Envp new node malloc"), 0);
 	new->next = NULL;
