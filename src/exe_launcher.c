@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bi_launcher.c                                      :+:      :+:    :+:   */
+/*   exe_launcher.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:43:55 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/15 11:05:26 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/15 13:00:10 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,7 @@ int	bi_launcher(t_cati **mini)
 		bi_export(mini);
 	else if (cmp("exit", (*mini)->cmd[0]))
 		return (bi_exit(mini));
+	else if (cmp("unset", (*mini)->cmd[0]))
+		return (bi_unset(mini));
 	return (0);
 }
