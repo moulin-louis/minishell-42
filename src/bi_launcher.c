@@ -6,17 +6,35 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:43:55 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/12 14:33:49 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/15 11:05:26 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	cmp(char *s1, char *s2)
+static int	len(char *s)
 {
 	int	i;
 
+	if (!s)
+		return (0);
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+
+static int	cmp(char *s1, char *s2)
+{
+	int	i;
+	int	ls1;
+	int	ls2;
+
 	i = -1;
+	ls1 = len(s1);
+	ls2 = len(s2);
+	if (ls1 != ls2)
+		return (0);
 	while (s1[++i])
 		if (s1[i] != s2[i])
 			return (0);

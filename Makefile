@@ -6,7 +6,7 @@
 #    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/13 14:38:34 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/10/15 11:10:37 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,7 @@ C_FILES		= minishell.c				\
 			  cl_clean_all.c			\
 			  ev_build_env.c			\
 			  ev_build_env2.c			\
-			  execute.c					\
+			  exe_execute.c				\
 			  pa_init_token.c			\
 			  pa_main.c					\
 			  pa_parse_options.c		\
