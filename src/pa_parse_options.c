@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:55:44 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/12 15:43:32 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/15 12:53:01 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void	parse_options(t_tok **lst, t_cati **mini)
 	while (nbr_cmd > 0)
 	{
 		mini_lstaddback(mini, mini_lstnew());
+		//setup_redirection(lst, mini);
 		setup_node(lst, mini_lstlast(*mini));
 		nbr_cmd--;
 	}

@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:26:13 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/12 14:23:59 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/15 13:05:11 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	split_node(t_tok *lst)
 {
 	int		i;
 	t_tok	*temp;
-	char **result;
+	char	**result;
 	t_tok	*temp2;
 	t_tok	*temp3;
 
@@ -62,7 +62,7 @@ static int	split_node(t_tok *lst)
 void	split_lst_operator(t_tok *lst)
 {
 	t_tok	*temp;
-	int	len;
+	int		len;
 
 	temp = lst;
 	while (temp)
