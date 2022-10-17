@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:04 by                   #+#    #+#             */
-/*   Updated: 2022/10/17 10:32:34 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:46:57 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ char	*ut_gnl(int fd);
 char	**ut_split(char *str);
 int		ut_strcmp(char *s1, char *s2);
 char	*ut_strcpy(char *s2);
+char	*ut_strjoin(char *s1, char *s2);
 int		ut_word_len(char *str);
 int		ft_strlen(char *str);
 char	*ut_strdup(char *str);
@@ -92,6 +93,8 @@ char	**ut_env_split(char *str);
 int		set_new1(t_envp *new1);
 int		set_new2(t_envp *new2);
 int		set_new3(t_envp *new3);
+int		change_content(t_cati **mini, char *str);
+int		do_the_expt(t_cati **mini, char *str);
 
 /* Cleanup */
 void	clean_split(char **arr);

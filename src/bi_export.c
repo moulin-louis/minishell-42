@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/15 14:40:03 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/17 15:55:04 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,22 +34,9 @@ static void	display_expt_ev(t_cati **mini)
 	}
 }
 
-static int	do_the_expt(t_cati **mini, char *str)
-{
-	t_envp	*new;
 
-	new = ut_calloc(1, sizeof(t_envp));
-	if (!new)
-		return (perror("Envp new node malloc"), 0);
-	new->next = NULL;
-	new->var = ut_env_split(str);
-	if (!new->var)
-		return (perror("Env new node malloc"), 0);
-	env_lstaddback(&(*mini)->envp, new);
-	return (1);
-}
 
-static void	already_exists(t_cati **mini, char *str)
+static int	already_exists(t_cati **mini, char *str)
 {
 	t_envp	*tmp;
 	int		i;
@@ -62,12 +49,10 @@ static void	already_exists(t_cati **mini, char *str)
 			if (tmp->var[0][i] != str[i])
 				break ;
 		if (tmp->var[0][i] == '\0' && (str[i] == '\0' || str[i] == '='))
-		{
-			env_lstdelone(&(*mini)->envp, tmp);
-			break ;
-		}
+			return (1);
 		tmp = tmp->next;
 	}
+	return (0);
 }
 
 static int	check_compliance(t_cati **mini, char *str)
@@ -85,7 +70,7 @@ static int	check_compliance(t_cati **mini, char *str)
 		{
 			if (ref[k] == str[j])
 			{
-				(*mini)->ret = 1;
+				(*mini)->ret++;
 				printf("bash: export: \"%s\": not a valid identifier\n", str);
 				return (0);
 			}
@@ -103,10 +88,17 @@ int	bi_export(t_cati **mini)
 	i = 0;
 	while ((*mini)->cmd[++i])
 	{
-		already_exists(mini, (*mini)->cmd[i]);
 		if (check_compliance(mini, (*mini)->cmd[i]))
-			if (!do_the_expt(mini, (*mini)->cmd[i]))
-				return ((*mini)->ret);
+		{
+			if (already_exists(mini, (*mini)->cmd[i]))
+			{
+				if (!change_content(mini, (*mini)->cmd[i]))
+					return ((*mini)->ret);
+			}
+			else
+				if (!do_the_expt(mini, (*mini)->cmd[i]))
+					return ((*mini)->ret);
+		}
 	}
 	return ((*mini)->ret);
 }
