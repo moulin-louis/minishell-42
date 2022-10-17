@@ -6,7 +6,7 @@
 #    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/15 13:09:14 by loumouli         ###   ########.fr        #
+#    Updated: 2022/10/17 16:33:09 by loumouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,35 +26,37 @@ NAME		= minishell
 #               SOURCES              #
 # ################################## #
 C_DIR		= src
-C_FILES		= minishell.c				\
-			  bi_cd.c					\
-			  bi_echo.c					\
-			  bi_env.c					\
-			  bi_exit.c					\
-			  bi_export.c				\
-			  bi_pwd.c					\
-			  bi_unset.c				\
-			  cl_clean_all.c			\
-			  ev_build_env.c			\
-			  ev_build_env2.c			\
-			  exe_execute.c				\
-			  exe_launcher.c			\
-			  pa_init_token.c			\
-			  pa_main.c					\
-			  pa_parse_options.c		\
-			  pa_prompt.c				\
-			  pa_split_lst_operator.c	\
-			  ut_env_list.c				\
-			  ut_env_split.c			\
-			  ut_gnl.c					\
-			  ut_mini_list.c			\
-			  ut_split_sep.c			\
-			  ut_split.c				\
-			  ut_strcmp.c				\
-			  ut_strcpy.c				\
-			  ut_strstuff.c				\
-			  ut_token_list.c			\
-			  ut_word_len.c				\
+C_FILES		= minishell.c					\
+			  bi/bi_cd.c					\
+			  bi/bi_echo.c					\
+			  bi/bi_env.c					\
+			  bi/bi_exit.c					\
+			  bi/bi_export.c				\
+			  bi/bi_pwd.c					\
+			  bi/bi_unset.c				\
+			  ev/ev_build_env.c				\
+			  ev/ev_build_env2.c			\
+			  exe/exe_execute.c				\
+			  exe/exe_launcher.c				\
+			  pa/pa_init_token.c			\
+			  pa/pa_main.c					\
+			  pa/pa_parse_options.c			\
+			  pa/pa_prompt.c				\
+			  pa/pa_redirections.c			\
+			  pa/pa_setup_redir.c			\
+			  pa/pa_split_lst_operator.c	\
+			  ut/ut_clean_all.c				\
+			  ut/ut_env_list.c				\
+			  ut/ut_env_split.c				\
+			  ut/ut_gnl.c					\
+			  ut/ut_mini_list.c				\
+			  ut/ut_split_sep.c				\
+			  ut/ut_split.c					\
+			  ut/ut_strcmp.c				\
+			  ut/ut_strcpy.c				\
+			  ut/ut_strstuff.c				\
+			  ut/ut_token_list.c			\
+			  ut/ut_word_len.c				\
 
 
 
@@ -97,6 +99,11 @@ $(O_DIR)/%.o: $(C_DIR)/%.c
 
 $(O_DIR):
 			$(MKDIR) $(O_DIR)
+			$(MKDIR) $(O_DIR)/bi
+			$(MKDIR) $(O_DIR)/ev
+			$(MKDIR) $(O_DIR)/exe
+			$(MKDIR) $(O_DIR)/pa
+			$(MKDIR) $(O_DIR)/ut
 
 check:	fclean
 check:	CFLAGS		+=  -pedantic -ansi
