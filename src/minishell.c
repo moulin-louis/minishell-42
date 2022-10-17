@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:16:50 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/17 10:12:05 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/17 10:29:21 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	main(int ac, char **av, char **env)
 		return (printf("./minishell takes no argument, you twat\n"), 1);
 	envp = NULL;
 	if (!ev_build_env(env, &envp))
-		return (env_lstclear(envp), 2);
+		return (env_lstclear(&envp), 2);
 	run_prompt(envp, &fds);
 	return (0);
 }

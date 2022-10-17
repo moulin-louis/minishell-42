@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:43:55 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/15 13:00:10 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/17 10:32:17 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ static int	cmp(char *s1, char *s2)
 	return (1);
 }
 
-int	bi_launcher(t_cati **mini)
+int	exe_bi_launcher(t_cati **mini)
 {
 	if (cmp("cd", (*mini)->cmd[0]))
 		bi_cd(mini);

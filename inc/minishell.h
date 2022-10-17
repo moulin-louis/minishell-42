@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:04 by                   #+#    #+#             */
-/*   Updated: 2022/10/15 14:36:11 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/17 10:32:34 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_envp
 
 typedef struct s_cati {
 	char			**cmd;
+	char			**ev;
 	char			*path_cmd;
 	char			*path_file;
 	t_fds			*fds;
@@ -56,7 +57,6 @@ int		bi_exit(t_cati **mini);
 int		bi_export(t_cati **mini);
 int		bi_pwd(t_cati **mini);
 int		bi_unset(t_cati **mini);
-int		bi_launcher(t_cati **mini);
 
 /* Utils */
 void	*ut_calloc(int nb, int sz);
@@ -71,10 +71,11 @@ int		ft_strncmp(const char *s1, const char *s2, int n);
 void	ft_bzero(void *s, int n);
 char	**extract_sep(char *str);
 
-/*linked list utils/function*/
+/* linked list utils and function */
 void	env_lstaddback(t_envp **envp, t_envp *new);
 void	env_lstclear(t_envp **envp);
 void	env_lstdelone(t_envp **envp, t_envp *tmp);
+int		env_lstsize(t_envp **envp);
 t_cati	*mini_lstnew(void);
 void	mini_lstaddback(t_cati **mini, t_cati *node);
 void	mini_delone(t_cati	*node);
@@ -105,7 +106,8 @@ void	parse_options(t_tok **lst, t_cati **mini);
 
 /* Execute */
 int		execute(t_cati **mini);
+int		exe_bi_launcher(t_cati **mini);
 
-/*UTILITAIRE TEMP*/
+/* UTILITAIRE TEMP */
 void	printfmini(t_cati mini);
 #endif
