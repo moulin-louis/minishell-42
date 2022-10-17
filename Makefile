@@ -6,7 +6,7 @@
 #    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/17 16:33:09 by loumouli         ###   ########.fr        #
+#    Updated: 2022/10/17 16:40:15 by loumouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,7 @@ DEPS 		= $ $(C_FILES:.c=.d)
 # ################################## #
 #                FLAGS               #
 # ################################## #
-CFLAGS		= -Wall -Wextra -Werror -g3 -MMD
+CFLAGS		= -Wall -Wextra -Werror -g3 -MMD -O2
 LFLAGS		=
 
 # ################################## #
@@ -131,5 +131,11 @@ fclean:		clean
 re:			fclean all
 
 -include	$(OBJS:.o=.d)
+-include ./objs/*.d
+-include ./objs/bi/*.d
+-include ./objs/ev/*.d
+-include ./objs/exe/*.d
+-include ./objs/pa/*.d
+-include ./objs/ut/*.d
 
 .PHONY: all check clean fclean re
