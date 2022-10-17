@@ -6,7 +6,7 @@
 #    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/17 16:54:08 by loumouli         ###   ########.fr        #
+#    Updated: 2022/10/17 16:55:19 by loumouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,10 +57,6 @@ C_FILES		= minishell.c					\
 			  ut/ut_strstuff.c				\
 			  ut/ut_token_list.c			\
 			  ut/ut_word_len.c				\
->>>>>>> louis
-
-
-
 
 SRCS		= $(patsubst %, $(C_DIR)/%, $(C_FILES))
 
