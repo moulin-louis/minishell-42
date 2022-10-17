@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:19:57 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/17 08:57:52 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/17 11:15:10 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static int	change_var(t_cati *tmp)
+static int	change_var(t_envp *tmp)
 {
 	int		i;
 	char	*pwd;
 	char	*buff;
 
-	free(tmp->envp->var[1]);
+	free(tmp->var[1]);
 	i = 1;
 	buff = NULL;
 	pwd = NULL;
@@ -31,37 +31,50 @@ static int	change_var(t_cati *tmp)
 		i++;
 	}
 	i = ut_word_len(pwd);
-	tmp->envp->var[1] = ut_calloc(i + 1, 1);
-	if (!tmp->envp->var[1])
+	tmp->var[1] = ut_calloc(i + 1, 1);
+	if (!tmp->var[1])
 		return (perror("cd change var[1] malloc"), 0);
-	tmp->envp->var[1] = pwd;
+	tmp->var[1] = pwd;
 	return (1);
 }
 
-static int	find_node(t_cati *tmp)
+static int	find_node(t_envp *tmp, char *str)
 {
-	char	*ref;
-
-	ref = "PWD";
-	if (ut_strcmp(tmp->envp->var[0], ref))
+	if (ut_strcmp(tmp->var[0], str))
 		return (1);
 	return (0);
 }
 
-static void	change_env(t_cati **mini)
+static void	change_newpwd(t_cati **mini)
 {
-	t_cati	*tmp;
+	t_envp	*tmp;
 
-	tmp = *mini;
-	while (tmp->envp)
+	tmp = (*mini)->envp;
+	while (tmp)
 	{
-		if (find_node(tmp))
+		if (find_node(tmp, "PWD"))
 		{
 			change_var(tmp);
 			break ;
 		}
-		tmp->envp = tmp->envp->next;
+		tmp = tmp->next;
 	}
+}
+
+static void	change_oldpwd(t_cati **mini)
+{
+	t_envp	*tmp_pwd;
+	t_envp	*tmp_old;
+
+	tmp_pwd = (*mini)->envp;
+	tmp_old = (*mini)->envp;
+	while (tmp_pwd && !find_node(tmp_pwd, "PWD"))
+		tmp_pwd = tmp_pwd->next;
+	while (tmp_old && !find_node(tmp_old, "OLDPWD"))
+		tmp_old = tmp_old->next;
+	if (tmp_old->var[1])
+		free(tmp_old->var[1]);
+	tmp_old->var[1] = ut_strcpy(tmp_pwd->var[1]);
 }
 
 int	bi_cd(t_cati **mini)
@@ -70,6 +83,7 @@ int	bi_cd(t_cati **mini)
 		return (0);
 	if (chdir((*mini)->cmd[1]) == -1)
 		return (perror("cd"), 1);
-	change_env(mini);
+	change_oldpwd(mini);
+	change_newpwd(mini);
 	return (0);
 }
