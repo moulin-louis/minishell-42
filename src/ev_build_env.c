@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 11:38:34 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/17 12:12:10 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/17 13:48:37 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,9 @@ static int	init_oldpwd(t_envp **envp)
 	new->var = ut_calloc(3, sizeof(char *));
 	if (!new->var)
 		return (perror("Env build malloc"), 0);
-	new->var[0] = ut_calloc(7, 1);
+	new->var[0] = ut_strcpy("OLDPWD");
 	if (!new->var[0])
 		return (perror("Env build malloc"), 0);
-	new->var[0] = ut_strcpy("OLDPWD");
 	new->var[1] = NULL;
 	new->var[2] = NULL;
 	env_lstaddback(envp, new);
