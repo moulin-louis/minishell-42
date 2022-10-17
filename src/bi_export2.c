@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:47:45 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/17 15:57:17 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/17 16:41:09 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,13 @@
 
 static int	handle_plus_change(t_cati **mini, char *str)
 {
-	
+	char	*s;
+
+	s = str;
+	while (*s != '=')
+		s++;
+	s++;
+	(*mini)->envp
 }
 
 static int	check_plus(char *str)
