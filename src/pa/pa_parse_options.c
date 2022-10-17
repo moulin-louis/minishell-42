@@ -6,22 +6,13 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:55:44 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/17 16:33:59 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/17 17:55:46 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
 #include <stdio.h>
-
-static int	ft_is_sep(char *str)
-{
-	if (ut_strcmp(str, "|") || ut_strcmp(str, ">") || ut_strcmp(str, ">>"))
-		return (1);
-	if (ut_strcmp(str, "<") || ut_strcmp(str, "<<"))
-		return (1);
-	return (0);
-}
 
 static void	fill_result(char **result, t_tok *lst, int nbr)
 {
@@ -43,13 +34,13 @@ static void	clean_lst(t_tok **lst)
 	t_tok	*temp;
 
 	temp = *lst;
-	while (*lst && !ft_is_sep((*lst)->str))
+	while (*lst && !ut_strcmp((*lst)->str, "|"))
 	{
 		temp = (*lst)->next;
 		tok_delone(*lst);
 		*lst = temp;
 	}
-	if (*lst && ft_is_sep((*lst)->str))
+	if (*lst && !ut_strcmp((*lst)->str, "|"))
 	{
 		temp = (*lst)->next;
 		tok_delone(*lst);
@@ -67,7 +58,7 @@ static void	setup_node(t_tok **lst, t_cati *mini)
 	if (!*lst)
 		return ;
 	temp = *lst;
-	while (temp && !ft_is_sep(temp->str))
+	while (temp && !ut_strcmp((*lst)->str, "|"))
 	{
 		nbr_opt++;
 		temp = temp->next;
@@ -89,18 +80,20 @@ void	parse_options(t_tok **lst, t_cati **mini)
 
 	nbr_cmd = 1;
 	temp = *lst;
-	while (temp)
+	while (*lst)
 	{
-		if (ft_is_sep(temp->str))
+		if (ut_strcmp((*lst)->str, "|"))
 			nbr_cmd++;
-		temp = temp->next;
+		*lst = (*lst)->next;
 	}
+	*lst = temp;
+	setup_redirection(lst, mini_lstlast(*mini));
 	setup_node(lst, mini_lstlast(*mini));
 	nbr_cmd--;
 	while (nbr_cmd > 0)
 	{
 		mini_lstaddback(mini, mini_lstnew());
-		//setup_redirection(lst, *mini);
+		setup_redirection(lst, mini_lstlast(*mini));
 		setup_node(lst, mini_lstlast(*mini));
 		nbr_cmd--;
 	}
