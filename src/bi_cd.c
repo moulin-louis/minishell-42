@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:19:57 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/17 11:15:10 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/17 11:22:45 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,10 @@ int	bi_cd(t_cati **mini)
 	if (!(*mini)->cmd || !(*mini)->cmd[1])
 		return (0);
 	if (chdir((*mini)->cmd[1]) == -1)
-		return (perror("cd"), 1);
+	{
+		printf("bash: cd: %s: No such file or directory\n", (*mini)->cmd[1]);
+		return (1);
+	}
 	change_oldpwd(mini);
 	change_newpwd(mini);
 	return (0);
