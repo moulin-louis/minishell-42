@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:36:37 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/17 16:53:43 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/18 13:01:27 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,10 @@ void	clean_mini(t_cati **mini)
 			clean_split(tmp->cmd);
 		if (tmp->path_cmd)
 			free(tmp->path_cmd);
-		if (tmp->path_file)
-			free(tmp->path_file);
+		if (tmp->infile)
+			free(tmp->infile);
+		if (tmp->outfile)
+			free(tmp->outfile);
 		free(tmp);
 	}
 }

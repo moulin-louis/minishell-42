@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:04 by                   #+#    #+#             */
-/*   Updated: 2022/10/17 17:37:48 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/18 13:02:02 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ typedef struct s_cati {
 	char			**cmd;
 	char			**ev;
 	char			*path_cmd;
-	char			*path_file;
+	char			*infile;
+	char			*outfile;
 	t_fds			*fds;
 	t_envp			*envp;
 	int				builtin;
@@ -78,7 +79,6 @@ void	env_lstdelone(t_envp **envp, t_envp *tmp);
 int		env_lstsize(t_envp **envp);
 t_cati	*mini_lstnew(void);
 void	mini_lstaddback(t_cati **mini, t_cati *node);
-void	mini_delone(t_cati	*node);
 t_cati	*mini_lstlast(t_cati *mini);
 int		tok_len(t_tok *lst);
 void	tok_delone(t_tok *node);

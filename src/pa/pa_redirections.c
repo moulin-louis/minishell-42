@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 13:26:36 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/17 18:16:21 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/18 12:40:43 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	setup_redirection(t_tok **lst, t_cati *mini)
 	t_tok	*temp;
 
 	temp = *lst;
-	while (temp)
+	while (temp && !ut_strcmp(temp->str, "|"))
 	{
 		if (ft_is_redir(temp->str))
 		{

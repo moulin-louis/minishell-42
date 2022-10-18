@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:26:13 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/15 13:05:11 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/18 12:37:40 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static int	split_node(t_tok *lst)
 	while (temp->next)
 		temp = temp->next;
 	temp->next = temp3;
-	free(temp2);
+	tok_delone(temp2);
 	free(result[i]);
 	free(result);
 	return (i);

@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/17 17:40:28 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/18 13:00:47 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void	printfmini(t_cati mini)
 		}
 		printf("\n");
 	}
-	printf("path_file = %s\n", mini.path_file);
+	printf("infile = %s\n", mini.infile);
+	printf("outfile = %s\n", mini.outfile);
 	printf("builtin = %d\n", mini.builtin);
 	printf("in_file = %d\n", mini.in_file);
 	printf("in_heredoc = %d\n", mini.in_heredoc);
