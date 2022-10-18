@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/18 13:00:47 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/18 14:30:21 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,29 @@ void	printfmini(t_cati mini)
 	printf("\n");
 }
 
+void	fill_node_of_pipe(t_cati *mini)
+{
+	t_cati	*temp;
+
+	temp = mini;
+	if (temp->next != NULL && (!temp->out_append && !temp->out_trunc))
+		temp->out_pipe = 1;
+	temp = temp->next;
+	while (temp)
+	{
+		if (!temp->in_file && !temp->in_heredoc)
+			temp->in_pipe = 1;
+		if (temp->next != NULL && (!temp->out_append && !temp->out_trunc))
+				temp->out_pipe = 1;
+		temp = temp->next;
+	}
+}
+
+void	check_builtin(t_cati *mini)
+{
+	t_cati *temp;
+}
+
 void	parsing(char *input, t_cati **mini)
 {
 	t_tok	*lst;
@@ -49,15 +72,17 @@ void	parsing(char *input, t_cati **mini)
 	lst = init_token_list(input);
 	split_lst_operator(lst);
 	parse_options(&lst, mini);
+	fill_node_of_pipe(*mini);
+	check_builtin(*mini);
 	t_cati *temp = *mini;
 	while (temp)
 	{
 		printfmini(*temp);
 		temp = temp->next;
 	}
+	clean_tok(&lst);
 	execute(mini);
 	clean_mini(mini);
-	clean_tok(&lst);
 }
 
 //SI ON FAIT "'"'""'"'" JE M'ARRETE A LA PREMIERE "
