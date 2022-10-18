@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/18 15:16:31 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/18 15:58:28 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,10 +86,10 @@ void	check_builtin(t_cati *mini)
 	temp = mini;
 	while (temp)
 	{
-		if (ut_strcmp(temp->cmd[0], "cd") || ut_strcmp(temp->cmd[0], "echo")
+		if (ut_strcmp(temp->cmd[0], "export") || ut_strcmp(temp->cmd[0], "echo")
 			|| ut_strcmp(temp->cmd[0], "env") || ut_strcmp(temp->cmd[0], "exit")
-			|| ut_strcmp(temp->cmd[0], "export") || ut_strcmp(temp->cmd[0], "pwd")
-			||	ut_strcmp(temp->cmd[0], "unset"))
+			|| ut_strcmp(temp->cmd[0], "pwd") || ut_strcmp(temp->cmd[0], "cd")
+			|| ut_strcmp(temp->cmd[0], "unset"))
 			temp->builtin = 1;
 		temp = temp->next;
 	}
@@ -105,12 +105,6 @@ void	parsing(char *input, t_cati **mini)
 	fill_node_of_pipe(*mini);
 	fill_node_env(*mini);
 	check_builtin(*mini);
-	t_cati *temp = *mini;
-	while (temp)
-	{
-		printfmini(temp);
-		temp = temp->next;
-	}
 	clean_tok(&lst);
 	execute(mini);
 	clean_mini(mini);
