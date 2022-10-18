@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:04 by                   #+#    #+#             */
-/*   Updated: 2022/10/18 13:02:02 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/18 14:51:12 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,16 @@ void	ft_bzero(void *s, int n);
 char	**extract_sep(char *str);
 
 /* linked list utils and function */
+/*env utils*/
 void	env_lstaddback(t_envp **envp, t_envp *new);
 void	env_lstclear(t_envp **envp);
 void	env_lstdelone(t_envp **envp, t_envp *tmp);
 int		env_lstsize(t_envp **envp);
+/*mini utils*/
 t_cati	*mini_lstnew(void);
 void	mini_lstaddback(t_cati **mini, t_cati *node);
 t_cati	*mini_lstlast(t_cati *mini);
+/*tok utils*/
 int		tok_len(t_tok *lst);
 void	tok_delone(t_tok *node);
 void	tok_addback(t_tok **lst, t_tok *node);
@@ -103,16 +106,17 @@ void	parsing(char *input, t_cati **mini);
 t_tok	*init_token_list(char *str);
 void	split_lst_operator(t_tok *lst);
 void	setup_redirection(t_tok **lst, t_cati *mini);
+void	parse_options(t_tok **lst, t_cati **mini);
+/*redirection in parsing*/
 void	in_redir(t_tok **lst, t_tok *dest, t_cati *mini);
 void	out_redir(t_tok **lst, t_tok *dest, t_cati *mini);
 void	append_redir(t_tok **lst, t_tok *dest, t_cati *mini);
 void	heredoc_redir(t_tok **lst, t_tok *dest, t_cati *mini);
-void	parse_options(t_tok **lst, t_cati **mini);
 
 /* Execute */
 int		execute(t_cati **mini);
 int		exe_bi_launcher(t_cati **mini);
 
 /* UTILITAIRE TEMP */
-void	printfmini(t_cati mini);
+void	printfmini(t_cati *mini);
 #endif
