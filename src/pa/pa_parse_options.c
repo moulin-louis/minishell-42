@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:55:44 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/18 12:55:19 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/18 15:57:32 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ static void	fill_result(char **result, t_tok *lst, int nbr)
 	while (i < nbr)
 	{
 		result[i] = ut_strdup(temp->str);
+		if (!result[i])
+			return ;
 		temp = temp->next;
 		i++;
 	}
@@ -71,6 +73,8 @@ static void	setup_node(t_tok **lst, t_cati *mini)
 	clean_lst(lst);
 	mini->cmd = result;
 	mini->path_cmd = ut_strdup(mini->cmd[0]);
+	if (!mini->path_cmd)
+		return ;
 }
 
 void	parse_options(t_tok **lst, t_cati **mini)
