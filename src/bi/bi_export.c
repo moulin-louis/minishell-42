@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/17 15:55:04 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/19 09:36:25 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ static void	display_expt_ev(t_cati **mini)
 	}
 }
 
-
-
 static int	already_exists(t_cati **mini, char *str)
 {
 	t_envp	*tmp;
@@ -61,6 +59,8 @@ static int	check_compliance(t_cati **mini, char *str)
 	int		k;
 	char	*ref;
 
+	if (str[0] >= '0' && str[0] <= '9')
+		return (printf("bash: export: \"%s\": not a valid identifier\n", str), 0);
 	j = -1;
 	ref = "!@#$%^&*()`~-|[]{};:,./<>?";
 	while (str[++j] && str[j] != '=')

@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:47:45 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/19 09:02:52 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/19 09:41:54 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static int	handle_plus_change(t_cati **mini, char *str)
+static int	handle_plus_change(t_envp *tmp, char *str)
 {
 	char	*s;
 
@@ -22,8 +22,8 @@ static int	handle_plus_change(t_cati **mini, char *str)
 	while (*s != '=')
 		s++;
 	s++;
-	(*mini)->envp->var[1] = ut_strjoin((*mini)->envp->var[1], s);
-	if (!(*mini)->envp->var[1])
+	tmp->var[1] = ut_strjoin(tmp->var[1], s);
+	if (!tmp->var[1])
 		return (0);
 	return (1);
 }
@@ -43,9 +43,18 @@ static int	check_plus(char *str)
 
 int	change_content(t_cati **mini, char *str)
 {
+	t_envp	*tmp;
+	int		i;
+
+	tmp = (*mini)->envp;
+	i = 0;
+	while (str[i] && str[i] != '=')
+		i++;
+	while (ft_strncmp(tmp->var[0], str, i))
+		tmp = tmp->next;
 	if (check_plus(str))
 	{
-		if (!handle_plus_change(mini, str))
+		if (!handle_plus_change(tmp, str))
 			return (0);
 	}
 	else

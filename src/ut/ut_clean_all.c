@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ut_clean_all.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:36:37 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/18 13:01:27 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/19 09:25:01 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ void	clean_split(char **arr)
 
 	if (!arr)
 		return ;
-	i = 0;
-	while (arr[i])
-		i++;
-	while (--i >= 0)
+	i = -1;
+	while (arr[++i])
 		free(arr[i]);
 	free(arr);
 }
@@ -40,6 +38,8 @@ void	clean_mini(t_cati **mini)
 		*mini = (*mini)->next;
 		if (tmp->cmd)
 			clean_split(tmp->cmd);
+		if (tmp->ev)
+			clean_split(tmp->ev);
 		if (tmp->path_cmd)
 			free(tmp->path_cmd);
 		if (tmp->infile)
