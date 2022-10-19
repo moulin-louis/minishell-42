@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 11:53:46 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/19 13:01:08 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/19 14:23:09 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static void	populate_ev(t_cati **mini, t_envp *tmp, char **arr, int i)
 		arr[i] = ut_strjoin(arr[i], tmp->var[1]);
 	if (!arr[i])
 	{
-		printf("Malloc error in when parsing environement\n");
+		printf("Malloc error when parsing environement\n");
 		clean_mini(mini);
 		exit(2);
 	}
@@ -40,7 +40,7 @@ char	**exe_parse_env(t_cati **mini)
 	arr = ut_calloc(size + 1, sizeof(char *));
 	if (!arr)
 	{
-		printf("Malloc error in when parsing environement\n");
+		printf("Malloc error when parsing environement\n");
 		clean_mini(mini);
 		exit(2);
 	}
