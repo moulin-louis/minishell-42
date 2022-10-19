@@ -6,22 +6,13 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:55:44 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/15 12:53:01 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/18 15:57:32 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
 #include <stdio.h>
-
-static int	ft_is_sep(char *str)
-{
-	if (ut_strcmp(str, "|") || ut_strcmp(str, ">") || ut_strcmp(str, ">>"))
-		return (1);
-	if (ut_strcmp(str, "<") || ut_strcmp(str, "<<"))
-		return (1);
-	return (0);
-}
 
 static void	fill_result(char **result, t_tok *lst, int nbr)
 {
@@ -33,6 +24,8 @@ static void	fill_result(char **result, t_tok *lst, int nbr)
 	while (i < nbr)
 	{
 		result[i] = ut_strdup(temp->str);
+		if (!result[i])
+			return ;
 		temp = temp->next;
 		i++;
 	}
@@ -43,13 +36,13 @@ static void	clean_lst(t_tok **lst)
 	t_tok	*temp;
 
 	temp = *lst;
-	while (*lst && !ft_is_sep((*lst)->str))
+	while (*lst && !ut_strcmp((*lst)->str, "|"))
 	{
 		temp = (*lst)->next;
 		tok_delone(*lst);
 		*lst = temp;
 	}
-	if (*lst && ft_is_sep((*lst)->str))
+	if (*lst && ut_strcmp((*lst)->str, "|"))
 	{
 		temp = (*lst)->next;
 		tok_delone(*lst);
@@ -67,7 +60,7 @@ static void	setup_node(t_tok **lst, t_cati *mini)
 	if (!*lst)
 		return ;
 	temp = *lst;
-	while (temp && !ft_is_sep(temp->str))
+	while (temp && !ut_strcmp(temp->str, "|"))
 	{
 		nbr_opt++;
 		temp = temp->next;
@@ -80,6 +73,8 @@ static void	setup_node(t_tok **lst, t_cati *mini)
 	clean_lst(lst);
 	mini->cmd = result;
 	mini->path_cmd = ut_strdup(mini->cmd[0]);
+	if (!mini->path_cmd)
+		return ;
 }
 
 void	parse_options(t_tok **lst, t_cati **mini)
@@ -89,18 +84,20 @@ void	parse_options(t_tok **lst, t_cati **mini)
 
 	nbr_cmd = 1;
 	temp = *lst;
-	while (temp)
+	while (*lst)
 	{
-		if (ft_is_sep(temp->str))
+		if (ut_strcmp((*lst)->str, "|"))
 			nbr_cmd++;
-		temp = temp->next;
+		*lst = (*lst)->next;
 	}
+	*lst = temp;
+	setup_redirection(lst, mini_lstlast(*mini));
 	setup_node(lst, mini_lstlast(*mini));
 	nbr_cmd--;
 	while (nbr_cmd > 0)
 	{
 		mini_lstaddback(mini, mini_lstnew());
-		//setup_redirection(lst, mini);
+		setup_redirection(lst, mini_lstlast(*mini));
 		setup_node(lst, mini_lstlast(*mini));
 		nbr_cmd--;
 	}
