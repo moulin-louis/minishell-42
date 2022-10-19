@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/19 12:06:06 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/19 14:01:04 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,10 @@ static int	check_compliance(t_cati **mini, char *str)
 	char	*ref;
 
 	if (str[0] >= '0' && str[0] <= '9')
-		return (printf("bash: export: \"%s\": not a valid identifier\n", str), 0);
+	{
+		printf("shellnado: export: \"%s\": not a valid identifier\n", str);
+		return (0);
+	}
 	j = -1;
 	ref = "!@#$%^&*()`~-|[]{};:,./<>?";
 	while (str[++j] && str[j] != '=')
@@ -70,7 +73,7 @@ static int	check_compliance(t_cati **mini, char *str)
 			if (ref[k] == str[j])
 			{
 				(*mini)->fds->ret++;
-				printf("bash: export: \"%s\": not a valid identifier\n", str);
+				printf("shellnado: export: \"%s\": not a valid identifier\n", str);
 				return (0);
 			}
 		}

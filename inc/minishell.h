@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:04 by                   #+#    #+#             */
-/*   Updated: 2022/10/19 12:10:08 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/19 13:46:14 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ char	*ut_strdup(char *str);
 int		ft_strncmp(const char *s1, const char *s2, int n);
 void	ft_bzero(void *s, int n);
 char	**extract_sep(char *str);
+int		ut_within_long(char *str);
 
 /* linked list utils and function */
 /*env utils*/

@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:12:28 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/12 12:34:02 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/19 14:01:24 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ static int	alphanum(char *str)
 {
 	int	i;
 
+	if (!ut_within_long(str))
+		return (0);
 	i = -1;
 	if (str[0] == '-')
 		i++;
@@ -58,15 +60,15 @@ int	bi_exit(t_cati **mini)
 	{
 		if (!alphanum((*mini)->cmd[1]))
 		{
-			printf("bash: exit: %s: numeric argument required\n",
+			printf("shellnado: exit: %s: numeric argument required\n",
 				(*mini)->cmd[1]);
 			clean_mini(mini);
-			exit(2);
+			exit(1);
 		}
 		status = statouc((*mini)->cmd[1]);
 		if ((*mini)->cmd[2])
 		{
-			printf("bash: exit: too many arguments\n");
+			printf("shellnado: exit: too many arguments\n");
 			return (1);
 		}
 	}

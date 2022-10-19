@@ -6,7 +6,7 @@
 #    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/19 12:11:43 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/10/19 13:45:33 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ C_FILES		= minishell.c					\
 			  bi/bi_echo.c					\
 			  bi/bi_env.c					\
 			  bi/bi_exit.c					\
+			  bi/bi_exit2.c					\
 			  bi/bi_export.c				\
 			  bi/bi_export2.c				\
 			  bi/bi_pwd.c					\
