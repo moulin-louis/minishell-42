@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/19 15:59:25 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/19 16:01:57 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	printfmini(t_cati *mini)
 	printf("envp = %p\n", & mini->envp);
 	printf("builtin = %d\n", mini->builtin);
 	printf("in_file = %d\n", mini->in_file);
-	printf("in_heredoc = %d\n", mini->in_heredoc);
 	printf("in_pipe = %d\n", mini->in_pipe);
 	printf("out_append = %d\n", mini->out_append);
 	printf("out_trunc = %d\n", mini->out_trunc);
@@ -53,8 +52,6 @@ void	fill_node_of_pipe(t_cati *mini)
 	temp = temp->next;
 	while (temp)
 	{
-		if (!temp->in_file && !temp->in_heredoc)
-			temp->in_pipe = 1;
 		if (temp->next != NULL && (!temp->out_append && !temp->out_trunc))
 				temp->out_pipe = 1;
 		temp = temp->next;

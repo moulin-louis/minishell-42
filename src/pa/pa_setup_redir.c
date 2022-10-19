@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:42:25 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/19 15:58:37 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/19 16:01:42 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,4 +109,7 @@ void	append_redir(t_tok **lst, t_tok *dest, t_cati *mini)
 void	heredoc_redir(t_tok **lst, t_tok *dest, t_cati *mini)
 {
 	/*HANDLE HEREDOC*/
+	(void)lst;
+	(void)dest;
+	(void)mini;
 }
