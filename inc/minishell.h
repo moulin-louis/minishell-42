@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:04 by                   #+#    #+#             */
-/*   Updated: 2022/10/19 12:04:51 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/19 12:10:08 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ void	heredoc_redir(t_tok **lst, t_tok *dest, t_cati *mini);
 /* Execute */
 int		execute(t_cati **mini);
 int		exe_bi_launcher(t_cati **mini);
+char	**exe_parse_env(t_cati **mini);
 
 /* UTILITAIRE TEMP */
 void	printfmini(t_cati *mini);

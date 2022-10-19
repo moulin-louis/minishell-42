@@ -6,11 +6,13 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 11:53:46 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/19 12:03:50 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/19 12:12:57 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 char	**exe_parse_env(t_cati **mini)
 {
@@ -19,10 +21,13 @@ char	**exe_parse_env(t_cati **mini)
 	char	**arr;
 
 	tmp = (*mini)->envp;
-	size = env_lstsize((*mini)->envp);
+	size = env_lstsize(&(*mini)->envp);
 	arr = ut_calloc(size + 1, sizeof(char *));
 	if (!arr)
 	{
-		(*mini)->
+		printf("Malloc error in when parsing environement\n");
+		clean_mini(mini);
+		exit(2);
 	}
+	return (arr);
 }
