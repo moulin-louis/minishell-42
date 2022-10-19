@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:04 by                   #+#    #+#             */
-/*   Updated: 2022/10/19 09:10:10 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/19 12:04:51 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ typedef struct s_fds {
 	int		out_pipe[2];
 	int		in_fd;
 	int		out_fd;
+	int		ret;
 }			t_fds;
 
 typedef struct s_envp
@@ -41,7 +42,6 @@ typedef struct s_cati {
 	int				out_append;
 	int				out_trunc;
 	int				out_pipe;
-	int				ret;
 	struct s_cati	*next;
 }				t_cati;
 
@@ -79,10 +79,12 @@ void	env_lstaddback(t_envp **envp, t_envp *new);
 void	env_lstclear(t_envp **envp);
 void	env_lstdelone(t_envp **envp, t_envp *tmp);
 int		env_lstsize(t_envp **envp);
+
 /*mini utils*/
 t_cati	*mini_lstnew(void);
 void	mini_lstaddback(t_cati **mini, t_cati *node);
 t_cati	*mini_lstlast(t_cati *mini);
+
 /*tok utils*/
 int		tok_len(t_tok *lst);
 void	tok_delone(t_tok *node);
@@ -110,6 +112,7 @@ t_tok	*init_token_list(char *str);
 void	split_lst_operator(t_tok *lst);
 void	setup_redirection(t_tok **lst, t_cati *mini);
 void	parse_options(t_tok **lst, t_cati **mini);
+
 /*redirection in parsing*/
 void	in_redir(t_tok **lst, t_tok *dest, t_cati *mini);
 void	out_redir(t_tok **lst, t_tok *dest, t_cati *mini);

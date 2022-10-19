@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/19 10:51:28 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/19 12:06:06 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ static int	check_compliance(t_cati **mini, char *str)
 		{
 			if (ref[k] == str[j])
 			{
-				(*mini)->ret++;
+				(*mini)->fds->ret++;
 				printf("bash: export: \"%s\": not a valid identifier\n", str);
 				return (0);
 			}
@@ -83,7 +83,7 @@ int	bi_export(t_cati **mini)
 	int	i;
 
 	if (!(*mini)->cmd[1])
-		return (display_expt_ev(mini), (*mini)->ret);
+		return (display_expt_ev(mini), (*mini)->fds->ret);
 	i = 0;
 	while ((*mini)->cmd[++i])
 	{
@@ -92,12 +92,12 @@ int	bi_export(t_cati **mini)
 			if (already_exists(mini, (*mini)->cmd[i]))
 			{
 				if (!change_content(mini, (*mini)->cmd[i]))
-					return ((*mini)->ret);
+					return ((*mini)->fds->ret);
 			}
 			else
 				if (!do_the_expt(mini, (*mini)->cmd[i]))
-					return ((*mini)->ret);
+					return ((*mini)->fds->ret);
 		}
 	}
-	return ((*mini)->ret);
+	return ((*mini)->fds->ret);
 }
