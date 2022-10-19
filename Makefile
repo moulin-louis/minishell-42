@@ -6,7 +6,7 @@
 #    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/19 09:09:23 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/10/19 09:12:07 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ C_FILES		= minishell.c					\
 			  bi/bi_env.c					\
 			  bi/bi_exit.c					\
 			  bi/bi_export.c				\
+			  bi/bi_export2.c				\
 			  bi/bi_pwd.c					\
 			  bi/bi_unset.c					\
 			  ev/ev_build_env.c				\
@@ -55,6 +56,7 @@ C_FILES		= minishell.c					\
 			  ut/ut_split.c					\
 			  ut/ut_strcmp.c				\
 			  ut/ut_strcpy.c				\
+			  ut_ut_strjoin.c				\
 			  ut/ut_strstuff.c				\
 			  ut/ut_token_list.c			\
 			  ut/ut_word_len.c				\
