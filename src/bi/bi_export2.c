@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:47:45 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/19 11:01:38 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/19 11:16:18 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ int	change_content(t_cati **mini, char *str)
 	}
 	else
 	{
-		free(tmp->var);
+		clean_split(tmp->var);
 		tmp->var = ut_env_split(str);
 		if (!tmp->var)
 			return (0);
