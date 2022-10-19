@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:04 by                   #+#    #+#             */
-/*   Updated: 2022/10/19 13:46:14 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/19 15:15:10 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 # define MINISHELL_H
 
 typedef struct s_fds {
-	int		in_pipe[2];
-	int		out_pipe[2];
+	int		pipe[2];
 	int		in_fd;
 	int		out_fd;
 	int		ret;
