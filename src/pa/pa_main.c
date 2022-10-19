@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/18 15:58:28 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/19 15:59:25 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,10 @@ void	parsing(char *input, t_cati **mini)
 	clean_mini(mini);
 }
 
-//SI ON FAIT "'"'""'"'" JE M'ARRETE A LA PREMIERE "
-//PAS BIEN
-//A FIX
+/*
+TO DO :
+- ERROR MANEGEMENT
+- FIX QUOTE DOUBLE QUOTE
+- IMPLEMENT HEREDOC WITH TEMP FILE
+- IMPLEMENT EXPAND
+*/
