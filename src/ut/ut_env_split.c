@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:15:26 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/15 14:44:38 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/19 10:16:37 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ static int	fill_var(char **arr, char *str)
 	int	i;
 
 	i = 0;
-	while (str[i] && str[i] != '=')
+	while (str[i] && str[i] != '+' && str[i] != '=')
 		i++;
 	arr[0] = ut_calloc(i + 1, 1);
 	if (!arr[0])
 		return (perror("arr[0] ev_split malloc"), 0);
 	i = -1;
-	while (str[++i] && str[i] != '=')
+	while (str[++i] && str[i] != '+' && str[i] != '=')
 		arr[0][i] = str[i];
 	arr[0][i] = '\0';
 	return (1);

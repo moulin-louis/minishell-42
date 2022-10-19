@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:09:43 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/17 14:18:12 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/19 10:59:33 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,8 @@ char	*ut_strjoin(char *s1, char *s2)
 	i = -1;
 	if (s2)
 		while (s2[++i])
-			str[i + ls1 - 1] = s2[i];
+			str[i + ls1] = s2[i];
 	str[i + ls1] = '\0';
+	free(s1);
 	return (str);
 }

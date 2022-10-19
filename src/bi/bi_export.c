@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/19 09:36:25 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/19 10:51:28 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,12 @@ static int	already_exists(t_cati **mini, char *str)
 	int		i;
 
 	tmp = (*mini)->envp;
+	i = 0;
+	while (str[i] && str[i] != '+' && str[i] != '=')
+		i++;
 	while (tmp)
 	{
-		i = -1;
-		while (str[++i] && str[i] != '=')
-			if (tmp->var[0][i] != str[i])
-				break ;
-		if (tmp->var[0][i] == '\0' && (str[i] == '\0' || str[i] == '='))
+		if (!ft_strncmp(tmp->var[0], str, i))
 			return (1);
 		tmp = tmp->next;
 	}

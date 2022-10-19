@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:47:45 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/19 09:41:54 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/19 11:01:38 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static int	check_plus(char *str)
 	while (str[++i])
 		if (str[i] == '=')
 			break ;
-	if (str[i] == '=' && str[i - 1] == '+')
+	if (str[i - 1] == '+')
 		return (1);
 	return (0);
 }
@@ -48,7 +48,7 @@ int	change_content(t_cati **mini, char *str)
 
 	tmp = (*mini)->envp;
 	i = 0;
-	while (str[i] && str[i] != '=')
+	while (str[i] && str[i] != '+' && str[i] != '=')
 		i++;
 	while (ft_strncmp(tmp->var[0], str, i))
 		tmp = tmp->next;
@@ -59,9 +59,9 @@ int	change_content(t_cati **mini, char *str)
 	}
 	else
 	{
-		free((*mini)->envp->var);
-		(*mini)->envp->var = ut_split(str);
-		if (!(*mini)->envp->var)
+		free(tmp->var);
+		tmp->var = ut_env_split(str);
+		if (!tmp->var)
 			return (0);
 	}
 	return (1);
