@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:04 by                   #+#    #+#             */
-/*   Updated: 2022/10/20 14:10:34 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/20 16:03:31 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,7 @@
 # include <unistd.h>
 
 typedef struct s_fds {
-	int		pfd_1[2];
-	int		pfd_2[2];
+	int		pfd[2];
 	int		in_fd;
 	int		out_fd;
 	pid_t	frst;
