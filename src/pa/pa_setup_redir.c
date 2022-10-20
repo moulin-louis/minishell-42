@@ -6,13 +6,13 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:42:25 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/19 16:01:42 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:58:56 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	clean_lst(t_tok *dest, t_tok *temp, t_tok **lst, int i)
+void	clean_lst_mode(t_tok *dest, t_tok *temp, t_tok **lst, int i)
 {
 	if (i == 1)
 	{
@@ -45,7 +45,7 @@ void	in_redir(t_tok **lst, t_tok *dest, t_cati *mini)
 		if (!mini->infile)
 			return ;
 		mini->in_file = 1;
-		clean_lst(dest, temp, lst, 1);
+		clean_lst_mode(dest, temp, lst, 1);
 		return ;
 	}
 	temp = *lst;
@@ -55,7 +55,7 @@ void	in_redir(t_tok **lst, t_tok *dest, t_cati *mini)
 	if (!mini->infile)
 		return ;
 	mini->in_file = 1;
-	clean_lst(dest, temp, lst, 2);
+	clean_lst_mode(dest, temp, lst, 2);
 }
 
 void	out_redir(t_tok **lst, t_tok *dest, t_cati *mini)
@@ -69,7 +69,7 @@ void	out_redir(t_tok **lst, t_tok *dest, t_cati *mini)
 		if (!mini->outfile)
 			return ;
 		mini->out_trunc = 1;
-		clean_lst(dest, temp, lst, 1);
+		clean_lst_mode(dest, temp, lst, 1);
 		return ;
 	}
 	temp = *lst;
@@ -79,7 +79,7 @@ void	out_redir(t_tok **lst, t_tok *dest, t_cati *mini)
 	if (!mini->outfile)
 		return ;
 	mini->out_trunc = 1;
-	clean_lst(dest, temp, lst, 2);
+	clean_lst_mode(dest, temp, lst, 2);
 }
 
 void	append_redir(t_tok **lst, t_tok *dest, t_cati *mini)
@@ -93,7 +93,7 @@ void	append_redir(t_tok **lst, t_tok *dest, t_cati *mini)
 		if (!mini->outfile)
 			return ;
 		mini->out_append = 1;
-		clean_lst(dest, temp, lst, 1);
+		clean_lst_mode(dest, temp, lst, 1);
 		return ;
 	}
 	temp = *lst;
@@ -103,13 +103,5 @@ void	append_redir(t_tok **lst, t_tok *dest, t_cati *mini)
 	if (!mini->outfile)
 		return ;
 	mini->out_append = 1;
-	clean_lst(dest, temp, lst, 2);
-}
-
-void	heredoc_redir(t_tok **lst, t_tok *dest, t_cati *mini)
-{
-	/*HANDLE HEREDOC*/
-	(void)lst;
-	(void)dest;
-	(void)mini;
+	clean_lst_mode(dest, temp, lst, 2);
 }
