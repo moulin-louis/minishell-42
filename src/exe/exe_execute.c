@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:53:11 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/17 10:33:02 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/20 14:15:45 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,10 @@
 
 int	execute(t_cati **mini)
 {
-	exe_bi_launcher(mini);
+	t_cati	*tmp;
+
+	tmp = *mini;
+	if (tmp->builtin && !tmp->out_pipe)
+		exe_bi_launcher(mini);
 	return (0);
 }

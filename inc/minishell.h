@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:04 by                   #+#    #+#             */
-/*   Updated: 2022/10/20 12:03:40 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/20 14:10:34 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ typedef struct s_fds {
 	int		in_fd;
 	int		out_fd;
 	pid_t	frst;
-	int		status;
 	pid_t	scnd;
+	int		status;
 	int		ret;
 }			t_fds;
 
