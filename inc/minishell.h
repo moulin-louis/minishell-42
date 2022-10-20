@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:04 by                   #+#    #+#             */
-/*   Updated: 2022/10/19 15:58:10 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:06:53 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ void	setup_redirection(t_tok **lst, t_cati *mini);
 void	parse_options(t_tok **lst, t_cati **mini);
 
 /*redirection in parsing*/
+void	clean_lst_mode(t_tok *dest, t_tok *temp, t_tok **lst, int i);
 void	in_redir(t_tok **lst, t_tok *dest, t_cati *mini);
 void	out_redir(t_tok **lst, t_tok *dest, t_cati *mini);
 void	append_redir(t_tok **lst, t_tok *dest, t_cati *mini);

@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ut_clean_all.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:36:37 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/19 11:10:07 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:44:08 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <unistd.h>
 
 void	clean_split(char **arr)
 {
@@ -48,4 +49,5 @@ void	clean_mini(t_cati **mini)
 			free(tmp->outfile);
 		free(tmp);
 	}
+	unlink("/tmp/.heredoc.tmp");
 }

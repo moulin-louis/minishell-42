@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
+#    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/19 13:45:33 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/10/20 15:05:51 by loumouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ C_FILES		= minishell.c					\
 			  exe/exe_execute.c				\
 			  exe/exe_launcher.c			\
 			  exe/exe_parse_env.c			\
+			  pa/pa_heredoc.c				\
 			  pa/pa_init_token.c			\
 			  pa/pa_main.c					\
 			  pa/pa_parse_options.c			\
