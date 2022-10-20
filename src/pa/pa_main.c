@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/20 16:23:21 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/20 16:37:59 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,9 +85,12 @@ void	check_builtin(t_cati *mini)
 	{
 		if (temp->cmd)
 		{
-			if (ut_strcmp(temp->cmd[0], "export") || ut_strcmp(temp->cmd[0], "echo")
-				|| ut_strcmp(temp->cmd[0], "env") || ut_strcmp(temp->cmd[0], "exit")
-				|| ut_strcmp(temp->cmd[0], "pwd") || ut_strcmp(temp->cmd[0], "cd")
+			if (ut_strcmp(temp->cmd[0], "export")
+				|| ut_strcmp(temp->cmd[0], "echo")
+				|| ut_strcmp(temp->cmd[0], "env")
+				|| ut_strcmp(temp->cmd[0], "exit")
+				|| ut_strcmp(temp->cmd[0], "pwd")
+				|| ut_strcmp(temp->cmd[0], "cd")
 				|| ut_strcmp(temp->cmd[0], "unset"))
 				temp->builtin = 1;
 		}
@@ -115,6 +118,5 @@ void	parsing(char *input, t_cati **mini)
 TO DO :
 - ERROR MANEGEMENT
 - FIX QUOTE DOUBLE QUOTE
-- IMPLEMENT HEREDOC WITH TEMP FILE
 - IMPLEMENT EXPAND
 */
