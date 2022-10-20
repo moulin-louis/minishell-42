@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:15:26 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/19 10:16:37 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/20 16:47:24 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,12 @@ static int	word_count(char *str)
 	while (str[++i])
 	{
 		if (str[i] == '=')
-			return (2);
+		{
+			if (!str[i + 1])
+				return (2);
+			else
+				return (3);
+		}
 	}
 	return (1);
 }
@@ -43,6 +48,14 @@ static int	fill_var(char **arr, char *str)
 	while (str[++i] && str[i] != '+' && str[i] != '=')
 		arr[0][i] = str[i];
 	arr[0][i] = '\0';
+	return (1);
+}
+
+static int	fill_empty_val(char **arr)
+{
+	arr[1] = ut_calloc(1, 1);
+	if (!arr[1])
+		return (0);
 	return (1);
 }
 
@@ -85,6 +98,9 @@ char	**ut_env_split(char *str)
 	if (!fill_var(arr, str))
 		return (arr);
 	if (words == 2)
+		if (!fill_empty_val(arr))
+			return (arr);
+	if (words == 3)
 		if (!fill_value(arr, str))
 			return (arr);
 	return (arr);
