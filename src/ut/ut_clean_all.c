@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:36:37 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/19 11:10:07 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/20 10:58:01 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,11 @@ void	clean_mini(t_cati **mini)
 			free(tmp->outfile);
 		free(tmp);
 	}
+}
+
+void	error_exit(t_cati **mini, int i)
+{
+	env_lstclear(&(*mini)->envp);
+	clean_mini(mini);
+	exit (i);
 }

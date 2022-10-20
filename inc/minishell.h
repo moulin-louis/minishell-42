@@ -3,20 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:04 by                   #+#    #+#             */
-/*   Updated: 2022/10/19 15:58:10 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/20 12:03:40 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# include <unistd.h>
+
 typedef struct s_fds {
-	int		pipe[2];
+	int		pfd_1[2];
+	int		pfd_2[2];
 	int		in_fd;
 	int		out_fd;
+	pid_t	frst;
+	int		status;
+	pid_t	scnd;
 	int		ret;
 }			t_fds;
 
@@ -37,9 +43,9 @@ typedef struct s_cati {
 	int				builtin;
 	int				in_file;
 	int				in_pipe;
+	int				out_pipe;
 	int				out_append;
 	int				out_trunc;
-	int				out_pipe;
 	struct s_cati	*next;
 }				t_cati;
 
@@ -103,6 +109,7 @@ int		do_the_expt(t_cati **mini, char *str);
 /* Cleanup */
 void	clean_split(char **arr);
 void	clean_mini(t_cati **mini);
+void	error_exit(t_cati **mini, int i);
 
 /* Parsing */
 void	run_prompt(t_envp *envp, t_fds *fds);
