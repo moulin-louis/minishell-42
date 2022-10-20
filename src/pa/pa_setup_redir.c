@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:42:25 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/20 15:07:04 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/20 15:58:56 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,4 +105,3 @@ void	append_redir(t_tok **lst, t_tok *dest, t_cati *mini)
 	mini->out_append = 1;
 	clean_lst_mode(dest, temp, lst, 2);
 }
-
