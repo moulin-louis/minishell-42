@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/20 16:00:02 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/20 16:23:21 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,8 @@ void	parsing(char *input, t_cati **mini)
 	fill_node_env(*mini);
 	check_builtin(*mini);
 	clean_tok(&lst);
-	execute(mini);
+	if ((*mini)->cmd && (*mini)->path_cmd)
+		execute(mini);
 	clean_mini(mini);
 }
 
