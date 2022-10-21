@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 08:55:02 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/15 12:48:29 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/21 10:09:04 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,13 +29,13 @@ static char	*ft_getenv(t_envp *envp)
 	return (NULL);
 }
 
-int	bi_pwd(t_cati **mini)
+int	bi_pwd(t_cati *node)
 {
 	char	*pwd;
 	char	*buff;
 	size_t	size;
 
-	pwd = ft_getenv((*mini)->envp);
+	pwd = ft_getenv(node->envp);
 	if (pwd)
 		return (printf("%s\n", pwd), 0);
 	else

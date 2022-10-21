@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 11:20:35 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/12 15:44:25 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/21 10:02:54 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	is_arg(char *str)
 	return (0);
 }
 
-int	bi_echo(t_cati **mini)
+int	bi_echo(t_cati *node)
 {
 	int	i;
 	int	len;
@@ -40,19 +40,19 @@ int	bi_echo(t_cati **mini)
 
 	i = 0;
 	n_line = 1;
-	while ((*mini)->cmd[++i])
+	while (node->cmd[++i])
 	{
-		if (!is_arg((*mini)->cmd[1]))
+		if (!is_arg(node->cmd[1]))
 		{
 			n_line = 0;
-			while (!is_arg((*mini)->cmd[i]))
+			while (!is_arg(node->cmd[i]))
 				i++;
 		}
 		len = 0;
-		while ((*mini)->cmd[i][len])
+		while (node->cmd[i][len])
 			len++;
-		write(1, (*mini)->cmd[i], len);
-		if ((*mini)->cmd[i + 1])
+		write(1, node->cmd[i], len);
+		if (node->cmd[i + 1])
 			write(1, " ", 1);
 	}
 	if (n_line)

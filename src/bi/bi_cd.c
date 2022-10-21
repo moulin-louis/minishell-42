@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:19:57 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/19 13:48:57 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/21 10:01:51 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,11 @@ static int	find_node(t_envp *tmp, char *str)
 	return (0);
 }
 
-static void	change_newpwd(t_cati **mini)
+static void	change_newpwd(t_cati *node)
 {
 	t_envp	*tmp;
 
-	tmp = (*mini)->envp;
+	tmp = node->envp;
 	while (tmp)
 	{
 		if (find_node(tmp, "PWD"))
@@ -60,13 +60,13 @@ static void	change_newpwd(t_cati **mini)
 	}
 }
 
-static void	change_oldpwd(t_cati **mini)
+static void	change_oldpwd(t_cati *node)
 {
 	t_envp	*tmp_pwd;
 	t_envp	*tmp_old;
 
-	tmp_pwd = (*mini)->envp;
-	tmp_old = (*mini)->envp;
+	tmp_pwd = node->envp;
+	tmp_old = node->envp;
 	while (tmp_pwd && !find_node(tmp_pwd, "PWD"))
 		tmp_pwd = tmp_pwd->next;
 	while (tmp_old && !find_node(tmp_old, "OLDPWD"))
@@ -76,16 +76,16 @@ static void	change_oldpwd(t_cati **mini)
 	tmp_old->var[1] = ut_strcpy(tmp_pwd->var[1]);
 }
 
-int	bi_cd(t_cati **mini)
+int	bi_cd(t_cati *node)
 {
-	if (!(*mini)->cmd || !(*mini)->cmd[1])
+	if (!node->cmd || !node->cmd[1])
 		return (0);
-	if (chdir((*mini)->cmd[1]) == -1)
+	if (chdir(node->cmd[1]) == -1)
 	{
 		perror("shellnado: cd: ");
 		return (1);
 	}
-	change_oldpwd(mini);
-	change_newpwd(mini);
+	change_oldpwd(node);
+	change_newpwd(node);
 	return (0);
 }

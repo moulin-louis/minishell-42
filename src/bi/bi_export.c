@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/19 14:01:04 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/21 10:08:35 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-static void	display_expt_ev(t_cati **mini)
+static void	display_expt_ev(t_cati *node)
 {
 	t_envp	*tmp;
 
-	tmp = (*mini)->envp;
+	tmp = node->envp;
 	while (tmp)
 	{
 		printf("declare -x ");
@@ -34,12 +34,12 @@ static void	display_expt_ev(t_cati **mini)
 	}
 }
 
-static int	already_exists(t_cati **mini, char *str)
+static int	already_exists(t_cati *node, char *str)
 {
 	t_envp	*tmp;
 	int		i;
 
-	tmp = (*mini)->envp;
+	tmp = node->envp;
 	i = 0;
 	while (str[i] && str[i] != '+' && str[i] != '=')
 		i++;
@@ -52,7 +52,7 @@ static int	already_exists(t_cati **mini, char *str)
 	return (0);
 }
 
-static int	check_compliance(t_cati **mini, char *str)
+static int	check_compliance(t_cati *node, char *str)
 {
 	int		j;
 	int		k;
@@ -72,7 +72,7 @@ static int	check_compliance(t_cati **mini, char *str)
 		{
 			if (ref[k] == str[j])
 			{
-				(*mini)->fds->ret++;
+				node->fds->ret++;
 				printf("shellnado: export: \"%s\": not a valid identifier\n", str);
 				return (0);
 			}
@@ -81,26 +81,26 @@ static int	check_compliance(t_cati **mini, char *str)
 	return (1);
 }
 
-int	bi_export(t_cati **mini)
+int	bi_export(t_cati *node)
 {
 	int	i;
 
-	if (!(*mini)->cmd[1])
-		return (display_expt_ev(mini), (*mini)->fds->ret);
+	if (!node->cmd[1])
+		return (display_expt_ev(node), node->fds->ret);
 	i = 0;
-	while ((*mini)->cmd[++i])
+	while (node->cmd[++i])
 	{
-		if (check_compliance(mini, (*mini)->cmd[i]))
+		if (check_compliance(node, node->cmd[i]))
 		{
-			if (already_exists(mini, (*mini)->cmd[i]))
+			if (already_exists(node, node->cmd[i]))
 			{
-				if (!change_content(mini, (*mini)->cmd[i]))
-					return ((*mini)->fds->ret);
+				if (!change_content(node, node->cmd[i]))
+					return (node->fds->ret);
 			}
 			else
-				if (!do_the_expt(mini, (*mini)->cmd[i]))
-					return ((*mini)->fds->ret);
+				if (!do_the_expt(node, node->cmd[i]))
+					return (node->fds->ret);
 		}
 	}
-	return ((*mini)->fds->ret);
+	return (node->fds->ret);
 }

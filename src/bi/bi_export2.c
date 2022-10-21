@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:47:45 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/19 11:16:18 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/21 10:07:58 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ static int	check_plus(char *str)
 	return (0);
 }
 
-int	change_content(t_cati **mini, char *str)
+int	change_content(t_cati *node, char *str)
 {
 	t_envp	*tmp;
 	int		i;
 
-	tmp = (*mini)->envp;
+	tmp = node->envp;
 	i = 0;
 	while (str[i] && str[i] != '+' && str[i] != '=')
 		i++;
@@ -67,7 +67,7 @@ int	change_content(t_cati **mini, char *str)
 	return (1);
 }
 
-int	do_the_expt(t_cati **mini, char *str)
+int	do_the_expt(t_cati *node, char *str)
 {
 	t_envp	*new;
 
@@ -78,6 +78,6 @@ int	do_the_expt(t_cati **mini, char *str)
 	new->var = ut_env_split(str);
 	if (!new->var)
 		return (perror("Env new node malloc"), 0);
-	env_lstaddback(&(*mini)->envp, new);
+	env_lstaddback(&node->envp, new);
 	return (1);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
+#    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/20 15:05:51 by loumouli         ###   ########.fr        #
+#    Updated: 2022/10/21 10:11:21 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ C_FILES		= minishell.c					\
 			  bi/bi_unset.c					\
 			  ev/ev_build_env.c				\
 			  ev/ev_build_env2.c			\
+			  exe/exe_children.c			\
 			  exe/exe_execute.c				\
 			  exe/exe_launcher.c			\
 			  exe/exe_parse_env.c			\

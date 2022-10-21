@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 13:42:31 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/15 12:59:07 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/21 10:00:46 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ static void	already_exists(t_cati **mini, char *str)
 	}
 }
 
-int	bi_unset(t_cati **mini)
+int	bi_unset(t_cati **mini, t_cati *node)
 {
 	int		i;
 
-	if (!(*mini)->cmd[1])
+	if (!node->cmd[1])
 		return (1);
 	i = 0;
-	while ((*mini)->cmd[++i])
-		already_exists(mini, (*mini)->cmd[i]);
+	while (node->cmd[++i])
+		already_exists(mini, node->cmd[i]);
 	return (0);
 }

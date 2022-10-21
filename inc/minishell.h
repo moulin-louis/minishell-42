@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:04 by                   #+#    #+#             */
-/*   Updated: 2022/10/20 16:41:28 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/21 11:14:29 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,13 +54,13 @@ typedef struct s_tok {
 }				t_tok;
 
 /* Builtins */
-int		bi_cd(t_cati **mini);
-int		bi_echo(t_cati **mini);
+int		bi_cd(t_cati *node);
+int		bi_echo(t_cati *node);
 int		bi_env(t_cati **mini);
-int		bi_exit(t_cati **mini);
-int		bi_export(t_cati **mini);
-int		bi_pwd(t_cati **mini);
-int		bi_unset(t_cati **mini);
+int		bi_exit(t_cati **mini, t_cati *node);
+int		bi_export(t_cati *node);
+int		bi_pwd(t_cati *node);
+int		bi_unset(t_cati **mini, t_cati *node);
 
 /* Utils */
 void	*ut_calloc(int nb, int sz);
@@ -102,8 +102,8 @@ char	**ut_env_split(char *str);
 int		set_new1(t_envp *new1);
 int		set_new2(t_envp *new2);
 int		set_new3(t_envp *new3);
-int		change_content(t_cati **mini, char *str);
-int		do_the_expt(t_cati **mini, char *str);
+int		change_content(t_cati *node, char *str);
+int		do_the_expt(t_cati *node, char *str);
 
 /* Cleanup */
 void	clean_split(char **arr);
@@ -127,8 +127,9 @@ void	heredoc_redir(t_tok **lst, t_tok *dest, t_cati *mini);
 
 /* Execute */
 int		execute(t_cati **mini);
-int		exe_bi_launcher(t_cati **mini);
+int		exe_bi_launcher(t_cati **mini, t_cati *node);
 char	**exe_parse_env(t_cati **mini);
+void	exe_child(t_cati **mini, t_cati *node);
 
 /* UTILITAIRE TEMP */
 void	printfmini(t_cati *mini);

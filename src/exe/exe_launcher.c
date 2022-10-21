@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:43:55 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/17 11:01:51 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/21 10:09:19 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,21 @@ static int	cmp(char *s1, char *s2)
 	return (1);
 }
 
-int	exe_bi_launcher(t_cati **mini)
+int	exe_bi_launcher(t_cati **mini, t_cati *node)
 {
-	if (cmp("cd", (*mini)->cmd[0]))
-		bi_cd(mini);
-	else if (cmp("echo", (*mini)->cmd[0]))
-		bi_echo(mini);
-	else if (cmp("env", (*mini)->cmd[0]))
+	if (cmp("cd", node->cmd[0]))
+		bi_cd(node);
+	else if (cmp("echo", node->cmd[0]))
+		bi_echo(node);
+	else if (cmp("env", node->cmd[0]))
 		bi_env(mini);
-	else if (cmp("pwd", (*mini)->cmd[0]))
-		bi_pwd(mini);
-	else if (cmp("export", (*mini)->cmd[0]))
-		bi_export(mini);
-	else if (cmp("exit", (*mini)->cmd[0]))
-		return (bi_exit(mini));
-	else if (cmp("unset", (*mini)->cmd[0]))
-		return (bi_unset(mini));
+	else if (cmp("pwd", node->cmd[0]))
+		bi_pwd(node);
+	else if (cmp("export", node->cmd[0]))
+		bi_export(node);
+	else if (cmp("exit", node->cmd[0]))
+		return (bi_exit(mini, node));
+	else if (cmp("unset", node->cmd[0]))
+		return (bi_unset(mini, node));
 	return (0);
 }

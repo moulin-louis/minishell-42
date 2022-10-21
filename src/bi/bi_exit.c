@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:12:28 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/19 14:01:24 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/21 09:57:05 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,28 +51,28 @@ static unsigned char	statouc(char *str)
 	return (n * sign);
 }
 
-int	bi_exit(t_cati **mini)
+int	bi_exit(t_cati **mini, t_cati *node)
 {
 	unsigned char	status;
 
 	status = 0;
-	if ((*mini)->cmd[1])
+	if (node->cmd[1])
 	{
-		if (!alphanum((*mini)->cmd[1]))
+		if (!alphanum(node->cmd[1]))
 		{
 			printf("shellnado: exit: %s: numeric argument required\n",
-				(*mini)->cmd[1]);
+				node->cmd[1]);
 			clean_mini(mini);
 			exit(1);
 		}
-		status = statouc((*mini)->cmd[1]);
-		if ((*mini)->cmd[2])
+		status = statouc(node->cmd[1]);
+		if (node->cmd[2])
 		{
 			printf("shellnado: exit: too many arguments\n");
 			return (1);
 		}
 	}
-	env_lstclear(&(*mini)->envp);
+	env_lstclear(&node->envp);
 	clean_mini(mini);
 	exit(status);
 }
