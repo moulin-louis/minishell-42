@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 08:23:18 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/21 12:36:17 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/21 12:44:42 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ void	exe_child(t_cati **mini, t_cati *node)
 	if (!node->builtin)
 	{
 		check_execv(mini, node);
-		execve(node->path_cmd, node->cmd, node->ev);
+		if (execve(node->path_cmd, node->cmd, node->ev) == -1)
+			error_exit(mini, errno);
 	}
 	else
 		error_exit(mini, exe_bi_launcher(mini, node));
