@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:53:11 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/21 12:34:45 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/21 15:42:31 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,9 @@ int	execute(t_cati **mini)
 		}
 		waitpid(tmp->fds->frst, &tmp->fds->status, 0);
 		waitpid(tmp->fds->scnd, &tmp->fds->status, 0);
-		close(tmp->fds->pfd[0]);
-		close(tmp->fds->pfd[1]);
 		tmp =tmp->next;
 	}
+	close((*mini)->fds->pfd[0]);
+	close((*mini)->fds->pfd[1]);
 	return (0);
 }
