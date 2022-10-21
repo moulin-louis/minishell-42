@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:53:11 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/21 15:42:31 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/21 16:44:28 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,24 +36,24 @@ int	execute(t_cati **mini)
 				error_exit(mini, errno);
 			if (!tmp->fds->frst)
 				exe_child(mini, tmp);
-		}
-		if (tmp->next)
-		{
-			tmp = tmp->next;
-			if (tmp->builtin && !tmp->out_pipe)
-				exe_bi_launcher(mini, tmp);
-			else
+			if (tmp->next)
 			{
-				dup2(tmp->fds->pfd[0], tmp->fds->pfd[1]);
-				tmp->fds->scnd = fork();
-				if (tmp->fds->scnd == -1)
-					error_exit(mini, errno);
-				if (!tmp->fds->scnd)
-					exe_child(mini, tmp);
+				tmp = tmp->next;
+				if (tmp->builtin && !tmp->out_pipe)
+					exe_bi_launcher(mini, tmp);
+				else
+				{
+					dup2(tmp->fds->pfd[0], tmp->fds->pfd[1]);
+					tmp->fds->scnd = fork();
+					if (tmp->fds->scnd == -1)
+						error_exit(mini, errno);
+					if (!tmp->fds->scnd)
+						exe_child(mini, tmp);
+				}
 			}
+			waitpid(tmp->fds->frst, &tmp->fds->status, 0);
+			waitpid(tmp->fds->scnd, &tmp->fds->status, 0);
 		}
-		waitpid(tmp->fds->frst, &tmp->fds->status, 0);
-		waitpid(tmp->fds->scnd, &tmp->fds->status, 0);
 		tmp =tmp->next;
 	}
 	close((*mini)->fds->pfd[0]);
