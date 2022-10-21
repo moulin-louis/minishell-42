@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 08:23:18 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/21 12:14:38 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/21 12:36:17 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 #include <stdio.h>
 #include <fcntl.h>
 
-static void	set_execv(t_cati **mini, t_cati *node)
+static void	check_execv(t_cati **mini, t_cati *node)
 {
-	if (!access(node->path_cmd, R_OK || X_OK))
+	if (access(node->path_cmd, R_OK || X_OK))
 	{
 		perror("shellnado:");
 		error_exit(mini, errno);
@@ -48,7 +48,7 @@ void	exe_child(t_cati **mini, t_cati *node)
 	set_elements(node);
 	if (!node->builtin)
 	{
-		set_execv(mini, node);
+		check_execv(mini, node);
 		execve(node->path_cmd, node->cmd, node->ev);
 	}
 	else
