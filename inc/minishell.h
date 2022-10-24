@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:04 by                   #+#    #+#             */
-/*   Updated: 2022/10/21 11:14:29 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/24 10:57:51 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@
 # include <unistd.h>
 
 typedef struct s_fds {
-	int		pfd[2];
+	int		pfd_1[2];
+	int		pfd_2[2];
 	int		in_fd;
 	int		out_fd;
 	pid_t	frst;
 	pid_t	scnd;
 	int		status;
 	int		ret;
+	int		chkfst;
+	int		chkscd;
 }			t_fds;
 
 typedef struct s_envp
@@ -108,7 +111,7 @@ int		do_the_expt(t_cati *node, char *str);
 /* Cleanup */
 void	clean_split(char **arr);
 void	clean_mini(t_cati **mini);
-void	error_exit(t_cati **mini, int i);
+void	full_exit(t_cati **mini, int i);
 
 /* Parsing */
 void	run_prompt(t_envp *envp, t_fds *fds);
@@ -130,6 +133,8 @@ int		execute(t_cati **mini);
 int		exe_bi_launcher(t_cati **mini, t_cati *node);
 char	**exe_parse_env(t_cati **mini);
 void	exe_child(t_cati **mini, t_cati *node);
+void	close_pipes(t_cati **mini);
+int		first_fork(t_cati **mini, t_cati *node);
 
 /* UTILITAIRE TEMP */
 void	printfmini(t_cati *mini);
