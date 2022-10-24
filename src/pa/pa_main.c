@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/21 15:54:54 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:24:25 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,30 +16,31 @@
 
 void	printfmini(t_cati *mini)
 {
-	int	i;
+	int		i;
+	t_cati	*temp;
 
-	printf("cmd_path = %s\n", mini->path_cmd);
-	if (mini->cmd)
+	temp = mini;
+	while (temp)
 	{
-		i = 0;
-		while (mini->cmd[i])
+		printf("path_cmd = %s\n", mini->path_cmd);
+		if (mini->cmd)
 		{
-			printf("cmd[%d] = [%s]\t", i, mini->cmd[i]);
-			i++;
+			i = -1;
+			while (mini->cmd[++i])
+				printf("cmd[%d] = [%s]\t", i, mini->cmd[i]);
+			printf("\n");
 		}
+		printf("infile = %s\noutfile = %s\n", mini->infile, mini->outfile);
+		printf("fds = %p\nenvp = %p\n", & mini->fds, & mini->envp);
+		printf("builtin = %d\n", mini->builtin);
+		printf("in_file = %d\nin_pipe = %d\n", mini->in_file, mini->in_pipe);
+		printf("out_append = %d\n", mini->out_append);
+		printf("out_trunc = %d\n", mini->out_trunc);
+		printf("out_pipe = %d\n", mini->out_pipe);
+		printf("next = %p\n", mini->next);
 		printf("\n");
+		temp = temp->next;
 	}
-	printf("infile = %s\noutfile = %s\n", mini->infile, mini->outfile);
-	printf("fds = %p\n", & mini->fds);
-	printf("envp = %p\n", & mini->envp);
-	printf("builtin = %d\n", mini->builtin);
-	printf("in_file = %d\n", mini->in_file);
-	printf("in_pipe = %d\n", mini->in_pipe);
-	printf("out_append = %d\n", mini->out_append);
-	printf("out_trunc = %d\n", mini->out_trunc);
-	printf("out_pipe = %d\n", mini->out_pipe);
-	printf("next = %p\n", mini->next);
-	printf("\n");
 }
 
 void	fill_node_of_pipe(t_cati *mini)
@@ -102,22 +103,16 @@ void	parsing(char *input, t_cati **mini)
 {
 	t_tok	*lst;
 
-	lst = init_token_list(input);
-	split_lst_operator(lst);
-	expand_lst(&lst, (*mini)->envp);
+	lst = init_token_list(input, mini);
+	split_lst_operator(lst, mini);
+	expand_lst(&lst, mini, (*mini)->envp);
 	parse_options(&lst, mini);
 	fill_node_of_pipe(*mini);
 	fill_node_env(*mini);
 	check_builtin(*mini);
 	clean_tok(&lst);
-	t_cati *temp = *mini;
-	while (temp)
-	{
-		printfmini(temp);
-		temp = temp->next;
-	}
-	if ((*mini)->cmd && (*mini)->path_cmd)
-		execute(mini);
+	printfmini(*mini);
+	execute(mini);
 	clean_mini(mini);
 }
 

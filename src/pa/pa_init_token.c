@@ -6,13 +6,15 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 10:41:05 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/18 12:55:55 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:05:51 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <errno.h>
+#include <string.h>
 
 static void	add_i(char *str, int *i)
 {
@@ -74,19 +76,35 @@ static char	*ft_return_str(char *str, int *i)
 	return (result);
 }
 
-t_tok	*init_token_list(char *str)
+void	do_a_thing(t_cati **mini, t_tok **lst, int *i, char *str)
+{
+	t_tok	*temp;
+
+	temp = tok_new(ft_return_token(str, i), mini);
+	if (!temp)
+		ut_clean_parsing_n_quit(mini, lst, errno);
+	tok_addback(lst, temp);
+}
+
+t_tok	*init_token_list(char *str, t_cati **mini)
 {
 	int		i;
 	t_tok	*result;
+	t_tok	*temp;
 
 	i = 0;
 	result = NULL;
 	while (str[i])
 	{
 		if (str[i] == 34 || str[i] == 39)
-			tok_addback(&result, tok_new(ft_return_token(str, &i)));
+			do_a_thing(mini, &result, &i, str);
 		else if (str[i] != ' ' && str[i] != 34 && str[i] != 39)
-			tok_addback(&result, tok_new(ft_return_str(str, &i)));
+		{
+			temp = tok_new(ft_return_str(str, &i), mini);
+			if (!temp)
+				ut_clean_parsing_n_quit(mini, &result, errno);
+			tok_addback(&result, temp);
+		}
 		else
 			i++;
 	}

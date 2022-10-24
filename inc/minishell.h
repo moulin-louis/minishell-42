@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:04 by                   #+#    #+#             */
-/*   Updated: 2022/10/24 10:57:51 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:06:27 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int		bi_pwd(t_cati *node);
 int		bi_unset(t_cati **mini, t_cati *node);
 
 /* Utils */
+void	ut_clean_parsing_n_quit(t_cati **mini, t_tok **lst, int error);
 void	*ut_calloc(int nb, int sz);
 char	*ut_gnl(int fd);
 char	**ut_split(char *str);
@@ -96,7 +97,7 @@ t_cati	*mini_lstlast(t_cati *mini);
 int		tok_len(t_tok *lst);
 void	tok_delone(t_tok *node);
 void	tok_addback(t_tok **lst, t_tok *node);
-t_tok	*tok_new(char *str);
+t_tok	*tok_new(char *str, t_cati **mini);
 void	clean_tok(t_tok **lst);
 
 /* Environment */
@@ -116,18 +117,18 @@ void	full_exit(t_cati **mini, int i);
 /* Parsing */
 void	run_prompt(t_envp *envp, t_fds *fds);
 void	parsing(char *input, t_cati **mini);
-t_tok	*init_token_list(char *str);
-void	split_lst_operator(t_tok *lst);
-void	expand_lst(t_tok **lst, t_envp *envp);
-void	setup_redirection(t_tok **lst, t_cati *mini);
+t_tok	*init_token_list(char *str, t_cati **mini);
+void	split_lst_operator(t_tok *lst, t_cati **mini);
+void	expand_lst(t_tok **lst, t_cati **mini, t_envp *envp);
+void	setup_redirection(t_tok **lst, t_cati *node, t_cati **mini);
 void	parse_options(t_tok **lst, t_cati **mini);
 
 /*redirection in parsing*/
 void	clean_lst_mode(t_tok *dest, t_tok *temp, t_tok **lst, int i);
-void	in_redir(t_tok **lst, t_tok *dest, t_cati *mini);
-void	out_redir(t_tok **lst, t_tok *dest, t_cati *mini);
-void	append_redir(t_tok **lst, t_tok *dest, t_cati *mini);
-void	heredoc_redir(t_tok **lst, t_tok *dest, t_cati *mini);
+void	in_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini);
+void	out_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini);
+void	append_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini);
+void	heredoc_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini);
 
 /* Execute */
 int		execute(t_cati **mini);

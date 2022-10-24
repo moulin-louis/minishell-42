@@ -1,18 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ut_split_sep.c                                     :+:      :+:    :+:   */
+/*   ut_extract_sep.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:53:30 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/15 14:45:50 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/24 13:08:07 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <errno.h>
+#include <string.h>
 
 static int	is_op(char c)
 {
@@ -93,7 +95,7 @@ char	**extract_sep(char *str)
 	words = count_token(str);
 	result = ut_calloc(words + 1, sizeof(char *));
 	if (!result)
-		return (NULL);
+		return (perror("Malloc :"), NULL);
 	result[words] = 0;
 	while (i < words)
 	{

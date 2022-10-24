@@ -6,12 +6,15 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 12:04:37 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/10 14:41:14 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:05:19 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
+#include <errno.h>
+#include <string.h>
+#include <stdio.h>
 
 int	tok_len(t_tok *lst)
 {
@@ -64,13 +67,15 @@ void	tok_addback(t_tok **lst, t_tok *node)
 	temp->next = node;
 }
 
-t_tok	*tok_new(char *str)
+t_tok	*tok_new(char *str, t_cati **mini)
 {
 	t_tok	*result;
 
+	if (!str)
+		return (NULL);
 	result = malloc(sizeof(t_tok));
 	if (!result)
-		return (NULL);
+		return (perror("Malloc :"), full_exit(mini, errno), NULL);
 	result->str = str;
 	result->next = NULL;
 	return (result);

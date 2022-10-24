@@ -6,7 +6,7 @@
 #    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/21 16:05:42 by loumouli         ###   ########.fr        #
+#    Updated: 2022/10/24 12:58:41 by loumouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,9 +55,9 @@ C_FILES		= minishell.c					\
 			  ut/ut_clean_all.c				\
 			  ut/ut_env_list.c				\
 			  ut/ut_env_split.c				\
+			  ut/ut_extract_sep.c			\
 			  ut/ut_gnl.c					\
 			  ut/ut_mini_list.c				\
-			  ut/ut_split_sep.c				\
 			  ut/ut_split.c					\
 			  ut/ut_strcmp.c				\
 			  ut/ut_strcpy.c				\

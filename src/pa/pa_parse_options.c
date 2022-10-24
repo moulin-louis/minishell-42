@@ -6,26 +6,28 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:55:44 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/18 15:57:32 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:03:18 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
 #include <stdio.h>
+#include <errno.h>
+#include <string.h>
 
-static void	fill_result(char **result, t_tok *lst, int nbr)
+static void	fill_result(char **result, t_tok **lst, t_cati **mini, int nbr)
 {
 	int		i;
 	t_tok	*temp;
 
 	i = 0;
-	temp = lst;
+	temp = *lst;
 	while (i < nbr)
 	{
 		result[i] = ut_strdup(temp->str);
 		if (!result[i])
-			return ;
+			ut_clean_parsing_n_quit(mini, lst, errno);
 		temp = temp->next;
 		i++;
 	}
@@ -50,7 +52,7 @@ static void	clean_lst(t_tok **lst)
 	}
 }
 
-static void	setup_node(t_tok **lst, t_cati *mini)
+static void	setup_node(t_tok **lst, t_cati *node, t_cati **mini)
 {
 	char	**result;
 	int		nbr_opt;
@@ -58,7 +60,7 @@ static void	setup_node(t_tok **lst, t_cati *mini)
 
 	nbr_opt = 0;
 	if (!*lst)
-		return ;
+		ut_clean_parsing_n_quit(mini, lst, errno);
 	temp = *lst;
 	while (temp && !ut_strcmp(temp->str, "|"))
 	{
@@ -67,14 +69,11 @@ static void	setup_node(t_tok **lst, t_cati *mini)
 	}
 	result = malloc(sizeof(char *) * (nbr_opt + 1));
 	if (!result)
-		return ;
+		ut_clean_parsing_n_quit(mini, lst, errno);
 	result[nbr_opt] = NULL;
-	fill_result(result, *lst, nbr_opt);
+	fill_result(result, lst, mini, nbr_opt);
 	clean_lst(lst);
-	mini->cmd = result;
-	mini->path_cmd = ut_strdup(mini->cmd[0]);
-	if (!mini->path_cmd)
-		return ;
+	node->cmd = result;
 }
 
 void	parse_options(t_tok **lst, t_cati **mini)
@@ -91,14 +90,14 @@ void	parse_options(t_tok **lst, t_cati **mini)
 		*lst = (*lst)->next;
 	}
 	*lst = temp;
-	setup_redirection(lst, mini_lstlast(*mini));
-	setup_node(lst, mini_lstlast(*mini));
+	setup_redirection(lst, mini_lstlast(*mini), mini);
+	setup_node(lst, mini_lstlast(*mini), mini);
 	nbr_cmd--;
 	while (nbr_cmd > 0)
 	{
 		mini_lstaddback(mini, mini_lstnew());
-		setup_redirection(lst, mini_lstlast(*mini));
-		setup_node(lst, mini_lstlast(*mini));
+		setup_redirection(lst, mini_lstlast(*mini), mini);
+		setup_node(lst, mini_lstlast(*mini), mini);
 		nbr_cmd--;
 	}
 }

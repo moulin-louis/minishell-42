@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 15:01:04 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/20 15:56:47 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:07:34 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 #include <readline/history.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <errno.h>
+#include <string.h>
 
 void	write_line_infile(char *buffer, char *sep, int fd)
 {
@@ -34,7 +36,7 @@ void	write_line_infile(char *buffer, char *sep, int fd)
 	}
 }
 
-void	heredoc_redir(t_tok **lst, t_tok *dest, t_cati *mini)
+void	heredoc_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini)
 {
 	char	*sep;
 	int		fd;
@@ -46,12 +48,16 @@ void	heredoc_redir(t_tok **lst, t_tok *dest, t_cati *mini)
 	sep = dest->next->str;
 	fd = open("/tmp/.heredoc.tmp", O_TRUNC | O_CREAT | O_RDWR, 0644);
 	if (!fd)
-		return ;
+	{
+		perror("tmp heredoc :");
+		clean_tok(lst);
+		full_exit(mini, errno);
+	}
 	write_line_infile(buffer, sep, fd);
-	mini->infile = ut_strdup("/tmp/.heredoc.tmp");
-	if (!mini->infile)
-		return ;
-	mini->in_file = 1;
+	node->infile = ut_strdup("/tmp/.heredoc.tmp");
+	if (!node->infile)
+		ut_clean_parsing_n_quit(mini, lst, errno);
+	node->in_file = 1;
 	close (fd);
 	if (ut_strcmp((*lst)->str, dest->str))
 		clean_lst_mode(dest, temp, lst, 1);

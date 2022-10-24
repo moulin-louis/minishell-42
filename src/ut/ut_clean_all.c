@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ut_clean_all.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:36:37 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/24 10:57:24 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/24 13:50:02 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+#include <string.h>
+#include <errno.h>
+
+void	ut_clean_parsing_n_quit(t_cati **mini, t_tok **lst, int error)
+{
+	perror("Malloc :");
+	clean_tok(lst);
+	full_exit(mini, error);
+}
 
 void	clean_split(char **arr)
 {
@@ -54,7 +63,11 @@ void	clean_mini(t_cati **mini)
 
 void	full_exit(t_cati **mini, int i)
 {
-	env_lstclear(&(*mini)->envp);
-	clean_mini(mini);
+	if (mini && *mini)
+	{
+		if ((*mini)->envp)
+			env_lstclear(&(*mini)->envp);
+		clean_mini(mini);
+	}
 	exit (i);
 }

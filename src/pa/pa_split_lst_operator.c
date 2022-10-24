@@ -6,13 +6,15 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:26:13 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/18 12:37:40 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:08:06 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <errno.h>
+#include <string.h>
 
 static int	is_there_a_sep(char *str)
 {
@@ -32,7 +34,7 @@ static int	is_there_a_sep(char *str)
 	return (0);
 }
 
-static int	split_node(t_tok *lst)
+static int	split_node(t_tok *lst, t_cati **mini)
 {
 	int		i;
 	t_tok	*temp;
@@ -42,11 +44,11 @@ static int	split_node(t_tok *lst)
 
 	result = extract_sep(lst->next->str);
 	if (!result)
-		return (0);
+		return (full_exit(mini, errno), 0);
 	i = -1;
 	temp = NULL;
 	while (result[++i])
-		tok_addback(&temp, tok_new(result[i]));
+		tok_addback(&temp, tok_new(result[i], mini));
 	temp2 = lst->next;
 	temp3 = lst->next->next;
 	lst->next = temp;
@@ -59,7 +61,7 @@ static int	split_node(t_tok *lst)
 	return (i);
 }
 
-void	split_lst_operator(t_tok *lst)
+void	split_lst_operator(t_tok *lst, t_cati **mini)
 {
 	t_tok	*temp;
 	int		len;
@@ -69,7 +71,7 @@ void	split_lst_operator(t_tok *lst)
 	{
 		if (temp->next && is_there_a_sep(temp->next->str))
 		{
-			len = split_node(temp);
+			len = split_node(temp, mini);
 			while (len > 0)
 			{
 				temp = temp->next;
