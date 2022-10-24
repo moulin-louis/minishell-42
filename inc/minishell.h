@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 10:15:04 by                   #+#    #+#             */
-/*   Updated: 2022/10/24 10:57:51 by bschoeff         ###   ########.fr       */
+/*   Created: 2022/09/26 10:15:04 by bschoeff          #+#    #+#             */
+/*   Updated: 2022/10/24 14:20:54 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int		bi_unset(t_cati **mini, t_cati *node);
 void	*ut_calloc(int nb, int sz);
 char	*ut_gnl(int fd);
 char	**ut_split(char *str);
+char	**ut_split_sep(char *str, char c);
 int		ut_strcmp(char *s1, char *s2);
 char	*ut_strcpy(char *s2);
 char	*ut_strjoin(char *s1, char *s2);
@@ -133,8 +134,8 @@ int		execute(t_cati **mini);
 int		exe_bi_launcher(t_cati **mini, t_cati *node);
 char	**exe_parse_env(t_cati **mini);
 void	exe_child(t_cati **mini, t_cati *node);
-void	close_pipes(t_cati **mini);
 int		first_fork(t_cati **mini, t_cati *node);
+int		second_fork(t_cati **mini, t_cati *node);
 
 /* UTILITAIRE TEMP */
 void	printfmini(t_cati *mini);

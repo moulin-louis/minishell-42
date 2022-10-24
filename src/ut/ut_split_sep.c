@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 11:53:30 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/15 14:45:50 by bschoeff         ###   ########.fr       */
+/*   Created: 2022/09/29 13:15:26 by bschoeff          #+#    #+#             */
+/*   Updated: 2022/10/24 13:03:04 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,97 +14,80 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-static int	is_op(char c)
-{
-	if (c == '<' || c == '>' || c == '|')
-		return (1);
-	return (0);
-}
-
-static int	find_len(char *str)
-{
-	int	result;
-
-	result = 0;
-	if (is_op(str[result]))
-	{
-		while (str[result] && is_op(str[result]))
-			result++;
-		return (result);
-	}
-	else if (!is_op(str[result]))
-	{
-		while (str[result] && !is_op(str[result]))
-			result++;
-		return (result);
-	}
-	return (0);
-}
-
-static int	count_token(char *str)
+static int	word_len(char *str)
 {
 	int	i;
-	int	result;
 
-	result = 0;
+	i = 0;
+	while (str[i] && str[i] != ':')
+		i++;
+	return (i);
+}
+
+static int	word_count(char *str, char c)
+{
+	int	i;
+	int	count;
+
+	count = 0;
+	if (!str || !*str)
+		return (count);
 	i = 0;
 	while (str[i])
 	{
-		if (!is_op(str[i]))
+		while (str[i] != '\0' && str[i] == c)
+			i++;
+		if (str[i] && str[i] != c)
 		{
-			result++;
-			while (str[i] && !is_op(str[i]))
-				i++;
-		}
-		if (is_op(str[i]))
-		{
-			result++;
-			while (str[i] && is_op(str[i]))
+			count++;
+			while (str[i] && str[i] != c)
 				i++;
 		}
 	}
-	return (result);
+	return (count);
 }
 
-static char	*split_this_op(char *str, int len)
+static char	*do_the_split(char *s2, int len)
 {
 	int		i;
-	char	*result;
+	char	*s1;
 
-	result = ut_calloc(len + 1, 1);
-	if (!result)
+	s1 = ut_calloc(len + 1, 1);
+	if (!s1)
 		return (NULL);
-	result[len] = '\0';
-	i = -1;
-	while (++i < len)
-		result[i] = str[i];
-	return (result);
-}
-
-char	**extract_sep(char *str)
-{
-	char	**result;
-	int		words;
-	int		len;
-	int		i;
-
 	i = 0;
-	len = 0;
-	words = count_token(str);
-	result = ut_calloc(words + 1, sizeof(char *));
-	if (!result)
-		return (NULL);
-	result[words] = 0;
-	while (i < words)
+	while (i < len)
 	{
-		len = find_len(str);
-		result[i] = split_this_op(str, len);
-		if (!result[i])
-			return (clean_split(result), NULL);
+		s1[i] = s2[i];
 		i++;
+	}
+	s1[i] = '\0';
+	return (s1);
+}
+
+char	**ut_split_sep(char *str, char c)
+{
+	char	**arr;
+	int		words;
+	int		i;
+	int		len;
+
+	words = word_count(str, c);
+	arr = ut_calloc(words + 1, sizeof(char *));
+	if (!arr)
+		return (perror("Split malloc"), arr);
+	arr[words] = 0;
+	i = -1;
+	while (++i < words)
+	{
+		if (*str)
+			while (*str == c)
+				str++;
+		len = word_len(str);
+		arr[i] = do_the_split(str, len);
+		if (!arr[i])
+			return (clean_split(arr), NULL);
 		str += len;
 	}
-	(void)i;
-	(void) len;
-	return (result);
+	return (arr);
 }
