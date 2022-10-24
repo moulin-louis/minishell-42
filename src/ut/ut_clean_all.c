@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:36:37 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/24 13:50:02 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:51:09 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 #include <unistd.h>
 #include <string.h>
 #include <errno.h>
+#include <readline/readline.h>
+#include <readline/history.h>
 
 void	ut_clean_parsing_n_quit(t_cati **mini, t_tok **lst, int error)
 {
@@ -69,5 +71,6 @@ void	full_exit(t_cati **mini, int i)
 			env_lstclear(&(*mini)->envp);
 		clean_mini(mini);
 	}
+	rl_clear_history();
 	exit (i);
 }
