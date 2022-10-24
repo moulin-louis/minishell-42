@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/24 14:55:57 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/24 15:59:14 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,29 +17,26 @@
 void	printfmini(t_cati *mini)
 {
 	int		i;
-	t_cati	*temp;
+	t_cati	*tmp;
 
-	temp = mini;
-	while (temp)
+	tmp = mini;
+	while (tmp)
 	{
-		printf("path_cmd = %s\n", mini->path_cmd);
-		if (mini->cmd)
+		printf("path_cmd = %s\n", tmp->path_cmd);
+		if (tmp->cmd)
 		{
 			i = -1;
-			while (mini->cmd[++i])
-				printf("cmd[%d] = [%s]\t", i, mini->cmd[i]);
+			while (tmp->cmd[++i])
+				printf("cmd[%d] = [%s]\t", i, tmp->cmd[i]);
 			printf("\n");
 		}
-		printf("infile = %s\noutfile = %s\n", mini->infile, mini->outfile);
-		printf("fds = %p\nenvp = %p\n", & mini->fds, & mini->envp);
-		printf("builtin = %d\n", mini->builtin);
-		printf("in_file = %d\nin_pipe = %d\n", mini->in_file, mini->in_pipe);
-		printf("out_append = %d\n", mini->out_append);
-		printf("out_trunc = %d\n", mini->out_trunc);
-		printf("out_pipe = %d\n", mini->out_pipe);
-		printf("next = %p\n", mini->next);
-		printf("\n");
-		temp = temp->next;
+		printf("infile = %s\noutfile = %s\n", tmp->infile, tmp->outfile);
+		printf("fds = %p\nenvp = %p\n", & tmp->fds, & tmp->envp);
+		printf("builtin = %d\nin_file = %d\n", tmp->builtin, tmp->in_file);
+		printf("in_pipe = %d\nout_append = %d\n", tmp->in_pipe, tmp->out_append);
+		printf("out_trunc = %d\n", tmp->out_trunc);
+		printf("out_pipe = %d\nnext = %p\n\n", tmp->out_pipe, tmp->next);
+		tmp = tmp->next;
 	}
 }
 
@@ -48,13 +45,15 @@ void	fill_node_of_pipe(t_cati *mini)
 	t_cati	*temp;
 
 	temp = mini;
-	if (temp->next != NULL && (!temp->out_append && !temp->out_trunc))
+	if (temp->next && (!temp->out_append || !temp->out_trunc))
 		temp->out_pipe = 1;
 	temp = temp->next;
 	while (temp)
 	{
-		if (temp->next != NULL && (!temp->out_append && !temp->out_trunc))
-				temp->out_pipe = 1;
+		if (temp->next && (!temp->out_append || !temp->out_trunc))
+			temp->out_pipe = 1;
+		if (!temp->in_file)
+			temp->in_pipe = 1;
 		temp = temp->next;
 	}
 }

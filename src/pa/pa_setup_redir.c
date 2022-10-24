@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:42:25 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/24 14:00:43 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/24 15:45:08 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	in_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini)
 	if (ut_strcmp((*lst)->str, dest->str))
 	{
 		node->infile = ut_strdup((*lst)->next->str);
-		if (!node->outfile)
+		if (!node->infile)
 			ut_clean_parsing_n_quit(mini, lst, errno);
 		node->in_file = 1;
 		clean_lst_mode(dest, temp, lst, 1);
@@ -54,7 +54,7 @@ void	in_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini)
 	while (!ut_strcmp(temp->next->str, dest->str))
 		temp = temp->next;
 	node->infile = ut_strdup(temp->next->next->str);
-	if (!node->outfile)
+	if (!node->infile)
 		ut_clean_parsing_n_quit(mini, lst, errno);
 	node->in_file = 1;
 	clean_lst_mode(dest, temp, lst, 2);
