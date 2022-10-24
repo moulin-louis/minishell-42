@@ -6,7 +6,7 @@
 #    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/24 13:04:50 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/10/24 15:56:33 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,7 @@ C_FILES		= minishell.c					\
 			  exe/exe_flow.c				\
 			  exe/exe_launcher.c			\
 			  exe/exe_parse_env.c			\
+			  pa/pa_expand.c				\
 			  pa/pa_heredoc.c				\
 			  pa/pa_init_token.c			\
 			  pa/pa_main.c					\

@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:15:04 by bschoeff          #+#    #+#             */
 /*   Updated: 2022/10/24 14:20:54 by bschoeff         ###   ########.fr       */
@@ -119,6 +119,7 @@ void	run_prompt(t_envp *envp, t_fds *fds);
 void	parsing(char *input, t_cati **mini);
 t_tok	*init_token_list(char *str);
 void	split_lst_operator(t_tok *lst);
+void	expand_lst(t_tok **lst, t_envp *envp);
 void	setup_redirection(t_tok **lst, t_cati *mini);
 void	parse_options(t_tok **lst, t_cati **mini);
 
