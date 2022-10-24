@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:51:41 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/24 14:17:41 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:43:55 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,8 @@ void	run_prompt(t_envp *envp, t_fds *fds)
 	mini = NULL;
 	while (1)
 	{
-		u_input = readline("shellnado> ");
 		ft_create_node(&mini, envp, fds);
+		u_input = readline("shellnado> ");
 		if (u_input == 0)
 		{
 			write(1, "\n", 1);

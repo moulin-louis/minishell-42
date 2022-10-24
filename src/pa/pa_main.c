@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/24 14:24:25 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/24 14:55:57 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ void	parsing(char *input, t_cati **mini)
 
 /*
 TO DO :
-- ERROR MANEGEMENT
 - FIX QUOTE DOUBLE QUOTE
 - IMPLEMENT EXPAND
+- rl clear history on exit
 */
