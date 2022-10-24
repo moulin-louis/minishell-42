@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pa_prompt.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:51:41 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/12 14:08:37 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/21 15:28:36 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,6 @@ static void	handle_sigint(int sig)
 	rl_redisplay();
 }
 
-static void	do_nothing(int sig)
-{
-	(void)sig;
-}
-
 void	ft_create_node(t_cati **mini, t_envp *envp, t_fds *fds)
 {
 	*mini = mini_lstnew();
@@ -47,14 +42,13 @@ static void	setup_sig(void)
 	sa.sa_handler = &handle_sigint;
 	sa.sa_flags = SA_RESTART;
 	sigaction(SIGINT, &sa, NULL);
-	sa.sa_handler = &do_nothing;
-	sigaction(SIGQUIT, &sa, NULL);
+	signal(SIGQUIT, SIG_IGN);
 }
 
 void	run_prompt(t_envp *envp, t_fds *fds)
 {
-	char				*u_input;
-	t_cati				*mini;
+	char	*u_input;
+	t_cati	*mini;
 
 	setup_sig();
 	while (1)
