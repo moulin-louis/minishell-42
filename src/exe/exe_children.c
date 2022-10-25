@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 08:23:18 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/25 11:09:21 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/25 11:52:50 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 #include <string.h>
+#include <stdlib.h>
 
 static int	access_check(t_cati **mini, t_cati *node, char *path)
 {
@@ -35,22 +36,20 @@ static int	access_check(t_cati **mini, t_cati *node, char *path)
 	{
 		node->path_cmd = ut_strcpy(path);
 		if (!node->path_cmd)
-		{
-			printf("Malloc error in buid_path\n");
-			full_exit(mini, 1);
-		}
+			return (printf("Malloc error in buid_path\n"), 0);
 		return (1);
 	}
 	return (0);
 }
 
-static void	build_path(t_cati **mini, t_cati *node)
+static int	build_path(t_cati **mini, t_cati *node)
 {
 	char	**paths;
 	t_envp	*tmp;
 	int		i;
 
 	tmp = node->envp;
+	paths = NULL;
 	while (tmp)
 	{
 		if (ut_strcmp(tmp->var[0], "PATH"))
@@ -67,12 +66,14 @@ static void	build_path(t_cati **mini, t_cati *node)
 	while (paths[++i])
 	{
 		if (access_check(mini, node, paths[i]))
-			return ;
+			return (free(paths), 1);
 	}
-	clean_split(paths);
+	if (paths)
+		clean_split(paths);
+	return (0);
 }
 
-static void	set_path_cmd(t_cati **mini, t_cati *node)
+static int	set_path_cmd(t_cati **mini, t_cati *node)
 {
 	int	i;
 
@@ -82,16 +83,21 @@ static void	set_path_cmd(t_cati **mini, t_cati *node)
 		if (node->cmd[0][i] == '/')
 		{
 			node->path_cmd = node->cmd[0];
-			return ;
+			return (1);
 		}
 	}
-	build_path(mini, node);
+	if (build_path(mini, node))
+		return (1);;
+	return (0);
 }
 
 static void	check_execv(t_cati **mini, t_cati *node)
 {
-	set_path_cmd(mini, node);
-	printf("path_cmd in check_execve: %s\n", node->path_cmd);
+	if (!set_path_cmd(mini, node))
+	{
+		printf("Command '%s' not found.\n", node->cmd[0]);
+		full_exit(mini, 1);
+	}
 	if (access(node->path_cmd, R_OK || X_OK))
 	{
 		printf("shellnado: %s: %s", node->cmd[0], strerror(errno));
