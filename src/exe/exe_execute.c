@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:53:11 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/25 12:01:43 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/25 15:22:38 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,6 @@
 #include <wait.h>
 #include <fcntl.h>
 
-static void	reset_chcks(t_cati **mini)
-{
-	(*mini)->fds->chkfst = 0;
-	(*mini)->fds->chkscd = 0;
-}
-
 int	execute(t_cati **mini)
 {
 	t_cati	*tmp;
@@ -31,22 +25,12 @@ int	execute(t_cati **mini)
 	tmp = *mini;
 	while (tmp)
 	{
-		reset_chcks(mini);
-		if (pipe(tmp->fds->pfd_1) == -1)
-			full_exit(mini, errno);
-		(*mini)->fds->chkfst = first_fork(mini, tmp);
+		exec_node(mini, tmp);
 		if (tmp->next)
 		{
 			tmp = tmp->next;
-			if (pipe(tmp->fds->pfd_2) == -1)
-				full_exit(mini, errno);
-			dup2((*mini)->fds->pfd_2[0], (*mini)->fds->pfd_1[1]);
-			(*mini)->fds->chkscd = second_fork(mini, tmp);
+			exec_node(mini, tmp);
 		}
-		if ((*mini)->fds->chkfst)
-			waitpid(tmp->fds->frst, &tmp->fds->status, 0);
-		if ((*mini)->fds->chkscd)
-			waitpid(tmp->fds->scnd, &tmp->fds->status, 0);
 		tmp = tmp->next;
 	}
 	return (0);

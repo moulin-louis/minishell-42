@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/25 14:25:21 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/25 15:24:54 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,6 @@ typedef struct s_fds {
 	pid_t	scnd;
 	int		status;
 	int		ret;
-	int		chkfst;
-	int		chkscd;
 }			t_fds;
 
 typedef struct s_envp
@@ -135,9 +133,7 @@ void	heredoc_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini);
 int		execute(t_cati **mini);
 int		exe_bi_launcher(t_cati **mini, t_cati *node);
 char	**exe_parse_env(t_cati **mini);
-void	exe_child(t_cati **mini, t_cati *node);
-int		first_fork(t_cati **mini, t_cati *node);
-int		second_fork(t_cati **mini, t_cati *node);
+int		exec_node(t_cati **mini, t_cati *node);
 
 /* UTILITAIRE TEMP */
 void	printfmini(t_cati *mini);
