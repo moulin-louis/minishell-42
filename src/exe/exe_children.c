@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 08:23:18 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/24 14:58:16 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/25 10:11:01 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static int	access_check(t_cati **mini, t_cati *node, char *path)
 	return (0);
 }
 
-static int	build_path(t_cati **mini, t_cati *node)
+static void	build_path(t_cati **mini, t_cati *node)
 {
 	char	**paths;
 	t_envp	*tmp;
@@ -46,16 +46,21 @@ static int	build_path(t_cati **mini, t_cati *node)
 		tmp = tmp->next;
 	}
 	paths = ut_split_sep(tmp->var[1], ':');
+	if (!paths)
+	{
+		printf("Malloc error while buildiing paths\n");
+		full_exit(mini, 1);
+	}
 	i = -1;
 	while (paths[++i])
 	{
 		if (access_check(mini, node, paths[i]))
-			return (1);
+			return ;
 	}
-	return (0);
+	clean_split(paths);
 }
 
-static int	set_path_cmd(t_cati **mini, t_cati *node)
+static void	set_path_cmd(t_cati **mini, t_cati *node)
 {
 	int	i;
 
@@ -65,19 +70,16 @@ static int	set_path_cmd(t_cati **mini, t_cati *node)
 		if (node->cmd[0][i] == '/')
 		{
 			node->path_cmd = node->cmd[0];
-			node->fds->ret = 1;
-			return (1);
+			return ;
 		}
 	}
-	if (!build_path(mini, node))
-		return (0);
-	return (1);
+	build_path(mini, node);
 }
 
 static void	check_execv(t_cati **mini, t_cati *node)
 {
-	if (!set_path_cmd(mini, node))
-		full_exit(mini, (*mini)->fds->ret);
+	set_path_cmd(mini, node);
+	printf("path_cmd in check_execve: %s\n", node->path_cmd);
 	if (!access(node->path_cmd, R_OK || X_OK))
 	{
 		printf("shellnado: %s: %s", node->cmd[0], strerror(errno));

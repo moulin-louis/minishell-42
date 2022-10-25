@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 09:30:58 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/24 16:37:35 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/25 09:20:55 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,25 +18,30 @@
 #include <sys/stat.h>
 #include <string.h>
 
+static void	error_msg(char *str)
+{
+	printf("shellnado: %s: %s\n", str, strerror(errno));
+}
+
 static int	manage_fds(t_cati *node)
 {
 	if (node->in_file)
 	{
 		node->fds->in_fd = open(node->infile, O_RDONLY);
 		if (node->fds->in_fd == -1)
-			return (printf("shellnado: %s: %s\n", node->infile, strerror(errno)), 0);
+			return (error_msg(node->infile), 0);
 	}
 	if (node->out_trunc)
 	{
 		node->fds->out_fd = open(node->outfile, O_WRONLY);
 		if (node->fds->out_fd == -1)
-			return (printf("shellnado: %s: %s\n", node->infile, strerror(errno)), 0);
+			return (error_msg(node->outfile), 0);
 	}
 	if (node->out_append)
 	{
 		node->fds->out_fd = open(node->outfile, O_APPEND);
 		if (node->fds->out_fd == -1)
-			return (printf("shellnado: %s: %s\n", node->infile, strerror(errno)), 0);
+			return (error_msg(node->outfile), 0);
 	}
 	return (1);
 }
@@ -66,6 +71,8 @@ int	first_fork(t_cati **mini, t_cati *node)
 		return (0);
 	if (node->builtin && !node->out_pipe)
 		return (exe_bi_launcher(mini, node));
+	else
+		exe_child(mini, node);
 	return (0);
 }
 
@@ -74,5 +81,7 @@ int	second_fork(t_cati **mini, t_cati *node)
 	set_elements(mini, node);
 	if (node->builtin && !node->out_pipe)
 		return (exe_bi_launcher(mini, node));
+	else
+		exe_child(mini, node);
 	return (0);
 }
