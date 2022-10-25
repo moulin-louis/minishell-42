@@ -6,7 +6,7 @@
 #    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/24 15:56:33 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/10/25 10:52:31 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ C_FILES		= minishell.c					\
 			  ut/ut_env_split.c				\
 			  ut/ut_gnl.c					\
 			  ut/ut_mini_list.c				\
-			  ut/ut_split_sep.c				\
+			  ut/ut_split_char.c			\
 			  ut/ut_split.c					\
 			  ut/ut_strcmp.c				\
 			  ut/ut_strcpy.c				\
