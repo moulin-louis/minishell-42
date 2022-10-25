@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:26:13 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/24 14:08:06 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/25 12:01:28 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,45 +34,56 @@ static int	is_there_a_sep(char *str)
 	return (0);
 }
 
-static int	split_node(t_tok *lst, t_cati **mini)
+void	fill_lst(char **result, t_tok *node, t_cati **mini, t_tok **lst)
 {
-	int		i;
 	t_tok	*temp;
-	char	**result;
 	t_tok	*temp2;
-	t_tok	*temp3;
+	int		i;
 
-	result = extract_sep(lst->next->str);
-	if (!result)
-		return (full_exit(mini, errno), 0);
-	i = -1;
-	temp = NULL;
+	free(node->str);
+	node->str = ut_strdup(result[0]);
+	if (!node->str)
+	{
+		clean_split(result);
+		ut_clean_parsing_n_quit(mini, lst, errno);
+	}
+	i = 0;
 	while (result[++i])
-		tok_addback(&temp, tok_new(result[i], mini));
-	temp2 = lst->next;
-	temp3 = lst->next->next;
-	lst->next = temp;
-	while (temp->next)
-		temp = temp->next;
-	temp->next = temp3;
-	tok_delone(temp2);
-	free(result[i]);
-	free(result);
+	{
+		temp = tok_new(ut_strdup(result[i]), mini);
+		temp2 = node->next;
+		node->next = temp;
+		temp->next = temp2;
+	}
+}
+
+static int	split_node(t_tok *node, t_cati **mini, t_tok **lst)
+{
+	char	**result;
+	int		i;
+
+	result = extract_sep(node->str);
+	if (!result)
+		ut_clean_parsing_n_quit(mini, lst, errno);
+	fill_lst(result, node, mini, lst);
+	i = -1;
+	while (result[++i]);
+	clean_split(result);
 	return (i);
 }
 
-void	split_lst_operator(t_tok *lst, t_cati **mini)
+void	split_lst_operator(t_tok **lst, t_cati **mini)
 {
 	t_tok	*temp;
 	int		len;
 
-	temp = lst;
+	temp = *lst;
 	while (temp)
 	{
-		if (temp->next && is_there_a_sep(temp->next->str))
+		if (is_there_a_sep(temp->str))
 		{
-			len = split_node(temp, mini);
-			while (len > 0)
+			len = split_node(temp, mini, lst);
+			while (len)
 			{
 				temp = temp->next;
 				len--;
