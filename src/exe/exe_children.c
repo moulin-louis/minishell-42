@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 08:23:18 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/25 10:30:21 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/25 11:09:21 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,19 @@
 
 static int	access_check(t_cati **mini, t_cati *node, char *path)
 {
-	if (access(path, R_OK || X_OK))
+	path = ut_strjoin(path, "/");
+	if (!path)
+	{
+		printf("Malloc error in buid_path\n");
+		full_exit(mini, 1);
+	}
+	if (!path)
+	{
+		printf("Malloc error in buid_path\n");
+		full_exit(mini, 1);
+	}
+	path = ut_strjoin(path, node->cmd[0]);
+	if (!access(path, R_OK || X_OK))
 	{
 		node->path_cmd = ut_strcpy(path);
 		if (!node->path_cmd)
