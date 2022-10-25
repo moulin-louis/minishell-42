@@ -6,10 +6,11 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/25 10:57:21 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/25 11:00:07 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef MINISHELL_H
 # define MINISHELL_H
 
 # include <unistd.h>
@@ -140,4 +141,5 @@ int		second_fork(t_cati **mini, t_cati *node);
 
 /* UTILITAIRE TEMP */
 void	printfmini(t_cati *mini);
+
 #endif

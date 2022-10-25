@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:36:37 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/25 10:57:55 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/25 11:00:34 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ void	clean_mini(t_cati **mini)
 
 void	full_exit(t_cati **mini, int i)
 {
-<<<<<<< HEAD
 	if (mini && *mini)
 	{
 		if ((*mini)->envp)
@@ -73,10 +72,5 @@ void	full_exit(t_cati **mini, int i)
 		clean_mini(mini);
 	}
 	rl_clear_history();
-=======
-	if ((*mini)->envp)
-		env_lstclear(&(*mini)->envp);
-	clean_mini(mini);
->>>>>>> bertrand
 	exit (i);
 }

@@ -6,7 +6,7 @@
 #    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/25 10:58:43 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/10/25 11:01:23 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,7 +55,6 @@ C_FILES		= minishell.c					\
 			  ut/ut_calloc.c				\
 			  ut/ut_clean_all.c				\
 			  ut/ut_env_list.c				\
-			  ut/ut_extract_sep.c			\
 			  ut/ut_env_split.c				\
 			  ut/ut_extract_sep.c			\
 			  ut/ut_gnl.c					\
