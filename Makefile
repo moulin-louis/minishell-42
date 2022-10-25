@@ -1,220 +1,122 @@
-shellnado> path_cmd = (null)
-path_cmd = (null)
-cmd[0] = [path_cmd]	cmd[1] = [=]	cmd[2] = [(null)]	
-infile = (null)
-outfile = (null)
-fds = 0x1e83a48
-envp = 0x1e83a50
-builtin = 0
-in_file = 0
-in_pipe = 0
-out_append = 0
-out_trunc = 0
-out_pipe = 0
-next = (nil)
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
+#    Updated: 2022/10/25 15:05:01 by bschoeff         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
-shellnado> cmd[0] = [minimal.supp]
-path_cmd = (null)
-cmd[0] = [cmd[0]]	cmd[1] = [=]	cmd[2] = [[minimal.supp]]	
-infile = (null)
-outfile = (null)
-fds = 0x1e83a48
-envp = 0x1e83a50
-builtin = 0
-in_file = 0
-in_pipe = 0
-out_append = 0
-out_trunc = 0
-out_pipe = 0
-next = (nil)
+# ################################## #
+#               COMMAND              #
+# ################################## #
+CC			= cc
+MKDIR		= mkdir -p
+RM			= rm -rf
 
-Command 'cmd[0]' not found.
-shellnado> infile = (null)
-path_cmd = (null)
-cmd[0] = [infile]	cmd[1] = [=]	cmd[2] = [(null)]	
-infile = (null)
-outfile = (null)
-fds = 0x1e83a48
-envp = 0x1e83a50
-builtin = 0
-in_file = 0
-in_pipe = 0
-out_append = 0
-out_trunc = 0
-out_pipe = 0
-next = (nil)
+# ################################## #
+#              EXEC NAME             #
+# ################################## #
+NAME		= minishell
 
-Command 'infile' not found.
-shellnado> outfile = (null)
-path_cmd = (null)
-cmd[0] = [outfile]	cmd[1] = [=]	cmd[2] = [(null)]	
-infile = (null)
-outfile = (null)
-fds = 0x1e83a48
-envp = 0x1e83a50
-builtin = 0
-in_file = 0
-in_pipe = 0
-out_append = 0
-out_trunc = 0
-out_pipe = 0
-next = (nil)
+# ################################## #
+#               SOURCES              #
+# ################################## #
+C_DIR		= src
+C_FILES		= minishell.c					\
+			  bi/bi_cd.c					\
+			  bi/bi_echo.c					\
+			  bi/bi_env.c					\
+			  bi/bi_exit.c					\
+			  bi/bi_exit2.c					\
+			  bi/bi_export.c				\
+			  bi/bi_export2.c				\
+			  bi/bi_pwd.c					\
+			  bi/bi_unset.c					\
+			  ev/ev_build_env.c				\
+			  ev/ev_build_env2.c			\
+			  exe/exe_children.c			\
+			  exe/exe_execute.c				\
+			  exe/exe_flow.c				\
+			  exe/exe_launcher.c			\
+			  exe/exe_parse_env.c			\
+			  pa/pa_expand.c				\
+			  pa/pa_heredoc.c				\
+			  pa/pa_init_token.c			\
+			  pa/pa_main.c					\
+			  pa/pa_parse_options.c			\
+			  pa/pa_prompt.c				\
+			  pa/pa_redirections.c			\
+			  pa/pa_setup_redir.c			\
+			  pa/pa_split_lst_operator.c	\
+			  ut/ut_calloc.c				\
+			  ut/ut_clean_all.c				\
+			  ut/ut_env_list.c				\
+			  ut/ut_env_split.c				\
+			  ut/ut_extract_sep.c			\
+			  ut/ut_gnl.c					\
+			  ut/ut_mini_list.c				\
+			  ut/ut_split_char.c			\
+			  ut/ut_split.c					\
+			  ut/ut_strcmp.c				\
+			  ut/ut_strcpy.c				\
+			  ut/ut_strjoin.c				\
+			  ut/ut_strstuff.c				\
+			  ut/ut_token_list.c			\
+			  ut/ut_word_len.c				\
 
-shellnado> fds = 0x1e83a48
-path_cmd = (null)
-cmd[0] = [fds]	cmd[1] = [=]	cmd[2] = [0x1e83a48]	
-infile = (null)
-outfile = (null)
-fds = 0x1e83a48
-envp = 0x1e83a50
-builtin = 0
-in_file = 0
-in_pipe = 0
-out_append = 0
-out_trunc = 0
-out_pipe = 0
-next = (nil)
+SRCS		= $(patsubst %, $(C_DIR)/%, $(C_FILES))
 
-Command 'fds' not found.
-shellnado> envp = 0x1e83a50
-path_cmd = (null)
-cmd[0] = [envp]	cmd[1] = [=]	cmd[2] = [0x1e83a50]	
-infile = (null)
-outfile = (null)
-fds = 0x1e83a48
-envp = 0x1e83a50
-builtin = 0
-in_file = 0
-in_pipe = 0
-out_append = 0
-out_trunc = 0
-out_pipe = 0
-next = (nil)
+# ################################## #
+#               OBJECTS              #
+# ################################## #
+O_DIR		= objs
+O_FILES		= $(C_FILES:.c=.o)
+OBJS		= $(patsubst %, $(O_DIR)/%, $(O_FILES))
+DEPS 		= $ $(C_FILES:.c=.d)
 
-Command 'envp' not found.
-shellnado> builtin = 0
-path_cmd = (null)
-cmd[0] = [builtin]	cmd[1] = [=]	cmd[2] = [0]	
-infile = (null)
-outfile = (null)
-fds = 0x1e83a48
-envp = 0x1e83a50
-builtin = 0
-in_file = 0
-in_pipe = 0
-out_append = 0
-out_trunc = 0
-out_pipe = 0
-next = (nil)
+# ################################## #
+#                FLAGS               #
+# ################################## #
+CFLAGS		= -Wall -Wextra -Werror -g3 -MMD
+LFLAGS		=
 
-shellnado> in_file = 0
-path_cmd = (null)
-cmd[0] = [in_file]	cmd[1] = [=]	cmd[2] = [0]	
-infile = (null)
-outfile = (null)
-fds = 0x1e83a48
-envp = 0x1e83a50
-builtin = 0
-in_file = 0
-in_pipe = 0
-out_append = 0
-out_trunc = 0
-out_pipe = 0
-next = (nil)
+# ################################## #
+#                INCLUDES            #
+# ################################## #
+CINCLUDES	=	-I ./inc	\
+				-I /usr/local/include
 
-shellnado> in_pipe = 0
-path_cmd = (null)
-cmd[0] = [in_pipe]	cmd[1] = [=]	cmd[2] = [0]	
-infile = (null)
-outfile = (null)
-fds = 0x1e83a48
-envp = 0x1e83a50
-builtin = 0
-in_file = 0
-in_pipe = 0
-out_append = 0
-out_trunc = 0
-out_pipe = 0
-next = (nil)
+CLIBS		=	-L/usr/local/lib -lreadline
 
-shellnado> out_append = 0
-path_cmd = (null)
-cmd[0] = [out_append]	cmd[1] = [=]	cmd[2] = [0]	
-infile = (null)
-outfile = (null)
-fds = 0x1e83a48
-envp = 0x1e83a50
-builtin = 0
-in_file = 0
-in_pipe = 0
-out_append = 0
-out_trunc = 0
-out_pipe = 0
-next = (nil)
+# ################################## #
+#                RULES               #
+# ################################## #
 
-shellnado> out_trunc = 0
-path_cmd = (null)
-cmd[0] = [out_trunc]	cmd[1] = [=]	cmd[2] = [0]	
-infile = (null)
-outfile = (null)
-fds = 0x1e83a48
-envp = 0x1e83a50
-builtin = 0
-in_file = 0
-in_pipe = 0
-out_append = 0
-out_trunc = 0
-out_pipe = 0
-next = (nil)
+all:	$(NAME)
 
-shellnado> out_pipe = 0
-path_cmd = (null)
-cmd[0] = [out_pipe]	cmd[1] = [=]	cmd[2] = [0]	
-infile = (null)
-outfile = (null)
-fds = 0x1e83a48
-envp = 0x1e83a50
-builtin = 0
-in_file = 0
-in_pipe = 0
-out_append = 0
-out_trunc = 0
-out_pipe = 0
-next = (nil)
+$(NAME):	$(O_DIR) $(OBJS)
+			$(CC) $(OBJS) $(CFLAGS) $(LFLAGS) $(CLIBS) -o $@
 
-shellnado> next = (nil)
-path_cmd = (null)
-cmd[0] = [next]	cmd[1] = [=]	cmd[2] = [(nil)]	
-infile = (null)
-outfile = (null)
-fds = 0x1e83a48
-envp = 0x1e83a50
-builtin = 0
-in_file = 0
-in_pipe = 0
-out_append = 0
-out_trunc = 0
-out_pipe = 0
-next = (nil)
+$(O_DIR)/%.o: $(C_DIR)/%.c
+			$(CC) $(CFLAGS) $(CINCLUDES) -c $< -o $@
 
-Command 'next' not found.
-shellnado> 
-shellnado> shellnado> minishell
-path_cmd = (null)
-cmd[0] = [shellnado]	
-infile = (null)
-outfile = minishell
-fds = 0x1e83a48
-envp = 0x1e83a50
-builtin = 0
-in_file = 0
-in_pipe = 0
-out_append = 0
-out_trunc = 1
-out_pipe = 0
-next = (nil)
+$(O_DIR):
+			$(MKDIR) $(O_DIR)
+			$(MKDIR) $(O_DIR)/bi
+			$(MKDIR) $(O_DIR)/ev
+			$(MKDIR) $(O_DIR)/exe
+			$(MKDIR) $(O_DIR)/pa
+			$(MKDIR) $(O_DIR)/ut
 
-ize=undefined
+check:	fclean
+check:	CFLAGS		+=  -pedantic -ansi
+check:	CFLAGS		+=  -fsanitize=address
+check:	CFLAGS		+=  -fsanitize=leak
+check:	CFLAGS		+=  -fsanitize=undefined
 check:	CFLAGS		+=  -g3
 check:	LFLAGS		+=  -pedantic -ansi
 check:	LFLAGS		+=  -fsanitize=address
