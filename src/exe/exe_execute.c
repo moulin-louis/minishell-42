@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:53:11 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/25 08:21:19 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/25 12:01:43 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,18 +17,6 @@
 #include <unistd.h>
 #include <wait.h>
 #include <fcntl.h>
-
-static void	close_pipes(t_cati **mini)
-{
-	if ((*mini)->fds->pfd_1[0])
-		close((*mini)->fds->pfd_1[0]);
-	if ((*mini)->fds->pfd_1[1])
-		close((*mini)->fds->pfd_1[1]);
-	if ((*mini)->fds->pfd_2[0])
-		close((*mini)->fds->pfd_2[0]);
-	if ((*mini)->fds->pfd_2[1])
-		close((*mini)->fds->pfd_2[1]);
-}
 
 static void	reset_chcks(t_cati **mini)
 {
@@ -61,6 +49,5 @@ int	execute(t_cati **mini)
 			waitpid(tmp->fds->scnd, &tmp->fds->status, 0);
 		tmp = tmp->next;
 	}
-	close_pipes(mini);
 	return (0);
 }
