@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/21 10:08:35 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/24 08:43:10 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static int	check_compliance(t_cati *node, char *str)
 		{
 			if (ref[k] == str[j])
 			{
-				node->fds->ret++;
+				node->fds->ret = 1;
 				printf("shellnado: export: \"%s\": not a valid identifier\n", str);
 				return (0);
 			}
@@ -85,6 +85,7 @@ int	bi_export(t_cati *node)
 {
 	int	i;
 
+	node->fds->ret = 0;
 	if (!node->cmd[1])
 		return (display_expt_ev(node), node->fds->ret);
 	i = 0;
