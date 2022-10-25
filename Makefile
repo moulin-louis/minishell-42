@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
+#    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/24 14:45:07 by loumouli         ###   ########.fr        #
+#    Updated: 2022/10/25 10:58:43 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,6 +40,7 @@ C_FILES		= minishell.c					\
 			  ev/ev_build_env2.c			\
 			  exe/exe_children.c			\
 			  exe/exe_execute.c				\
+			  exe/exe_flow.c				\
 			  exe/exe_launcher.c			\
 			  exe/exe_parse_env.c			\
 			  pa/pa_expand.c				\
@@ -54,10 +55,12 @@ C_FILES		= minishell.c					\
 			  ut/ut_calloc.c				\
 			  ut/ut_clean_all.c				\
 			  ut/ut_env_list.c				\
+			  ut/ut_extract_sep.c			\
 			  ut/ut_env_split.c				\
 			  ut/ut_extract_sep.c			\
 			  ut/ut_gnl.c					\
 			  ut/ut_mini_list.c				\
+			  ut/ut_split_char.c			\
 			  ut/ut_split.c					\
 			  ut/ut_strcmp.c				\
 			  ut/ut_strcpy.c				\

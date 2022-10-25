@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 08:23:18 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/21 12:44:42 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/25 10:30:21 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,44 +15,87 @@
 #include <errno.h>
 #include <stdio.h>
 #include <fcntl.h>
+#include <string.h>
+
+static int	access_check(t_cati **mini, t_cati *node, char *path)
+{
+	if (access(path, R_OK || X_OK))
+	{
+		node->path_cmd = ut_strcpy(path);
+		if (!node->path_cmd)
+		{
+			printf("Malloc error in buid_path\n");
+			full_exit(mini, 1);
+		}
+		return (1);
+	}
+	return (0);
+}
+
+static void	build_path(t_cati **mini, t_cati *node)
+{
+	char	**paths;
+	t_envp	*tmp;
+	int		i;
+
+	tmp = node->envp;
+	while (tmp)
+	{
+		if (ut_strcmp(tmp->var[0], "PATH"))
+			break ;
+		tmp = tmp->next;
+	}
+	paths = ut_split_sep(tmp->var[1], ':');
+	if (!paths)
+	{
+		printf("Malloc error while buildiing paths\n");
+		full_exit(mini, 1);
+	}
+	i = -1;
+	while (paths[++i])
+	{
+		if (access_check(mini, node, paths[i]))
+			return ;
+	}
+	clean_split(paths);
+}
+
+static void	set_path_cmd(t_cati **mini, t_cati *node)
+{
+	int	i;
+
+	i = -1;
+	while (node->cmd[0][++i])
+	{
+		if (node->cmd[0][i] == '/')
+		{
+			node->path_cmd = node->cmd[0];
+			return ;
+		}
+	}
+	build_path(mini, node);
+}
 
 static void	check_execv(t_cati **mini, t_cati *node)
 {
+	set_path_cmd(mini, node);
+	printf("path_cmd in check_execve: %s\n", node->path_cmd);
 	if (access(node->path_cmd, R_OK || X_OK))
 	{
-		perror("shellnado:");
-		error_exit(mini, errno);
+		printf("shellnado: %s: %s", node->cmd[0], strerror(errno));
+		full_exit(mini, errno);
 	}
-}
-
-static void	set_elements(t_cati *node)
-{
-	if (node->infile)
-	{
-		close(node->fds->pfd[0]);
-		dup2(node->fds->in_fd, 0);
-	}
-	if (!node->next && !node->outfile)
-		close(node->fds->pfd[1]);
-	if (node->outfile)
-		dup2(node->fds->out_fd, 1);
-	if (node->in_pipe)
-		dup2(node->fds->pfd[0], 0);
-	if (node->out_pipe)
-		dup2(node->fds->pfd[1], 1);
 }
 
 void	exe_child(t_cati **mini, t_cati *node)
 {
 	node->ev = exe_parse_env(mini);
-	set_elements(node);
-	if (!node->builtin)
+	if (!node->builtin || node->out_pipe)
 	{
 		check_execv(mini, node);
 		if (execve(node->path_cmd, node->cmd, node->ev) == -1)
-			error_exit(mini, errno);
+			full_exit(mini, errno);
 	}
 	else
-		error_exit(mini, exe_bi_launcher(mini, node));
-	clean_mini(mini);
+		full_exit(mini, exe_bi_launcher(mini, node));
 }
