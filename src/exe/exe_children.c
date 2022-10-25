@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 08:23:18 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/25 10:11:01 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/25 10:30:21 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ static void	check_execv(t_cati **mini, t_cati *node)
 {
 	set_path_cmd(mini, node);
 	printf("path_cmd in check_execve: %s\n", node->path_cmd);
-	if (!access(node->path_cmd, R_OK || X_OK))
+	if (access(node->path_cmd, R_OK || X_OK))
 	{
 		printf("shellnado: %s: %s", node->cmd[0], strerror(errno));
 		full_exit(mini, errno);
@@ -98,5 +98,4 @@ void	exe_child(t_cati **mini, t_cati *node)
 	}
 	else
 		full_exit(mini, exe_bi_launcher(mini, node));
-	clean_mini(mini);
 }
