@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/25 11:51:13 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/25 14:25:21 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ut_clean_parsing_n_quit(t_cati **mini, t_tok **lst, int error);
 void	*ut_calloc(int nb, int sz);
 char	*ut_gnl(int fd);
 char	**ut_split(char *str);
-char	**ut_split_sep(char *str, char c);
+char	**ut_split_char(char *str, char c);
 int		ut_strcmp(char *s1, char *s2);
 char	*ut_strcpy(char *s2);
 char	*ut_strjoin(char *s1, char *s2);

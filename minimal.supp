@@ -1,6 +1,3795 @@
-{
-   ignore_libreadline_conditional_jump_errors
-   Memcheck:Leak
-   ...
-   obj:*/libreadline.so.*
-}
+shellnado: minishell: Text file busy
+shellnado> path_cmd = (null)
+path_cmd = (null)
+cmd[0] = [path_cmd]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> cmd[0] = [minishell]
+path_cmd = (null)
+cmd[0] = [cmd[0]]	cmd[1] = [=]	cmd[2] = [[minishell]]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'cmd[0]' not found.
+shellnado> infile = (null)
+path_cmd = (null)
+cmd[0] = [infile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'infile' not found.
+shellnado> outfile = (null)
+path_cmd = (null)
+cmd[0] = [outfile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> fds = 0x1e83a48
+path_cmd = (null)
+cmd[0] = [fds]	cmd[1] = [=]	cmd[2] = [0x1e83a48]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'fds' not found.
+shellnado> envp = 0x1e83a50
+path_cmd = (null)
+cmd[0] = [envp]	cmd[1] = [=]	cmd[2] = [0x1e83a50]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'envp' not found.
+shellnado> builtin = 0
+path_cmd = (null)
+cmd[0] = [builtin]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_file = 0
+path_cmd = (null)
+cmd[0] = [in_file]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_pipe = 0
+path_cmd = (null)
+cmd[0] = [in_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_append = 0
+path_cmd = (null)
+cmd[0] = [out_append]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_trunc = 0
+path_cmd = (null)
+cmd[0] = [out_trunc]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_pipe = 0
+path_cmd = (null)
+cmd[0] = [out_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> next = (nil)
+path_cmd = (null)
+cmd[0] = [next]	cmd[1] = [=]	cmd[2] = [(nil)]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'next' not found.
+shellnado> 
+shellnado> shellnado> objs
+path_cmd = (null)
+cmd[0] = [shellnado]	
+infile = (null)
+outfile = objs
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 1
+out_pipe = 0
+next = (nil)
+
+shellnado: objs: Is a directory
+shellnado> path_cmd = (null)
+path_cmd = (null)
+cmd[0] = [path_cmd]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> cmd[0] = [objs]
+path_cmd = (null)
+cmd[0] = [cmd[0]]	cmd[1] = [=]	cmd[2] = [[objs]]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'cmd[0]' not found.
+shellnado> infile = (null)
+path_cmd = (null)
+cmd[0] = [infile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'infile' not found.
+shellnado> outfile = (null)
+path_cmd = (null)
+cmd[0] = [outfile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> fds = 0x1e83a48
+path_cmd = (null)
+cmd[0] = [fds]	cmd[1] = [=]	cmd[2] = [0x1e83a48]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'fds' not found.
+shellnado> envp = 0x1e83a50
+path_cmd = (null)
+cmd[0] = [envp]	cmd[1] = [=]	cmd[2] = [0x1e83a50]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'envp' not found.
+shellnado> builtin = 0
+path_cmd = (null)
+cmd[0] = [builtin]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_file = 0
+path_cmd = (null)
+cmd[0] = [in_file]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_pipe = 0
+path_cmd = (null)
+cmd[0] = [in_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_append = 0
+path_cmd = (null)
+cmd[0] = [out_append]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_trunc = 0
+path_cmd = (null)
+cmd[0] = [out_trunc]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_pipe = 0
+path_cmd = (null)
+cmd[0] = [out_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> next = (nil)
+path_cmd = (null)
+cmd[0] = [next]	cmd[1] = [=]	cmd[2] = [(nil)]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'next' not found.
+shellnado> 
+shellnado> Command 'objs' not found.
+path_cmd = (null)
+cmd[0] = [Command]	cmd[1] = [']	cmd[2] = [objs]	cmd[3] = [']	cmd[4] = [not]	cmd[5] = [found.]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> shellnado> src
+path_cmd = (null)
+cmd[0] = [shellnado]	
+infile = (null)
+outfile = src
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 1
+out_pipe = 0
+next = (nil)
+
+shellnado: src: Is a directory
+shellnado> path_cmd = (null)
+path_cmd = (null)
+cmd[0] = [path_cmd]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> cmd[0] = [src]
+path_cmd = (null)
+cmd[0] = [cmd[0]]	cmd[1] = [=]	cmd[2] = [[src]]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'cmd[0]' not found.
+shellnado> infile = (null)
+path_cmd = (null)
+cmd[0] = [infile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'infile' not found.
+shellnado> outfile = (null)
+path_cmd = (null)
+cmd[0] = [outfile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> fds = 0x1e83a48
+path_cmd = (null)
+cmd[0] = [fds]	cmd[1] = [=]	cmd[2] = [0x1e83a48]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'fds' not found.
+shellnado> envp = 0x1e83a50
+path_cmd = (null)
+cmd[0] = [envp]	cmd[1] = [=]	cmd[2] = [0x1e83a50]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'envp' not found.
+shellnado> builtin = 0
+path_cmd = (null)
+cmd[0] = [builtin]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_file = 0
+path_cmd = (null)
+cmd[0] = [in_file]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x1e83a48
+envp = 0x1e83a50
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_pipe = 0
+path_cmd = (null)
+cmd[0] = [in_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_append = 0
+path_cmd = (null)
+cmd[0] = [out_append]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_trunc = 0
+path_cmd = (null)
+cmd[0] = [out_trunc]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_pipe = 0
+path_cmd = (null)
+cmd[0] = [out_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> next = (nil)
+path_cmd = (null)
+cmd[0] = [next]	cmd[1] = [=]	cmd[2] = [(nil)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'next' not found.
+shellnado> 
+shellnado> Command 'src' not found.
+path_cmd = (null)
+cmd[0] = [Command]	cmd[1] = [']	cmd[2] = [src]	cmd[3] = [']	cmd[4] = [not]	cmd[5] = [found.]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> shellnado> shellnado> inc
+path_cmd = (null)
+cmd[0] = [shellnado]	
+infile = (null)
+outfile = inc
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 1
+out_pipe = 0
+next = (nil)
+
+shellnado: inc: Is a directory
+shellnado> path_cmd = (null)
+path_cmd = (null)
+cmd[0] = [path_cmd]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> cmd[0] = [shellnado]
+path_cmd = (null)
+cmd[0] = [cmd[0]]	cmd[1] = [=]	cmd[2] = [[shellnado]]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'cmd[0]' not found.
+shellnado> infile = (null)
+path_cmd = (null)
+cmd[0] = [infile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'infile' not found.
+shellnado> outfile = inc
+path_cmd = (null)
+cmd[0] = [outfile]	cmd[1] = [=]	cmd[2] = [inc]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> fds = 0x2011a28
+path_cmd = (null)
+cmd[0] = [fds]	cmd[1] = [=]	cmd[2] = [0x2011a28]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'fds' not found.
+shellnado> envp = 0x2011a30
+path_cmd = (null)
+cmd[0] = [envp]	cmd[1] = [=]	cmd[2] = [0x2011a30]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'envp' not found.
+shellnado> builtin = 0
+path_cmd = (null)
+cmd[0] = [builtin]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_file = 0
+path_cmd = (null)
+cmd[0] = [in_file]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_pipe = 0
+path_cmd = (null)
+cmd[0] = [in_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_append = 0
+path_cmd = (null)
+cmd[0] = [out_append]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_trunc = 1
+path_cmd = (null)
+cmd[0] = [out_trunc]	cmd[1] = [=]	cmd[2] = [1]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_pipe = 0
+path_cmd = (null)
+cmd[0] = [out_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> next = (nil)
+path_cmd = (null)
+cmd[0] = [next]	cmd[1] = [=]	cmd[2] = [(nil)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'next' not found.
+shellnado> 
+shellnado> shellnado: inc: Is a directory
+path_cmd = (null)
+cmd[0] = [shellnado:]	cmd[1] = [inc:]	cmd[2] = [Is]	cmd[3] = [a]	cmd[4] = [directory]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> shellnado> path_cmd = (null)
+path_cmd = (null)
+cmd[0] = [shellnado]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = path_cmd
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 1
+out_pipe = 0
+next = (nil)
+
+shellnado: path_cmd: No such file or directory
+shellnado> path_cmd = (null)
+path_cmd = (null)
+cmd[0] = [path_cmd]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> cmd[0] = [path_cmd]cmd[1] = [=]cmd[2] = [(null)]
+path_cmd = (null)
+cmd[0] = [cmd[0]]	cmd[1] = [=]	cmd[2] = [[path_cmd]cmd[1]]	cmd[3] = [=]	cmd[4] = [[=]cmd[2]]	cmd[5] = [=]	cmd[6] = [[(null)]]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'cmd[0]' not found.
+shellnado> infile = (null)
+path_cmd = (null)
+cmd[0] = [infile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'infile' not found.
+shellnado> outfile = (null)
+path_cmd = (null)
+cmd[0] = [outfile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> fds = 0x2011a28
+path_cmd = (null)
+cmd[0] = [fds]	cmd[1] = [=]	cmd[2] = [0x2011a28]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'fds' not found.
+shellnado> envp = 0x2011a30
+path_cmd = (null)
+cmd[0] = [envp]	cmd[1] = [=]	cmd[2] = [0x2011a30]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'envp' not found.
+shellnado> builtin = 0
+path_cmd = (null)
+cmd[0] = [builtin]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_file = 0
+path_cmd = (null)
+cmd[0] = [in_file]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_pipe = 0
+path_cmd = (null)
+cmd[0] = [in_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_append = 0
+path_cmd = (null)
+cmd[0] = [out_append]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_trunc = 0
+path_cmd = (null)
+cmd[0] = [out_trunc]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_pipe = 0
+path_cmd = (null)
+cmd[0] = [out_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> next = (nil)
+path_cmd = (null)
+cmd[0] = [next]	cmd[1] = [=]	cmd[2] = [(nil)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'next' not found.
+shellnado> 
+shellnado> shellnado> cmd[0] = [inc]
+path_cmd = (null)
+cmd[0] = [shellnado]	cmd[1] = [=]	cmd[2] = [[inc]]	
+infile = (null)
+outfile = cmd[0]
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 1
+out_pipe = 0
+next = (nil)
+
+shellnado: cmd[0]: No such file or directory
+shellnado> path_cmd = (null)
+path_cmd = (null)
+cmd[0] = [path_cmd]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> cmd[0] = [cmd[0]]cmd[1] = [=]cmd[2] = [[inc]]
+path_cmd = (null)
+cmd[0] = [cmd[0]]	cmd[1] = [=]	cmd[2] = [[cmd[0]]cmd[1]]	cmd[3] = [=]	cmd[4] = [[=]cmd[2]]	cmd[5] = [=]	cmd[6] = [[[inc]]]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'cmd[0]' not found.
+shellnado> infile = (null)
+path_cmd = (null)
+cmd[0] = [infile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'infile' not found.
+shellnado> outfile = (null)
+path_cmd = (null)
+cmd[0] = [outfile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> fds = 0x2011a28
+path_cmd = (null)
+cmd[0] = [fds]	cmd[1] = [=]	cmd[2] = [0x2011a28]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'fds' not found.
+shellnado> envp = 0x2011a30
+path_cmd = (null)
+cmd[0] = [envp]	cmd[1] = [=]	cmd[2] = [0x2011a30]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'envp' not found.
+shellnado> builtin = 0
+path_cmd = (null)
+cmd[0] = [builtin]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_file = 0
+path_cmd = (null)
+cmd[0] = [in_file]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_pipe = 0
+path_cmd = (null)
+cmd[0] = [in_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_append = 0
+path_cmd = (null)
+cmd[0] = [out_append]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_trunc = 0
+path_cmd = (null)
+cmd[0] = [out_trunc]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_pipe = 0
+path_cmd = (null)
+cmd[0] = [out_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> next = (nil)
+path_cmd = (null)
+cmd[0] = [next]	cmd[1] = [=]	cmd[2] = [(nil)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'next' not found.
+shellnado> 
+shellnado> Command 'cmd[0]' not found.
+path_cmd = (null)
+cmd[0] = [Command]	cmd[1] = [']	cmd[2] = [cmd[0]]	cmd[3] = [']	cmd[4] = [not]	cmd[5] = [found.]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> shellnado> infile = (null)
+path_cmd = (null)
+cmd[0] = [shellnado]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = infile
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 1
+out_pipe = 0
+next = (nil)
+
+shellnado: infile: No such file or directory
+shellnado> path_cmd = (null)
+path_cmd = (null)
+cmd[0] = [path_cmd]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> cmd[0] = [infile]cmd[1] = [=]cmd[2] = [(null)]
+path_cmd = (null)
+cmd[0] = [cmd[0]]	cmd[1] = [=]	cmd[2] = [[infile]cmd[1]]	cmd[3] = [=]	cmd[4] = [[=]cmd[2]]	cmd[5] = [=]	cmd[6] = [[(null)]]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'cmd[0]' not found.
+shellnado> infile = (null)
+path_cmd = (null)
+cmd[0] = [infile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'infile' not found.
+shellnado> outfile = (null)
+path_cmd = (null)
+cmd[0] = [outfile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> fds = 0x2011a28
+path_cmd = (null)
+cmd[0] = [fds]	cmd[1] = [=]	cmd[2] = [0x2011a28]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'fds' not found.
+shellnado> envp = 0x2011a30
+path_cmd = (null)
+cmd[0] = [envp]	cmd[1] = [=]	cmd[2] = [0x2011a30]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'envp' not found.
+shellnado> builtin = 0
+path_cmd = (null)
+cmd[0] = [builtin]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_file = 0
+path_cmd = (null)
+cmd[0] = [in_file]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_pipe = 0
+path_cmd = (null)
+cmd[0] = [in_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_append = 0
+path_cmd = (null)
+cmd[0] = [out_append]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_trunc = 0
+path_cmd = (null)
+cmd[0] = [out_trunc]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_pipe = 0
+path_cmd = (null)
+cmd[0] = [out_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> next = (nil)
+path_cmd = (null)
+cmd[0] = [next]	cmd[1] = [=]	cmd[2] = [(nil)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'next' not found.
+shellnado> 
+shellnado> Command 'infile' not found.
+path_cmd = (null)
+cmd[0] = [Command]	cmd[1] = [']	cmd[2] = [infile]	cmd[3] = [']	cmd[4] = [not]	cmd[5] = [found.]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> shellnado> outfile = (null)
+path_cmd = (null)
+cmd[0] = [shellnado]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = outfile
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 1
+out_pipe = 0
+next = (nil)
+
+shellnado: outfile: No such file or directory
+shellnado> path_cmd = (null)
+path_cmd = (null)
+cmd[0] = [path_cmd]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> cmd[0] = [outfile]cmd[1] = [=]cmd[2] = [(null)]
+path_cmd = (null)
+cmd[0] = [cmd[0]]	cmd[1] = [=]	cmd[2] = [[outfile]cmd[1]]	cmd[3] = [=]	cmd[4] = [[=]cmd[2]]	cmd[5] = [=]	cmd[6] = [[(null)]]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'cmd[0]' not found.
+shellnado> infile = (null)
+path_cmd = (null)
+cmd[0] = [infile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'infile' not found.
+shellnado> outfile = (null)
+path_cmd = (null)
+cmd[0] = [outfile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> fds = 0x2011a28
+path_cmd = (null)
+cmd[0] = [fds]	cmd[1] = [=]	cmd[2] = [0x2011a28]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'fds' not found.
+shellnado> envp = 0x2011a30
+path_cmd = (null)
+cmd[0] = [envp]	cmd[1] = [=]	cmd[2] = [0x2011a30]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'envp' not found.
+shellnado> builtin = 0
+path_cmd = (null)
+cmd[0] = [builtin]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_file = 0
+path_cmd = (null)
+cmd[0] = [in_file]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_pipe = 0
+path_cmd = (null)
+cmd[0] = [in_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_append = 0
+path_cmd = (null)
+cmd[0] = [out_append]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_trunc = 0
+path_cmd = (null)
+cmd[0] = [out_trunc]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_pipe = 0
+path_cmd = (null)
+cmd[0] = [out_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> next = (nil)
+path_cmd = (null)
+cmd[0] = [next]	cmd[1] = [=]	cmd[2] = [(nil)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'next' not found.
+shellnado> 
+shellnado> shellnado> fds = 0x2011a28
+path_cmd = (null)
+cmd[0] = [shellnado]	cmd[1] = [=]	cmd[2] = [0x2011a28]	
+infile = (null)
+outfile = fds
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 1
+out_pipe = 0
+next = (nil)
+
+shellnado: fds: No such file or directory
+shellnado> path_cmd = (null)
+path_cmd = (null)
+cmd[0] = [path_cmd]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> cmd[0] = [fds]cmd[1] = [=]cmd[2] = [0x2011a28]
+path_cmd = (null)
+cmd[0] = [cmd[0]]	cmd[1] = [=]	cmd[2] = [[fds]cmd[1]]	cmd[3] = [=]	cmd[4] = [[=]cmd[2]]	cmd[5] = [=]	cmd[6] = [[0x2011a28]]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'cmd[0]' not found.
+shellnado> infile = (null)
+path_cmd = (null)
+cmd[0] = [infile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'infile' not found.
+shellnado> outfile = (null)
+path_cmd = (null)
+cmd[0] = [outfile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> fds = 0x2011a28
+path_cmd = (null)
+cmd[0] = [fds]	cmd[1] = [=]	cmd[2] = [0x2011a28]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'fds' not found.
+shellnado> envp = 0x2011a30
+path_cmd = (null)
+cmd[0] = [envp]	cmd[1] = [=]	cmd[2] = [0x2011a30]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'envp' not found.
+shellnado> builtin = 0
+path_cmd = (null)
+cmd[0] = [builtin]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_file = 0
+path_cmd = (null)
+cmd[0] = [in_file]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_pipe = 0
+path_cmd = (null)
+cmd[0] = [in_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_append = 0
+path_cmd = (null)
+cmd[0] = [out_append]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_trunc = 0
+path_cmd = (null)
+cmd[0] = [out_trunc]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_pipe = 0
+path_cmd = (null)
+cmd[0] = [out_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> next = (nil)
+path_cmd = (null)
+cmd[0] = [next]	cmd[1] = [=]	cmd[2] = [(nil)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'next' not found.
+shellnado> 
+shellnado> Command 'fds' not found.
+path_cmd = (null)
+cmd[0] = [Command]	cmd[1] = [']	cmd[2] = [fds]	cmd[3] = [']	cmd[4] = [not]	cmd[5] = [found.]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> shellnado> envp = 0x2011a30
+path_cmd = (null)
+cmd[0] = [shellnado]	cmd[1] = [=]	cmd[2] = [0x2011a30]	
+infile = (null)
+outfile = envp
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 1
+out_pipe = 0
+next = (nil)
+
+shellnado: envp: No such file or directory
+shellnado> path_cmd = (null)
+path_cmd = (null)
+cmd[0] = [path_cmd]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> cmd[0] = [envp]cmd[1] = [=]cmd[2] = [0x2011a30]
+path_cmd = (null)
+cmd[0] = [cmd[0]]	cmd[1] = [=]	cmd[2] = [[envp]cmd[1]]	cmd[3] = [=]	cmd[4] = [[=]cmd[2]]	cmd[5] = [=]	cmd[6] = [[0x2011a30]]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'cmd[0]' not found.
+shellnado> infile = (null)
+path_cmd = (null)
+cmd[0] = [infile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'infile' not found.
+shellnado> outfile = (null)
+path_cmd = (null)
+cmd[0] = [outfile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> fds = 0x2011a28
+path_cmd = (null)
+cmd[0] = [fds]	cmd[1] = [=]	cmd[2] = [0x2011a28]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'fds' not found.
+shellnado> envp = 0x2011a30
+path_cmd = (null)
+cmd[0] = [envp]	cmd[1] = [=]	cmd[2] = [0x2011a30]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'envp' not found.
+shellnado> builtin = 0
+path_cmd = (null)
+cmd[0] = [builtin]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_file = 0
+path_cmd = (null)
+cmd[0] = [in_file]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_pipe = 0
+path_cmd = (null)
+cmd[0] = [in_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_append = 0
+path_cmd = (null)
+cmd[0] = [out_append]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_trunc = 0
+path_cmd = (null)
+cmd[0] = [out_trunc]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_pipe = 0
+path_cmd = (null)
+cmd[0] = [out_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> next = (nil)
+path_cmd = (null)
+cmd[0] = [next]	cmd[1] = [=]	cmd[2] = [(nil)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'next' not found.
+shellnado> 
+shellnado> Command 'envp' not found.
+path_cmd = (null)
+cmd[0] = [Command]	cmd[1] = [']	cmd[2] = [envp]	cmd[3] = [']	cmd[4] = [not]	cmd[5] = [found.]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> shellnado> builtin = 0
+path_cmd = (null)
+cmd[0] = [shellnado]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = builtin
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 1
+out_pipe = 0
+next = (nil)
+
+shellnado: builtin: No such file or directory
+shellnado> path_cmd = (null)
+path_cmd = (null)
+cmd[0] = [path_cmd]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> cmd[0] = [builtin]cmd[1] = [=]cmd[2] = [0]
+path_cmd = (null)
+cmd[0] = [cmd[0]]	cmd[1] = [=]	cmd[2] = [[builtin]cmd[1]]	cmd[3] = [=]	cmd[4] = [[=]cmd[2]]	cmd[5] = [=]	cmd[6] = [[0]]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'cmd[0]' not found.
+shellnado> infile = (null)
+path_cmd = (null)
+cmd[0] = [infile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'infile' not found.
+shellnado> outfile = (null)
+path_cmd = (null)
+cmd[0] = [outfile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> fds = 0x2011a28
+path_cmd = (null)
+cmd[0] = [fds]	cmd[1] = [=]	cmd[2] = [0x2011a28]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'fds' not found.
+shellnado> envp = 0x2011a30
+path_cmd = (null)
+cmd[0] = [envp]	cmd[1] = [=]	cmd[2] = [0x2011a30]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'envp' not found.
+shellnado> builtin = 0
+path_cmd = (null)
+cmd[0] = [builtin]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_file = 0
+path_cmd = (null)
+cmd[0] = [in_file]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_pipe = 0
+path_cmd = (null)
+cmd[0] = [in_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_append = 0
+path_cmd = (null)
+cmd[0] = [out_append]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_trunc = 0
+path_cmd = (null)
+cmd[0] = [out_trunc]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_pipe = 0
+path_cmd = (null)
+cmd[0] = [out_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> next = (nil)
+path_cmd = (null)
+cmd[0] = [next]	cmd[1] = [=]	cmd[2] = [(nil)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'next' not found.
+shellnado> 
+shellnado> shellnado> in_file = 0
+path_cmd = (null)
+cmd[0] = [shellnado]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = in_file
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 1
+out_pipe = 0
+next = (nil)
+
+shellnado: in_file: No such file or directory
+shellnado> path_cmd = (null)
+path_cmd = (null)
+cmd[0] = [path_cmd]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> cmd[0] = [in_file]cmd[1] = [=]cmd[2] = [0]
+path_cmd = (null)
+cmd[0] = [cmd[0]]	cmd[1] = [=]	cmd[2] = [[in_file]cmd[1]]	cmd[3] = [=]	cmd[4] = [[=]cmd[2]]	cmd[5] = [=]	cmd[6] = [[0]]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'cmd[0]' not found.
+shellnado> infile = (null)
+path_cmd = (null)
+cmd[0] = [infile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'infile' not found.
+shellnado> outfile = (null)
+path_cmd = (null)
+cmd[0] = [outfile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> fds = 0x2011a28
+path_cmd = (null)
+cmd[0] = [fds]	cmd[1] = [=]	cmd[2] = [0x2011a28]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'fds' not found.
+shellnado> envp = 0x2011a30
+path_cmd = (null)
+cmd[0] = [envp]	cmd[1] = [=]	cmd[2] = [0x2011a30]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'envp' not found.
+shellnado> builtin = 0
+path_cmd = (null)
+cmd[0] = [builtin]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_file = 0
+path_cmd = (null)
+cmd[0] = [in_file]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_pipe = 0
+path_cmd = (null)
+cmd[0] = [in_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_append = 0
+path_cmd = (null)
+cmd[0] = [out_append]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_trunc = 0
+path_cmd = (null)
+cmd[0] = [out_trunc]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_pipe = 0
+path_cmd = (null)
+cmd[0] = [out_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> next = (nil)
+path_cmd = (null)
+cmd[0] = [next]	cmd[1] = [=]	cmd[2] = [(nil)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'next' not found.
+shellnado> 
+shellnado> shellnado> in_pipe = 0
+path_cmd = (null)
+cmd[0] = [shellnado]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = in_pipe
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 1
+out_pipe = 0
+next = (nil)
+
+shellnado: in_pipe: No such file or directory
+shellnado> path_cmd = (null)
+path_cmd = (null)
+cmd[0] = [path_cmd]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> cmd[0] = [in_pipe]cmd[1] = [=]cmd[2] = [0]
+path_cmd = (null)
+cmd[0] = [cmd[0]]	cmd[1] = [=]	cmd[2] = [[in_pipe]cmd[1]]	cmd[3] = [=]	cmd[4] = [[=]cmd[2]]	cmd[5] = [=]	cmd[6] = [[0]]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'cmd[0]' not found.
+shellnado> infile = (null)
+path_cmd = (null)
+cmd[0] = [infile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'infile' not found.
+shellnado> outfile = (null)
+path_cmd = (null)
+cmd[0] = [outfile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> fds = 0x2011a28
+path_cmd = (null)
+cmd[0] = [fds]	cmd[1] = [=]	cmd[2] = [0x2011a28]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'fds' not found.
+shellnado> envp = 0x2011a30
+path_cmd = (null)
+cmd[0] = [envp]	cmd[1] = [=]	cmd[2] = [0x2011a30]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'envp' not found.
+shellnado> builtin = 0
+path_cmd = (null)
+cmd[0] = [builtin]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_file = 0
+path_cmd = (null)
+cmd[0] = [in_file]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_pipe = 0
+path_cmd = (null)
+cmd[0] = [in_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_append = 0
+path_cmd = (null)
+cmd[0] = [out_append]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_trunc = 0
+path_cmd = (null)
+cmd[0] = [out_trunc]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_pipe = 0
+path_cmd = (null)
+cmd[0] = [out_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> next = (nil)
+path_cmd = (null)
+cmd[0] = [next]	cmd[1] = [=]	cmd[2] = [(nil)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'next' not found.
+shellnado> 
+shellnado> shellnado> out_append = 0
+path_cmd = (null)
+cmd[0] = [shellnado]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = out_append
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 1
+out_pipe = 0
+next = (nil)
+
+shellnado: out_append: No such file or directory
+shellnado> path_cmd = (null)
+path_cmd = (null)
+cmd[0] = [path_cmd]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> cmd[0] = [out_append]cmd[1] = [=]cmd[2] = [0]
+path_cmd = (null)
+cmd[0] = [cmd[0]]	cmd[1] = [=]	cmd[2] = [[out_append]cmd[1]]	cmd[3] = [=]	cmd[4] = [[=]cmd[2]]	cmd[5] = [=]	cmd[6] = [[0]]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'cmd[0]' not found.
+shellnado> infile = (null)
+path_cmd = (null)
+cmd[0] = [infile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'infile' not found.
+shellnado> outfile = (null)
+path_cmd = (null)
+cmd[0] = [outfile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> fds = 0x2011a28
+path_cmd = (null)
+cmd[0] = [fds]	cmd[1] = [=]	cmd[2] = [0x2011a28]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'fds' not found.
+shellnado> envp = 0x2011a30
+path_cmd = (null)
+cmd[0] = [envp]	cmd[1] = [=]	cmd[2] = [0x2011a30]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'envp' not found.
+shellnado> builtin = 0
+path_cmd = (null)
+cmd[0] = [builtin]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_file = 0
+path_cmd = (null)
+cmd[0] = [in_file]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_pipe = 0
+path_cmd = (null)
+cmd[0] = [in_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_append = 0
+path_cmd = (null)
+cmd[0] = [out_append]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_trunc = 0
+path_cmd = (null)
+cmd[0] = [out_trunc]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_pipe = 0
+path_cmd = (null)
+cmd[0] = [out_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> next = (nil)
+path_cmd = (null)
+cmd[0] = [next]	cmd[1] = [=]	cmd[2] = [(nil)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'next' not found.
+shellnado> 
+shellnado> shellnado> out_trunc = 0
+path_cmd = (null)
+cmd[0] = [shellnado]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = out_trunc
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 1
+out_pipe = 0
+next = (nil)
+
+shellnado: out_trunc: No such file or directory
+shellnado> path_cmd = (null)
+path_cmd = (null)
+cmd[0] = [path_cmd]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> cmd[0] = [out_trunc]cmd[1] = [=]cmd[2] = [0]
+path_cmd = (null)
+cmd[0] = [cmd[0]]	cmd[1] = [=]	cmd[2] = [[out_trunc]cmd[1]]	cmd[3] = [=]	cmd[4] = [[=]cmd[2]]	cmd[5] = [=]	cmd[6] = [[0]]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'cmd[0]' not found.
+shellnado> infile = (null)
+path_cmd = (null)
+cmd[0] = [infile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'infile' not found.
+shellnado> outfile = (null)
+path_cmd = (null)
+cmd[0] = [outfile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> fds = 0x2011a28
+path_cmd = (null)
+cmd[0] = [fds]	cmd[1] = [=]	cmd[2] = [0x2011a28]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'fds' not found.
+shellnado> envp = 0x2011a30
+path_cmd = (null)
+cmd[0] = [envp]	cmd[1] = [=]	cmd[2] = [0x2011a30]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'envp' not found.
+shellnado> builtin = 0
+path_cmd = (null)
+cmd[0] = [builtin]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_file = 0
+path_cmd = (null)
+cmd[0] = [in_file]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_pipe = 0
+path_cmd = (null)
+cmd[0] = [in_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_append = 0
+path_cmd = (null)
+cmd[0] = [out_append]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_trunc = 0
+path_cmd = (null)
+cmd[0] = [out_trunc]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_pipe = 0
+path_cmd = (null)
+cmd[0] = [out_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> next = (nil)
+path_cmd = (null)
+cmd[0] = [next]	cmd[1] = [=]	cmd[2] = [(nil)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'next' not found.
+shellnado> 
+shellnado> shellnado> out_pipe = 0
+path_cmd = (null)
+cmd[0] = [shellnado]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = out_pipe
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 1
+out_pipe = 0
+next = (nil)
+
+shellnado: out_pipe: No such file or directory
+shellnado> path_cmd = (null)
+path_cmd = (null)
+cmd[0] = [path_cmd]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> cmd[0] = [out_pipe]cmd[1] = [=]cmd[2] = [0]
+path_cmd = (null)
+cmd[0] = [cmd[0]]	cmd[1] = [=]	cmd[2] = [[out_pipe]cmd[1]]	cmd[3] = [=]	cmd[4] = [[=]cmd[2]]	cmd[5] = [=]	cmd[6] = [[0]]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'cmd[0]' not found.
+shellnado> infile = (null)
+path_cmd = (null)
+cmd[0] = [infile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'infile' not found.
+shellnado> outfile = (null)
+path_cmd = (null)
+cmd[0] = [outfile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> fds = 0x2011a28
+path_cmd = (null)
+cmd[0] = [fds]	cmd[1] = [=]	cmd[2] = [0x2011a28]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'fds' not found.
+shellnado> envp = 0x2011a30
+path_cmd = (null)
+cmd[0] = [envp]	cmd[1] = [=]	cmd[2] = [0x2011a30]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'envp' not found.
+shellnado> builtin = 0
+path_cmd = (null)
+cmd[0] = [builtin]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_file = 0
+path_cmd = (null)
+cmd[0] = [in_file]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_pipe = 0
+path_cmd = (null)
+cmd[0] = [in_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_append = 0
+path_cmd = (null)
+cmd[0] = [out_append]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_trunc = 0
+path_cmd = (null)
+cmd[0] = [out_trunc]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_pipe = 0
+path_cmd = (null)
+cmd[0] = [out_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> next = (nil)
+path_cmd = (null)
+cmd[0] = [next]	cmd[1] = [=]	cmd[2] = [(nil)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'next' not found.
+shellnado> 
+shellnado> shellnado> next = (nil)
+path_cmd = (null)
+cmd[0] = [shellnado]	cmd[1] = [=]	cmd[2] = [(nil)]	
+infile = (null)
+outfile = next
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 1
+out_pipe = 0
+next = (nil)
+
+shellnado: next: No such file or directory
+shellnado> path_cmd = (null)
+path_cmd = (null)
+cmd[0] = [path_cmd]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> cmd[0] = [next]cmd[1] = [=]cmd[2] = [(nil)]
+path_cmd = (null)
+cmd[0] = [cmd[0]]	cmd[1] = [=]	cmd[2] = [[next]cmd[1]]	cmd[3] = [=]	cmd[4] = [[=]cmd[2]]	cmd[5] = [=]	cmd[6] = [[(nil)]]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'cmd[0]' not found.
+shellnado> infile = (null)
+path_cmd = (null)
+cmd[0] = [infile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'infile' not found.
+shellnado> outfile = (null)
+path_cmd = (null)
+cmd[0] = [outfile]	cmd[1] = [=]	cmd[2] = [(null)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> fds = 0x2011a28
+path_cmd = (null)
+cmd[0] = [fds]	cmd[1] = [=]	cmd[2] = [0x2011a28]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'fds' not found.
+shellnado> envp = 0x2011a30
+path_cmd = (null)
+cmd[0] = [envp]	cmd[1] = [=]	cmd[2] = [0x2011a30]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'envp' not found.
+shellnado> builtin = 0
+path_cmd = (null)
+cmd[0] = [builtin]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_file = 0
+path_cmd = (null)
+cmd[0] = [in_file]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> in_pipe = 0
+path_cmd = (null)
+cmd[0] = [in_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_append = 0
+path_cmd = (null)
+cmd[0] = [out_append]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_trunc = 0
+path_cmd = (null)
+cmd[0] = [out_trunc]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> out_pipe = 0
+path_cmd = (null)
+cmd[0] = [out_pipe]	cmd[1] = [=]	cmd[2] = [0]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> next = (nil)
+path_cmd = (null)
+cmd[0] = [next]	cmd[1] = [=]	cmd[2] = [(nil)]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+Command 'next' not found.
+shellnado> 
+shellnado> Command 'next' not found.
+path_cmd = (null)
+cmd[0] = [Command]	cmd[1] = [']	cmd[2] = [next]	cmd[3] = [']	cmd[4] = [not]	cmd[5] = [found.]	
+infile = (null)
+outfile = (null)
+fds = 0x2011a28
+envp = 0x2011a30
+builtin = 0
+in_file = 0
+in_pipe = 0
+out_append = 0
+out_trunc = 0
+out_pipe = 0
+next = (nil)
+
+shellnado> shellnado> 

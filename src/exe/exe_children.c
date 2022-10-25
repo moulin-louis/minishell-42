@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 08:23:18 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/25 11:52:50 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/25 14:36:08 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,16 @@ static int	build_path(t_cati **mini, t_cati *node)
 	while (tmp)
 	{
 		if (ut_strcmp(tmp->var[0], "PATH"))
+		{
+			paths = ut_split_char(tmp->var[1], ':');
+			if (!paths)
+			{
+				printf("Malloc error while buildiing paths\n");
+				full_exit(mini, 1);
+			}
 			break ;
+		}
 		tmp = tmp->next;
-	}
-	paths = ut_split_sep(tmp->var[1], ':');
-	if (!paths)
-	{
-		printf("Malloc error while buildiing paths\n");
-		full_exit(mini, 1);
 	}
 	i = -1;
 	while (paths[++i])

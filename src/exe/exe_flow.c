@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 09:30:58 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/25 09:20:55 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/25 14:41:44 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <string.h>
+#include <wait.h>
 
 static void	error_msg(char *str)
 {
@@ -72,7 +73,9 @@ int	first_fork(t_cati **mini, t_cati *node)
 	if (node->builtin && !node->out_pipe)
 		return (exe_bi_launcher(mini, node));
 	else
-		exe_child(mini, node);
+		if (!fork())
+			exe_child(mini, node);
+	wait(0);
 	return (0);
 }
 
@@ -82,6 +85,8 @@ int	second_fork(t_cati **mini, t_cati *node)
 	if (node->builtin && !node->out_pipe)
 		return (exe_bi_launcher(mini, node));
 	else
-		exe_child(mini, node);
+		if (!fork())
+			exe_child(mini, node);
+	wait(0);
 	return (0);
 }
