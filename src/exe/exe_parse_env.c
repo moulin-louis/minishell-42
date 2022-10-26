@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 11:53:46 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/21 08:27:42 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/26 09:03:11 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ char	**exe_parse_env(t_cati **mini)
 	if (!arr)
 	{
 		printf("Malloc error when parsing environement\n");
-		clean_mini(mini);
-		exit(2);
+		full_exit(mini, 2);
 	}
 	i = 0;
 	while (tmp)

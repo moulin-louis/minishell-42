@@ -6,12 +6,13 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:09:43 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/19 10:59:33 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/26 10:52:24 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 static int	len(char *s)
 {
@@ -36,7 +37,7 @@ char	*ut_strjoin(char *s1, char *s2)
 	ls2 = len(s2);
 	str = ut_calloc(ls1 + ls2 + 1, 1);
 	if (!str)
-		return (NULL);
+		return (printf("Malloc error in strjoin\n"), NULL);
 	i = -1;
 	if (s1)
 		while (s1[++i])

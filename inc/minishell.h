@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/25 11:51:13 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/26 12:09:14 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,13 @@
 
 # include <unistd.h>
 
-typedef struct s_fds {
+typedef struct s_fds
+{
 	int		pfd_1[2];
 	int		pfd_2[2];
 	int		in_fd;
 	int		out_fd;
-	pid_t	frst;
-	pid_t	scnd;
-	int		status;
 	int		ret;
-	int		chkfst;
-	int		chkscd;
 }			t_fds;
 
 typedef struct s_envp
@@ -34,7 +30,8 @@ typedef struct s_envp
 	struct s_envp	*next;
 }				t_envp;
 
-typedef struct s_cati {
+typedef struct s_cati
+{
 	char			**cmd;
 	char			**ev;
 	char			*path_cmd;
@@ -51,7 +48,8 @@ typedef struct s_cati {
 	struct s_cati	*next;
 }				t_cati;
 
-typedef struct s_tok {
+typedef struct s_tok
+{
 	char			*str;
 	struct s_tok	*next;
 }				t_tok;
@@ -70,7 +68,7 @@ void	ut_clean_parsing_n_quit(t_cati **mini, t_tok **lst, int error);
 void	*ut_calloc(int nb, int sz);
 char	*ut_gnl(int fd);
 char	**ut_split(char *str);
-char	**ut_split_sep(char *str, char c);
+char	**ut_split_char(char *str, char c);
 int		ut_strcmp(char *s1, char *s2);
 char	*ut_strcpy(char *s2);
 char	*ut_strjoin(char *s1, char *s2);
@@ -133,11 +131,10 @@ void	heredoc_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini);
 
 /* Execute */
 int		execute(t_cati **mini);
+int		exec_cmd(t_cati **mini, t_cati *node);
 int		exe_bi_launcher(t_cati **mini, t_cati *node);
 char	**exe_parse_env(t_cati **mini);
-void	exe_child(t_cati **mini, t_cati *node);
-int		first_fork(t_cati **mini, t_cati *node);
-int		second_fork(t_cati **mini, t_cati *node);
+void	set_path_cmd(t_cati **mini, t_cati *node);
 
 /* UTILITAIRE TEMP */
 void	printfmini(t_cati *mini);

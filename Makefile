@@ -6,7 +6,7 @@
 #    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/26 14:46:33 by loumouli         ###   ########.fr        #
+#    Updated: 2022/10/26 16:22:58 by loumouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,11 +38,11 @@ C_FILES		= minishell.c					\
 			  bi/bi_unset.c					\
 			  ev/ev_build_env.c				\
 			  ev/ev_build_env2.c			\
-			  exe/exe_children.c			\
 			  exe/exe_execute.c				\
 			  exe/exe_flow.c				\
 			  exe/exe_launcher.c			\
 			  exe/exe_parse_env.c			\
+			  exe/exe_set_path_cmd.c		\
 			  pa/pa_expand.c				\
 			  pa/pa_heredoc.c				\
 			  pa/pa_init_token.c			\

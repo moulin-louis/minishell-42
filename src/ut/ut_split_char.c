@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:15:26 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/25 10:51:45 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/25 14:26:53 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ static char	*do_the_split(char *s2, int len)
 	return (s1);
 }
 
-char	**ut_split_sep(char *str, char c)
+char	**ut_split_char(char *str, char c)
 {
 	char	**arr;
 	int		words;
