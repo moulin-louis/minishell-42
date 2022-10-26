@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/25 16:10:47 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/26 10:40:41 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 # include <unistd.h>
 
-typedef struct s_fds {
+typedef struct s_fds
+{
 	int		pfd_1[2];
 	int		pfd_2[2];
 	int		in_fd;
@@ -29,7 +30,8 @@ typedef struct s_envp
 	struct s_envp	*next;
 }				t_envp;
 
-typedef struct s_cati {
+typedef struct s_cati
+{
 	char			**cmd;
 	char			**ev;
 	char			*path_cmd;
@@ -46,7 +48,8 @@ typedef struct s_cati {
 	struct s_cati	*next;
 }				t_cati;
 
-typedef struct s_tok {
+typedef struct s_tok
+{
 	char			*str;
 	struct s_tok	*next;
 }				t_tok;
@@ -131,6 +134,7 @@ int		execute(t_cati **mini);
 int	exec_cmd(t_cati **mini, t_cati *node);
 int		exe_bi_launcher(t_cati **mini, t_cati *node);
 char	**exe_parse_env(t_cati **mini);
+void	set_path_cmd(t_cati **mini, t_cati *node);
 
 /* UTILITAIRE TEMP */
 void	printfmini(t_cati *mini);
