@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 12:04:37 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/26 16:16:22 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/26 16:40:34 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,21 +61,19 @@ void	tok_addback(t_tok **lst, t_tok *node)
 		*lst = node;
 		return ;
 	}
-	if (!node)
-		ut_clean_parsing_n_quit(mini, lst, 1);
 	temp = *lst;
 	while (temp->next)
 		temp = temp->next;
 	temp->next = node;
 }
 
-t_tok	*tok_new(char *str, t_cati **mini)
+t_tok	*tok_new(char *str, t_cati **mini, t_tok **lst)
 {
 	t_tok	*result;
 
 	if (!str)
-		return (NULL);
-	result = malloc(sizeof(t_tok));
+		ut_clean_parsing_n_quit(mini, lst, 1);
+	result = ut_calloc(1, sizeof(t_tok));
 	if (!result)
 		return (perror("Malloc :"), full_exit(mini, errno), NULL);
 	result->str = str;

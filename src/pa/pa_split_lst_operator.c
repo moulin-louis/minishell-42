@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:26:13 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/25 12:01:28 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/26 16:34:14 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	fill_lst(char **result, t_tok *node, t_cati **mini, t_tok **lst)
 	i = 0;
 	while (result[++i])
 	{
-		temp = tok_new(ut_strdup(result[i]), mini);
+		temp = tok_new(ut_strdup(result[i]), mini, lst);
 		temp2 = node->next;
 		node->next = temp;
 		temp->next = temp2;

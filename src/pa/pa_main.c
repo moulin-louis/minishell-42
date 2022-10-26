@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/26 15:34:36 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/26 16:38:40 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,38 @@
 /* TO DO :
 - FIX QUOTE DOUBLE QUOTE
 - IMPLEMENT EXPAND */
+void	printfmini(t_cati *mini);
+void	printflst(t_tok *lst);
+void	fill_node_of_pipe(t_cati *mini);
+void	fill_node_env(t_cati *mini);
+void	check_builtin(t_cati *mini);
+
+void	parsing(char *input, t_cati **mini)
+{
+	t_tok	*lst;
+
+	lst = init_token_list(input, mini);
+	//split_lst_operator(&lst, mini);
+	// expand_lst(&lst, mini, (*mini)->envp);
+	// parse_options(&lst, mini);
+	// fill_node_of_pipe(*mini);
+	// fill_node_env(*mini);
+	// check_builtin(*mini);
+	printflst(lst);
+	clean_tok(&lst);
+	//printfmini(*mini);
+	//execute(mini);
+	clean_mini(mini);
+}
+
+void	printflst(t_tok *lst)
+{
+	while (lst)
+	{
+		printf("%s\n", lst->str);
+		lst = lst->next;
+	}
+}
 
 void	printfmini(t_cati *mini)
 {
@@ -102,19 +134,3 @@ void	check_builtin(t_cati *mini)
 	}
 }
 
-void	parsing(char *input, t_cati **mini)
-{
-	t_tok	*lst;
-
-	lst = init_token_list(input, mini);
-	split_lst_operator(&lst, mini);
-	expand_lst(&lst, mini, (*mini)->envp);
-	parse_options(&lst, mini);
-	fill_node_of_pipe(*mini);
-	fill_node_env(*mini);
-	check_builtin(*mini);
-	clean_tok(&lst);
-	printfmini(*mini);
-	execute(mini);
-	clean_mini(mini);
-}

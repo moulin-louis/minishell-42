@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/26 12:09:14 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/26 16:33:22 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ t_cati	*mini_lstlast(t_cati *mini);
 int		tok_len(t_tok *lst);
 void	tok_delone(t_tok *node);
 void	tok_addback(t_tok **lst, t_tok *node);
-t_tok	*tok_new(char *str, t_cati **mini);
+t_tok	*tok_new(char *str, t_cati **mini, t_tok **lst);
 void	clean_tok(t_tok **lst);
 
 /* Environment */
