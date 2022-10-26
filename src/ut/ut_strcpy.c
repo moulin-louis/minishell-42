@@ -27,7 +27,7 @@ char	*ut_strcpy(char *s2)
 		len++;
 	s1 = ut_calloc(len + 1, 1);
 	if (!s1)
-		return (NULL);
+		return (printf("Malloc error in ut_strcpy\n"), NULL);
 	i = 0;
 	while (s2[i])
 	{
