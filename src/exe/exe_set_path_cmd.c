@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 10:39:44 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/26 13:31:59 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/26 16:05:51 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,10 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
+#include <errno.h>
+#include <string.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 
 static int	check_access(char **arr, t_cati **mini, t_cati *node)
 {
@@ -68,7 +72,8 @@ static int	parse_env_path(char **arr, t_cati **mini, t_cati *node)
 
 static int	explicit_path(t_cati **mini, t_cati *node)
 {
-	int	i;
+	int			i;
+	struct stat	buf;
 
 	i = -1;
 	while (node->cmd[0][++i])
@@ -78,10 +83,18 @@ static int	explicit_path(t_cati **mini, t_cati *node)
 			node->path_cmd = ut_strcpy(node->cmd[0]);
 			if (!node->path_cmd)
 				full_exit(mini, 1);
-			if (!access(node->path_cmd, R_OK || X_OK))
-				return (1);
-			printf("bash: %s: No such file or directory\n", node->cmd[0]);
-			full_exit(mini, 127);
+			stat(node->path_cmd, &buf);
+			if (S_ISDIR(buf.st_mode))
+			{
+				printf("shellnado: %s: Is a directory\n", node->path_cmd);
+				full_exit(mini, 126);
+			}
+			if (access(node->path_cmd, R_OK || X_OK))
+			{
+				printf("shellnado: %s: %s\n", node->cmd[0], strerror(errno));
+				full_exit(mini, errno);
+			}
+			return (1);
 		}
 	}
 	return (0);
@@ -92,6 +105,8 @@ void	set_path_cmd(t_cati **mini, t_cati *node)
 	char	**arr;
 
 	arr = NULL;
-	if (explicit_path(mini, node) || !parse_env_path(arr, mini, node))
+	if (explicit_path(mini, node))
 		return ;
+	parse_env_path(arr, mini, node);
+	clean_split(arr);
 }
