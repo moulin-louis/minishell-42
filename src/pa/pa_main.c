@@ -6,13 +6,17 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/25 12:16:47 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/26 15:34:36 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+/* TO DO :
+- FIX QUOTE DOUBLE QUOTE
+- IMPLEMENT EXPAND */
 
 void	printfmini(t_cati *mini)
 {
@@ -114,9 +118,3 @@ void	parsing(char *input, t_cati **mini)
 	execute(mini);
 	clean_mini(mini);
 }
-
-/*
-TO DO :
-- FIX QUOTE DOUBLE QUOTE
-- IMPLEMENT EXPAND
-*/

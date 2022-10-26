@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 12:04:37 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/24 14:05:19 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/26 16:16:22 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,8 @@ void	tok_addback(t_tok **lst, t_tok *node)
 		*lst = node;
 		return ;
 	}
+	if (!node)
+		ut_clean_parsing_n_quit(mini, lst, 1);
 	temp = *lst;
 	while (temp->next)
 		temp = temp->next;
