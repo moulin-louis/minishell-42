@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axldmg <axldmg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:19:57 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/21 10:01:51 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/27 21:25:52 by axldmg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,14 +78,16 @@ static void	change_oldpwd(t_cati *node)
 
 int	bi_cd(t_cati *node)
 {
+	g_status = 0;
 	if (!node->cmd || !node->cmd[1])
-		return (0);
+		return (g_status);
 	if (chdir(node->cmd[1]) == -1)
 	{
 		perror("shellnado: cd: ");
-		return (1);
+		g_status = 1;
+		return (g_status);
 	}
 	change_oldpwd(node);
 	change_newpwd(node);
-	return (0);
+	return (g_status);
 }
