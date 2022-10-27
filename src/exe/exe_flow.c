@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:20:08 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/26 12:28:36 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/27 09:45:51 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ int	exec_cmd(t_cati **mini, t_cati *node)
 	if (node->builtin)
 		return (exe_bi_launcher(mini, node));
 	node->ev = exe_parse_env(mini);
-	if (!fork())
+	node->fds->fstchld = fork();
+	if (!node->fds->fstchld)
 	{
 		set_path_cmd(mini, node);
 		if (!access(node->path_cmd, R_OK || X_OK))
@@ -29,6 +30,6 @@ int	exec_cmd(t_cati **mini, t_cati *node)
 		full_exit(mini, 127);
 	}
 	else
-		wait(0);
+		waitpid(node->fds->fstchld, &node->fds->status, 0);
 	return (0);
 }
