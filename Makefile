@@ -6,7 +6,7 @@
 #    By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/26 10:56:02 by bschoeff         ###   ########.fr        #
+#    Updated: 2022/10/27 13:16:39 by bschoeff         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ C_FILES		= minishell.c					\
 			  exe/exe_flow.c				\
 			  exe/exe_launcher.c			\
 			  exe/exe_parse_env.c			\
+			  exe/exe_set_fds.c				\
 			  exe/exe_set_path_cmd.c		\
 			  pa/pa_expand.c				\
 			  pa/pa_heredoc.c				\

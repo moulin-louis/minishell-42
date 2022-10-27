@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:53:11 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/27 12:27:47 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/27 12:40:38 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static void	init_pipes(t_cati **mini)
 	}
 }
 
-static void	close_pipes(t_cati **mini)
+void	close_pipes(t_cati **mini)
 {
 	close((*mini)->fds->pfd_1[0]);
 	close((*mini)->fds->pfd_1[1]);
