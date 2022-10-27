@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 11:20:35 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/27 09:26:52 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/27 09:45:12 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,12 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <errno.h>
+#include <sys/wait.h>
 
 static int	check_expand(t_cati *node)
 {
 	if (ut_strcmp(node->cmd[1], "$?"))
-		return (printf("%i\n", node->fds->status), 1);
+		return (printf("%i\n", WEXITSTATUS(node->fds->status)), 1);
 	return (0);
 }
 
