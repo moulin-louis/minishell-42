@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:53:11 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/27 13:33:22 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/27 14:37:51 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,28 +37,28 @@ void	close_pipes(t_cati **mini)
 
 int	execute(t_cati **mini)
 {
-	t_cati	*tmp;
-	int		xc_1;
-	int		xc_2;
+	t_cati	*node;
+	int		status;
 
-	tmp = *mini;
-	while (tmp)
+	node = *mini;
+	while (node)
 	{
-		xc_1 = 0;
-		xc_2 = 0;
 		init_pipes(mini);
-		xc_1 = exec_cmd_1(mini, tmp);
-		if (tmp->next)
-		{
-			tmp = tmp->next;
-			xc_2 = exec_cmd_2(mini, tmp);
-		}
-		tmp = tmp->next;
-		if (xc_1)
-			waitpid((*mini)->fds->fstchld, &g_status, 0);
-		if (xc_2)
-			waitpid((*mini)->fds->scdchld, &g_status, 0);
+		exec_cmd(mini, node);
 		close_pipes(mini);
+		node = node->next;
+	}
+	node = *mini;
+	while (node)
+	{
+		if (node->next)
+			waitpid(node->pid, &status, 0);
+		else
+		{
+			waitpid(node->fds->last, &status, 0);
+			g_status = WEXITSTATUS(status);
+		}
+		node = node->next;
 	}
 	return (0);
 }

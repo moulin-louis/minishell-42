@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/27 13:31:22 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/27 14:31:26 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ typedef struct s_fds
 {
 	int		pfd_1[2];
 	int		pfd_2[2];
-	pid_t	fstchld;
-	pid_t	scdchld;
+	pid_t	last;
 	int		ret;
 }			t_fds;
 
@@ -51,6 +50,7 @@ typedef struct s_cati
 	int				out_append;
 	int				out_trunc;
 	struct stat		buff;
+	pid_t			pid;
 	struct s_cati	*next;
 }				t_cati;
 
@@ -139,8 +139,7 @@ void	heredoc_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini);
 int		execute(t_cati **mini);
 void	close_pipes(t_cati **mini);
 void	set_fds(t_cati **mini, t_cati *node);
-int		exec_cmd_1(t_cati **mini, t_cati *node);
-int		exec_cmd_2(t_cati **mini, t_cati *node);
+int		exec_cmd(t_cati **mini, t_cati *node);
 int		exe_bi_launcher(t_cati **mini, t_cati *node);
 char	**exe_parse_env(t_cati **mini);
 void	set_path_cmd(t_cati **mini, t_cati *node);
