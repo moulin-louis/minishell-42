@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:20:08 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/27 09:45:51 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/27 10:16:23 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ int	exec_cmd(t_cati **mini, t_cati *node)
 		printf("command '%s' not found\n", node->cmd[0]);
 		full_exit(mini, 127);
 	}
-	else
-		waitpid(node->fds->fstchld, &node->fds->status, 0);
+	waitpid(node->fds->fstchld, &node->fds->status, 0);
 	return (0);
 }
