@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/27 11:16:24 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/27 12:22:03 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 # define MINISHELL_H
 
 # include <unistd.h>
+# include <sys/types.h>
+# include <sys/stat.h>
 
 typedef struct s_fds
 {
 	int		pfd_1[2];
 	int		pfd_2[2];
-	int		in_fd;
-	int		out_fd;
 	pid_t	fstchld;
 	pid_t	scdchld;
 	int		status;
@@ -43,11 +43,14 @@ typedef struct s_cati
 	t_fds			*fds;
 	t_envp			*envp;
 	int				builtin;
+	int				in_fd;
+	int				out_fd;
 	int				in_file;
 	int				in_pipe;
 	int				out_pipe;
 	int				out_append;
 	int				out_trunc;
+	struct stat		buff;
 	struct s_cati	*next;
 }				t_cati;
 

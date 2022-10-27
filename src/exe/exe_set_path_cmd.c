@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 10:39:44 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/27 10:28:35 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/27 11:40:53 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,8 @@ static int	parse_env_path(char **arr, t_cati **mini, t_cati *node)
 
 static void	explicit_path_checks(t_cati **mini, t_cati *node)
 {
-	struct stat	buff;
-
-	stat(node->path_cmd, &buff);
-	if (S_ISDIR(buff.st_mode))
+	stat(node->path_cmd, &node->buff);
+	if (S_ISDIR(node->buff.st_mode))
 	{
 		printf("shellnado: %s: Is a directory\n", node->path_cmd);
 		full_exit(mini, 126);
