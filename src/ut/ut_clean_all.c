@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:36:37 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/25 11:00:34 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/27 12:12:20 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,10 @@ void	clean_mini(t_cati **mini)
 			free(tmp->infile);
 		if (tmp->outfile)
 			free(tmp->outfile);
+		if (tmp->in_fd > 2)
+			close(tmp->in_fd);
+		if (tmp->out_fd > 2)
+			close(tmp->out_fd);
 		free(tmp);
 	}
 	unlink("/tmp/.heredoc.tmp");

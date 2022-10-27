@@ -46,4 +46,6 @@ test.c
 tester.c
 tester
 readline.sup
+infile
+outfile
 
