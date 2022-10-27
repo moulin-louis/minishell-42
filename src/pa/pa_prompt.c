@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:51:41 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/24 14:43:55 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/27 14:24:42 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,27 @@ static void	handle_sigint(int sig)
 	rl_redisplay();
 }
 
-void	ft_create_node(t_cati **mini, t_envp *envp, t_fds *fds)
+static void	ft_create_node(t_cati **mini, t_envp *envp, t_fds *fds)
 {
 	*mini = mini_lstnew();
 	(*mini)->envp = envp;
 	(*mini)->fds = fds;
+}
+
+static void	handle_sigquit(int sig, siginfo_t *info, void *context)
+{
+	(void)sig;
+	(void)context;
+	if (isatty(STDIN_FILENO))
+	{
+		rl_replace_line("", 0);
+		return ;
+	}
+	else
+	{
+		kill(info->si_pid, SIGKILL);
+		g_status = 131;
+	}
 }
 
 static void	setup_sig(void)
@@ -42,7 +58,8 @@ static void	setup_sig(void)
 	sa.sa_handler = &handle_sigint;
 	sa.sa_flags = SA_RESTART;
 	sigaction(SIGINT, &sa, NULL);
-	signal(SIGQUIT, SIG_IGN);
+	sa.sa_sigaction = handle_sigquit;
+	sigaction(SIGQUIT, &sa, NULL);
 }
 
 void	run_prompt(t_envp *envp, t_fds *fds)
