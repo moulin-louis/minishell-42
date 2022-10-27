@@ -6,7 +6,7 @@
 #    By: axldmg <axldmg@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/27 22:18:52 by axldmg           ###   ########.fr        #
+#    Updated: 2022/10/27 23:20:11 by axldmg           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,6 @@ C_FILES		= minishell.c					\
 			  bi/bi_unset.c					\
 			  ev/ev_build_env.c				\
 			  ev/ev_build_env2.c			\
-			  exe/exe_cmd.c					\
 			  exe/exe_execute.c				\
 			  exe/exe_flow.c				\
 			  exe/exe_launcher.c			\

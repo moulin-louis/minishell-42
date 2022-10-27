@@ -6,7 +6,7 @@
 /*   By: axldmg <axldmg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:53:11 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/27 22:10:02 by axldmg           ###   ########.fr       */
+/*   Updated: 2022/10/27 23:28:48 by axldmg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,22 @@ int	execute(t_cati **mini)
 		init_pipes(mini);
 		exec_node(mini, node);
 		close_pipes(mini);
+		node = node->next;
+	}
+	node = *mini;
+	while (node)
+	{
+		waitpid(node->pid, &node->fds->status, 0);
+		if (!node->next)
+		{
+			if (node->builtin)
+				g_status = node->fds->ret;
+			else
+			{
+				waitpid(node->pid, &node->fds->status, 0);
+				g_status = WEXITSTATUS(node->fds->status);
+			}
+		}
 		node = node->next;
 	}
 	return (0);
