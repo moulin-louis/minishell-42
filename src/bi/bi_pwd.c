@@ -6,7 +6,7 @@
 /*   By: axldmg <axldmg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 08:55:02 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/27 21:37:33 by axldmg           ###   ########.fr       */
+/*   Updated: 2022/10/27 22:05:13 by axldmg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,9 @@ int	bi_pwd(t_cati *node)
 	char	*buff;
 	size_t	size;
 
-	g_status = 0;
 	pwd = ft_getenv(node->envp);
 	if (pwd)
-		return (printf("%s\n", pwd), g_status);
+		return (printf("%s\n", pwd), 0);
 	else
 	{
 		size = 1;
@@ -49,6 +48,6 @@ int	bi_pwd(t_cati *node)
 			size++;
 			pwd = getcwd(buff, size);
 		}
-		return (printf("%s\n", pwd), free(pwd), g_status);
+		return (printf("%s\n", pwd), free(pwd), 0);
 	}
 }

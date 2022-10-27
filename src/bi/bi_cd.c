@@ -6,7 +6,7 @@
 /*   By: axldmg <axldmg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:19:57 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/27 21:25:52 by axldmg           ###   ########.fr       */
+/*   Updated: 2022/10/27 22:02:58 by axldmg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,16 +78,14 @@ static void	change_oldpwd(t_cati *node)
 
 int	bi_cd(t_cati *node)
 {
-	g_status = 0;
 	if (!node->cmd || !node->cmd[1])
-		return (g_status);
+		return (0);
 	if (chdir(node->cmd[1]) == -1)
 	{
 		perror("shellnado: cd: ");
-		g_status = 1;
-		return (g_status);
+		return (1);
 	}
 	change_oldpwd(node);
 	change_newpwd(node);
-	return (g_status);
+	return (0);
 }

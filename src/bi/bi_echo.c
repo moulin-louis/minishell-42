@@ -6,7 +6,7 @@
 /*   By: axldmg <axldmg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 11:20:35 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/27 20:57:43 by axldmg           ###   ########.fr       */
+/*   Updated: 2022/10/27 22:03:32 by axldmg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,6 @@
 #include <stdio.h>
 #include <errno.h>
 #include <sys/wait.h>
-
-static int	check_expand(t_cati *node)
-{
-	if (ut_strcmp(node->cmd[1], "$?"))
-		return (printf("%i\n", g_status), 1);
-	return (0);
-}
 
 static int	is_arg(char *str)
 {
@@ -71,11 +64,8 @@ int	bi_echo(t_cati *node)
 {
 	int	n_line;
 
-	g_status = 0;
-	if (check_expand(node))
-		return (g_status);
 	n_line = write_stuff(node);
 	if (n_line)
 		write(1, "\n", 1);
-	return (g_status);
+	return (0);
 }

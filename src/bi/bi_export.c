@@ -6,7 +6,7 @@
 /*   By: axldmg <axldmg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/27 21:40:59 by axldmg           ###   ########.fr       */
+/*   Updated: 2022/10/27 22:04:53 by axldmg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	already_exists(t_cati *node, char *str)
 	return (0);
 }
 
-static int	check_compliance(char *str)
+static int	check_compliance(t_cati *node, char *str)
 {
 	int		j;
 	int		k;
@@ -61,7 +61,6 @@ static int	check_compliance(char *str)
 	if (str[0] >= '0' && str[0] <= '9')
 	{
 		printf("shellnado: export: \"%s\": not a valid identifier\n", str);
-		g_status = 1;
 		return (0);
 	}
 	j = -1;
@@ -73,7 +72,7 @@ static int	check_compliance(char *str)
 		{
 			if (ref[k] == str[j])
 			{
-				g_status = 1;
+				node->fds->ret = 1;
 				printf("shellnado: export: \"%s\": not a valid identifier\n", str);
 				return (0);
 			}
@@ -86,23 +85,23 @@ int	bi_export(t_cati *node)
 {
 	int	i;
 
-	g_status = 0;
+	node->fds->ret = 0;
 	if (!node->cmd[1])
-		return (display_expt_ev(node), g_status);
+		return (display_expt_ev(node), node->fds->ret);
 	i = 0;
 	while (node->cmd[++i])
 	{
-		if (check_compliance(node->cmd[i]))
+		if (check_compliance(node, node->cmd[i]))
 		{
 			if (already_exists(node, node->cmd[i]))
 			{
 				if (!change_content(node, node->cmd[i]))
-					return (g_status);
+					return (node->fds->ret);
 			}
 			else
 				if (!do_the_expt(node, node->cmd[i]))
-					return (g_status);
+					return (node->fds->ret);
 		}
 	}
-	return (g_status);
+	return (node->fds->ret);
 }

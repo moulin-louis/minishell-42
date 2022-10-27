@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_execute.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axldmg <axldmg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:53:11 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/27 14:37:51 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/27 22:10:02 by axldmg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,26 +38,13 @@ void	close_pipes(t_cati **mini)
 int	execute(t_cati **mini)
 {
 	t_cati	*node;
-	int		status;
 
 	node = *mini;
 	while (node)
 	{
 		init_pipes(mini);
-		exec_cmd(mini, node);
+		exec_node(mini, node);
 		close_pipes(mini);
-		node = node->next;
-	}
-	node = *mini;
-	while (node)
-	{
-		if (node->next)
-			waitpid(node->pid, &status, 0);
-		else
-		{
-			waitpid(node->fds->last, &status, 0);
-			g_status = WEXITSTATUS(status);
-		}
 		node = node->next;
 	}
 	return (0);
