@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pa_init_token.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@>                       +#+  +:+       +#+        */
+/*   By: loumouli < loumouli@student.42.fr >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 10:41:05 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/26 23:41:54 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/27 19:40:15 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	split_token(char *str, int *i, t_tok **lst, t_cati **mini)
 {
 	int		x;
 	char	*temp;
-	
+
 	x = (*i);
 	while (str[x] && (str[x] != ' ' && str[x] != '\"' && str[x] != '\''))
 		x++;

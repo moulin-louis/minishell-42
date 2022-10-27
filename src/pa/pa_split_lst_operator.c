@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pa_split_lst_operator.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli < loumouli@student.42.fr >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:26:13 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/26 16:34:14 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/10/27 19:40:02 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void	fill_lst(char **result, t_tok *node, t_cati **mini, t_tok **lst)
 		temp2 = node->next;
 		node->next = temp;
 		temp->next = temp2;
+		node = node->next;
 	}
 }
 
@@ -67,7 +68,8 @@ static int	split_node(t_tok *node, t_cati **mini, t_tok **lst)
 		ut_clean_parsing_n_quit(mini, lst, errno);
 	fill_lst(result, node, mini, lst);
 	i = -1;
-	while (result[++i]);
+	while (result[++i])
+		;
 	clean_split(result);
 	return (i);
 }

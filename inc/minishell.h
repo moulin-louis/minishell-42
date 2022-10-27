@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli < loumouli@student.42.fr >        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/27 14:31:26 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/27 20:01:38 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int		ft_strncmp(const char *s1, const char *s2, int n);
 void	ft_bzero(void *s, int n);
 char	**extract_sep(char *str);
 int		ut_within_long(char *str);
+char	*ut_itoa(int n, t_cati **mini, t_tok **lst);
 
 /* linked list utils and function */
 /*env utils*/
@@ -124,7 +125,7 @@ void	run_prompt(t_envp *envp, t_fds *fds);
 void	parsing(char *input, t_cati **mini);
 t_tok	*init_token_list(char *str, t_cati **mini);
 void	split_lst_operator(t_tok **lst, t_cati **mini);
-void	expand_lst(t_tok **lst, t_cati **mini, t_envp *envp);
+void	expand_lst(t_tok **lst, t_cati **mini);
 void	setup_redirection(t_tok **lst, t_cati *node, t_cati **mini);
 void	parse_options(t_tok **lst, t_cati **mini);
 
