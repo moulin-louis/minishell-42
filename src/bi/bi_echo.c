@@ -6,13 +6,21 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 11:20:35 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/21 10:02:54 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/27 09:26:52 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <unistd.h>
 #include <stdio.h>
+#include <errno.h>
+
+static int	check_expand(t_cati *node)
+{
+	if (ut_strcmp(node->cmd[1], "$?"))
+		return (printf("%i\n", node->fds->status), 1);
+	return (0);
+}
 
 static int	is_arg(char *str)
 {
@@ -32,7 +40,7 @@ static int	is_arg(char *str)
 	return (0);
 }
 
-int	bi_echo(t_cati *node)
+static int	write_stuff(t_cati *node)
 {
 	int	i;
 	int	len;
@@ -55,6 +63,16 @@ int	bi_echo(t_cati *node)
 		if (node->cmd[i + 1])
 			write(1, " ", 1);
 	}
+	return (n_line);
+}
+
+int	bi_echo(t_cati *node)
+{
+	int	n_line;
+
+	if (check_expand(node))
+		return (0);
+	n_line = write_stuff(node);
 	if (n_line)
 		write(1, "\n", 1);
 	return (0);
