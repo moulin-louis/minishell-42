@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/27 13:20:30 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/27 13:31:22 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 
+extern int	g_status;
 typedef struct s_fds
 {
 	int		pfd_1[2];
 	int		pfd_2[2];
 	pid_t	fstchld;
 	pid_t	scdchld;
-	int		status;
 	int		ret;
 }			t_fds;
 

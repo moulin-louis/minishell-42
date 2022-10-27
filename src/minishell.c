@@ -6,13 +6,15 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/26 10:16:50 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/27 09:21:52 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/27 13:31:33 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+int	g_status = 0;
 
 int	main(int ac, char **av, char **env)
 {
@@ -23,7 +25,6 @@ int	main(int ac, char **av, char **env)
 	if (ac > 1)
 		return (printf("./minishell takes no argument, you twat\n"), 1);
 	envp = NULL;
-	fds.status = 0;
 	fds.ret = 0;
 	if (!ev_build_env(env, &envp))
 		return (env_lstclear(&envp), 2);

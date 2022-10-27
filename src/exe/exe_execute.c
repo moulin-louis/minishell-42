@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:53:11 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/27 12:40:38 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/27 13:33:22 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,9 +55,9 @@ int	execute(t_cati **mini)
 		}
 		tmp = tmp->next;
 		if (xc_1)
-			waitpid((*mini)->fds->fstchld, &(*mini)->fds->status, 0);
+			waitpid((*mini)->fds->fstchld, &g_status, 0);
 		if (xc_2)
-			waitpid((*mini)->fds->scdchld, &(*mini)->fds->status, 0);
+			waitpid((*mini)->fds->scdchld, &g_status, 0);
 		close_pipes(mini);
 	}
 	return (0);
