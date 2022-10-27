@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axldmg <axldmg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/27 14:15:43 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/21 09:55:49 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/27 21:27:19 by axldmg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	bi_env(t_cati **mini)
 {
 	t_envp	*tmp;
 
+	g_status = 0;
 	tmp = (*mini)->envp;
 	while (tmp)
 	{
@@ -28,5 +29,5 @@ int	bi_env(t_cati **mini)
 		}
 		tmp = tmp->next;
 	}
-	return (0);
+	return (g_status);
 }

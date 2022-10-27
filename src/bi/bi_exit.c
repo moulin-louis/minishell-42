@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axldmg <axldmg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:12:28 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/25 11:55:52 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/27 21:35:06 by axldmg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ int	bi_exit(t_cati **mini, t_cati *node)
 			return (1);
 		}
 	}
-	return (full_exit(mini, status), 0);
+	g_status = status;
+	return (full_exit(mini, g_status), 0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: axldmg <axldmg@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 11:20:35 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/27 14:38:11 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/27 20:57:43 by axldmg           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,11 @@ int	bi_echo(t_cati *node)
 {
 	int	n_line;
 
+	g_status = 0;
 	if (check_expand(node))
-		return (0);
+		return (g_status);
 	n_line = write_stuff(node);
 	if (n_line)
 		write(1, "\n", 1);
-	return (0);
+	return (g_status);
 }
