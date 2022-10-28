@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axldmg <axldmg@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/27 22:14:42 by axldmg           ###   ########.fr       */
+/*   Updated: 2022/10/28 08:25:06 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <sys/stat.h>
 
 extern int	g_status;
+
 typedef struct s_fds
 {
 	int		pfd_1[2];

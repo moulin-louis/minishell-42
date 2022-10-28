@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axldmg <axldmg@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/27 22:04:53 by axldmg           ###   ########.fr       */
+/*   Updated: 2022/10/28 08:31:08 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ static int	already_exists(t_cati *node, char *str)
 	return (0);
 }
 
-static int	check_compliance(t_cati *node, char *str)
+static int	check_compliance(char *str)
 {
 	int		j;
 	int		k;
@@ -60,6 +60,7 @@ static int	check_compliance(t_cati *node, char *str)
 
 	if (str[0] >= '0' && str[0] <= '9')
 	{
+		g_status = 1;
 		printf("shellnado: export: \"%s\": not a valid identifier\n", str);
 		return (0);
 	}
@@ -72,7 +73,7 @@ static int	check_compliance(t_cati *node, char *str)
 		{
 			if (ref[k] == str[j])
 			{
-				node->fds->ret = 1;
+				g_status = 1;
 				printf("shellnado: export: \"%s\": not a valid identifier\n", str);
 				return (0);
 			}
@@ -85,23 +86,24 @@ int	bi_export(t_cati *node)
 {
 	int	i;
 
-	node->fds->ret = 0;
+	g_status = 0;
+	g_status = 0;
 	if (!node->cmd[1])
-		return (display_expt_ev(node), node->fds->ret);
+		return (display_expt_ev(node), g_status);
 	i = 0;
 	while (node->cmd[++i])
 	{
-		if (check_compliance(node, node->cmd[i]))
+		if (check_compliance(node->cmd[i]))
 		{
 			if (already_exists(node, node->cmd[i]))
 			{
 				if (!change_content(node, node->cmd[i]))
-					return (node->fds->ret);
+					return (g_status);
 			}
 			else
 				if (!do_the_expt(node, node->cmd[i]))
-					return (node->fds->ret);
+					return (g_status);
 		}
 	}
-	return (node->fds->ret);
+	return (g_status);
 }

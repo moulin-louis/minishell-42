@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axldmg <axldmg@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:19:57 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/27 22:02:58 by axldmg           ###   ########.fr       */
+/*   Updated: 2022/10/28 08:25:16 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ static void	change_oldpwd(t_cati *node)
 
 int	bi_cd(t_cati *node)
 {
+	g_status = 0;
 	if (!node->cmd || !node->cmd[1])
 		return (0);
 	if (chdir(node->cmd[1]) == -1)
@@ -87,5 +88,5 @@ int	bi_cd(t_cati *node)
 	}
 	change_oldpwd(node);
 	change_newpwd(node);
-	return (0);
+	return (g_status);
 }

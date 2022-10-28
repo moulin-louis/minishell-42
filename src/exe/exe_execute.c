@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_execute.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axldmg <axldmg@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:53:11 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/27 23:28:48 by axldmg           ###   ########.fr       */
+/*   Updated: 2022/10/28 08:24:41 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,7 @@ int	execute(t_cati **mini)
 		waitpid(node->pid, &node->fds->status, 0);
 		if (!node->next)
 		{
-			if (node->builtin)
-				g_status = node->fds->ret;
-			else
+			if (!node->builtin)
 			{
 				waitpid(node->pid, &node->fds->status, 0);
 				g_status = WEXITSTATUS(node->fds->status);

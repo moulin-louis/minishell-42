@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axldmg <axldmg@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 13:42:31 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/27 22:05:16 by axldmg           ###   ########.fr       */
+/*   Updated: 2022/10/28 08:28:04 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,11 @@ int	bi_unset(t_cati **mini, t_cati *node)
 {
 	int		i;
 
+	g_status = 0;
 	if (!node->cmd[1])
 		return (1);
 	i = 0;
 	while (node->cmd[++i])
 		already_exists(mini, node->cmd[i]);
-	return (0);
+	return (g_status);
 }
