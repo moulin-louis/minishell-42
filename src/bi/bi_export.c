@@ -6,13 +6,20 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/28 08:31:08 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/28 08:41:08 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+static int	error_msg(char *str)
+{
+	g_status = 1;
+	printf("shellnado: export: \"%s\": not a valid identifier\n", str);
+	return (0);
+}
 
 static void	display_expt_ev(t_cati *node)
 {
@@ -59,11 +66,7 @@ static int	check_compliance(char *str)
 	char	*ref;
 
 	if (str[0] >= '0' && str[0] <= '9')
-	{
-		g_status = 1;
-		printf("shellnado: export: \"%s\": not a valid identifier\n", str);
-		return (0);
-	}
+		return (error_msg(str));
 	j = -1;
 	ref = "!@#$%^&*()`~-|[]{};:,./<>?";
 	while (str[++j] && str[j] != '=')
@@ -72,11 +75,7 @@ static int	check_compliance(char *str)
 		while (ref[++k])
 		{
 			if (ref[k] == str[j])
-			{
-				g_status = 1;
-				printf("shellnado: export: \"%s\": not a valid identifier\n", str);
-				return (0);
-			}
+				return (error_msg(str));
 		}
 	}
 	return (1);
@@ -86,7 +85,6 @@ int	bi_export(t_cati *node)
 {
 	int	i;
 
-	g_status = 0;
 	g_status = 0;
 	if (!node->cmd[1])
 		return (display_expt_ev(node), g_status);

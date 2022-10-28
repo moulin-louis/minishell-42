@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_flow.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: axldmg <axldmg@student.42.fr>              +#+  +:+       +#+        */
+/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:20:08 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/27 23:24:16 by axldmg           ###   ########.fr       */
+/*   Updated: 2022/10/28 08:42:13 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,17 +17,17 @@
 #include <fcntl.h>
 #include <errno.h>
 
-void    exec_cmd(t_cati **mini, t_cati *node)
+void	exec_cmd(t_cati **mini, t_cati *node)
 {
-    node->ev = exe_parse_env(mini);
+	node->ev = exe_parse_env(mini);
 	set_fds(mini, node);
 	node->pid = fork();
-    if (node->pid == -1)
-    {
-        perror("fork fuck");
-        g_status = errno;
-        full_exit(mini, g_status);
-    }
+	if (node->pid == -1)
+	{
+		perror("fork fuck");
+		g_status = errno;
+		full_exit(mini, g_status);
+	}
 	node->fds->last = node->pid;
 	if (!node->pid)
 	{
@@ -54,4 +54,3 @@ int	exec_node(t_cati **mini, t_cati *node)
 	exec_cmd(mini, node);
 	return (0);
 }
-
