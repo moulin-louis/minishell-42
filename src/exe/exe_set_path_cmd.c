@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 10:39:44 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/28 14:11:00 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:14:07 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,7 @@ static void	parse_env_path(char **arr, t_cati **mini, t_cati *node)
 			full_exit(mini, 1);
 		}
 	}
-	printf("pointer to arr in parse_env_path: %p\n", arr);
-	int	i = -1;
-	while (arr[++i])
-		printf("arr[%i] in parse_env_path: %s\n", i, arr[i]);
+	clean_split(arr);
 }
 
 static void	explicit_path_checks(t_cati **mini, t_cati *node)
@@ -121,5 +118,4 @@ void	set_path_cmd(t_cati **mini, t_cati *node)
 		return ;
 	parse_env_path(arr, mini, node);
 	printf("pointer to arr in set_path_cmd: %p\n", arr);
-	clean_split(arr);
 }
