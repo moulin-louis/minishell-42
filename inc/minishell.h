@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/28 08:38:22 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/28 09:16:02 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ typedef struct s_fds
 {
 	int		pfd_1[2];
 	int		pfd_2[2];
-	pid_t	last;
 	int		ret;
 	int		status;
 }			t_fds;
@@ -63,7 +62,7 @@ typedef struct s_tok
 }				t_tok;
 
 /* Builtins */
-int		bi_cd(t_cati *node);
+int		bi_cd(t_cati **mini, t_cati *node);
 int		bi_echo(t_cati *node);
 int		bi_env(t_cati **mini);
 int		bi_exit(t_cati **mini, t_cati *node);

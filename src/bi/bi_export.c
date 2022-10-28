@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/28 08:41:08 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/28 10:28:09 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,8 @@ static int	check_compliance(char *str)
 		while (ref[++k])
 		{
 			if (ref[k] == str[j])
+				return (error_msg(str));
+			if (str[j] == '+' && (str[j + 1] != '=' || ! str[j + 1]))
 				return (error_msg(str));
 		}
 	}

@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:19:57 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/28 08:25:16 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/28 09:15:41 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <errno.h>
 
 static int	change_var(t_envp *tmp)
 {
@@ -60,7 +61,7 @@ static void	change_newpwd(t_cati *node)
 	}
 }
 
-static void	change_oldpwd(t_cati *node)
+static void	change_oldpwd(t_cati **mini, t_cati *node)
 {
 	t_envp	*tmp_pwd;
 	t_envp	*tmp_old;
@@ -74,9 +75,11 @@ static void	change_oldpwd(t_cati *node)
 	if (tmp_old->var[1])
 		free(tmp_old->var[1]);
 	tmp_old->var[1] = ut_strcpy(tmp_pwd->var[1]);
+	if (!tmp_old->var[1])
+		full_exit(mini, errno);
 }
 
-int	bi_cd(t_cati *node)
+int	bi_cd(t_cati **mini, t_cati *node)
 {
 	g_status = 0;
 	if (!node->cmd || !node->cmd[1])
@@ -86,7 +89,7 @@ int	bi_cd(t_cati *node)
 		perror("shellnado: cd: ");
 		return (1);
 	}
-	change_oldpwd(node);
+	change_oldpwd(mini, node);
 	change_newpwd(node);
 	return (g_status);
 }

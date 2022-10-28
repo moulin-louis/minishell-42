@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 14:21:42 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/17 13:49:20 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/28 09:17:54 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,9 @@ int	set_new1(t_envp *new1)
 	new1->var = ut_calloc(3, sizeof(char *));
 	if (!new1->var)
 		return (0);
-	new1->var[0] = ut_calloc(7, 1);
+	new1->var[0] = ut_strcpy("OLDPWD");
 	if (!new1->var[0])
 		return (0);
-	new1->var[0] = ut_strcpy("OLDPWD");
 	new1->var[1] = NULL;
 	new1->var[2] = NULL;
 	return (1);

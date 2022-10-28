@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/12 13:43:55 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/24 15:40:47 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/28 09:14:32 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	cmp(char *s1, char *s2)
 int	exe_bi_launcher(t_cati **mini, t_cati *node)
 {
 	if (cmp("cd", node->cmd[0]))
-		return (bi_cd(node));
+		return (bi_cd(mini, node));
 	else if (cmp("echo", node->cmd[0]))
 		return (bi_echo(node));
 	else if (cmp("env", node->cmd[0]))

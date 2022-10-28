@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:53:11 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/28 08:24:41 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/28 08:45:46 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	execute(t_cati **mini)
 	{
 		init_pipes(mini);
 		exec_node(mini, node);
-		close_pipes(mini);
 		node = node->next;
 	}
 	node = *mini;
@@ -61,5 +60,6 @@ int	execute(t_cati **mini)
 		}
 		node = node->next;
 	}
+	close_pipes(mini);
 	return (0);
 }

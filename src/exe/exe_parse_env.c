@@ -6,26 +6,27 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 11:53:46 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/26 09:03:11 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/28 09:22:13 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include <errno.h>
 
 static void	populate_ev(t_cati **mini, t_envp *tmp, char **arr, int i)
 {
 	arr[i] = ut_strcpy(tmp->var[0]);
+	if (!arr[i])
+		full_exit(mini, errno);
 	arr[i] = ut_strjoin(arr[i], "=");
+	if (!arr[i])
+		full_exit(mini, errno);
 	if (tmp->var[1])
 		arr[i] = ut_strjoin(arr[i], tmp->var[1]);
 	if (!arr[i])
-	{
-		printf("Malloc error when parsing environement\n");
-		clean_mini(mini);
-		exit(2);
-	}
+		full_exit(mini, errno);
 }
 
 char	**exe_parse_env(t_cati **mini)

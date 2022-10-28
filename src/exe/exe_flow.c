@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:20:08 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/28 08:42:13 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/28 09:06:19 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,10 @@
 #include <wait.h>
 #include <fcntl.h>
 #include <errno.h>
+#include <string.h>
 
 void	exec_cmd(t_cati **mini, t_cati *node)
 {
-	node->ev = exe_parse_env(mini);
-	set_fds(mini, node);
-	node->pid = fork();
-	if (node->pid == -1)
-	{
-		perror("fork fuck");
-		g_status = errno;
-		full_exit(mini, g_status);
-	}
-	node->fds->last = node->pid;
 	if (!node->pid)
 	{
 		set_path_cmd(mini, node);
@@ -46,10 +37,19 @@ void	exec_cmd(t_cati **mini, t_cati *node)
 
 int	exec_node(t_cati **mini, t_cati *node)
 {
-	if (node->builtin)
+	if (node->builtin && !node->out_pipe)
 	{
 		node->fds->ret = exe_bi_launcher(mini, node);
 		return (node->fds->ret);
+	}
+	node->ev = exe_parse_env(mini);
+	set_fds(mini, node);
+	node->pid = fork();
+	if (node->pid == -1)
+	{
+		printf("fork: %s, goodbye no\n", strerror(errno));
+		g_status = errno;
+		full_exit(mini, g_status);
 	}
 	exec_cmd(mini, node);
 	return (0);
