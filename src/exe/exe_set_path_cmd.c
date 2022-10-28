@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 10:39:44 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/27 11:40:53 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/28 10:57:16 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ static int	check_access(char **arr, t_cati **mini, t_cati *node)
 	{
 		str = ut_strjoin(arr[i], "/");
 		if (!str)
-			full_exit(mini, 1);
+			return (clean_split(arr), full_exit(mini, 1), 1);
 		str = ut_strjoin(str, node->cmd[0]);
 		if (!str)
-			full_exit(mini, 1);
+			return (clean_split(arr), full_exit(mini, 1), 1);
 		if (!access(str, R_OK || X_OK))
 		{
 			node->path_cmd = str;
@@ -43,7 +43,7 @@ static int	check_access(char **arr, t_cati **mini, t_cati *node)
 	return (0);
 }
 
-static int	parse_env_path(char **arr, t_cati **mini, t_cati *node)
+static void	parse_env_path(char **arr, t_cati **mini, t_cati *node)
 {
 	t_envp	*tmp;
 
@@ -55,19 +55,19 @@ static int	parse_env_path(char **arr, t_cati **mini, t_cati *node)
 		node->path_cmd = ut_strcpy(node->cmd[0]);
 		if (!node->path_cmd)
 			full_exit(mini, 1);
-		return (0);
 	}
 	arr = ut_split_char(tmp->var[1], ':');
 	if (!arr)
-		return (full_exit(mini, 1), 1);
+		full_exit(mini, 1);
 	if (!check_access(arr, mini, node))
 	{
 		node->path_cmd = ut_strcpy(node->cmd[0]);
 		if (!node->path_cmd)
+		{
+			clean_split(arr);
 			full_exit(mini, 1);
-		return (0);
+		}
 	}
-	return (1);
 }
 
 static void	explicit_path_checks(t_cati **mini, t_cati *node)
