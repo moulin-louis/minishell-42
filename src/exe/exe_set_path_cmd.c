@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 10:39:44 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/28 14:14:07 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:15:58 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,5 +117,4 @@ void	set_path_cmd(t_cati **mini, t_cati *node)
 	if (explicit_path(mini, node))
 		return ;
 	parse_env_path(arr, mini, node);
-	printf("pointer to arr in set_path_cmd: %p\n", arr);
 }
