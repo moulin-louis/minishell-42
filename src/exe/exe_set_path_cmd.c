@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 10:39:44 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/28 10:57:16 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/28 11:42:26 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ static void	parse_env_path(char **arr, t_cati **mini, t_cati *node)
 		node->path_cmd = ut_strcpy(node->cmd[0]);
 		if (!node->path_cmd)
 			full_exit(mini, 1);
+		return ;
 	}
 	arr = ut_split_char(tmp->var[1], ':');
 	if (!arr)
