@@ -6,7 +6,7 @@
 /*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 10:39:44 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/28 11:42:26 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/10/28 14:11:00 by bschoeff         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,10 @@ static int	check_access(char **arr, t_cati **mini, t_cati *node)
 	i = -1;
 	while (arr[++i])
 	{
-		str = ut_strjoin(arr[i], "/");
+		str = ut_strcpy(arr[i]);
+		if (!str)
+			full_exit(mini, 1);
+		str = ut_strjoin(str, "/");
 		if (!str)
 			return (clean_split(arr), full_exit(mini, 1), 1);
 		str = ut_strjoin(str, node->cmd[0]);
@@ -69,6 +72,10 @@ static void	parse_env_path(char **arr, t_cati **mini, t_cati *node)
 			full_exit(mini, 1);
 		}
 	}
+	printf("pointer to arr in parse_env_path: %p\n", arr);
+	int	i = -1;
+	while (arr[++i])
+		printf("arr[%i] in parse_env_path: %s\n", i, arr[i]);
 }
 
 static void	explicit_path_checks(t_cati **mini, t_cati *node)
@@ -113,5 +120,6 @@ void	set_path_cmd(t_cati **mini, t_cati *node)
 	if (explicit_path(mini, node))
 		return ;
 	parse_env_path(arr, mini, node);
+	printf("pointer to arr in set_path_cmd: %p\n", arr);
 	clean_split(arr);
 }
