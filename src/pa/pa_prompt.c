@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:51:41 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/27 15:18:22 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/12/05 17:08:40 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,24 +34,6 @@ static void	ft_create_node(t_cati **mini, t_envp *envp, t_fds *fds)
 	(*mini)->fds = fds;
 }
 
-static void	handle_sigquit(int sig, siginfo_t *info, void *context)
-{
-	(void)sig;
-	(void)context;
-	if (isatty(0))
-	{
-		printf("is a tty");
-		return ;
-	}
-	else if (!isatty(0))
-	{
-		printf("is not a tty");
-		kill(info->si_pid, SIGKILL);
-		write(1, "\n", 1);
-		g_status = 131;
-	}
-}
-
 static void	setup_sig(void)
 {
 	struct sigaction	sa;
@@ -60,7 +42,7 @@ static void	setup_sig(void)
 	sa.sa_handler = &handle_sigint;
 	sa.sa_flags = SA_RESTART;
 	sigaction(SIGINT, &sa, NULL);
-	sa.sa_sigaction = handle_sigquit;
+	sa.sa_handler = SIG_IGN;
 	sigaction(SIGQUIT, &sa, NULL);
 }
 
