@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/28 11:02:19 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/12/05 15:40:37 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,22 +35,22 @@ typedef struct s_envp
 
 typedef struct s_cati
 {
-	char			**cmd;
-	char			**ev;
-	char			*path_cmd;
-	char			*infile;
-	char			*outfile;
-	t_fds			*fds;
-	t_envp			*envp;
-	int				builtin;
-	int				in_fd;
-	int				out_fd;
-	int				in_file;
-	int				in_pipe;
-	int				out_pipe;
-	int				out_append;
-	int				out_trunc;
-	struct stat		buff;
+	char			**cmd; // double tableau commandes example [echo] [$PATH]
+	char			**ev; // double tableau example [PATH]=[]
+	char			*path_cmd; // chemin de la commande
+	char			*infile; // chemin d'entree
+	char			*outfile; // chemin de sortie
+	t_fds			*fds; // structure de pipe
+	t_envp			*envp; // reference vers la structure env
+	int				builtin; // fichier de builtin
+	int				in_fd; // fd d'entree
+	int				out_fd; // fd de sortie
+	int				in_file; // fichier d'entree
+	int				in_pipe; //pipe d'entree
+	int				out_pipe; // pipe de sortie
+	int				out_append; // a la suite
+	int				out_trunc; // a ecraser
+	struct stat		buff; // information dossier ou fichier
 	pid_t			pid;
 	struct s_cati	*next;
 }				t_cati;
