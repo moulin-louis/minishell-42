@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_flow.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:20:08 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/28 11:02:06 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/12/05 16:00:25 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void	exec_cmd(t_cati **mini, t_cati *node)
 
 int	exec_node(t_cati **mini, t_cati *node)
 {
+	/* builtin et pas de pipe de sortie */
 	if (node->builtin && !node->out_pipe)
 	{
 		node->fds->ret = exe_bi_launcher(mini, node);
