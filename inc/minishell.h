@@ -6,7 +6,7 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/12/05 15:40:37 by foster           ###   ########.fr       */
+/*   Updated: 2022/12/05 15:41:11 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_cati
 	int				builtin; // fichier de builtin
 	int				in_fd; // fd d'entree
 	int				out_fd; // fd de sortie
-	int				in_file; // fichier d'entree
+	int				in_file; // ficher d'entree
 	int				in_pipe; //pipe d'entree
 	int				out_pipe; // pipe de sortie
 	int				out_append; // a la suite
