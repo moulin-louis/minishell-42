@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 15:37:24 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/05 16:34:41 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/12/05 17:47:45 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,7 @@ void	trigger_expand(t_tok *node, int i, t_tok **lst, t_cati **mini)
 		i++;
 	}
 	free(node->str);
-	node->str = find_var(var, lst, mini);
-	free(var);
+	node->str = ut_strinsert(node->str, find_var(var, lst, mini), );
 }
 
 void	expand_lst(t_tok **lst, t_cati **mini)
