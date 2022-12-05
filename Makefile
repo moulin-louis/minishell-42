@@ -3,10 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
+<<<<<<< HEAD
 #    By: axldmg <axldmg@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
 #    Updated: 2022/10/27 23:20:11 by axldmg           ###   ########.fr        #
+=======
+#    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
+#    Updated: 2022/12/05 16:08:50 by loumouli         ###   ########.fr        #
+>>>>>>> louis
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,6 +51,7 @@ C_FILES		= minishell.c					\
 			  exe/exe_parse_env.c			\
 			  exe/exe_set_fds.c				\
 			  exe/exe_set_path_cmd.c		\
+			  pa/pa_clean_quote.c			\
 			  pa/pa_expand.c				\
 			  pa/pa_heredoc.c				\
 			  pa/pa_init_token.c			\
@@ -148,3 +156,5 @@ re:			fclean all
 -include ./objs/ut/*.d
 
 .PHONY: all check clean fclean re
+
+.NOTPARALLEL:fclean

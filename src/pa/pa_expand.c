@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pa_expand.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli < loumouli@student.42.fr >        +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 15:37:24 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/27 20:00:00 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/12/05 16:34:41 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ void	expand_lst(t_tok **lst, t_cati **mini)
 			return ;
 		while (temp->str[++i])
 		{
-			if (temp->str[i] == '$')
+			if (temp->str[i] == '$' && temp->str[i + 1])
 			{
 				trigger_expand(temp, i, lst, mini);
 				break ;
