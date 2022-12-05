@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pa_init_token.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli < loumouli@student.42.fr >        +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 10:41:05 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/27 19:40:15 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/12/05 21:43:29 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include <errno.h>
 #include <string.h>
 #include <stdio.h>
+
+/*Split double quote token into node*/
 
 void	split_dbl_quote(char *str, int *i, t_tok **lst, t_cati **mini)
 {
@@ -44,6 +46,8 @@ void	split_dbl_quote(char *str, int *i, t_tok **lst, t_cati **mini)
 	tok_addback(lst, tok_new(temp, mini, lst));
 }
 
+/*Split simple quote token into node*/
+
 void	split_quote(char *str, int *i, t_tok **lst, t_cati **mini)
 {
 	int		x;
@@ -72,6 +76,8 @@ void	split_quote(char *str, int *i, t_tok **lst, t_cati **mini)
 	tok_addback(lst, tok_new(temp, mini, lst));
 }
 
+/*Split simple token into node*/
+
 void	split_token(char *str, int *i, t_tok **lst, t_cati **mini)
 {
 	int		x;
@@ -94,6 +100,8 @@ void	split_token(char *str, int *i, t_tok **lst, t_cati **mini)
 	}
 	tok_addback(lst, tok_new(temp, mini, lst));
 }
+
+/*Create t_tok list based on user input*/
 
 t_tok	*init_token_list(char *input, t_cati **mini)
 {

@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 15:37:24 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/05 16:34:41 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/12/05 21:41:06 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <errno.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+/*Return the value found int the environement*/
 
 char	*find_var(char *str, t_tok **lst, t_cati **mini)
 {
@@ -37,6 +39,8 @@ char	*find_var(char *str, t_tok **lst, t_cati **mini)
 		ut_clean_parsing_n_quit(mini, lst, errno);
 	return (result);
 }
+
+/*Insert the expanded value in the string*/
 
 void	trigger_expand(t_tok *node, int i, t_tok **lst, t_cati **mini)
 {
@@ -64,6 +68,8 @@ void	trigger_expand(t_tok *node, int i, t_tok **lst, t_cati **mini)
 	node->str = find_var(var, lst, mini);
 	free(var);
 }
+
+/*Make the expand happened*/
 
 void	expand_lst(t_tok **lst, t_cati **mini)
 {

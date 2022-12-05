@@ -6,13 +6,15 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:42:25 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/24 15:45:08 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/12/05 21:51:49 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <errno.h>
 #include <string.h>
+
+/*clean redir node*/
 
 void	clean_lst_mode(t_tok *dest, t_tok *temp, t_tok **lst, int i)
 {
@@ -35,6 +37,8 @@ void	clean_lst_mode(t_tok *dest, t_tok *temp, t_tok **lst, int i)
 		tok_delone(dest);
 	}
 }
+
+/*Handle in redir*/
 
 void	in_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini)
 {
@@ -60,6 +64,8 @@ void	in_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini)
 	clean_lst_mode(dest, temp, lst, 2);
 }
 
+/*Handle out redir*/
+
 void	out_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini)
 {
 	t_tok	*temp;
@@ -83,6 +89,8 @@ void	out_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini)
 	node->out_trunc = 1;
 	clean_lst_mode(dest, temp, lst, 2);
 }
+
+/*Handle out append redir*/
 
 void	append_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini)
 {

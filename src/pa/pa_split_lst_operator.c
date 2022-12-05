@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pa_split_lst_operator.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli < loumouli@student.42.fr >        +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:26:13 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/27 19:40:02 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/12/05 21:52:59 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,8 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <string.h>
+
+/* check if if sep*/
 
 static int	is_there_a_sep(char *str)
 {
@@ -33,6 +35,8 @@ static int	is_there_a_sep(char *str)
 	}
 	return (0);
 }
+
+/*if sep, create 2 seperate node*/
 
 void	fill_lst(char **result, t_tok *node, t_cati **mini, t_tok **lst)
 {
@@ -58,6 +62,8 @@ void	fill_lst(char **result, t_tok *node, t_cati **mini, t_tok **lst)
 	}
 }
 
+/*call all needed fn to split node*/
+
 static int	split_node(t_tok *node, t_cati **mini, t_tok **lst)
 {
 	char	**result;
@@ -73,6 +79,8 @@ static int	split_node(t_tok *node, t_cati **mini, t_tok **lst)
 	clean_split(result);
 	return (i);
 }
+
+/*split t_tok list based on sep*/
 
 void	split_lst_operator(t_tok **lst, t_cati **mini)
 {
