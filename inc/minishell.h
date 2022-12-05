@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli < loumouli@student.42.fr >        +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/27 20:01:38 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/12/05 15:57:58 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ void	clean_mini(t_cati **mini);
 void	full_exit(t_cati **mini, int i);
 
 /* Parsing */
+void	clean_quote(t_tok **lst, t_cati **mini);
 void	run_prompt(t_envp *envp, t_fds *fds);
 void	parsing(char *input, t_cati **mini);
 t_tok	*init_token_list(char *str, t_cati **mini);
