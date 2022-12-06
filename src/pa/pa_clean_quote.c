@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:54:12 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/05 17:07:59 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/12/05 21:41:40 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 #include <stdio.h>
 #include <errno.h>
 #include <stdlib.h>
+
+/*Clean quote adn double quote*/
 
 void	trigger_cleaning(t_tok *node, t_cati **mini, t_tok **lst)
 {
@@ -30,6 +32,8 @@ void	trigger_cleaning(t_tok *node, t_cati **mini, t_tok **lst)
 	free(node->str);
 	node->str = temp;
 }
+
+/*Search for quote in token after expand*/
 
 void	clean_quote(t_tok **lst, t_cati **mini)
 {

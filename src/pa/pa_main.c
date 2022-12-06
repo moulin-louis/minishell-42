@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/05 15:54:01 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/12/05 21:44:44 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	printfmini(t_cati *mini);
 void	fill_node_of_pipe(t_cati *mini);
 void	fill_node_env(t_cati *mini);
 void	check_builtin(t_cati *mini);
+
+/*Call all parsing fn and send t_cati linked list to execution*/
 
 void	parsing(char *input, t_cati **mini)
 {
@@ -39,6 +41,8 @@ void	parsing(char *input, t_cati **mini)
 	execute(mini);
 	clean_mini(mini);
 }
+
+/*Print all node from t_cati list*/
 
 void	printfmini(t_cati *mini)
 {
@@ -66,6 +70,8 @@ void	printfmini(t_cati *mini)
 	}
 }
 
+/*Fill each node with pipe flag when necessery*/
+
 void	fill_node_of_pipe(t_cati *mini)
 {
 	t_cati	*temp;
@@ -84,6 +90,8 @@ void	fill_node_of_pipe(t_cati *mini)
 	}
 }
 
+/*Fill each node with envp ptr*/
+
 void	fill_node_env(t_cati *mini)
 {
 	t_fds	*fds;
@@ -101,6 +109,8 @@ void	fill_node_env(t_cati *mini)
 		temp = temp->next;
 	}
 }
+
+/*fill each node for builtin flag*/
 
 void	check_builtin(t_cati *mini)
 {

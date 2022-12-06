@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:51:41 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/05 17:08:40 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/12/05 21:49:55 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@
 #include <signal.h>
 #include <unistd.h>
 
+/*Handle sigint signal : CTRL + C*/
+
 static void	handle_sigint(int sig)
 {
 	(void)sig;
@@ -27,12 +29,16 @@ static void	handle_sigint(int sig)
 	rl_redisplay();
 }
 
+/*Create first node of t_cati list*/
+
 static void	ft_create_node(t_cati **mini, t_envp *envp, t_fds *fds)
 {
 	*mini = mini_lstnew();
 	(*mini)->envp = envp;
 	(*mini)->fds = fds;
 }
+
+/*Handle sigint and ignore sigquit*/
 
 static void	setup_sig(void)
 {
@@ -45,6 +51,8 @@ static void	setup_sig(void)
 	sa.sa_handler = SIG_IGN;
 	sigaction(SIGQUIT, &sa, NULL);
 }
+
+/*init prompt with rl and call parsing fn when needed*/
 
 void	run_prompt(t_envp *envp, t_fds *fds)
 {
