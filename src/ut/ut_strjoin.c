@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:29:31 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/05 17:29:35 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/12/06 16:18:58 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,5 @@ char	*ut_strjoin(char *s1, char *s2)
 		while (s2[++i])
 			str[i + ls1] = s2[i];
 	str[i + ls1] = '\0';
-	free(s1);
 	return (str);
 }
