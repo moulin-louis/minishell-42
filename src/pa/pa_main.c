@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/07 12:19:26 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/12/09 15:49:11 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ void	printfmini(t_cati *mini)
 			printf("\n");
 		}
 		printf("infile = %s\noutfile = %s\n", tmp->infile, tmp->outfile);
+		printf("in_fd = %d\nout_fd = %d\n", tmp->in_fd, tmp->out_fd);
 		printf("fds = %p\nenvp = %p\n", & tmp->fds, & tmp->envp);
 		printf("builtin = %d\nin_file = %d\n", tmp->builtin, tmp->in_file);
 		printf("in_pipe = %d\nout_append = %d\n", tmp->in_pipe, tmp->out_append);
