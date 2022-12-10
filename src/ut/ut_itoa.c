@@ -6,13 +6,15 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 19:55:11 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/05 17:19:56 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/12/10 17:12:19 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
 #include <errno.h>
+
+/*Return the len of the nbr*/
 
 static	int	ft_size_nbr(long nbr)
 {
@@ -30,6 +32,8 @@ static	int	ft_size_nbr(long nbr)
 		result_nbr++;
 	return (result_nbr);
 }
+
+/*Fill the string based on the nbr, the sign and the len of the nbr*/
 
 static	void	ft_fill_result(char *result, int size_nbr, long nbr, int minus)
 {
@@ -55,6 +59,8 @@ static	void	ft_fill_result(char *result, int size_nbr, long nbr, int minus)
 	}
 }
 
+/*Add the null char based on the sign of the number*/
+
 static	void	ft_add_null_terminal_number(char *result, int size_nbr,
 		int minus)
 {
@@ -64,12 +70,17 @@ static	void	ft_add_null_terminal_number(char *result, int size_nbr,
 		result[size_nbr] = '\0';
 }
 
+/*Handle the case if n = 0*/
+
 static	char	*ft_nbr_0(char *result)
 {
 	result[0] = '0';
 	result[1] = 0;
 	return (result);
 }
+
+/*Convert an int into a null terminated string
+Quit minishell if malloc failed*/
 
 char	*ut_itoa(int n, t_cati **mini, t_tok **lst)
 {

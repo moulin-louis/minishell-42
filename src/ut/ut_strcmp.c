@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ut_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 15:12:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/15 11:49:12 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/12/10 16:49:42 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+/*Another strcmp (idk)*/
 
 static int	len(char *s)
 {

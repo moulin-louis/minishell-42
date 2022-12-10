@@ -3,16 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   ut_env_split.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:15:26 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/20 16:47:24 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/12/10 17:10:19 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
 #include <stdio.h>
+
+/*Count the nbr of worf in string based on '='*/
 
 static int	word_count(char *str)
 {
@@ -34,6 +36,8 @@ static int	word_count(char *str)
 	return (1);
 }
 
+/*Fill the 0 of the dbl array by the name of the var*/
+
 static int	fill_var(char **arr, char *str)
 {
 	int	i;
@@ -51,6 +55,8 @@ static int	fill_var(char **arr, char *str)
 	return (1);
 }
 
+/*Malloc of 1 if the value is null*/
+
 static int	fill_empty_val(char **arr)
 {
 	arr[1] = ut_calloc(1, 1);
@@ -58,6 +64,9 @@ static int	fill_empty_val(char **arr)
 		return (0);
 	return (1);
 }
+
+/*Fill the 1 of the dbl array by the value*/
+
 
 static int	fill_value(char **arr, char *str)
 {
@@ -84,6 +93,10 @@ static int	fill_value(char **arr, char *str)
 		arr[1][j - i - 1] = str[j];
 	return (1);
 }
+
+/*Create a double array of string based on a string
+Split based on the char '='
+Return NULL if fail*/
 
 char	**ut_env_split(char *str)
 {

@@ -6,13 +6,15 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:29:31 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/06 16:18:58 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/12/10 16:48:15 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
 #include <stdio.h>
+
+/*Protected strlen*/
 
 static int	len(char *s)
 {
@@ -25,6 +27,8 @@ static int	len(char *s)
 		i++;
 	return (i);
 }
+
+/*Create a new string like s3 = s1 + s2 and return the mallocated ptr*/
 
 char	*ut_strjoin(char *s1, char *s2)
 {

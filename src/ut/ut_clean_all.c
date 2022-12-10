@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:36:37 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/12/08 20:18:25 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/12/10 17:02:09 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,19 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
+/*All the cleaning stuff*/
+
+/*exit fn used in parsing, print why malloc failed, clean t_tok and t_cati
+linked list and quit the process with ernno exit code*/
+
 void	ut_clean_parsing_n_quit(t_cati **mini, t_tok **lst, int error)
 {
 	perror("Malloc :");
 	clean_tok(lst);
 	full_exit(mini, error);
 }
+
+/*Clean a double array NULL terminated*/
 
 void	clean_split(char **arr)
 {
@@ -37,6 +44,8 @@ void	clean_split(char **arr)
 		free(arr[i]);
 	free(arr);
 }
+
+/*Clean t_cati linked list*/
 
 void	clean_mini(t_cati **mini)
 {
@@ -66,6 +75,8 @@ void	clean_mini(t_cati **mini)
 	}
 	unlink("/tmp/.heredoc.tmp");
 }
+
+/*exit the process with i error code and clean mini linked list first*/
 
 void	full_exit(t_cati **mini, int i)
 {

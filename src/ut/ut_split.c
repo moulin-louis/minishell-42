@@ -3,16 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ut_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:15:26 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/15 14:46:51 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/12/10 16:55:46 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
 #include <stdio.h>
+
+/*Its a split but only with space*/
+
+/*Count the nbr of word in the string*/
 
 static int	word_count(char *str)
 {
@@ -37,6 +41,8 @@ static int	word_count(char *str)
 	return (count);
 }
 
+/*Create the string based on s2 string and the given len*/
+
 static char	*do_the_split(char *s2, int len)
 {
 	int		i;
@@ -54,6 +60,9 @@ static char	*do_the_split(char *s2, int len)
 	s1[i] = '\0';
 	return (s1);
 }
+
+/*Split ,based on space, a string into a double array of string return the
+ malloced doublle array of string */
 
 char	**ut_split(char *str)
 {

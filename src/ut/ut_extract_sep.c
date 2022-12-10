@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ut_extract_sep.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:53:30 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/25 10:58:24 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/12/10 17:06:22 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,18 @@
 #include <errno.h>
 #include <string.h>
 
+/*Extract parsing sep form a string*/
+
+/*Check if its an operator*/
+
 static int	is_op(char c)
 {
 	if (c == '<' || c == '>' || c == '|')
 		return (1);
 	return (0);
 }
+
+/*find the len of the resut*/
 
 static int	find_len(char *str)
 {
@@ -42,6 +48,8 @@ static int	find_len(char *str)
 	}
 	return (0);
 }
+
+/*Count the nbr of token in the string*/
 
 static int	count_token(char *str)
 {
@@ -68,6 +76,8 @@ static int	count_token(char *str)
 	return (result);
 }
 
+/*Return new string based on str and len*/
+
 static char	*split_this_op(char *str, int len)
 {
 	int		i;
@@ -82,6 +92,10 @@ static char	*split_this_op(char *str, int len)
 		result[i] = str[i];
 	return (result);
 }
+
+/*Create a double array of string based on a string,
+split based on sep like '<' or '>'
+Return NULL if fail*/
 
 char	**extract_sep(char *str)
 {

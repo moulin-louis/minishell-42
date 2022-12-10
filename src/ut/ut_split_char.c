@@ -3,16 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ut_split_char.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:15:26 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/25 14:26:53 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/12/10 16:55:36 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
 #include <stdio.h>
+
+/*WARNING : Its suposed to be a split based on a given char, but the fn word_len
+is hard code to work with ':' char */
+
+/*WARNING : BAD FN
+count the len to the next ':' occurence*/
 
 static int	word_len(char *str)
 {
@@ -23,6 +29,8 @@ static int	word_len(char *str)
 		i++;
 	return (i);
 }
+
+/*Count the nbr of word based on char as a separator*/
 
 static int	word_count(char *str, char c)
 {
@@ -47,6 +55,8 @@ static int	word_count(char *str, char c)
 	return (count);
 }
 
+/*Create the string based on s2 string and the given len*/
+
 static char	*do_the_split(char *s2, int len)
 {
 	int		i;
@@ -64,6 +74,9 @@ static char	*do_the_split(char *s2, int len)
 	s1[i] = '\0';
 	return (s1);
 }
+
+/*Split a string into a double array of string based on a sep, return the
+ malloced doublle array of string*/
 
 char	**ut_split_char(char *str, char c)
 {

@@ -3,16 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   ut_env_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 09:55:52 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/17 10:24:32 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/12/10 17:03:53 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
 #include <stdio.h>
+
+/*All sort of utilts for t_envp linked list*/
+
+/*Add t_envp node to the back of t_envp linked list*/
 
 void	env_lstaddback(t_envp **envp, t_envp *new)
 {
@@ -29,6 +33,8 @@ void	env_lstaddback(t_envp **envp, t_envp *new)
 	tmp->next = new;
 }
 
+/*Clear all t_envp linkef list from the ptr*/
+
 void	env_lstclear(t_envp **envp)
 {
 	t_envp	*tmp;
@@ -42,6 +48,8 @@ void	env_lstclear(t_envp **envp)
 		free(tmp);
 	}
 }
+
+/*Clean one node of t_envp linked list*/
 
 void	env_lstdelone(t_envp **envp, t_envp *tmp)
 {
@@ -61,6 +69,8 @@ void	env_lstdelone(t_envp **envp, t_envp *tmp)
 			tmp2 = tmp2->next;
 	}
 }
+
+/*Return the len of t_envp linked list*/
 
 int	env_lstsize(t_envp **envp)
 {

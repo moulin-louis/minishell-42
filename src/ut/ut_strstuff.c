@@ -3,15 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   ut_strstuff.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 12:32:42 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/15 14:47:23 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/12/10 16:47:20 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
+
+/*Some tools for string*/
+
+/*Return the len of the string, 0 excluded*/
 
 int	ft_strlen(char *str)
 {
@@ -24,6 +28,8 @@ int	ft_strlen(char *str)
 		i++;
 	return (i);
 }
+
+/*Copy str string and return the new malloced ptr*/
 
 char	*ut_strdup(char *str)
 {
@@ -43,6 +49,8 @@ char	*ut_strdup(char *str)
 		result[i] = str[i];
 	return (result);
 }
+
+/*Return 0 if the n first char of s1 and s2 are the same*/
 
 int	ft_strncmp(const char *s1, const char *s2, int n)
 {

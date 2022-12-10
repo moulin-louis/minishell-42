@@ -14,6 +14,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+/*another strdup (idk)*/
+
 char	*ut_strcpy(char *s2)
 {
 	int		i;

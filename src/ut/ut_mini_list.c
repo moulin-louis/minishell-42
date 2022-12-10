@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:51:29 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/24 14:04:13 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/12/10 16:57:53 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,10 @@
 #include <string.h>
 #include <errno.h>
 #include <stdio.h>
+
+/*All sort of utilts for t_cati linked list*/
+
+/*return a ptr to the last node of the t_cati linked list*/
 
 t_cati	*mini_lstlast(t_cati *mini)
 {
@@ -25,6 +29,8 @@ t_cati	*mini_lstlast(t_cati *mini)
 		temp = temp->next;
 	return (temp);
 }
+
+/*Set the n bytes of s as 0*/
 
 void	ft_bzero(void *s, int n)
 {
@@ -38,6 +44,8 @@ void	ft_bzero(void *s, int n)
 		n--;
 	}
 }
+
+/*Add the t_cati node to the back of the t_cati linked list*/
 
 void	mini_lstaddback(t_cati **mini, t_cati *node)
 {
@@ -54,6 +62,8 @@ void	mini_lstaddback(t_cati **mini, t_cati *node)
 	temp->next = node;
 }
 
+/*Delete the node and free its malloced ptr inside*/
+
 void	mini_delone(t_cati *node)
 {
 	if (node->cmd)
@@ -68,6 +78,8 @@ void	mini_delone(t_cati *node)
 		free(node->outfile);
 	free(node);
 }
+
+/*Create a new t_cati node and return its ptr, quit minishell if fail*/
 
 t_cati	*mini_lstnew(void)
 {
