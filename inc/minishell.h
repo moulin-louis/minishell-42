@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/12/06 16:14:42 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/12/10 16:58:37 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,6 @@ int		bi_unset(t_cati **mini, t_cati *node);
 char	*ut_strinsert(char *og, char *target, char *payload);
 void	ut_clean_parsing_n_quit(t_cati **mini, t_tok **lst, int error);
 void	*ut_calloc(int nb, int sz);
-char	*ut_gnl(int fd);
 char	**ut_split(char *str);
 char	**ut_split_char(char *str, char c);
 int		ut_strcmp(char *s1, char *s2);
