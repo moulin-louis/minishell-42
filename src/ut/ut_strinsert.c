@@ -6,13 +6,15 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:09:51 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/06 16:56:32 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/12/10 16:37:53 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdio.h>
 #include <stdlib.h>
+
+/*insert target in result starting at index i*/
 
 void	trigger_insert(char *result, int *i, char *target)
 {
@@ -53,7 +55,6 @@ char	*ut_strinsert(char *og, char *target, char *payload)
 	int		i;
 	int		x;
 
-	printf("og = %s\n", og);
 	len = (ft_strlen(og) - ft_strlen(target)) + ft_strlen(payload);
 	result = malloc(len + 1);
 	if (!result)
@@ -67,14 +68,10 @@ char	*ut_strinsert(char *og, char *target, char *payload)
 		{
 			if (is_target(og, i, target))
 				trigger_insert(result, &i, payload);
+			x += ft_strlen(target);
 		}
 		else
-		{
-			result[i] = og[x];
-			i++;
-		}
-		x++;
+			result[i++] = og[x++];
 	}
-	printf("result = %s\n\n", result);
 	return (free(og), free(target), free(payload), result);
 }

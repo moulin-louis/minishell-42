@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 15:37:24 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/06 16:28:46 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/12/10 16:39:23 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,9 +64,11 @@ void	trigger_expand(t_tok *node, int i, t_tok **lst, t_cati **mini)
 		len++;
 		i++;
 	}
-	node->str = ut_strinsert(node->str, ut_strjoin("$", var), find_var(var, lst, mini));
+	node->str = ut_strinsert(node->str, ut_strjoin("$", var),
+			find_var(var, lst, mini));
 	if (!node->str)
 		ut_clean_parsing_n_quit(mini, lst, errno);
+	free(var);
 }
 
 /*Make the expand happened*/
