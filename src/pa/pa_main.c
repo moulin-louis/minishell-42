@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/09 15:49:11 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/12/10 17:21:40 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-/* TO DO :
-- FIX QUOTE DOUBLE QUOTE
-- IMPLEMENT EXPAND */
+/*TO DO LIST :
+- IMPLEMANT ERROR NEAR TOKEN BLA BLA
+- FIX CTRL + C DOUBLE SHELL WHEN CAT IS RUNNING
+*/
 
 void	printfmini(t_cati *mini);
 void	fill_node_of_pipe(t_cati *mini);
