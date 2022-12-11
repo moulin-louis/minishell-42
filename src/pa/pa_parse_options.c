@@ -98,9 +98,10 @@ void	parse_options(t_tok **lst, t_cati **mini)
 	}
 	*lst = temp;
 	setup_redirection(lst, mini_lstlast(*mini), mini);
-	setup_node(lst, mini_lstlast(*mini), mini);
+	if (*lst && *mini)
+		setup_node(lst, mini_lstlast(*mini), mini);
 	nbr_cmd--;
-	while (nbr_cmd > 0)
+	while (*lst && *mini && nbr_cmd > 0)
 	{
 		mini_lstaddback(mini, mini_lstnew());
 		setup_redirection(lst, mini_lstlast(*mini), mini);

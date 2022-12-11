@@ -15,7 +15,7 @@
 #include <stdlib.h>
 
 /*TO DO LIST :
-- IMPLEMANT ERROR NEAR TOKEN BLA BLA
+- FIX/IMPROVE ERROR MANAGEMENT IN REDIR
 - FIX CTRL + C DOUBLE SHELL WHEN CAT IS RUNNING
 */
 
@@ -35,12 +35,15 @@ void	parsing(char *input, t_cati **mini)
 	expand_lst(&lst, mini);
 	clean_quote(&lst, mini);
 	parse_options(&lst, mini);
-	fill_node_of_pipe(*mini);
-	fill_node_env(*mini);
-	check_builtin(*mini);
-	clean_tok(&lst);
-	printfmini(*mini);
-	execute(mini);
+	if (*mini)
+	{
+		fill_node_of_pipe(*mini);
+		fill_node_env(*mini);
+		check_builtin(*mini);
+		clean_tok(&lst);
+		printfmini(*mini);
+		execute(mini);
+	}
 	clean_mini(mini);
 }
 

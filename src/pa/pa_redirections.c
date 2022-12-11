@@ -45,7 +45,7 @@ void	setup_redirection(t_tok **lst, t_cati *node, t_cati **mini)
 	t_tok	*temp;
 
 	temp = *lst;
-	while (temp && !ut_strcmp(temp->str, "|"))
+	while (lst && temp && !ut_strcmp(temp->str, "|"))
 	{
 		if (ft_is_redir(temp->str))
 		{

@@ -80,7 +80,6 @@ void	clean_mini(t_cati **mini)
 
 void	full_exit(t_cati **mini, int i)
 {
-	printf("call full_exit\n");
 	if (mini && *mini)
 	{
 		if ((*mini)->envp)
