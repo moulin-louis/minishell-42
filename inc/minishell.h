@@ -132,10 +132,9 @@ void	setup_redirection(t_tok **lst, t_cati *node, t_cati **mini);
 void	parse_options(t_tok **lst, t_cati **mini);
 
 /*redirection in parsing*/
-void	clean_lst_mode(t_tok *dest, t_tok *temp, t_tok **lst, int i);
-void	in_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini);
-void	out_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini);
-void	append_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini);
+void	in_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini);
+void	out_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini);
+void	app_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini);
 void	heredoc_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini);
 
 /* Execute */

@@ -12,160 +12,119 @@
 
 #include "minishell.h"
 #include <errno.h>
-#include <string.h>
 #include <stdio.h>
 
-char *return_op(char *str, t_tok **lst, t_cati **mini)
+int	check_compliance_file(char *str)
 {
-	if (str[0] == '<' && str[1] != '<')
-		return ("<");
-	if (str[0] == '>' && str[1] != '>')
-		return (">");
-	if (str[0] == '<' && str[1] == '<')
-		return ("<<");
-	if (str[0] == '>' && str[1] == '>')
-		return (">>");
-	if (str[0] == '|')
-		return ("|");
-	(void)lst;
-	(void)mini;
-	return (NULL);
-}
-
-int	check_compliance_redir(char *str, t_tok **lst, t_cati **mini)
-{
-	char	*temp;
-
-	temp = return_op(str, lst, mini);
-	if (temp)
-	{
-		printf("shellnado : syntax error near unexpected token '%s'\n", temp);
-		clean_tok(lst);
-		clean_mini(mini);
-		*mini = NULL;
+	if (!str && ft_strlen(str) < 2)
 		return (1);
-	}
+	if (str[0] == '<' && str[1] != '<')
+		return (printf("shellnado : invalid token syntax near '<'\n"), 1);
+	if (str[0] == '<' && str[1] == '<')
+		return (printf("shellnado : invalid token syntax near '<<'\n"), 1);
+	if (str[0] == '>' && str[1] != '>')
+		return (printf("shellnado : invalid token syntax near '>'\n"), 1);
+	if (str[0] == '>' && str[1] == '>')
+		return (printf("shellnado : invalid token syntax near '>>'\n"), 1);
 	return (0);
 }
 
-/*clean redir node*/
-
-void	clean_lst_mode(t_tok *dest, t_tok *temp, t_tok **lst, int i)
+void	reset_ressources(t_tok **lst, t_cati **mini)
 {
-	if (i == 1)
+	clean_tok(lst);
+	clean_mini(mini);
+	*lst = NULL;
+	*mini = NULL;
+}
+
+void	delete_token_redir(t_tok *node, t_tok **lst)
+{
+	t_tok	*temp;
+	t_tok	*temp2;
+
+	if (ut_strcmp(node->str, (*lst)->str))
 	{
 		temp = (*lst)->next;
-		tok_delone((*lst));
-		(*lst) = temp;
+		tok_delone(*lst);
+		*lst = temp;
 		temp = (*lst)->next;
-		tok_delone((*lst));
-		(*lst) = temp;
-	}
-	else if (i == 2)
-	{
-		dest = temp->next;
-		temp->next = temp->next->next;
-		tok_delone(dest);
-		dest = temp->next;
-		temp->next = temp->next->next;
-		tok_delone(dest);
-	}
-}
-
-/*Handle in redir*/
-
-void	in_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini)
-{
-	t_tok	*temp;
-
-	temp = 0;
-	if (ut_strcmp((*lst)->str, dest->str))
-	{
-		if (check_compliance_redir((*lst)->next->str, lst, mini))
-			return ;
-		node->infile = ut_strdup((*lst)->next->str);
-		if (!node->infile)
-			ut_clean_parsing_n_quit(mini, lst, errno);
-		node->in_file = 1;
-		clean_lst_mode(dest, temp, lst, 1);
-		return ;
-	};
-	temp = *lst;
-	while (!ut_strcmp(temp->next->str, dest->str))
-		temp = temp->next;
-	if (temp->next->next == NULL)
-		printf("shellnado : syntax error near unexpected token '\\n'");
-	if (check_compliance_redir(temp->next->next->str, lst, mini))
-			return ;
-	node->infile = ut_strdup(temp->next->next->str);
-	if (!node->infile)
-		ut_clean_parsing_n_quit(mini, lst, errno);
-	node->in_file = 1;
-	clean_lst_mode(dest, temp, lst, 2);
-}
-
-/*Handle out redir*/
-
-void	out_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini)
-{
-	t_tok	*temp;
-
-	temp = 0;
-	if (ut_strcmp((*lst)->str, dest->str))
-	{
-		if ((*lst)->next && check_compliance_redir((*lst)->next->str, lst, mini))
-			return ;
-		node->outfile = ut_strdup((*lst)->next->str);
-		if (!node->outfile)
-			ut_clean_parsing_n_quit(mini, lst, errno);
-		node->out_trunc = 1;
-		clean_lst_mode(dest, temp, lst, 1);
+		tok_delone(*lst);
+		*lst = temp;
 		return ;
 	}
 	temp = *lst;
-	while (!ut_strcmp(temp->next->str, dest->str))
+	while (ut_strcmp(temp->next->next->str, node->str))
 		temp = temp->next;
-	printf("temp->next = %p temp->next->next = %p", temp->next, temp->next->next);
-	if (temp->next->next == NULL)
-		printf("shellnado : syntax error near unexpected token '\\n'");
-	if (temp->next->next && check_compliance_redir(temp->next->next->str, lst, mini))
-			return ;
-	node->outfile = ut_strdup(temp->next->next->str);
-	if (!node->outfile)
-		ut_clean_parsing_n_quit(mini, lst, errno);
-	node->out_trunc = 1;
-	clean_lst_mode(dest, temp, lst, 2);
+	temp2 = temp->next->next;
+	tok_delone(temp->next);
+	temp->next = temp2;
+	if (temp->next->next)
+		temp2 = temp->next->next;
+	else
+		temp2 = NULL;
+	tok_delone(temp->next);
+	temp->next = temp2;
 }
 
-/*Handle out append redir*/
-
-void	append_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini)
+void	in_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini)
 {
-	t_tok	*temp;
-
-	temp = 0;
-	if (ut_strcmp((*lst)->str, dest->str))
+	if (!r_token->next)
 	{
-		if (check_compliance_redir((*lst)->next->str, lst, mini))
-			return ;
-
-		node->outfile = ut_strdup((*lst)->next->str);
-		if (!node->outfile)
-			ut_clean_parsing_n_quit(mini, lst, errno);
-		node->out_append = 1;
-		clean_lst_mode(dest, temp, lst, 1);
+		printf("shellnado : invalid token syntax near '\\n'\n");
+		reset_ressources(lst, mini);
 		return ;
 	}
-	temp = *lst;
-	while (!ut_strcmp(temp->next->str, dest->str))
-		temp = temp->next;
-	if (temp->next->next == NULL)
-		printf("shellnado : syntax error near unexpected token '\\n'");
-	if (check_compliance_redir(temp->next->next->str, lst, mini))
-			return ;		
-	node->outfile = ut_strdup(temp->next->next->str);
-	if (!node->outfile)
+	if (check_compliance_file(r_token->next->str))
+	{
+		printf("shellnado : invalid token syntax near '%s'\n", r_token->str);
+		reset_ressources(lst, mini);
+		return ;
+	}
+	c_node->infile = ut_strdup(r_token->next->str);
+	if (!c_node)
 		ut_clean_parsing_n_quit(mini, lst, errno);
-	node->out_append = 1;
-	clean_lst_mode(dest, temp, lst, 2);
+	c_node->in_file = 1;
+	delete_token_redir(r_token, lst);
+}
+
+void	out_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini)
+{
+	if (!r_token->next)
+	{
+		printf("shellnado : invalid token syntax near '\\n'\n");
+		reset_ressources(lst, mini);
+		return ;
+	}
+	if (check_compliance_file(r_token->next->str))
+	{
+		printf("shellnado : invalid token syntax near '%s'\n", r_token->str);
+		reset_ressources(lst, mini);
+		return ;
+	}
+	c_node->outfile = ut_strdup(r_token->next->str);
+	if (!c_node)
+		ut_clean_parsing_n_quit(mini, lst, errno);
+	c_node->out_trunc = 1;
+	delete_token_redir(r_token, lst);
+}
+
+void	app_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini)
+{
+	if (!r_token->next)
+	{
+		printf("shellnado : invalid token syntax near '\\n'\n");
+		reset_ressources(lst, mini);
+		return ;
+	}
+	if (check_compliance_file(r_token->next->str))
+	{
+		printf("shellnado : invalid token syntax near '%s'\n", r_token->str);
+		reset_ressources(lst, mini);
+		return ;
+	}
+	c_node->outfile = ut_strdup(r_token->next->str);
+	if (!c_node)
+		ut_clean_parsing_n_quit(mini, lst, errno);
+	c_node->out_append = 1;
+	delete_token_redir(r_token, lst);
 }

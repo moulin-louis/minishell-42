@@ -45,9 +45,7 @@ void	heredoc_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini)
 	char	*sep;
 	int		fd;
 	char	*buffer;
-	t_tok	*temp;
 
-	temp = 0;
 	buffer = NULL;
 	sep = dest->next->str;
 	fd = open("/tmp/.heredoc.tmp", O_TRUNC | O_CREAT | O_RDWR, 0644);
@@ -63,8 +61,4 @@ void	heredoc_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini)
 		ut_clean_parsing_n_quit(mini, lst, errno);
 	node->in_file = 1;
 	close (fd);
-	if (ut_strcmp((*lst)->str, dest->str))
-		clean_lst_mode(dest, temp, lst, 1);
-	else
-		clean_lst_mode(dest, temp, lst, 2);
 }

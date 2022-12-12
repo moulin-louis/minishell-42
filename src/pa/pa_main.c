@@ -15,7 +15,7 @@
 #include <stdlib.h>
 
 /*TO DO LIST :
-- FIX/IMPROVE ERROR MANAGEMENT IN REDIR
+- TEST NEW ERROR MANAGEMENT SYSTEM AND IMPLEMENT IT FOR HEREDOC
 - FIX CTRL + C DOUBLE SHELL WHEN CAT IS RUNNING
 */
 
@@ -42,7 +42,7 @@ void	parsing(char *input, t_cati **mini)
 		check_builtin(*mini);
 		clean_tok(&lst);
 		printfmini(*mini);
-		execute(mini);
+		//execute(mini);
 	}
 	clean_mini(mini);
 }
