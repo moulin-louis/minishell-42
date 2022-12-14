@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 15:01:04 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/05 21:42:23 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/12/14 12:36:48 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	write_line_infile(char *buffer, char *sep, int fd)
 		if (ut_strcmp(buffer, sep))
 		{
 			free(buffer);
-			break ;
+			return ;
 		}
 		write(fd, buffer, ft_strlen(buffer));
 		write(fd, "\n", 1);
@@ -40,25 +40,32 @@ void	write_line_infile(char *buffer, char *sep, int fd)
 
 /*Setup for heredoc, create an infile with user input*/
 
-void	heredoc_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini)
+void	heredoc_redir(t_tok *r_token, t_cati *c_node, t_tok **lst,
+			t_cati **mini)
 {
 	char	*sep;
 	int		fd;
 	char	*buffer;
 
 	buffer = NULL;
-	sep = dest->next->str;
+	sep = r_token->next->str;
+	if (!r_token->next)
+		printf("shellnado : invalid token syntax near '\\n'\n");
+	else if (check_compliance_file(sep))
+		printf("shellnado : invalid token syntax near '%s'\n", sep);
+	if (!r_token->next || check_compliance_file(sep))
+	{
+		reset_ressources(lst, mini);
+		return ;
+	}
 	fd = open("/tmp/.heredoc.tmp", O_TRUNC | O_CREAT | O_RDWR, 0644);
 	if (!fd)
-	{
-		perror("tmp heredoc :");
-		clean_tok(lst);
-		full_exit(mini, errno);
-	}
-	write_line_infile(buffer, sep, fd);
-	node->infile = ut_strdup("/tmp/.heredoc.tmp");
-	if (!node->infile)
 		ut_clean_parsing_n_quit(mini, lst, errno);
-	node->in_file = 1;
+	write_line_infile(buffer, sep, fd);
+	c_node->infile = ut_strdup("/tmp/.heredoc.tmp");
+	if (!c_node->infile)
+		ut_clean_parsing_n_quit(mini, lst, errno);
+	c_node->in_file = 1;
 	close (fd);
+	delete_token_redir(r_token, lst);
 }

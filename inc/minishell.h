@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/12/10 16:58:37 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/12/14 12:38:26 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ int		bi_unset(t_cati **mini, t_cati *node);
 
 /* Utils */
 char	*ut_strinsert(char *og, char *target, char *payload);
+void	reset_ressources(t_tok **lst, t_cati **mini);
 void	ut_clean_parsing_n_quit(t_cati **mini, t_tok **lst, int error);
 void	*ut_calloc(int nb, int sz);
 char	**ut_split(char *str);
@@ -135,7 +136,11 @@ void	parse_options(t_tok **lst, t_cati **mini);
 void	in_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini);
 void	out_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini);
 void	app_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini);
-void	heredoc_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini);
+void	heredoc_redir(t_tok *r_token, t_cati *c_node, t_tok **lst,
+			t_cati **mini);
+void	delete_token_redir(t_tok *node, t_tok **lst);
+int		check_compliance_file(char *str);
+void	reset_ressources(t_tok **lst, t_cati **mini);
 
 /* Execute */
 int		execute(t_cati **mini);

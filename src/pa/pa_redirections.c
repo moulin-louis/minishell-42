@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 13:26:36 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/05 21:50:58 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/12/14 12:37:28 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,10 @@ int	find_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini)
 {
 	if (ut_strcmp((dest)->str, "<"))
 		return (in_redir(dest, node, lst, mini), 1);
-
 	else if (ut_strcmp((dest)->str, ">"))
 		return (out_redir(dest, node, lst, mini), 1);
-
 	else if (ut_strcmp((dest)->str, "<<"))
-		return (heredoc_redir(lst, dest, node, mini), 1);
-
+		return (heredoc_redir(dest, node, lst, mini), 1);
 	else if (ut_strcmp((dest)->str, ">>"))
 		return (app_redir(dest, node, lst, mini), 1);
 	else

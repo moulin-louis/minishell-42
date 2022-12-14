@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:36:37 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/12/10 17:02:09 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/12/14 12:38:13 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,16 @@ void	ut_clean_parsing_n_quit(t_cati **mini, t_tok **lst, int error)
 	perror("Malloc :");
 	clean_tok(lst);
 	full_exit(mini, error);
+}
+
+/*Clean lst and cati linked list and put the ptr to NULL*/
+
+void	reset_ressources(t_tok **lst, t_cati **mini)
+{
+	clean_tok(lst);
+	clean_mini(mini);
+	*lst = NULL;
+	*mini = NULL;
 }
 
 /*Clean a double array NULL terminated*/

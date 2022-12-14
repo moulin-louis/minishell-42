@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:42:25 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/05 21:51:49 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/12/14 12:37:42 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,6 @@ int	check_compliance_file(char *str)
 	if (str[0] == '>' && str[1] == '>')
 		return (printf("shellnado : invalid token syntax near '>>'\n"), 1);
 	return (0);
-}
-
-void	reset_ressources(t_tok **lst, t_cati **mini)
-{
-	clean_tok(lst);
-	clean_mini(mini);
-	*lst = NULL;
-	*mini = NULL;
 }
 
 void	delete_token_redir(t_tok *node, t_tok **lst)
