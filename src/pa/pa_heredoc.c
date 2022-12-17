@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 15:01:04 by loumouli          #+#    #+#             */
-/*   Updated: 2022/10/24 14:07:34 by loumouli         ###   ########.fr       */
+/*   Updated: 2022/12/05 21:42:23 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <string.h>
+
+/*Read user input and breaf when sep is input*/
 
 void	write_line_infile(char *buffer, char *sep, int fd)
 {
@@ -35,6 +37,8 @@ void	write_line_infile(char *buffer, char *sep, int fd)
 		free(buffer);
 	}
 }
+
+/*Setup for heredoc, create an infile with user input*/
 
 void	heredoc_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini)
 {
