@@ -3,17 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-<<<<<<< HEAD
-#    By: axldmg <axldmg@student.42.fr>              +#+  +:+       +#+         #
+#    By: foster <foster@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/10/27 23:20:11 by axldmg           ###   ########.fr        #
-=======
-#    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/09/13 11:42:25 by bschoeff          #+#    #+#              #
-#    Updated: 2022/12/05 16:08:50 by loumouli         ###   ########.fr        #
->>>>>>> louis
+#    Updated: 2022/12/07 11:49:04 by foster           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 

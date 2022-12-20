@@ -6,7 +6,7 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/12/05 17:24:47 by foster           ###   ########.fr       */
+/*   Updated: 2022/12/20 22:08:14 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,12 +36,13 @@ typedef struct s_envp
 typedef struct s_cati
 {
 	char			**cmd; // double tableau commandes example [echo] [$PATH]
-	char			**ev; // double tableau example [PATH]=[]
+	char			**ev; // double tableau env example [PATH]=[]
 	char			*path_cmd; // chemin de la commande
 	char			*infile; // chemin d'entree
 	char			*outfile; // chemin de sortie
 	t_fds			*fds; // structure de pipe
 	t_envp			*envp; // reference vers la structure env
+	int				*pipe;
 	int				builtin; // fichier de builtin
 	int				in_fd; // fd d'entree
 	int				out_fd; // fd de sortie
@@ -141,7 +142,7 @@ void	heredoc_redir(t_tok **lst, t_tok *dest, t_cati *node, t_cati **mini);
 /* Execute */
 int		execute(t_cati **mini);
 void	close_pipes(t_cati **mini);
-void	set_fds(t_cati **mini, t_cati *node);
+int		set_fds(t_cati **mini, t_cati *node);
 int		exec_node(t_cati **mini, t_cati *node);
 void	exec_cmd(t_cati **mini, t_cati *node);
 int		exe_bi_launcher(t_cati **mini, t_cati *node);
