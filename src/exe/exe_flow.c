@@ -6,7 +6,7 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:20:08 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/12/20 22:07:40 by foster           ###   ########.fr       */
+/*   Updated: 2022/12/22 14:15:08 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,18 @@ void	exec_cmd(t_cati **mini, t_cati *node)
 	if (!node->pid)
 	{
 		set_path_cmd(mini, node);
+		if (node->infile)
+		{
+			dup2(node->in_fd, 0);
+			close_pipes(mini);
+		}
 		if (node->outfile)
 		{
 			dup2(node->out_fd, 1);
 			close_pipes(mini);
 		}
-		if (node->in_file)
-		{
-			dup2(node->in_fd, 0);
-			close_pipes(mini);
-		}
 		if (!access(node->path_cmd, R_OK || X_OK))
-		{
 			execve(node->path_cmd, node->cmd, node->ev);
-		}
-
 		printf("command '%s' not found\n", node->cmd[0]);
 		full_exit(mini, 127);
 	}
