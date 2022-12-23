@@ -6,7 +6,7 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:20:08 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/12/23 10:33:11 by foster           ###   ########.fr       */
+/*   Updated: 2022/12/23 13:57:29 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,31 @@
 
 void	exec_cmd(t_cati **mini, t_cati *node)
 {
-	if (!node->pid)
+	if (node->pid == 0)
 	{
 		set_path_cmd(mini, node);
-		if (node->in_pipe)
+		if(node->in_pipe && node->out_pipe)
 		{
-			// printf("je lis dans le fds %d\n", node->fds_test->pfd_1[0]);
-			dup2(node->fds_test->pfd_1[0], STDIN_FILENO);
+			close(node->fds_test->pfd[1]);
+			close(node->next->fds_test->pfd[0]);
+			dup2(node->fds_test->pfd[0], 0);
+			
+			dup2(node->next->fds_test->pfd[1], 1);
+			close(node->fds_test->pfd[0]);
+			close(node->next->fds_test->pfd[1]);
 		}
-		if (node->outfile)
+		else
 		{
-			dup2(node->out_fd, 1);
-		}
-		else if (node->out_pipe)
-		{
-			// printf("j'ecris dans le fds %d\n", node->next->fds_test->pfd_1[1]);
-			dup2(node->next->fds_test->pfd_1[1], STDOUT_FILENO);
+			if (node->in_pipe)
+			{
+				dup2(node->fds_test->pfd[0], STDIN_FILENO);
+			}
+			if (node->out_pipe)
+			{
+				dup2(node->next->fds_test->pfd[1], STDOUT_FILENO);
+			}
+			close(node->fds_test->pfd[0]);
+			close(node->fds_test->pfd[1]);
 		}
 		if (access(node->path_cmd, R_OK | X_OK) == 0)
 			execve(node->path_cmd, node->cmd, node->ev);

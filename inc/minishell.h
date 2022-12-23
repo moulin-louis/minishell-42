@@ -6,7 +6,7 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/12/23 00:51:55 by foster           ###   ########.fr       */
+/*   Updated: 2022/12/23 11:53:48 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,7 @@ extern int	g_status;
 
 typedef struct s_fds
 {
-	int		pfd_1[2];
-	int		pfd_2[2];
+	int		pfd[2];
 	int		ret;
 	int		status;
 }			t_fds;

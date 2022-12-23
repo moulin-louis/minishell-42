@@ -6,7 +6,7 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:53:11 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/12/23 10:32:41 by foster           ###   ########.fr       */
+/*   Updated: 2022/12/23 13:58:29 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static void	init_pipes_test(t_cati *node)
 {
 	t_fds	*fds = malloc(sizeof(t_fds));
 	node->fds_test = fds;
-	if (pipe(node->fds_test->pfd_1) == -1)
+	if (pipe(node->fds_test->pfd) == -1)
 	{
 		printf("Catastrophic error when opening pipes, goddbye\n");
 	}
@@ -32,13 +32,14 @@ static void	init_pipes_test(t_cati *node)
 
 void	close_pipes(t_cati **mini)
 {
-	close((*mini)->fds->pfd_1[0]);
-	close((*mini)->fds->pfd_1[1]);
+	close((*mini)->fds->pfd[0]);
+	close((*mini)->fds->pfd[1]);
 }
 
 int	execute(t_cati **mini)
 {
 	t_cati	*node;
+	t_cati *cpy;
 
 	node = *mini;
 	while (node)
@@ -47,6 +48,7 @@ int	execute(t_cati **mini)
 		node = node->next;
 	}
 	node = *mini;
+	printfmini(*mini);
 	while (node)
 	{
 		exec_node(mini, node);
@@ -55,16 +57,23 @@ int	execute(t_cati **mini)
 	node = *mini;
 	while (node)
 	{
-		// printf("on attend le processur pid : %d", node->pid);
+		if(!node->next)
+		{
+			cpy = *mini;
+			while (cpy)
+			{
+				if (cpy->fds->pfd[0])
+				{
+					close(cpy->fds_test->pfd[0]);
+				}
+				if (cpy->fds->pfd[1])
+				{
+					close(cpy->fds_test->pfd[1]);
+				}
+				cpy = cpy->next;
+			}
+		}
 		waitpid(node->pid, &node->fds_test->status, 0);
-		// printf(" c'est bon\n");
-		node = node->next;
-	}
-	node = *mini;
-	while (node)
-	{
-		close(node->fds_test->pfd_1[0]);
-		close(node->fds_test->pfd_1[1]);
 		node = node->next;
 	}
 	return (0);
