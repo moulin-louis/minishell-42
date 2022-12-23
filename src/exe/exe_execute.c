@@ -6,7 +6,7 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:53:11 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/12/22 23:59:31 by foster           ###   ########.fr       */
+/*   Updated: 2022/12/23 10:32:41 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,15 @@
 #include <wait.h>
 #include <fcntl.h>
 
-static void	init_pipes(t_cati **mini)
+
+
+static void	init_pipes_test(t_cati *node)
 {
-	if (pipe((*mini)->fds->pfd_1) == -1 || pipe((*mini)->fds->pfd_2) == -1)
+	t_fds	*fds = malloc(sizeof(t_fds));
+	node->fds_test = fds;
+	if (pipe(node->fds_test->pfd_1) == -1)
 	{
 		printf("Catastrophic error when opening pipes, goddbye\n");
-		full_exit(mini, 1);
 	}
 }
 
@@ -31,8 +34,6 @@ void	close_pipes(t_cati **mini)
 {
 	close((*mini)->fds->pfd_1[0]);
 	close((*mini)->fds->pfd_1[1]);
-	close((*mini)->fds->pfd_2[0]);
-	close((*mini)->fds->pfd_2[1]);
 }
 
 int	execute(t_cati **mini)
@@ -40,27 +41,31 @@ int	execute(t_cati **mini)
 	t_cati	*node;
 
 	node = *mini;
-	printfmini(*mini);
 	while (node)
 	{
-		init_pipes(mini);
+		init_pipes_test(node);
+		node = node->next;
+	}
+	node = *mini;
+	while (node)
+	{
 		exec_node(mini, node);
 		node = node->next;
 	}
 	node = *mini;
 	while (node)
 	{
-		waitpid(node->pid, &node->fds->status, 0);
-		if (!node->next)
-		{
-			if (!node->builtin)
-			{
-				waitpid(node->pid, &node->fds->status, 0);
-				g_status = WEXITSTATUS(node->fds->status);
-			}
-		}
+		// printf("on attend le processur pid : %d", node->pid);
+		waitpid(node->pid, &node->fds_test->status, 0);
+		// printf(" c'est bon\n");
 		node = node->next;
 	}
-	close_pipes(mini);
+	node = *mini;
+	while (node)
+	{
+		close(node->fds_test->pfd_1[0]);
+		close(node->fds_test->pfd_1[1]);
+		node = node->next;
+	}
 	return (0);
 }

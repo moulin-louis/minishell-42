@@ -6,7 +6,7 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:20:08 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/12/23 00:01:25 by foster           ###   ########.fr       */
+/*   Updated: 2022/12/23 10:33:11 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,20 @@ void	exec_cmd(t_cati **mini, t_cati *node)
 		set_path_cmd(mini, node);
 		if (node->in_pipe)
 		{
-			dup2(node->fds->pfd_1[0], 0);
+			// printf("je lis dans le fds %d\n", node->fds_test->pfd_1[0]);
+			dup2(node->fds_test->pfd_1[0], STDIN_FILENO);
 		}
-		if (node->out_pipe) 
+		if (node->outfile)
 		{
-			dup2(node->next->fds->pfd_1[1], 1);
+			dup2(node->out_fd, 1);
+		}
+		else if (node->out_pipe)
+		{
+			// printf("j'ecris dans le fds %d\n", node->next->fds_test->pfd_1[1]);
+			dup2(node->next->fds_test->pfd_1[1], STDOUT_FILENO);
 		}
 		if (access(node->path_cmd, R_OK | X_OK) == 0)
 			execve(node->path_cmd, node->cmd, node->ev);
-		else if (errno == EACCES)
-			printf("permission denied: %s\n", node->cmd[0]);
-		else if (errno == ENOENT)
-			printf("command '%s' not found\n", node->cmd[0]);
-		else
-			printf("access error: %s\n", strerror(errno));
 		printf("command '%s' not found\n", node->cmd[0]);
 		full_exit(mini, 127);
 	}
@@ -46,7 +46,6 @@ void	exec_cmd(t_cati **mini, t_cati *node)
 
 int	exec_node(t_cati **mini, t_cati *node)
 {
-	/* builtin et pas de pipe de sortie */
 	if (node->builtin && !node->out_pipe)
 	{
 		node->fds->ret = exe_bi_launcher(mini, node);
