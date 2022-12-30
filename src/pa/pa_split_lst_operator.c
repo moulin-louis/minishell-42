@@ -23,6 +23,8 @@ static int	is_there_a_sep(char *str)
 	int	i;
 
 	i = 0;
+	if (str[i] == '\"' || str[i] == '\'')
+		return (0);
 	while (str[i])
 	{
 		if (str[i] == '|' || str[i] == '<' || str[i] == '>')
