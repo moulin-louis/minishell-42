@@ -84,7 +84,7 @@ void	split_token(char *str, int *i, t_tok **lst, t_cati **mini)
 	char	*temp;
 
 	x = (*i);
-	while (str[x] && (str[x] != ' ' && str[x] != '\"' && str[x] != '\''))
+	while (str[x] && (str[x] != '\t' && str[x] != ' ' && str[x] != '\"' && str[x] != '\''))
 		x++;
 	x = x - (*i);
 	temp = malloc(x + 1);
@@ -116,7 +116,7 @@ t_tok	*init_token_list(char *input, t_cati **mini)
 			split_dbl_quote(input, &i, &lst, mini);
 		else if (input[i] == '\'')
 			split_quote(input, &i, &lst, mini);
-		else if (input[i] != '\"' && input[i] != '\'' && input[i] != ' ')
+		else if (input[i] != '\"' && input[i] != '\'' && input[i] != ' ' && input[i] != '\t' && input[i] != ':' && input[i] != '!')
 			split_token(input, &i, &lst, mini);
 		else
 			i++;

@@ -15,6 +15,7 @@
 #include <stdlib.h>
 
 int	g_status = 0;
+int	g_pid = 1;
 
 int	main(int ac, char **av, char **env)
 {

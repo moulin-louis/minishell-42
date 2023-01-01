@@ -43,26 +43,30 @@ void	write_line_infile(char *buffer, char *sep, int fd)
 void	heredoc_redir(t_tok *r_token, t_cati *c_node, t_tok **lst,
 			t_cati **mini)
 {
-	char	*sep;
+	//char	*sep;
 	int		fd;
 	char	*buffer;
 
 	buffer = NULL;
-	sep = r_token->next->str;
 	if (!r_token->next)
-		printf("shellnado : invalid token syntax near '\\n'\n");
-	else if (check_compliance_file(sep))
-		printf("shellnado : invalid token syntax near '%s'\n", sep);
-	if (!r_token->next || check_compliance_file(sep))
 	{
+		printf("shellnado : invalid token syntax near '\\n'\n");
 		reset_ressources(lst, mini);
+		g_status = 2;
 		return ;
 	}
-	fd = open("/tmp/.heredoc.tmp", O_TRUNC | O_CREAT | O_RDWR, 0644);
+	//sep = r_token->next->str;
+	if (!r_token->next || check_compliance_file(r_token->next->str))
+	{
+		reset_ressources(lst, mini);
+		g_status = 2;
+		return ;
+	}
+	fd = open("/tmp/heredoc.tmp", O_TRUNC | O_CREAT | O_RDWR, 0644);
 	if (!fd)
 		ut_clean_parsing_n_quit(mini, lst, errno);
-	write_line_infile(buffer, sep, fd);
-	c_node->infile = ut_strdup("/tmp/.heredoc.tmp");
+	write_line_infile(buffer, r_token->next->str, fd);
+	c_node->infile = ut_strdup("/tmp/heredoc.tmp");
 	if (!c_node->infile)
 		ut_clean_parsing_n_quit(mini, lst, errno);
 	c_node->in_file = 1;

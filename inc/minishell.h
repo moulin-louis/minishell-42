@@ -18,6 +18,7 @@
 # include <sys/stat.h>
 
 extern int	g_status;
+extern int	g_pid;
 
 typedef struct s_fds
 {
