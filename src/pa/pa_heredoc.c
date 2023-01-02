@@ -22,7 +22,7 @@
 
 /*Read user input and breaf when sep is input*/
 
-void	write_line_infile(char *buffer, char *sep, int fd)
+int	write_line_infile(char *buffer, char *sep, int fd, t_cati *node)
 {
 	while (1)
 	{
@@ -30,12 +30,16 @@ void	write_line_infile(char *buffer, char *sep, int fd)
 		if (ut_strcmp(buffer, sep))
 		{
 			free(buffer);
-			return ;
+			return 0;
 		}
 		write(fd, buffer, ft_strlen(buffer));
 		write(fd, "\n", 1);
 		free(buffer);
 	}
+	node->infile = ut_strdup("/tmp/heredoc.tmp");
+	if (!node->infile)
+		return (1);
+	return (0);
 }
 
 /*Setup for heredoc, create an infile with user input*/
@@ -43,7 +47,6 @@ void	write_line_infile(char *buffer, char *sep, int fd)
 void	heredoc_redir(t_tok *r_token, t_cati *c_node, t_tok **lst,
 			t_cati **mini)
 {
-	//char	*sep;
 	int		fd;
 	char	*buffer;
 
@@ -55,7 +58,6 @@ void	heredoc_redir(t_tok *r_token, t_cati *c_node, t_tok **lst,
 		g_status = 2;
 		return ;
 	}
-	//sep = r_token->next->str;
 	if (!r_token->next || check_compliance_file(r_token->next->str))
 	{
 		reset_ressources(lst, mini);
@@ -65,9 +67,7 @@ void	heredoc_redir(t_tok *r_token, t_cati *c_node, t_tok **lst,
 	fd = open("/tmp/heredoc.tmp", O_TRUNC | O_CREAT | O_RDWR, 0644);
 	if (!fd)
 		ut_clean_parsing_n_quit(mini, lst, errno);
-	write_line_infile(buffer, r_token->next->str, fd);
-	c_node->infile = ut_strdup("/tmp/heredoc.tmp");
-	if (!c_node->infile)
+	if (write_line_infile(buffer, r_token->next->str, fd, c_node))
 		ut_clean_parsing_n_quit(mini, lst, errno);
 	c_node->in_file = 1;
 	close (fd);
