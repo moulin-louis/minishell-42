@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/14 12:11:58 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/04 16:20:24 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,18 +100,15 @@ void	fill_node_of_pipe(t_cati *mini)
 
 void	fill_node_env(t_cati *mini)
 {
-	t_fds	*fds;
 	t_envp	*envp;
 	t_cati	*temp;
 
 	temp = mini;
 	envp = temp->envp;
-	fds = temp->fds;
 	temp = temp->next;
 	while (temp)
 	{
 		temp->envp = envp;
-		temp->fds = fds;
 		temp = temp->next;
 	}
 }

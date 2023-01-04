@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:51:41 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/05 21:49:55 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/04 16:20:29 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static void	ft_create_node(t_cati **mini, t_envp *envp, t_fds *fds)
 {
 	*mini = mini_lstnew();
 	(*mini)->envp = envp;
-	(*mini)->fds = fds;
+	(void)fds;
 }
 
 /*Handle sigint and ignore sigquit*/
