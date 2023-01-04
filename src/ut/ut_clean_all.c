@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ut_clean_all.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:36:37 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/12/14 12:38:13 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/04 16:17:26 by foster           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/*   Updated: 2022/12/08 18:11:42 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +94,7 @@ void	clean_mini(t_cati **mini)
 
 void	full_exit(t_cati **mini, int i)
 {
+	(void) i;
 	if (mini && *mini)
 	{
 		if ((*mini)->envp)

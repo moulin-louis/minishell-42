@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:19:57 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/28 09:15:41 by bschoeff         ###   ########.fr       */
+/*   Updated: 2022/12/05 16:55:24 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,19 @@
 #include <unistd.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <errno.h>
 
 static int	change_var(t_envp *tmp)
 {
-	int		i;
 	char	*pwd;
 	char	*buff;
 
 	free(tmp->var[1]);
-	i = 1;
 	buff = NULL;
 	pwd = NULL;
-	while (!pwd)
-	{
-		pwd = getcwd(buff, i);
-		i++;
-	}
-	i = ut_word_len(pwd);
-	if (!tmp->var[1])
+	pwd = getcwd(buff, 0);
+	if (!pwd)
 		return (perror("cd change var[1] malloc"), 0);
 	tmp->var[1] = pwd;
 	return (1);
@@ -86,7 +80,8 @@ int	bi_cd(t_cati **mini, t_cati *node)
 		return (0);
 	if (chdir(node->cmd[1]) == -1)
 	{
-		perror("shellnado: cd: ");
+		//perror("shellnado: cd: ");
+		printf("shellnado: cd: %s: %s\n", node->cmd[1], strerror(errno));
 		return (1);
 	}
 	change_oldpwd(mini, node);

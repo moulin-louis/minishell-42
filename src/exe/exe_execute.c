@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_execute.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:53:11 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/28 08:45:46 by bschoeff         ###   ########.fr       */
+/*   Updated: 2023/01/04 16:08:49 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,21 +18,21 @@
 #include <wait.h>
 #include <fcntl.h>
 
-static void	init_pipes(t_cati **mini)
+
+
+static void	init_pipes_test(t_cati *node)
 {
-	if (pipe((*mini)->fds->pfd_1) == -1 || pipe((*mini)->fds->pfd_2) == -1)
+
+	if (pipe(node->fds.pfd) == -1)
 	{
 		printf("Catastrophic error when opening pipes, goddbye\n");
-		full_exit(mini, 1);
 	}
 }
 
 void	close_pipes(t_cati **mini)
 {
-	close((*mini)->fds->pfd_1[0]);
-	close((*mini)->fds->pfd_1[1]);
-	close((*mini)->fds->pfd_2[0]);
-	close((*mini)->fds->pfd_2[1]);
+	close((*mini)->fds.pfd[0]);
+	close((*mini)->fds.pfd[1]);
 }
 
 int	execute(t_cati **mini)
@@ -42,24 +42,24 @@ int	execute(t_cati **mini)
 	node = *mini;
 	while (node)
 	{
-		init_pipes(mini);
+		init_pipes_test(node);
+		node = node->next;
+	}
+	node = *mini;
+	printfmini(*mini);
+	while (node)
+	{
 		exec_node(mini, node);
+		close_pipes(&node);
 		node = node->next;
 	}
 	node = *mini;
 	while (node)
 	{
-		waitpid(node->pid, &node->fds->status, 0);
-		if (!node->next)
-		{
-			if (!node->builtin)
-			{
-				waitpid(node->pid, &node->fds->status, 0);
-				g_status = WEXITSTATUS(node->fds->status);
-			}
-		}
+		// printf("on attend le processur pid : %d", node->pid);
+		waitpid(node->pid, &node->fds.status, 0);
+		// printf(" c'est bon\n");
 		node = node->next;
 	}
-	close_pipes(mini);
 	return (0);
 }
