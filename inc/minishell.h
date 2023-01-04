@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/12/14 12:38:26 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/04 16:17:08 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ extern int	g_pid;
 
 typedef struct s_fds
 {
-	int		pfd_1[2];
-	int		pfd_2[2];
+	int		pfd[2];
 	int		ret;
 	int		status;
 }			t_fds;
@@ -41,8 +40,9 @@ typedef struct s_cati
 	char			*path_cmd;
 	char			*infile;
 	char			*outfile;
-	t_fds			*fds;
+	t_fds			fds;
 	t_envp			*envp;
+	int				*pipe;
 	int				builtin;
 	int				in_fd;
 	int				out_fd;
@@ -146,7 +146,7 @@ void	reset_ressources(t_tok **lst, t_cati **mini);
 /* Execute */
 int		execute(t_cati **mini);
 void	close_pipes(t_cati **mini);
-void	set_fds(t_cati **mini, t_cati *node);
+int		set_fds(t_cati **mini, t_cati *node);
 int		exec_node(t_cati **mini, t_cati *node);
 void	exec_cmd(t_cati **mini, t_cati *node);
 int		exe_bi_launcher(t_cati **mini, t_cati *node);
