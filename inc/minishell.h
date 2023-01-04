@@ -6,7 +6,7 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/12/23 11:53:48 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/04 14:44:11 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,7 @@ typedef struct s_cati
 	char			*path_cmd;
 	char			*infile;
 	char			*outfile;
-	t_fds			*fds;
-	t_fds			*fds_test;
+	t_fds			fds;
 	t_envp			*envp;
 	int				*pipe;
 	int				builtin;

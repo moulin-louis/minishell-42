@@ -6,7 +6,7 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:20:08 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/12/23 13:57:29 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/04 16:10:24 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,29 +22,32 @@ void	exec_cmd(t_cati **mini, t_cati *node)
 {
 	if (node->pid == 0)
 	{
+		close(node->fds.pfd[1]);
 		set_path_cmd(mini, node);
 		if(node->in_pipe && node->out_pipe)
 		{
-			close(node->fds_test->pfd[1]);
-			close(node->next->fds_test->pfd[0]);
-			dup2(node->fds_test->pfd[0], 0);
-			
-			dup2(node->next->fds_test->pfd[1], 1);
-			close(node->fds_test->pfd[0]);
-			close(node->next->fds_test->pfd[1]);
+			dup2(node->fds.pfd[0], STDIN_FILENO);
+			dup2(node->next->fds.pfd[1], STDOUT_FILENO);
+			// close(node->fds.pfd[0]);
+			// close(node->next->fds.pfd[1]);
 		}
 		else
 		{
 			if (node->in_pipe)
 			{
-				dup2(node->fds_test->pfd[0], STDIN_FILENO);
+				dup2(node->fds.pfd[0], STDIN_FILENO);
+				close(node->fds.pfd[0]);
 			}
+			// else
+			// {
+			// 	close(node->fds.pfd[0]);
+			// 	close(node->fds.pfd[1]);
+			// }
 			if (node->out_pipe)
 			{
-				dup2(node->next->fds_test->pfd[1], STDOUT_FILENO);
+				dup2(node->next->fds.pfd[1], STDOUT_FILENO);
+				// close(node->next->fds.pfd[1]);
 			}
-			close(node->fds_test->pfd[0]);
-			close(node->fds_test->pfd[1]);
 		}
 		if (access(node->path_cmd, R_OK | X_OK) == 0)
 			execve(node->path_cmd, node->cmd, node->ev);
@@ -57,8 +60,8 @@ int	exec_node(t_cati **mini, t_cati *node)
 {
 	if (node->builtin && !node->out_pipe)
 	{
-		node->fds->ret = exe_bi_launcher(mini, node);
-		return (node->fds->ret);
+		node->fds.ret = exe_bi_launcher(mini, node);
+		return (node->fds.ret);
 	}
 	node->ev = exe_parse_env(mini);
 	if(set_fds(mini, node) == -1)
