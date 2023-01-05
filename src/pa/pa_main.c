@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/05 19:01:17 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/05 21:25:44 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,6 @@
 #include <stdlib.h>
 
 /*TO DO LIST :
-- FIX '<>' -> FIX SPLIT FOR REDIRECTION 
 - FIX CTRL + C DOUBLE SHELL WHEN CAT IS RUNNING
 */
 
