@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:26:13 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/05 12:16:37 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/05 21:11:37 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,84 +16,89 @@
 #include <errno.h>
 #include <string.h>
 
-/*Check if there is some token glue together in this string
-- Return 1 if yes
-- Return 0 if no*/
+/*Return the nbr ok token in the string*/
 
-int	need_to_split(char *str)
+int	search_tok(char *str)
 {
-	int	x;
+	int	nbr_tok;
 
-	x = -1;
-	while (str[++x])
+	nbr_tok = 0;
+	while (*str)
 	{
-		if (str[x] == '\'' || str[x] == '\"')
+		if ((*str == '<' && (*(str + 1) && *(str + 1) == '<'))
+			|| (*str == '>' && (*(str + 1) && *(str + 1) == '>')))
 		{
-			while (str[x] && (str[x] == '\'' || str[x] == '\"'))
-				x++;
+			str += 2;
+			nbr_tok++;
 		}
-		if (str[x] == '|' || str[x] == '<' || str[x] == '>')
-			return (1);
+		else if (*str == '<' || *str == '>' || *str == '|')
+		{
+			str++;
+			nbr_tok++;
+		}
 		else
-			x++;
+		{
+			while (*str && (*str != '<' && *str != '>' && *str != '|'))
+				str++;
+			nbr_tok++;
+		}
 	}
-	return (0);
+	return (nbr_tok);
 }
 
-/*Will extract the given pipe and create the next node with the pipe*/
-
-void	extract_pipe(t_tok *node, t_tok **lst, t_cati **mini)
+void	fill_node_of_result(char **result, t_tok *node, t_tok **lst, t_cati **mini)
 {
-	t_tok	*result;
 	t_tok	*temp;
+	t_tok	*new_node;
 	char	*str;
 	int		x;
 
-	str = malloc(ft_strlen(node->str));
-	if (!str)
-		ut_clean_parsing_n_quit(mini, lst, errno);
-	str[ft_strlen(node->str)] = '\0';
-	x = -1;
-	printf("len = %d\n", ft_strlen(str));
-	while (++x < ft_strlen(str))
-		str[x] = node->str[x + 1];
-	free(node->str);
-	node->str = ut_strdup("|");
+	x = 1;
+	while (result[x])
+		x++;
+	x--;
+	node->str = ut_strdup(result[0]);
 	if (!node->str)
 		ut_clean_parsing_n_quit(mini, lst, errno);
-	temp = node->next;
-	result = tok_new(str, mini, lst);
-	node->next = result;
-	result->next = temp;
-}
-
-
-/*Will do the split of the current node cause some token are glue together*/
-
-void	trigger_split_token(t_tok *node, t_tok **lst, t_cati **mini)
-{
-	int	x;
-
-	x = 0;
-	while (1)
+	while (x)
 	{
-		if (node->str[x] == '|')
-			extract_pipe(node, lst, mini);
-		return ;
+		str = ut_strdup(result[x]);
+		if (!str)
+			ut_clean_parsing_n_quit(mini, lst, errno);
+		new_node = tok_new(str, mini, lst);
+		temp = node->next;
+		node->next = new_node;
+		new_node->next = temp;
+		x--;
 	}
+	clean_split(result);
 }
 
-/*split t_tok list based on sep*/
+void	trigger_split(t_tok *node, t_tok **lst, t_cati **mini)
+{
+	char **result;
+	int	nbr_tok;
+
+	nbr_tok = search_tok(node->str);
+	if (nbr_tok == 1 || nbr_tok == 0)
+		return ;
+	result = split_tok(node->str, nbr_tok, lst, mini);
+	fill_node_of_result(result, node, lst, mini);
+}
 
 void	split_lst_operator(t_tok **lst, t_cati **mini)
 {
-	t_tok	*temp;
+	t_tok *temp;
 
 	temp = *lst;
 	while (temp)
 	{
-		if (need_to_split(temp->str))
-			trigger_split_token(temp, lst, mini);
+		if (temp->str[0] == '\'' || temp->str[0] == '\"')
+		{
+			temp = temp->next;
+			continue ;
+		}
+		trigger_split(temp, lst, mini);
 		temp = temp->next;
 	}
 }

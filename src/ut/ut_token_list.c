@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 12:04:37 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/10 16:46:05 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/05 19:48:20 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ t_tok	*tok_new(char *str, t_cati **mini, t_tok **lst)
 		ut_clean_parsing_n_quit(mini, lst, 1);
 	result = ut_calloc(1, sizeof(t_tok));
 	if (!result)
-		return (perror("Malloc :"), full_exit(mini, errno), NULL);
+		ut_clean_parsing_n_quit(mini, lst, 1);
 	result->str = str;
 	result->next = NULL;
 	return (result);

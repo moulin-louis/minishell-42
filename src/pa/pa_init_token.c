@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 10:41:05 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/05 21:43:29 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/05 19:02:01 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,8 @@ void	split_token(char *str, int *i, t_tok **lst, t_cati **mini)
 	char	*temp;
 
 	x = (*i);
-	while (str[x] && (str[x] != '\t' && str[x] != ' ' && str[x] != '\"' && str[x] != '\''))
+	while (str[x] && (str[x] != '\t' && str[x] != ' ' && str[x]
+			!= '\"' && str[x] != '\''))
 		x++;
 	x = x - (*i);
 	temp = malloc(x + 1);
@@ -116,7 +117,8 @@ t_tok	*init_token_list(char *input, t_cati **mini)
 			split_dbl_quote(input, &i, &lst, mini);
 		else if (input[i] == '\'')
 			split_quote(input, &i, &lst, mini);
-		else if (input[i] != '\"' && input[i] != '\'' && input[i] != ' ' && input[i] != '\t' && input[i] != ':' && input[i] != '!')
+		else if (input[i] != '\"' && input[i] != '\'' && input[i] != ' '
+			&& input[i] != '\t' && input[i] != ':' && input[i] != '!')
 			split_token(input, &i, &lst, mini);
 		else
 			i++;

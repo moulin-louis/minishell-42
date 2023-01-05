@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 15:01:04 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/14 12:36:48 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/05 19:57:35 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	write_line_infile(char *buffer, char *sep, int fd, t_cati *node)
 		if (ut_strcmp(buffer, sep))
 		{
 			free(buffer);
-			return 0;
+			break ;
 		}
 		write(fd, buffer, ft_strlen(buffer));
 		write(fd, "\n", 1);

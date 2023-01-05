@@ -5,10 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/26 10:16:50 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/27 14:55:06 by loumouli         ###   ########.fr       */
+/*   Created: 2023/01/05 18:54:39 by loumouli          #+#    #+#             */
+/*   Updated: 2023/01/05 18:54:40 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
+
 
 #include "minishell.h"
 #include <stdio.h>
@@ -24,7 +26,7 @@ int	main(int ac, char **av, char **env)
 
 	(void)av;
 	if (ac > 1)
-		return (printf("./minishell takes no argument, you twat\n"), 1);
+		return (printf("./minishell takes no argument\n"), 1);
 	envp = NULL;
 	fds.ret = 0;
 	if (!ev_build_env(env, &envp))

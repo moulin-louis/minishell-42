@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/05 11:37:35 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/05 19:44:59 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ int		ft_strlen(char *str);
 char	*ut_strdup(char *str);
 int		ft_strncmp(const char *s1, const char *s2, int n);
 void	ft_bzero(void *s, int n);
-char	**extract_sep(char *str);
 int		ut_within_long(char *str);
 char	*ut_itoa(int n, t_cati **mini, t_tok **lst);
 
@@ -135,6 +134,7 @@ void	parse_options(t_tok **lst, t_cati **mini);
 void	fill_node_of_pipe(t_cati *mini);
 void	fill_node_env(t_cati *mini);
 void	check_builtin(t_cati *mini);
+char	**split_tok(char *str, int nbr_tok, t_tok **lst, t_cati **mini);
 
 /*redirection in parsing*/
 void	in_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini);
