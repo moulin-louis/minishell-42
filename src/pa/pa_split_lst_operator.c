@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:26:13 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/05 21:11:37 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/05 21:24:10 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ int	search_tok(char *str)
 	return (nbr_tok);
 }
 
-void	fill_node_of_result(char **result, t_tok *node, t_tok **lst, t_cati **mini)
+void	fill_node_of_result(char **result, t_tok *node,
+		t_tok **lst, t_cati **mini)
 {
 	t_tok	*temp;
 	t_tok	*new_node;
@@ -76,8 +77,8 @@ void	fill_node_of_result(char **result, t_tok *node, t_tok **lst, t_cati **mini)
 
 void	trigger_split(t_tok *node, t_tok **lst, t_cati **mini)
 {
-	char **result;
-	int	nbr_tok;
+	char	**result;
+	int		nbr_tok;
 
 	nbr_tok = search_tok(node->str);
 	if (nbr_tok == 1 || nbr_tok == 0)
@@ -88,7 +89,7 @@ void	trigger_split(t_tok *node, t_tok **lst, t_cati **mini)
 
 void	split_lst_operator(t_tok **lst, t_cati **mini)
 {
-	t_tok *temp;
+	t_tok	*temp;
 
 	temp = *lst;
 	while (temp)

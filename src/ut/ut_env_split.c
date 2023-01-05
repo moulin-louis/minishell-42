@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:15:26 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/12/10 17:10:19 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/05 21:24:24 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,6 @@ static int	fill_empty_val(char **arr)
 }
 
 /*Fill the 1 of the dbl array by the value*/
-
 
 static int	fill_value(char **arr, char *str)
 {
