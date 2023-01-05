@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/04 16:17:08 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/05 11:37:35 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,9 @@ void	split_lst_operator(t_tok **lst, t_cati **mini);
 void	expand_lst(t_tok **lst, t_cati **mini);
 void	setup_redirection(t_tok **lst, t_cati *node, t_cati **mini);
 void	parse_options(t_tok **lst, t_cati **mini);
+void	fill_node_of_pipe(t_cati *mini);
+void	fill_node_env(t_cati *mini);
+void	check_builtin(t_cati *mini);
 
 /*redirection in parsing*/
 void	in_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini);

@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:26:13 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/05 21:52:59 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/05 12:16:37 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,70 +16,71 @@
 #include <errno.h>
 #include <string.h>
 
-/* check if if sep*/
+/*Check if there is some token glue together in this string
+- Return 1 if yes
+- Return 0 if no*/
 
-static int	is_there_a_sep(char *str)
+int	need_to_split(char *str)
 {
-	int	i;
+	int	x;
 
-	i = 0;
-	if (str[i] == '\"' || str[i] == '\'')
-		return (0);
-	while (str[i])
+	x = -1;
+	while (str[++x])
 	{
-		if (str[i] == '|' || str[i] == '<' || str[i] == '>')
+		if (str[x] == '\'' || str[x] == '\"')
+		{
+			while (str[x] && (str[x] == '\'' || str[x] == '\"'))
+				x++;
+		}
+		if (str[x] == '|' || str[x] == '<' || str[x] == '>')
 			return (1);
-		else if (str[i] == '>' && str[i + 1] == '>')
-			return (1);
-		else if (str[i] == '<' && str[i + 1] == '<')
-			return (1);
-		i++;
+		else
+			x++;
 	}
 	return (0);
 }
 
-/*if sep, create 2 seperate node*/
+/*Will extract the given pipe and create the next node with the pipe*/
 
-void	fill_lst(char **result, t_tok *node, t_cati **mini, t_tok **lst)
+void	extract_pipe(t_tok *node, t_tok **lst, t_cati **mini)
 {
+	t_tok	*result;
 	t_tok	*temp;
-	t_tok	*temp2;
-	int		i;
+	char	*str;
+	int		x;
 
-	free(node->str);
-	node->str = ut_strdup(result[0]);
-	if (!node->str)
-	{
-		clean_split(result);
+	str = malloc(ft_strlen(node->str));
+	if (!str)
 		ut_clean_parsing_n_quit(mini, lst, errno);
-	}
-	i = 0;
-	while (result[++i])
-	{
-		temp = tok_new(ut_strdup(result[i]), mini, lst);
-		temp2 = node->next;
-		node->next = temp;
-		temp->next = temp2;
-		node = node->next;
-	}
+	str[ft_strlen(node->str)] = '\0';
+	x = -1;
+	printf("len = %d\n", ft_strlen(str));
+	while (++x < ft_strlen(str))
+		str[x] = node->str[x + 1];
+	free(node->str);
+	node->str = ut_strdup("|");
+	if (!node->str)
+		ut_clean_parsing_n_quit(mini, lst, errno);
+	temp = node->next;
+	result = tok_new(str, mini, lst);
+	node->next = result;
+	result->next = temp;
 }
 
-/*call all needed fn to split node*/
 
-static int	split_node(t_tok *node, t_cati **mini, t_tok **lst)
+/*Will do the split of the current node cause some token are glue together*/
+
+void	trigger_split_token(t_tok *node, t_tok **lst, t_cati **mini)
 {
-	char	**result;
-	int		i;
+	int	x;
 
-	result = extract_sep(node->str);
-	if (!result)
-		ut_clean_parsing_n_quit(mini, lst, errno);
-	fill_lst(result, node, mini, lst);
-	i = -1;
-	while (result[++i])
-		;
-	clean_split(result);
-	return (i);
+	x = 0;
+	while (1)
+	{
+		if (node->str[x] == '|')
+			extract_pipe(node, lst, mini);
+		return ;
+	}
 }
 
 /*split t_tok list based on sep*/
@@ -87,21 +88,12 @@ static int	split_node(t_tok *node, t_cati **mini, t_tok **lst)
 void	split_lst_operator(t_tok **lst, t_cati **mini)
 {
 	t_tok	*temp;
-	int		len;
 
 	temp = *lst;
 	while (temp)
 	{
-		if (is_there_a_sep(temp->str))
-		{
-			len = split_node(temp, mini, lst);
-			while (len)
-			{
-				temp = temp->next;
-				len--;
-			}
-		}
-		else
-			temp = temp->next;
+		if (need_to_split(temp->str))
+			trigger_split_token(temp, lst, mini);
+		temp = temp->next;
 	}
 }

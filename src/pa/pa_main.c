@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/04 16:20:24 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/05 11:46:30 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,8 @@
 
 /*TO DO LIST :
 - FIX '<>' -> FIX SPLIT FOR REDIRECTION 
-- FIX "PARSING ERROR NEAR TOKEN_X"
 - FIX CTRL + C DOUBLE SHELL WHEN CAT IS RUNNING
 */
-
-void	printfmini(t_cati *mini);
-void	fill_node_of_pipe(t_cati *mini);
-void	fill_node_env(t_cati *mini);
-void	check_builtin(t_cati *mini);
 
 /*Call all parsing fn and send t_cati linked list to execution*/
 
