@@ -6,7 +6,7 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:53:11 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/04 16:08:49 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/06 14:41:08 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ int	execute(t_cati **mini)
 	{
 		// printf("on attend le processur pid : %d", node->pid);
 		waitpid(node->pid, &node->fds.status, 0);
+		if (node->fds.status == 127)
+			g_status = 127;
 		// printf(" c'est bon\n");
 		node = node->next;
 	}
