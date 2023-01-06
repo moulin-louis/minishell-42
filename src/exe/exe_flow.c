@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_flow.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:20:08 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/06 17:13:33 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/06 20:27:44 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ int	exec_node(t_cati **mini, t_cati *node)
 		g_status = errno;
 		full_exit(mini, g_status);
 	}
-	printf("fds.pfd[0] = %d, fds.pfd[1] = %d\n", node->fds.pfd[0], node->fds.pfd[1]);
 	exec_cmd(mini, node);
 	return (0);
 }
