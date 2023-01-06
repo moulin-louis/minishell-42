@@ -6,7 +6,7 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:20:08 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/06 17:20:25 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/06 17:37:02 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	exec_cmd(t_cati **mini, t_cati *node)
 		close_all_pipe(node);
 		if (access(node->path_cmd, R_OK | X_OK) == 0)
 			execve(node->path_cmd, node->cmd, node->ev);
-		printf("command '%s' not found\n", node->cmd[0]);
+		perror("shellnado");
 		full_exit(mini, 127);
 	}
 	else
