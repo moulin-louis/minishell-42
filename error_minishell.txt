@@ -4,8 +4,6 @@
 
 - command not found : return value is wrong, should be 127 and not 0
 
-- | ou || : should be an parsing error and return value of 2
-
 - ""''echo hola""'''' que""'' tal""'' : should ouput "hola que tal" not '' command not found
 
 - echo -n -n : should not segfault and out put ""
