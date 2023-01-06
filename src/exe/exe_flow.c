@@ -6,7 +6,7 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:20:08 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/06 17:13:33 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/06 17:20:25 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,11 @@
 
 static void close_all_pipe(t_cati *node)
 {
+	if (node->in_fd)
+			close(node->in_fd);
+	if (node->out_fd)
+			close(node->out_fd);
+	node = node->next;
 	while (node)
 	{
 		close(node->fds.pfd[0]);
@@ -52,14 +57,7 @@ void	exec_cmd(t_cati **mini, t_cati *node)
 		else if (node->out_pipe)
 			dup2(node->next->fds.pfd[1], STDOUT_FILENO);
 		close(node->fds.pfd[0]);
-
-
-
-		if (node->in_fd)
-			close(node->in_fd);
-		if (node->out_fd)
-			close(node->out_fd);
-		close_all_pipe(node->next);
+		close_all_pipe(node);
 		if (access(node->path_cmd, R_OK | X_OK) == 0)
 			execve(node->path_cmd, node->cmd, node->ev);
 		printf("command '%s' not found\n", node->cmd[0]);
