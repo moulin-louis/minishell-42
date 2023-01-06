@@ -6,7 +6,7 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:53:11 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/06 14:42:41 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/06 17:10:09 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,8 @@
 
 
 
-static void	init_pipes_test(t_cati *node)
+static void	init_pipes(t_cati *node)
 {
-
 	if (pipe(node->fds.pfd) == -1)
 	{
 		printf("Catastrophic error when opening pipes, goddbye\n");
@@ -43,11 +42,11 @@ int	execute(t_cati **mini)
 	node = *mini;
 	while (node)
 	{
-		init_pipes_test(node);
+		init_pipes(node);
 		node = node->next;
 	}
 	node = *mini;
-	//printfmini(*mini);
+	printfmini(*mini);
 	while (node)
 	{
 		exec_node(mini, node);
@@ -57,11 +56,9 @@ int	execute(t_cati **mini)
 	node = *mini;
 	while (node)
 	{
-		// printf("on attend le processur pid : %d", node->pid);
 		waitpid(node->pid, &node->fds.status, 0);
-		if (node->fds.status == 127)
-			g_status = 127;
-		// printf(" c'est bon\n");
+		// if (node->fds.status == 127)
+		// 	g_status = 127;
 		node = node->next;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 13:14:07 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/12/20 22:06:56 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/06 16:17:59 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	set_fds(t_cati **mini, t_cati *node)
 			return (-1);
 			// full_exit(mini, 127);
 		}
-		
+		printf("node->in_fd = %d\n", node->in_fd);
 	}
 	if (node->outfile)
 		set_out_fd(mini, node);
