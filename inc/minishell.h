@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/05 19:44:59 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/06 13:32:10 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,9 @@ int		bi_pwd(t_cati *node);
 int		bi_unset(t_cati **mini, t_cati *node);
 
 /* Utils */
+int		ft_isalphanum(char c);
+int		ft_isnum(char c);
+int		ft_isalpha(char c);
 char	*ut_strinsert(char *og, char *target, char *payload);
 void	reset_ressources(t_tok **lst, t_cati **mini);
 void	ut_clean_parsing_n_quit(t_cati **mini, t_tok **lst, int error);

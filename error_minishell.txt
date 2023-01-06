@@ -1,0 +1,15 @@
+- >>>>>> : parsing is wrong should be  >> >> >> and not > > > > > >
+
+- all / test :  return value is wrong, should be 126 and not 2
+
+- command not found : return value is wrong, should be 127 and not 0
+
+- | ou || : should be an parsing error and return value of 2
+
+- ""''echo hola""'''' que""'' tal""'' : should ouput "hola que tal" not '' command not found
+
+- echo -n -n : should not segfault and out put ""
+
+- echo -nnnnn : should not segfault and out put ""
+
+- echo -n -nnn -nnn : should not segfault and out put ""

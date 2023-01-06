@@ -6,7 +6,7 @@
 #    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/05 17:32:08 by loumouli          #+#    #+#              #
-#    Updated: 2023/01/05 19:45:14 by loumouli         ###   ########.fr        #
+#    Updated: 2023/01/06 13:31:56 by loumouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,11 +62,13 @@ C_FILES		= minishell.c					\
 			  pa/pa_split_lst_operator.c	\
 			  pa/pa_split_token.c			\
 			  ut/ut_calloc.c				\
+			  ut/ut_char.c					\
 			  ut/ut_clean_all.c				\
 			  ut/ut_env_list.c				\
 			  ut/ut_env_split.c				\
 			  ut/ut_itoa.c					\
 			  ut/ut_mini_list.c				\
+			  ut/ut_printfmini.c			\
 			  ut/ut_split_char.c			\
 			  ut/ut_split.c					\
 			  ut/ut_strcmp.c				\

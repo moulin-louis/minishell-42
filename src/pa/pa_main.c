@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/05 21:29:50 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/06 13:47:21 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,32 @@
 #include <stdlib.h>
 
 /*TO DO LIST :
-- IMPLEMENT ERROR MANAGEMENT PIPSE
+- IMPLEMENT ERROR MANAGEMENT PIPE
+- FIX PARSING ">>>>>>" AND "<<<<<<<"
+- FIX EXPAND READ VAR
 - FIX CTRL + C DOUBLE SHELL WHEN CAT IS RUNNING
 */
+
+/*Ugly function to check if there is a < > in my linked list of token*/
+
+void	check_double_redirection(t_tok **lst, t_cati **mini)
+{
+	t_tok	*temp;
+
+	temp = *lst;
+	while (temp)
+	{
+		if (ut_strcmp(temp->str, "<") && (temp->next
+				&& ut_strcmp(temp->next->str, ">")))
+		{
+			printf("shellnado : invalid token syntax near '\\n'\n");
+			reset_ressources(lst, mini);
+			g_status = 2;
+			return ;
+		}
+		temp = temp->next;
+	}
+}
 
 /*Call all parsing fn and send t_cati linked list to execution*/
 
@@ -29,7 +52,9 @@ void	parsing(char *input, t_cati **mini)
 	split_lst_operator(&lst, mini);
 	expand_lst(&lst, mini);
 	clean_quote(&lst, mini);
-	parse_options(&lst, mini);
+	check_double_redirection(&lst, mini);
+	if (lst && *mini)
+		parse_options(&lst, mini);
 	if (*mini)
 	{
 		fill_node_of_pipe(*mini);
@@ -39,35 +64,6 @@ void	parsing(char *input, t_cati **mini)
 		execute(mini);
 	}
 	clean_mini(mini);
-}
-
-/*Print all node from t_cati list*/
-
-void	printfmini(t_cati *mini)
-{
-	int		i;
-	t_cati	*tmp;
-
-	tmp = mini;
-	while (tmp)
-	{
-		printf("path_cmd = %s\n", tmp->path_cmd);
-		if (tmp->cmd)
-		{
-			i = -1;
-			while (tmp->cmd[++i])
-				printf("cmd[%d] = [%s]\t", i, tmp->cmd[i]);
-			printf("\n");
-		}
-		printf("infile = %s\noutfile = %s\n", tmp->infile, tmp->outfile);
-		printf("in_fd = %d\nout_fd = %d\n", tmp->in_fd, tmp->out_fd);
-		printf("fds = %p\nenvp = %p\n", & tmp->fds, & tmp->envp);
-		printf("builtin = %d\nin_file = %d\n", tmp->builtin, tmp->in_file);
-		printf("in_pipe = %d\nout_append = %d\n", tmp->in_pipe, tmp->out_append);
-		printf("out_trunc = %d\n", tmp->out_trunc);
-		printf("out_pipe = %d\nnext = %p\n\n", tmp->out_pipe, tmp->next);
-		tmp = tmp->next;
-	}
 }
 
 /*Fill each node with pipe flag when necessery*/

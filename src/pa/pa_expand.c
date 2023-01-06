@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 15:37:24 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/10 16:39:23 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/06 13:47:45 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,22 @@ char	*find_var(char *str, t_tok **lst, t_cati **mini)
 	return (result);
 }
 
+int	find_len(char *str, int i)
+{
+	int	result;
+
+	result = i + 1;
+	if (str[result] == '?')
+		return (1);
+	if ((str[result] >= '0' && str[result] <= '9') || !ft_isalpha(str[result]))
+		return (0);
+	while (ft_isalpha(str[result]) || (str[result] >= '0'
+			&& str[result] <= '9'))
+		result++;
+	result = (result - i) - 1;
+	return (result);
+}
+
 /*Insert the expanded value in the string*/
 
 void	trigger_expand(t_tok *node, int i, t_tok **lst, t_cati **mini)
@@ -47,18 +63,17 @@ void	trigger_expand(t_tok *node, int i, t_tok **lst, t_cati **mini)
 	char	*var;
 	int		len;
 
-	len = i;
-	len++;
-	while (node->str[len] && node->str[len] != ' ' && node->str[len] != '\"')
-		len++;
-	len = (len - i) - 1;
+	len = find_len(node->str, i);
+	if (len == 0)
+		return ;
 	var = malloc(len + 1);
 	if (!var)
 		ut_clean_parsing_n_quit(mini, lst, errno);
 	var[len] = '\0';
 	len = 0;
 	i++;
-	while (node->str[i] && node->str[i] != ' ' && node->str[i] != '\"')
+	while (node->str[i] && (node->str[i] == '?' || ft_isalphanum(node->str[i]))
+		&& node->str[i] != ' ' && node->str[i] != '\"')
 	{
 		var[len] = node->str[i];
 		len++;
@@ -87,10 +102,7 @@ void	expand_lst(t_tok **lst, t_cati **mini)
 		while (temp->str[++i])
 		{
 			if (temp->str[i] == '$' && temp->str[i + 1])
-			{
 				trigger_expand(temp, i, lst, mini);
-				break ;
-			}
 		}
 		temp = temp->next;
 	}
