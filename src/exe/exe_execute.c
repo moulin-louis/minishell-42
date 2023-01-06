@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_execute.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:53:11 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/06 17:10:09 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/06 20:27:39 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	execute(t_cati **mini)
 		node = node->next;
 	}
 	node = *mini;
-	printfmini(*mini);
 	while (node)
 	{
 		exec_node(mini, node);
