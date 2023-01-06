@@ -6,7 +6,7 @@
 #    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/05 17:32:08 by loumouli          #+#    #+#              #
-#    Updated: 2023/01/06 13:31:56 by loumouli         ###   ########.fr        #
+#    Updated: 2023/01/06 14:27:16 by loumouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,6 +50,7 @@ C_FILES		= minishell.c					\
 			  exe/exe_parse_env.c			\
 			  exe/exe_set_fds.c				\
 			  exe/exe_set_path_cmd.c		\
+			  pa/pa_check_tok.c			\
 			  pa/pa_clean_quote.c			\
 			  pa/pa_expand.c				\
 			  pa/pa_heredoc.c				\
