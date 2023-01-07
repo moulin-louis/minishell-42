@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ut_clean_all.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:36:37 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/04 16:17:26 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/07 21:49:38 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,8 @@
 
 #include "minishell.h"
 #include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <string.h>
 #include <errno.h>
 #include <readline/readline.h>
-#include <readline/history.h>
 
 /*All the cleaning stuff*/
 

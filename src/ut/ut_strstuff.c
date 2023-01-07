@@ -6,12 +6,11 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 12:32:42 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/10 16:47:20 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/07 21:51:22 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdlib.h>
 
 /*Some tools for string*/
 

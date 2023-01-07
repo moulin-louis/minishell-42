@@ -6,13 +6,12 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 15:37:24 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/06 13:47:45 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/07 21:47:41 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <errno.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 /*Return the value found int the environement*/

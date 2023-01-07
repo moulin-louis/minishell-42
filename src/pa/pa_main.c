@@ -6,12 +6,11 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/07 19:22:19 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/07 21:28:02 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
 
 /*TO DO LIST :
 - FIX CTRL + C DOUBLE SHELL WHEN CAT IS RUNNING
@@ -27,21 +26,18 @@ void	parsing(char *input, t_cati **mini)
 	split_lst_operator(&lst, mini);
 	expand_lst(&lst, mini);
 	clean_quote(&lst, mini);
+	insert_token_together(&lst, mini);
 	if (lst)
 	{
 		check_pipe_token(&lst, mini);
 		check_double_redirection(&lst, mini);
 	}
-	if (lst && *mini)
-		parse_options(&lst, mini);
-	if (*mini)
-	{
-		fill_node_of_pipe(*mini);
-		fill_node_env(*mini);
-		check_builtin(*mini);
-		clean_tok(&lst);
-		execute(mini);
-	}
+	parse_options(&lst, mini);
+	fill_node_of_pipe(*mini);
+	fill_node_env(*mini);
+	check_builtin(*mini);
+	clean_tok(&lst);
+	execute(mini);
 	clean_mini(mini);
 }
 

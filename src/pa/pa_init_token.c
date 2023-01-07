@@ -6,15 +6,13 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 10:41:05 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/07 19:30:27 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/07 21:47:05 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
 #include <errno.h>
-#include <string.h>
-#include <stdio.h>
 
 /*Split double quote token into node*/
 
@@ -118,12 +116,6 @@ void	check_flag_insert(char *str, int start, int end, t_tok *lst)
 	}
 }
 
-void	init_i(int *i, t_tok **lst)
-{
-	*i = 0;
-	(*lst) = NULL;
-}
-
 /*Create t_tok list based on user input*/
 
 t_tok	*init_token_list(char *input, t_cati **mini)
@@ -132,7 +124,8 @@ t_tok	*init_token_list(char *input, t_cati **mini)
 	int		temp;
 	t_tok	*lst;
 
-	init_i(&i, &lst);
+	i = 0;
+	lst = NULL;
 	while (input[i])
 	{
 		if (input[i] == '\"')

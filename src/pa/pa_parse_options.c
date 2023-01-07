@@ -6,15 +6,13 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:55:44 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/05 21:48:06 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/07 21:46:51 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
-#include <stdio.h>
 #include <errno.h>
-#include <string.h>
 
 /*Fill double array of option based on t_tok list*/
 

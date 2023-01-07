@@ -6,15 +6,13 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:26:13 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/06 11:52:48 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/07 21:45:41 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
 #include <stdlib.h>
 #include <errno.h>
-#include <string.h>
 
 /*Return the nbr ok token in the string*/
 

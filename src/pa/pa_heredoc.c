@@ -6,19 +6,16 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 15:01:04 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/05 19:57:35 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/07 21:47:32 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <sys/stat.h>
 #include <fcntl.h>
 #include <readline/readline.h>
 #include <readline/history.h>
-#include <unistd.h>
 #include <stdlib.h>
 #include <errno.h>
-#include <string.h>
 
 /*Read user input and breaf when sep is input*/
 

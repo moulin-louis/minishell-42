@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/07 19:20:15 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/07 21:43:48 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int		ut_word_len(char *str);
 int		ft_strlen(char *str);
 char	*ut_strdup(char *str);
 int		ft_strncmp(const char *s1, const char *s2, int n);
-void	ft_bzero(void *s, int n);
+void	ut_bzero(void *s, int n);
 int		ut_within_long(char *str);
 char	*ut_itoa(int n, t_cati **mini, t_tok **lst);
 
@@ -128,6 +128,7 @@ void	clean_mini(t_cati **mini);
 void	full_exit(t_cati **mini, int i);
 
 /* Parsing */
+void	insert_token_together(t_tok **lst, t_cati **mini);
 void	clean_quote(t_tok **lst, t_cati **mini);
 void	set_flag_insert(char *str, t_tok *lst);
 void	run_prompt(t_envp *envp, t_fds *fds);

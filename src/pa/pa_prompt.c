@@ -6,22 +6,19 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:51:41 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/07 11:41:54 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/07 21:46:23 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
 #include <stdlib.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <signal.h>
-#include <unistd.h>
-#include <sys/types.h>
 
 /*Handle sigint signal : CTRL + C*/
 
-static void	handle_sigint(int sig)
+void	handle_sigint(int sig)
 {
 	(void)sig;
 	printf("\n");
@@ -32,7 +29,7 @@ static void	handle_sigint(int sig)
 
 /*Create first node of t_cati list*/
 
-static void	ft_create_node(t_cati **mini, t_envp *envp, t_fds *fds)
+void	ft_create_node(t_cati **mini, t_envp *envp, t_fds *fds)
 {
 	*mini = mini_lstnew();
 	(*mini)->envp = envp;
@@ -41,7 +38,7 @@ static void	ft_create_node(t_cati **mini, t_envp *envp, t_fds *fds)
 
 /*Handle sigint and ignore sigquit*/
 
-static void	setup_sig(void)
+void	setup_sig(void)
 {
 	struct sigaction	sa;
 

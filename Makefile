@@ -6,7 +6,7 @@
 #    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/05 17:32:08 by loumouli          #+#    #+#              #
-#    Updated: 2023/01/07 19:28:22 by loumouli         ###   ########.fr        #
+#    Updated: 2023/01/07 21:44:07 by loumouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,7 @@ C_FILES		= minishell.c					\
 			  pa/pa_expand.c				\
 			  pa/pa_heredoc.c				\
 			  pa/pa_init_token.c			\
+			  pa/pa_insert_token.c			\
 			  pa/pa_main.c					\
 			  pa/pa_parse_options.c			\
 			  pa/pa_prompt.c				\
@@ -62,6 +63,7 @@ C_FILES		= minishell.c					\
 			  pa/pa_setup_redir.c			\
 			  pa/pa_split_lst_operator.c	\
 			  pa/pa_split_token.c			\
+			  ut/ut_bzero.c					\
 			  ut/ut_calloc.c				\
 			  ut/ut_char.c					\
 			  ut/ut_clean_all.c				\
@@ -148,6 +150,9 @@ fclean:		clean
 			$(RM) $(NAME)
 
 re:			fclean all
+
+malloc_test: $(O_DIR) $(OBJS)
+	$(CC) $(CFLAGS) -fsanitize=undefined -rdynamic -o $@ ${OBJS} -L/usr/local/lib -lreadline -L. -lmallocator
 
 -include	$(OBJS:.o=.d)
 -include ./objs/*.d

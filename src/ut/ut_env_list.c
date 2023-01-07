@@ -6,13 +6,12 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 09:55:52 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/12/10 17:03:53 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/07 21:49:42 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 /*All sort of utilts for t_envp linked list*/
 

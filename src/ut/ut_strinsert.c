@@ -6,12 +6,11 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:09:51 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/06 14:07:04 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/07 21:51:03 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
 #include <stdlib.h>
 
 /*insert target in result starting at index i*/
