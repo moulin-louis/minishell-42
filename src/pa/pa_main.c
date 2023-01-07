@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/07 21:28:02 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/07 22:28:30 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 */
 
 /*Call all parsing fn and send t_cati linked list to execution*/
+
+#include <stdio.h>
 
 void	parsing(char *input, t_cati **mini)
 {
@@ -32,11 +34,16 @@ void	parsing(char *input, t_cati **mini)
 		check_pipe_token(&lst, mini);
 		check_double_redirection(&lst, mini);
 	}
-	parse_options(&lst, mini);
-	fill_node_of_pipe(*mini);
-	fill_node_env(*mini);
-	check_builtin(*mini);
+	if (lst)
+		parse_options(&lst, mini);
+	if (lst && *mini)
+	{
+		fill_node_of_pipe(*mini);
+		fill_node_env(*mini);
+		check_builtin(*mini);
+	}
 	clean_tok(&lst);
+	printf("%s\n", (*mini)->cmd[0]);
 	execute(mini);
 	clean_mini(mini);
 }

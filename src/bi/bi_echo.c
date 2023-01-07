@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 11:20:35 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/28 08:31:13 by bschoeff         ###   ########.fr       */
+/*   Updated: 2023/01/07 22:10:39 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static int	is_arg(char *str)
 	char	*ref;
 
 	ref = "-n";
+	if (!str)
+		return (1);
 	if (str[0] != ref[0] || str[1] != ref[1])
 		return (1);
 	if (str[2])
@@ -49,6 +51,8 @@ static int	write_stuff(t_cati *node)
 			n_line = 0;
 			while (!is_arg(node->cmd[i]))
 				i++;
+			if (!node->cmd[i])
+				return (0);
 		}
 		len = 0;
 		while (node->cmd[i][len])
