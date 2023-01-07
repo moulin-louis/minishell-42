@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:51:41 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/06 15:58:06 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/07 11:41:54 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,11 @@
 #include <sys/types.h>
 
 /*Handle sigint signal : CTRL + C*/
-int	sigquit;
 
 static void	handle_sigint(int sig)
 {
 	(void)sig;
 	printf("\n");
-	printf("pid  = %d\n", getpid());
-	sigquit = 1;
 	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
@@ -68,8 +65,7 @@ void	run_prompt(t_envp *envp, t_fds *fds)
 	while (1)
 	{
 		ft_create_node(&mini, envp, fds);
-		if (!sigquit)
-			u_input = readline("shellnado> ");
+		u_input = readline("shellnado> ");
 		if (u_input == 0)
 		{
 			write(1, "\n", 1);

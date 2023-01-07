@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 10:41:05 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/05 19:02:01 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/07 19:30:27 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,24 +102,58 @@ void	split_token(char *str, int *i, t_tok **lst, t_cati **mini)
 	tok_addback(lst, tok_new(temp, mini, lst));
 }
 
+void	check_flag_insert(char *str, int start, int end, t_tok *lst)
+{
+	t_tok	*temp;
+
+	if (start > 0 && str[start - 1] != ' ' && str[start - 1] != '\t')
+	{
+		temp = tok_last(lst);
+		temp->flag_insert = 1;
+	}
+	if (str[end] && str[end] != ' ' && str[end] != '\t')
+	{
+		temp = tok_last(lst);
+		temp->flag_insert = 1;
+	}
+}
+
+void	init_i(int *i, t_tok **lst)
+{
+	*i = 0;
+	(*lst) = NULL;
+}
+
 /*Create t_tok list based on user input*/
 
 t_tok	*init_token_list(char *input, t_cati **mini)
 {
 	int		i;
+	int		temp;
 	t_tok	*lst;
 
-	i = 0;
-	lst = NULL;
+	init_i(&i, &lst);
 	while (input[i])
 	{
 		if (input[i] == '\"')
+		{
+			temp = i;
 			split_dbl_quote(input, &i, &lst, mini);
+			check_flag_insert(input, temp, i, lst);
+		}
 		else if (input[i] == '\'')
+		{
+			temp = i;
 			split_quote(input, &i, &lst, mini);
+			check_flag_insert(input, temp, i, lst);
+		}
 		else if (input[i] != '\"' && input[i] != '\'' && input[i] != ' '
 			&& input[i] != '\t' && input[i] != ':' && input[i] != '!')
+		{
+			temp = i;
 			split_token(input, &i, &lst, mini);
+			check_flag_insert(input, temp, i, lst);
+		}
 		else
 			i++;
 	}

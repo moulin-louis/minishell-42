@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:42:25 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/06 11:49:18 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/07 12:43:48 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	check_compliance_file(char *str)
 {
 	if (!str && ft_strlen(str) < 2)
 		return (1);
+	if (str[0] == '|')
+		return (printf("shellnado : invalid token syntax near '|'\n"), 1);
 	if (str[0] == '<' && str[1] != '<')
 		return (printf("shellnado : invalid token syntax near '<'\n"), 1);
 	if (str[0] == '<' && str[1] == '<')

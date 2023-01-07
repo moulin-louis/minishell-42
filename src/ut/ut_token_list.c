@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 12:04:37 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/05 19:48:20 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/07 19:17:04 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,11 @@
 
 /*Return the len of the linked list*/
 
-int	tok_len(t_tok *lst)
+t_tok	*tok_last(t_tok *lst)
 {
-	int		result;
-	t_tok	*temp;
-
-	result = 0;
-	temp = lst;
-	while (temp)
-	{
-		result++;
-		temp = temp->next;
-	}
-	return (result);
+	while (lst->next)
+		lst = lst->next;
+	return (lst);
 }
 
 /*Delete t_tok node*/
