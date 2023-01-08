@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:55:44 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/08 16:18:21 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/08 17:06:39 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	parse_options(t_tok **lst, t_cati **mini)
 {
 	int		nbr_cmd;
 	t_tok	*temp;
+	t_cati	*new;
 
 	nbr_cmd = 1;
 	temp = *lst;
@@ -101,12 +102,13 @@ void	parse_options(t_tok **lst, t_cati **mini)
 	setup_redirection(lst, mini_lstlast(*mini), mini);
 	if (*lst && *mini)
 		setup_node(lst, mini_lstlast(*mini), mini);
-	nbr_cmd--;
-	while (*lst && *mini && nbr_cmd > 0)
+	while (*lst && *mini && --nbr_cmd > 0)
 	{
-		mini_lstaddback(mini, mini_lstnew());
+		new = mini_lstnew();
+		if (!new)
+			ut_clean_parsing_n_quit(mini, lst, errno);
+		mini_lstaddback(mini, new);
 		setup_redirection(lst, mini_lstlast(*mini), mini);
 		setup_node(lst, mini_lstlast(*mini), mini);
-		nbr_cmd--;
 	}
 }
