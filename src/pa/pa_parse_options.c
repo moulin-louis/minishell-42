@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:55:44 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/08 15:47:12 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/08 16:18:21 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,6 @@ void	fill_result(char **result, t_tok **lst, t_cati **mini, int nbr)
 }
 
 /*clean each node involved in setup_node fn*/
-
-#include <stdio.h>
 
 void	clean_lst(t_tok **lst)
 {
@@ -84,8 +82,6 @@ void	setup_node(t_tok **lst, t_cati *node, t_cati **mini)
 	node->cmd = result;
 }
 
-#include <stdio.h>
-
 /*find nbr of cmd, call redirection parsing fn and call fn to create node*/
 
 void	parse_options(t_tok **lst, t_cati **mini)
@@ -108,7 +104,6 @@ void	parse_options(t_tok **lst, t_cati **mini)
 	nbr_cmd--;
 	while (*lst && *mini && nbr_cmd > 0)
 	{
-		printf("je fait des trucs\n");
 		mini_lstaddback(mini, mini_lstnew());
 		setup_redirection(lst, mini_lstlast(*mini), mini);
 		setup_node(lst, mini_lstlast(*mini), mini);

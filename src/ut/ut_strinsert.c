@@ -6,12 +6,13 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:09:51 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/08 14:14:39 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/08 16:22:41 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
+#include <string.h>
 
 /*insert target in result starting at index i*/
 
@@ -58,15 +59,11 @@ char	*ut_strinsert(char *og, char *trgt, char *pld)
 	char	*result;
 	int		var[3];
 
-	if (!og || !trgt || !pld)
-		return (NULL);
 	result = malloc(((ft_strlen(og) - ft_strlen(trgt)) + ft_strlen(pld)) + 1);
 	if (!result)
-		return (NULL);
+		return (free(trgt), free(pld), NULL);
 	result[((ft_strlen(og) - ft_strlen(trgt)) + ft_strlen(pld))] = '\0';
-	var[0] = 0;
-	var[1] = 0;
-	var[2] = 0;
+	memset(var, 0, sizeof(var));
 	while (var[0] < ((ft_strlen(og) - ft_strlen(trgt)) + ft_strlen(pld)))
 	{
 		if (og[var[1]] == '$' && !var[2])

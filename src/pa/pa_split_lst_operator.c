@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:26:13 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/08 14:07:38 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/08 16:25:39 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,25 @@ int	search_tok(char *str)
 	return (nbr_tok);
 }
 
+t_tok	*check_create_node(char *str, char **result, t_tok **lst, t_cati **mini)
+{
+	t_tok	*temp;
+
+	if (!str)
+	{
+		clean_split(result);
+		ut_clean_parsing_n_quit(mini, lst, errno);
+	}
+	temp = tok_new(str);
+	if (!temp)
+	{
+		free(str);
+		clean_split(result);
+		ut_clean_parsing_n_quit(mini, lst, errno);
+	}
+	return (temp);
+}
+
 void	fill_node_of_result(char **result, t_tok *node,
 		t_tok **lst, t_cati **mini)
 {
@@ -55,7 +74,6 @@ void	fill_node_of_result(char **result, t_tok *node,
 	x = 1;
 	while (result[x])
 		x++;
-	x--;
 	free(node->str);
 	node->str = ut_strdup(result[0]);
 	if (!node->str)
@@ -63,21 +81,10 @@ void	fill_node_of_result(char **result, t_tok *node,
 		clean_split(result);
 		ut_clean_parsing_n_quit(mini, lst, errno);
 	}
-	while (x)
+	while (x - 1)
 	{
 		str = ut_strdup(result[x]);
-		if (!str)
-		{
-			clean_split(result);
-			ut_clean_parsing_n_quit(mini, lst, errno);
-		}
-		new_node = tok_new(str);
-		if (!new_node)
-		{
-			clean_split(result);
-			free(str);
-			ut_clean_parsing_n_quit(mini, lst, errno);
-		}
+		new_node = check_create_node(str, result, lst, mini);
 		temp = node->next;
 		node->next = new_node;
 		new_node->next = temp;

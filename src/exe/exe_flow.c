@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:20:08 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/08 12:31:08 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/08 16:31:27 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-static void close_all_pipe(t_cati *node)
+static void	close_all_pipe(t_cati *node)
 {
 	while (node)
 	{
@@ -53,7 +53,6 @@ void	exec_cmd(t_cati **mini, t_cati *node)
 		else if (node->out_pipe)
 			dup2(node->next->fds.pfd[1], STDOUT_FILENO);
 		close(node->fds.pfd[0]);
-
 		if (node->in_fd)
 			close(node->in_fd);
 		if (node->out_fd)
@@ -84,7 +83,7 @@ int	exec_node(t_cati **mini, t_cati *node)
 		return (node->fds.ret);
 	}
 	node->ev = exe_parse_env(mini);
-	if(set_fds(mini, node) == -1)
+	if (set_fds(mini, node) == -1)
 		return (-1);
 	node->pid = fork();
 	g_pid = node->pid;

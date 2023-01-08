@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:51:41 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/08 13:54:41 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/08 16:10:53 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,36 +42,13 @@ void	setup_sig(void)
 	sigaction(SIGQUIT, &sa, NULL);
 }
 
-void	*ut_calloc_custom(int nb, int sz)
-{
-	static int i;
-	if (i == 0)
-	{
-		void	*ptr;
-		int		check;
-
-		check = nb * sz;
-		ptr = NULL;
-		if (!nb || !sz || check / nb != sz)
-			return (ptr);
-		ptr = malloc(nb * sz);
-		if (!ptr)
-			return (NULL);
-		ut_bzero(ptr, check);
-		i++;
-		return (ptr);
-	}
-	else
-		return (NULL);
-}
-
 /*Create a new t_cati node and return its ptr, quit minishell if fail*/
 
 t_cati	*mini_lstnew_custom(void)
 {
 	t_cati	*result;
 
-	result = ut_calloc_custom(1, sizeof(t_cati));
+	result = ut_calloc(1, sizeof(t_cati));
 	if (!result)
 		return (NULL);
 	return (result);
@@ -91,7 +68,6 @@ void	ft_create_node(t_cati **mini, t_envp *envp, t_fds *fds)
 	(*mini)->envp = envp;
 	(void)fds;
 }
-
 
 /*init prompt with rl and call parsing fn when needed*/
 

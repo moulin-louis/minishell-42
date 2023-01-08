@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/08 12:50:51 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/08 16:31:53 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,8 +107,7 @@ void	mini_lstaddback(t_cati **mini, t_cati *node);
 t_cati	*mini_lstlast(t_cati *mini);
 
 /*tok utils*/
-t_tok	*
-tok_last(t_tok *lst);
+t_tok	*tok_last(t_tok *lst);
 void	tok_delone(t_tok *node);
 void	tok_addback(t_tok **lst, t_tok *node);
 t_tok	*tok_new(char *str);
@@ -129,6 +128,12 @@ void	clean_mini(t_cati **mini);
 void	full_exit(t_cati **mini, int i);
 
 /* Parsing */
+void	split_token(char *str, int *i, t_tok **lst, t_cati **mini);
+void	split_quote(char *str, int *i, t_tok **lst, t_cati **mini);
+void	call_fn_init_token_2(char *str, int *i, t_tok **lst, t_cati **mini);
+void	call_fn_init_token_1(char *str, int *i, t_tok **lst, t_cati **mini);
+void	check_flag_insert(char *str, int start, int end, t_tok *lst);
+void	add_new(char *str, t_tok **lst, t_cati **mini);
 void	insert_token_together(t_tok **lst, t_cati **mini);
 void	clean_quote(t_tok **lst, t_cati **mini);
 void	set_flag_insert(char *str, t_tok *lst);

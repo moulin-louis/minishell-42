@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 15:37:24 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/08 14:22:59 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/08 16:27:45 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 /*Return the value found int the environement*/
 
-char	*find_var(char *str, t_tok **lst, t_cati **mini)
+char	*find_var(char *str, char *temp1, t_tok **lst, t_cati **mini)
 {
 	t_envp	*temp;
 	char	*result;
@@ -28,7 +28,7 @@ char	*find_var(char *str, t_tok **lst, t_cati **mini)
 		temp = temp->next;
 	result = ut_strdup(temp->var[1]);
 	if (!result)
-		return (NULL);
+		return (free(str), free(temp1), NULL);
 	return (result);
 }
 
@@ -48,14 +48,36 @@ int	find_len(char *str, int i)
 	return (result);
 }
 
+void	insert_str(char *var, t_tok *node, t_tok **lst, t_cati **mini)
+{
+	char	*temp;
+	char	*temp2;
+	char	*temp3;
+
+	temp = ut_strjoin("$", var);
+	if (!temp)
+	{
+		free(var);
+		ut_clean_parsing_n_quit(mini, lst, errno);
+	}
+	temp2 = find_var(var, temp, lst, mini);
+	if (!temp2)
+		ut_clean_parsing_n_quit(mini, lst, errno);
+	temp3 = ut_strinsert(node->str, temp, temp2);
+	if (!temp3)
+	{
+		free(var);
+		ut_clean_parsing_n_quit(mini, lst, errno);
+	}
+	node->str = temp3;
+	free(var);
+}
+
 /*Insert the expanded value in the string*/
 
 void	trigger_expand(t_tok *node, int i, t_tok **lst, t_cati **mini)
 {
 	char	*var;
-	char	*temp;
-	char	*temp2;
-	char *temp3;
 	int		len;
 
 	len = find_len(node->str, i);
@@ -74,29 +96,7 @@ void	trigger_expand(t_tok *node, int i, t_tok **lst, t_cati **mini)
 		len++;
 		i++;
 	}
-	temp = ut_strjoin("$", var);
-	if (!temp)
-	{
-		free(var);
-		ut_clean_parsing_n_quit(mini, lst, errno);
-	}
-	temp2 = find_var(var, lst, mini);
-	if (!temp2)
-	{
-		free(var);
-		free(temp);
-		ut_clean_parsing_n_quit(mini, lst, errno);
-	}
-	temp3 = ut_strinsert(node->str, temp, temp2);
-	if (!temp3)
-	{
-		free(temp);
-		free(temp2);
-		free(var);
-		ut_clean_parsing_n_quit(mini, lst, errno);
-	}
-	node->str = temp3;
-	free(var);
+	insert_str(var, node, lst, mini);
 }
 
 /*Make the expand happened*/

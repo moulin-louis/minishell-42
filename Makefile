@@ -6,7 +6,7 @@
 #    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/05 17:32:08 by loumouli          #+#    #+#              #
-#    Updated: 2023/01/08 14:45:54 by loumouli         ###   ########.fr        #
+#    Updated: 2023/01/08 16:32:44 by loumouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -55,6 +55,7 @@ C_FILES		= minishell.c					\
 			  pa/pa_expand.c				\
 			  pa/pa_heredoc.c				\
 			  pa/pa_init_token.c			\
+			  pa/pa_init_token_2.c			\
 			  pa/pa_insert_token.c			\
 			  pa/pa_main.c					\
 			  pa/pa_parse_options.c			\

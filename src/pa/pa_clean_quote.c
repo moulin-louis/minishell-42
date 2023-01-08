@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:54:12 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/08 15:47:05 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/08 15:57:20 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int	delete_node(t_tok *node, t_tok **lst, t_cati **mini)
 }
 
 /*Clean quote adn double quote*/
-#include <stdio.h>
 
 int	trigger_cleaning(t_tok *node, t_cati **mini, t_tok **lst)
 {
