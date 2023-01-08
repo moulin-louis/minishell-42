@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 10:41:05 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/07 21:47:05 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/08 14:24:00 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ void	split_dbl_quote(char *str, int *i, t_tok **lst, t_cati **mini)
 	int		x;
 	char	*temp;
 	int		nbr;
+	t_tok	*tok_temp;
 
 	x = (*i) - 1;
 	nbr = 0;
@@ -41,7 +42,13 @@ void	split_dbl_quote(char *str, int *i, t_tok **lst, t_cati **mini)
 			nbr++;
 		(*i)++;
 	}
-	tok_addback(lst, tok_new(temp, mini, lst));
+	tok_temp = tok_new(temp);
+	if (!tok_temp)
+	{
+		free(temp);
+		ut_clean_parsing_n_quit(mini, lst, errno);
+	}
+	tok_addback(lst, tok_temp);
 }
 
 /*Split simple quote token into node*/
@@ -51,6 +58,7 @@ void	split_quote(char *str, int *i, t_tok **lst, t_cati **mini)
 	int		x;
 	char	*temp;
 	int		nbr;
+	t_tok	*tok_temp;
 
 	x = (*i) - 1;
 	nbr = 0;
@@ -71,15 +79,23 @@ void	split_quote(char *str, int *i, t_tok **lst, t_cati **mini)
 			nbr++;
 		(*i)++;
 	}
-	tok_addback(lst, tok_new(temp, mini, lst));
+	tok_temp = tok_new(temp);
+	if (!tok_temp)
+	{
+		free(temp);
+		ut_clean_parsing_n_quit(mini, lst, errno);
+	}
+	tok_addback(lst, tok_temp);
 }
 
+#include <stdio.h>
 /*Split simple token into node*/
 
 void	split_token(char *str, int *i, t_tok **lst, t_cati **mini)
 {
 	int		x;
 	char	*temp;
+	t_tok	*tok_temp;
 
 	x = (*i);
 	while (str[x] && (str[x] != '\t' && str[x] != ' ' && str[x]
@@ -91,13 +107,20 @@ void	split_token(char *str, int *i, t_tok **lst, t_cati **mini)
 		ut_clean_parsing_n_quit(mini, lst, errno);
 	temp[x] = '\0';
 	x = 0;
-	while (str[*i] && (str[*i] != ' ' && str[*i] != '\"' && str[*i] != '\''))
+	while (str[*i] && (str[*i] != ' ' && str[*i] != '\t'
+			&& str[*i] != '\"' && str[*i] != '\''))
 	{
 		temp[x] = str[*i];
 		(*i)++;
 		x++;
 	}
-	tok_addback(lst, tok_new(temp, mini, lst));
+	tok_temp = tok_new(temp);
+	if (!tok_temp)
+	{
+		free(temp);
+		ut_clean_parsing_n_quit(mini, lst, errno);
+	}
+	tok_addback(lst, tok_temp);
 }
 
 void	check_flag_insert(char *str, int start, int end, t_tok *lst)
@@ -109,11 +132,7 @@ void	check_flag_insert(char *str, int start, int end, t_tok *lst)
 		temp = tok_last(lst);
 		temp->flag_insert = 1;
 	}
-	if (str[end] && str[end] != ' ' && str[end] != '\t')
-	{
-		temp = tok_last(lst);
-		temp->flag_insert = 1;
-	}
+	(void)end;
 }
 
 /*Create t_tok list based on user input*/

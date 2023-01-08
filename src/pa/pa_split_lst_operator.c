@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 11:26:13 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/07 21:45:41 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/08 14:07:38 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,25 @@ void	fill_node_of_result(char **result, t_tok *node,
 	free(node->str);
 	node->str = ut_strdup(result[0]);
 	if (!node->str)
+	{
+		clean_split(result);
 		ut_clean_parsing_n_quit(mini, lst, errno);
+	}
 	while (x)
 	{
 		str = ut_strdup(result[x]);
 		if (!str)
+		{
+			clean_split(result);
 			ut_clean_parsing_n_quit(mini, lst, errno);
-		new_node = tok_new(str, mini, lst);
+		}
+		new_node = tok_new(str);
+		if (!new_node)
+		{
+			clean_split(result);
+			free(str);
+			ut_clean_parsing_n_quit(mini, lst, errno);
+		}
 		temp = node->next;
 		node->next = new_node;
 		new_node->next = temp;

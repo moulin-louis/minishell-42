@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ev_build_env.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 11:38:34 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/12/08 11:11:49 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/08 13:07:04 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-// static int	init_oldpwd(t_envp **envp)
-// {
-// 	t_envp	*new;
-
-// 	new = ut_calloc(1, sizeof(t_envp));
-// 	if (!new)
-// 		return (0);
-// 	new->var = ut_calloc(3, sizeof(char *));
-// 	if (!new->var)
-// 		return (0);
-// 	new->var[0] = ut_strcpy("OLDPWD");
-// 	if (!new->var[0])
-// 		return (0);
-// 	new->var[1] = NULL;
-// 	new->var[2] = NULL;
-// 	env_lstaddback(envp, new);
-// 	return (1);
-// }
-
-static int	case_no_env(t_envp **envp)
+int	case_no_env(t_envp **envp)
 {
 	t_envp	*new1;
 	t_envp	*new2;
@@ -52,7 +33,7 @@ static int	case_no_env(t_envp **envp)
 	return (1);
 }
 
-static int	case_env(char *env, t_envp **envp)
+int	case_env(char *env, t_envp **envp)
 {
 	t_envp	*new;
 
@@ -62,7 +43,7 @@ static int	case_env(char *env, t_envp **envp)
 	new->next = NULL;
 	new->var = ut_env_split(env);
 	if (!new->var)
-		return (perror("Env new node malloc"), 0);
+		return (env_delone(new), perror("Env new node malloc"), 0);
 	env_lstaddback(envp, new);
 	return (1);
 }
@@ -82,8 +63,6 @@ int	ev_build_env(char **env, t_envp **envp)
 		while (env[++i])
 			if (!case_env(env[i], envp))
 				return (0);
-		// if (!init_oldpwd(envp))
-		// 	return (0);
 	}
 	return (1);
 }

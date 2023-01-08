@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:54:12 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/07 21:47:56 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/08 15:47:05 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	delete_node(t_tok *node, t_tok **lst, t_cati **mini)
 }
 
 /*Clean quote adn double quote*/
+#include <stdio.h>
 
 int	trigger_cleaning(t_tok *node, t_cati **mini, t_tok **lst)
 {
@@ -47,13 +48,9 @@ int	trigger_cleaning(t_tok *node, t_cati **mini, t_tok **lst)
 	int		i;
 
 	if (node->str[0] == '\'' && node->str[1] == '\'')
-	{
 		return (delete_node(node, lst, mini));
-	}
 	if (node->str[0] == '\"' && node->str[1] == '\"')
-	{
 		return (delete_node(node, lst, mini));
-	}
 	i = 0;
 	temp = malloc(ft_strlen(node->str) - 1);
 	if (!temp)

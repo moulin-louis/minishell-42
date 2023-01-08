@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:51:41 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/07 21:46:23 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/08 13:54:41 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <signal.h>
+#include <errno.h>
 
 /*Handle sigint signal : CTRL + C*/
 
@@ -25,15 +26,6 @@ void	handle_sigint(int sig)
 	rl_replace_line("", 0);
 	rl_on_new_line();
 	rl_redisplay();
-}
-
-/*Create first node of t_cati list*/
-
-void	ft_create_node(t_cati **mini, t_envp *envp, t_fds *fds)
-{
-	*mini = mini_lstnew();
-	(*mini)->envp = envp;
-	(void)fds;
 }
 
 /*Handle sigint and ignore sigquit*/
@@ -49,6 +41,57 @@ void	setup_sig(void)
 	sa.sa_handler = SIG_IGN;
 	sigaction(SIGQUIT, &sa, NULL);
 }
+
+void	*ut_calloc_custom(int nb, int sz)
+{
+	static int i;
+	if (i == 0)
+	{
+		void	*ptr;
+		int		check;
+
+		check = nb * sz;
+		ptr = NULL;
+		if (!nb || !sz || check / nb != sz)
+			return (ptr);
+		ptr = malloc(nb * sz);
+		if (!ptr)
+			return (NULL);
+		ut_bzero(ptr, check);
+		i++;
+		return (ptr);
+	}
+	else
+		return (NULL);
+}
+
+/*Create a new t_cati node and return its ptr, quit minishell if fail*/
+
+t_cati	*mini_lstnew_custom(void)
+{
+	t_cati	*result;
+
+	result = ut_calloc_custom(1, sizeof(t_cati));
+	if (!result)
+		return (NULL);
+	return (result);
+}
+
+/*Create first node of t_cati list*/
+
+void	ft_create_node(t_cati **mini, t_envp *envp, t_fds *fds)
+{
+	*mini = mini_lstnew_custom();
+	if (!(*mini))
+	{
+		env_lstclear(&envp);
+		perror("shellnado");
+		full_exit(mini, errno);
+	}
+	(*mini)->envp = envp;
+	(void)fds;
+}
+
 
 /*init prompt with rl and call parsing fn when needed*/
 

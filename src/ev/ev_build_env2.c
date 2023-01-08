@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ev_build_env2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 14:21:42 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/28 09:17:54 by bschoeff         ###   ########.fr       */
+/*   Updated: 2023/01/08 12:18:19 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <unistd.h>
 
-static char	*ft_getpwd(void)
+char	*ft_getpwd(void)
 {
 	char	*pwd;
 	char	*buff;

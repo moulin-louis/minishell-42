@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 09:55:52 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/07 21:49:42 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/08 12:35:07 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,12 @@ void	env_lstclear(t_envp **envp)
 			clean_split(tmp->var);
 		free(tmp);
 	}
+}
+
+void	env_delone(t_envp *node)
+{
+	clean_split(node->var);
+	free(node);
 }
 
 /*Clean one node of t_envp linked list*/

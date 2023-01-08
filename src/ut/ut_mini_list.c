@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:51:29 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/07 21:50:28 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/08 13:14:37 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ t_cati	*mini_lstnew(void)
 
 	result = ut_calloc(1, sizeof(t_cati));
 	if (!result)
-		return (perror("Malloc :"), full_exit(&result, errno), NULL);
-	ut_bzero(result, sizeof(t_cati));
+		return (NULL);
 	return (result);
 }

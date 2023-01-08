@@ -6,12 +6,13 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 14:25:02 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/07 21:48:53 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/08 13:04:27 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
+#include <stdio.h>
 
 /*Custom calloc*/
 
@@ -28,7 +29,8 @@ void	*ut_calloc(int nb, int sz)
 	if (!nb || !sz || check / nb != sz)
 		return (ptr);
 	ptr = malloc(nb * sz);
-	if (ptr)
-		ut_bzero(ptr, check);
+	if (!ptr)
+		return (NULL);
+	ut_bzero(ptr, check);
 	return (ptr);
 }

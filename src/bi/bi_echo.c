@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 11:20:35 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/07 22:10:39 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/08 11:12:35 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,16 +44,17 @@ static int	write_stuff(t_cati *node)
 
 	i = 0;
 	n_line = 1;
+	if (!is_arg(node->cmd[++i]))
+	{
+		n_line = 0;
+		while (!is_arg(node->cmd[i]))
+			i++;
+		if (!node->cmd[i])
+			return (0);
+	}
+	i--;
 	while (node->cmd[++i])
 	{
-		if (!is_arg(node->cmd[1]))
-		{
-			n_line = 0;
-			while (!is_arg(node->cmd[i]))
-				i++;
-			if (!node->cmd[i])
-				return (0);
-		}
 		len = 0;
 		while (node->cmd[i][len])
 			len++;

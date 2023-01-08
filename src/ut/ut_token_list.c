@@ -6,13 +6,14 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 12:04:37 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/07 21:51:31 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/08 15:42:25 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
 #include <errno.h>
+#include <stdio.h>
 
 /*All sort of utilts for t_tok linked list*/
 
@@ -29,8 +30,7 @@ t_tok	*tok_last(t_tok *lst)
 
 void	tok_delone(t_tok *node)
 {
-	if (node->str)
-		free(node->str);
+	free(node->str);
 	free(node);
 }
 
@@ -44,7 +44,10 @@ void	clean_tok(t_tok **lst)
 	{
 		temp = (*lst)->next;
 		if ((*lst)->str)
+		{
+			printf("freeing %p\n", (*lst)->str);
 			free((*lst)->str);
+		}
 		free((*lst));
 		*lst = temp;
 	}
@@ -69,15 +72,15 @@ void	tok_addback(t_tok **lst, t_tok *node)
 
 /*Create a new t_tok node, crash minishell if malloc failed*/
 
-t_tok	*tok_new(char *str, t_cati **mini, t_tok **lst)
+t_tok	*tok_new(char *str)
 {
 	t_tok	*result;
 
 	if (!str)
-		ut_clean_parsing_n_quit(mini, lst, 1);
+		return (NULL);
 	result = ut_calloc(1, sizeof(t_tok));
 	if (!result)
-		ut_clean_parsing_n_quit(mini, lst, 1);
+		return (NULL);
 	result->str = str;
 	result->next = NULL;
 	return (result);

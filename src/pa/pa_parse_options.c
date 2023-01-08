@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:55:44 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/07 21:46:51 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/08 15:47:12 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 /*Fill double array of option based on t_tok list*/
 
-static void	fill_result(char **result, t_tok **lst, t_cati **mini, int nbr)
+void	fill_result(char **result, t_tok **lst, t_cati **mini, int nbr)
 {
 	int		i;
 	t_tok	*temp;
@@ -27,7 +27,10 @@ static void	fill_result(char **result, t_tok **lst, t_cati **mini, int nbr)
 	{
 		result[i] = ut_strdup(temp->str);
 		if (!result[i])
+		{
+			clean_split(result);
 			ut_clean_parsing_n_quit(mini, lst, errno);
+		}
 		temp = temp->next;
 		i++;
 	}
@@ -35,7 +38,9 @@ static void	fill_result(char **result, t_tok **lst, t_cati **mini, int nbr)
 
 /*clean each node involved in setup_node fn*/
 
-static void	clean_lst(t_tok **lst)
+#include <stdio.h>
+
+void	clean_lst(t_tok **lst)
 {
 	t_tok	*temp;
 
@@ -55,7 +60,7 @@ static void	clean_lst(t_tok **lst)
 
 /*Create node for a cmd, fill double array cmd and cmd_path, call clean fn*/
 
-static void	setup_node(t_tok **lst, t_cati *node, t_cati **mini)
+void	setup_node(t_tok **lst, t_cati *node, t_cati **mini)
 {
 	char	**result;
 	int		nbr_opt;
@@ -79,6 +84,8 @@ static void	setup_node(t_tok **lst, t_cati *node, t_cati **mini)
 	node->cmd = result;
 }
 
+#include <stdio.h>
+
 /*find nbr of cmd, call redirection parsing fn and call fn to create node*/
 
 void	parse_options(t_tok **lst, t_cati **mini)
@@ -101,6 +108,7 @@ void	parse_options(t_tok **lst, t_cati **mini)
 	nbr_cmd--;
 	while (*lst && *mini && nbr_cmd > 0)
 	{
+		printf("je fait des trucs\n");
 		mini_lstaddback(mini, mini_lstnew());
 		setup_redirection(lst, mini_lstlast(*mini), mini);
 		setup_node(lst, mini_lstlast(*mini), mini);

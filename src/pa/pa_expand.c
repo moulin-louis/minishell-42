@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 15:37:24 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/07 21:47:41 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/08 14:22:59 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,9 @@ char	*find_var(char *str, t_tok **lst, t_cati **mini)
 		return (ut_itoa(g_status, mini, lst));
 	while (temp && !ut_strcmp(temp->var[0], str))
 		temp = temp->next;
-	if (!temp)
-	{
-		result = malloc(1);
-		if (!result)
-			ut_clean_parsing_n_quit(mini, lst, errno);
-		return (result[0] = '\0', result);
-	}
 	result = ut_strdup(temp->var[1]);
 	if (!result)
-		ut_clean_parsing_n_quit(mini, lst, errno);
+		return (NULL);
 	return (result);
 }
 
@@ -60,6 +53,9 @@ int	find_len(char *str, int i)
 void	trigger_expand(t_tok *node, int i, t_tok **lst, t_cati **mini)
 {
 	char	*var;
+	char	*temp;
+	char	*temp2;
+	char *temp3;
 	int		len;
 
 	len = find_len(node->str, i);
@@ -78,10 +74,28 @@ void	trigger_expand(t_tok *node, int i, t_tok **lst, t_cati **mini)
 		len++;
 		i++;
 	}
-	node->str = ut_strinsert(node->str, ut_strjoin("$", var),
-			find_var(var, lst, mini));
-	if (!node->str)
+	temp = ut_strjoin("$", var);
+	if (!temp)
+	{
+		free(var);
 		ut_clean_parsing_n_quit(mini, lst, errno);
+	}
+	temp2 = find_var(var, lst, mini);
+	if (!temp2)
+	{
+		free(var);
+		free(temp);
+		ut_clean_parsing_n_quit(mini, lst, errno);
+	}
+	temp3 = ut_strinsert(node->str, temp, temp2);
+	if (!temp3)
+	{
+		free(temp);
+		free(temp2);
+		free(var);
+		ut_clean_parsing_n_quit(mini, lst, errno);
+	}
+	node->str = temp3;
 	free(var);
 }
 

@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/07 21:43:48 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/08 12:50:51 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ void	env_lstaddback(t_envp **envp, t_envp *new);
 void	env_lstclear(t_envp **envp);
 void	env_lstdelone(t_envp **envp, t_envp *tmp);
 int		env_lstsize(t_envp **envp);
+void	env_delone(t_envp *node);
 
 /*mini utils*/
 t_cati	*mini_lstnew(void);
@@ -110,7 +111,7 @@ t_tok	*
 tok_last(t_tok *lst);
 void	tok_delone(t_tok *node);
 void	tok_addback(t_tok **lst, t_tok *node);
-t_tok	*tok_new(char *str, t_cati **mini, t_tok **lst);
+t_tok	*tok_new(char *str);
 void	clean_tok(t_tok **lst);
 
 /* Environment */

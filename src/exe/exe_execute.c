@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:53:11 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/06 20:27:39 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/08 11:59:17 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 
 
 
-static void	init_pipes(t_cati *node)
+void	init_pipes(t_cati *node)
 {
 	if (pipe(node->fds.pfd) == -1)
 	{
@@ -56,8 +56,8 @@ int	execute(t_cati **mini)
 	while (node)
 	{
 		waitpid(node->pid, &node->fds.status, 0);
-		// if (node->fds.status == 127)
-		// 	g_status = 127;
+		if (node->fds.status == 127)
+			g_status = 127;
 		node = node->next;
 	}
 	return (0);
