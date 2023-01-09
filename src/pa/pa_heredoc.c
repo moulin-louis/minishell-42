@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 15:01:04 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/07 21:47:32 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/09 14:46:42 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,16 @@
 #include <readline/history.h>
 #include <stdlib.h>
 #include <errno.h>
+#include <signal.h>
+#include <sys/types.h>
+#include <sys/wait.h>
+#include <stdio.h>
 
 /*Read user input and breaf when sep is input*/
 
 int	write_line_infile(char *buffer, char *sep, int fd, t_cati *node)
 {
+	signal(SIGINT, SIG_DFL);
 	while (1)
 	{
 		buffer = readline("> ");
@@ -39,6 +44,24 @@ int	write_line_infile(char *buffer, char *sep, int fd, t_cati *node)
 	return (0);
 }
 
+int	wait_child(pid_t pid, t_cati *node, t_cati **mini, t_tok **lst)
+{
+	int	status;
+
+	waitpid(pid, &status, 0);
+	if (WIFSIGNALED(status))
+	{
+		if (WTERMSIG(status) == SIGINT)
+		{
+			reset_ressources(lst, mini);
+			g_status = 130;
+			return (1);
+		}
+	}
+	node->in_file = 1;
+	return (0);
+}
+
 /*Setup for heredoc, create an infile with user input*/
 
 void	heredoc_redir(t_tok *r_token, t_cati *c_node, t_tok **lst,
@@ -46,15 +69,11 @@ void	heredoc_redir(t_tok *r_token, t_cati *c_node, t_tok **lst,
 {
 	int		fd;
 	char	*buffer;
+	pid_t	pid;
 
 	buffer = NULL;
 	if (!r_token->next)
-	{
-		printf("shellnado : invalid token syntax near '\\n'\n");
-		reset_ressources(lst, mini);
-		g_status = 2;
-		return ;
-	}
+		trigger_error(lst, mini, "\n");
 	if (!r_token->next || check_compliance_file(r_token->next->str))
 	{
 		reset_ressources(lst, mini);
@@ -64,9 +83,11 @@ void	heredoc_redir(t_tok *r_token, t_cati *c_node, t_tok **lst,
 	fd = open("/tmp/heredoc.tmp", O_TRUNC | O_CREAT | O_RDWR, 0644);
 	if (!fd)
 		ut_clean_parsing_n_quit(mini, lst, errno);
-	if (write_line_infile(buffer, r_token->next->str, fd, c_node))
-		ut_clean_parsing_n_quit(mini, lst, errno);
-	c_node->in_file = 1;
-	close (fd);
-	delete_token_redir(r_token, lst);
+	pid = fork();
+	if (pid == 0)
+		if (write_line_infile(buffer, r_token->next->str, fd, c_node))
+			ut_clean_parsing_n_quit(mini, lst, errno);
+	close(fd);
+	if (!wait_child(pid, c_node, mini, lst))
+		delete_token_redir(r_token, lst);
 }

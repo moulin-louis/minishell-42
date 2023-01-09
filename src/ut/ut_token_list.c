@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ut_token_list.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 12:04:37 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/09 14:07:58 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/09 15:07:24 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ void	clean_tok(t_tok **lst)
 {
 	t_tok	*temp;
 
+	if (!lst)
+		return ;
 	while (*lst)
 	{
 		temp = (*lst)->next;

@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 16:02:42 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/08 16:33:59 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/09 13:02:49 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	add_new(char *str, t_tok **lst, t_cati **mini)
 	tok_addback(lst, temp);
 }
 
-void	check_flag_insert(char *str, int start, int end, t_tok *lst)
+void	check_flag_insert(const char *str, int start, int end, t_tok *lst)
 {
 	t_tok	*temp;
 

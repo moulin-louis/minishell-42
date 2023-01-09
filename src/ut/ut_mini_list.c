@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:51:29 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/08 13:14:37 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/09 14:21:16 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,23 +44,6 @@ void	mini_lstaddback(t_cati **mini, t_cati *node)
 	while (temp->next)
 		temp = temp->next;
 	temp->next = node;
-}
-
-/*Delete the node and free its malloced ptr inside*/
-
-void	mini_delone(t_cati *node)
-{
-	if (node->cmd)
-		clean_split(node->cmd);
-	if (node->ev)
-		clean_split(node->ev);
-	if (node->path_cmd)
-		free(node->path_cmd);
-	if (node->infile)
-		free(node->infile);
-	if (node->outfile)
-		free(node->outfile);
-	free(node);
 }
 
 /*Create a new t_cati node and return its ptr, quit minishell if fail*/

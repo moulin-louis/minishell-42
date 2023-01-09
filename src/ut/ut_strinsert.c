@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:09:51 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/08 16:22:41 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/09 14:19:00 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 /*insert target in result starting at index i*/
 
-void	trigger_insert(char *result, int *i, char *target, int *status)
+void	trigger_insert(char *result, int *i, const char *target, int *status)
 {
 	int	x;
 
@@ -32,7 +32,7 @@ void	trigger_insert(char *result, int *i, char *target, int *status)
 
 /*check if target str is in og str from i position*/
 
-int	is_target(char *og, int i, char *target)
+int	is_target(const char *og, int i, const char *target)
 {
 	int	x;
 
@@ -54,14 +54,14 @@ void	custom_strlen(char *str, int *x)
 
 /*Replace target str in og str by payload str*/
 
-char	*ut_strinsert(char *og, char *trgt, char *pld)
+char	*ut_strinsert(const char *og, char *trgt, const char *pld)
 {
 	char	*result;
 	int		var[3];
 
 	result = malloc(((ft_strlen(og) - ft_strlen(trgt)) + ft_strlen(pld)) + 1);
 	if (!result)
-		return (free(trgt), free(pld), NULL);
+		return (free((char *)trgt), free((char *)pld), NULL);
 	result[((ft_strlen(og) - ft_strlen(trgt)) + ft_strlen(pld))] = '\0';
 	memset(var, 0, sizeof(var));
 	while (var[0] < ((ft_strlen(og) - ft_strlen(trgt)) + ft_strlen(pld)))
@@ -77,5 +77,5 @@ char	*ut_strinsert(char *og, char *trgt, char *pld)
 		else
 			result[var[0]++] = og[var[1]++];
 	}
-	return (free(og), free(trgt), free(pld), result);
+	return (free((char *)og), free((char *)trgt), free((char *)pld), result);
 }

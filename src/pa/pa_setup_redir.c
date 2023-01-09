@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:42:25 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/07 21:45:56 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/09 14:23:02 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,13 @@ void	in_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini)
 		g_status = 2;
 		return ;
 	}
-	c_node->infile = ut_strdup(r_token->next->str);
-	if (!c_node)
-		ut_clean_parsing_n_quit(mini, lst, errno);
-	c_node->in_file = 1;
+	if (c_node)
+	{
+		c_node->infile = ut_strdup(r_token->next->str);
+		if (!c_node->infile)
+			ut_clean_parsing_n_quit(mini, lst, errno);
+		c_node->in_file = 1;
+	}
 	delete_token_redir(r_token, lst);
 }
 
@@ -97,10 +100,13 @@ void	out_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini)
 		g_status = 2;
 		return ;
 	}
-	c_node->outfile = ut_strdup(r_token->next->str);
-	if (!c_node)
-		ut_clean_parsing_n_quit(mini, lst, errno);
-	c_node->out_trunc = 1;
+	if (c_node)
+	{
+		c_node->outfile = ut_strdup(r_token->next->str);
+		if (!c_node->outfile)
+			ut_clean_parsing_n_quit(mini, lst, errno);
+		c_node->out_trunc = 1;
+	}
 	delete_token_redir(r_token, lst);
 }
 
@@ -119,9 +125,12 @@ void	app_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini)
 		g_status = 2;
 		return ;
 	}
-	c_node->outfile = ut_strdup(r_token->next->str);
-	if (!c_node)
-		ut_clean_parsing_n_quit(mini, lst, errno);
-	c_node->out_append = 1;
+	if (c_node)
+	{
+		c_node->outfile = ut_strdup(r_token->next->str);
+		if (!c_node->outfile)
+			ut_clean_parsing_n_quit(mini, lst, errno);
+		c_node->out_append = 1;
+	}
 	delete_token_redir(r_token, lst);
 }
