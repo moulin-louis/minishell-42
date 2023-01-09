@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/29 11:20:35 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/08 11:12:35 by loumouli         ###   ########.fr       */
+/*   Created: 2023/01/09 12:45:07 by loumouli          #+#    #+#             */
+/*   Updated: 2023/01/09 12:45:10 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@
 
 static int	is_arg(char *str)
 {
-	int		i;
 	char	*ref;
+	int		i;
 
 	ref = "-n";
 	if (!str)

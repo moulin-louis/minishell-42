@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 11:53:46 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/08 12:31:11 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/09 12:54:10 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,6 @@ char	**exe_parse_env(t_cati **mini)
 	i = 0;
 	while (tmp)
 	{
-		size = ut_word_len(tmp->var[0]);
-		if (tmp->var[1])
-			size += ut_word_len(tmp->var[1]);
 		populate_ev(mini, tmp, arr, i);
 		i++;
 		tmp = tmp->next;

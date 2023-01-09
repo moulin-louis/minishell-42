@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 19:32:51 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/07 21:50:43 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/09 14:16:43 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ is hard code to work with ':' char */
 /*WARNING : BAD FN
 count the len to the next ':' occurence*/
 
-static int	word_len(char *str)
+static int	word_len(const char *str)
 {
 	int	i;
 
@@ -32,7 +32,7 @@ static int	word_len(char *str)
 
 /*Count the nbr of word based on char as a separator*/
 
-static int	word_count(char *str, char c)
+static int	word_count(const char *str, char c)
 {
 	int	i;
 	int	count;
@@ -57,7 +57,7 @@ static int	word_count(char *str, char c)
 
 /*Create the string based on s2 string and the given len*/
 
-static char	*do_the_split(char *s2, int len)
+static char	*do_the_split(const char *s2, int len)
 {
 	int		i;
 	char	*s1;
@@ -78,7 +78,7 @@ static char	*do_the_split(char *s2, int len)
 /*Split a string into a double array of string based on a sep, return the
  malloced doublle array of string*/
 
-char	**ut_split_char(char *str, char c)
+char	**ut_split_char(const char *str, char c)
 {
 	char	**arr;
 	int		words;

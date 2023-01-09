@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/12/07 14:43:37 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/09 12:52:37 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static int	check_compliance(char *str)
 		{
 			if (ref[k] == str[j])
 				return (error_msg(str));
-			if (str[j] == '+' && (str[j + 1] != '=' || ! str[j + 1]))
+			if (str[j] == '+' && str[j + 1] != '=')
 				return (error_msg(str));
 		}
 	}

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_set_path_cmd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 10:39:44 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/28 14:15:58 by bschoeff         ###   ########.fr       */
+/*   Updated: 2023/01/09 14:02:22 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	check_access(char **arr, t_cati **mini, t_cati *node)
 	char	*str;
 
 	i = -1;
-	while (arr[++i])
+	while (arr && arr[++i])
 	{
 		str = ut_strcpy(arr[i]);
 		if (!str)

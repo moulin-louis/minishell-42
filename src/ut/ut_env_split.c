@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/08 12:26:44 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/08 12:56:00 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/09 14:11:36 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	word_count(char *str)
 
 /*Fill the 0 of the dbl array by the name of the var*/
 
-int	fill_var(char **arr, char *str)
+int	fill_var(char **arr, const char *str)
 {
 	int	i;
 

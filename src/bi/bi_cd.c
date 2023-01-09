@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:19:57 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/07 22:11:05 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/09 12:44:07 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,8 @@ static void	change_oldpwd(t_cati **mini, t_cati *node)
 		tmp_pwd = tmp_pwd->next;
 	while (tmp_old && !find_node(tmp_old, "OLDPWD"))
 		tmp_old = tmp_old->next;
+	if (!tmp_old)
+		return ;
 	if (tmp_old->var[1])
 		free(tmp_old->var[1]);
 	tmp_old->var[1] = ut_strcpy(tmp_pwd->var[1]);

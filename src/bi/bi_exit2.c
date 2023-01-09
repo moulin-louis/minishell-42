@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   bi_exit2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 13:29:25 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/19 14:11:17 by bschoeff         ###   ########.fr       */
+/*   Updated: 2023/01/09 12:50:58 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	check_neg(char *str)
+static int	check_neg(const char *str)
 {
 	int		i;
 	char	*negative;
@@ -28,7 +28,7 @@ static int	check_neg(char *str)
 	return (1);
 }
 
-static int	check_pos(char *str)
+static int	check_pos(const char *str)
 {
 	int		i;
 	char	*positive;
