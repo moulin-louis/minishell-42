@@ -6,7 +6,7 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:20:08 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/09 15:10:37 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/09 15:31:09 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,10 @@ static void execve_cmd(t_cati *node, t_cati **mini)
 	else
 	{
 		access_auth = access(node->path_cmd, R_OK | X_OK) == 0;
-		if (access_auth)
+		if (access_auth != -1)
 			execve(node->path_cmd, node->cmd, node->ev);
-		perror("shellnado");
+		if (node->path_cmd)
+			perror("shellnado");
 	}
 	full_exit(mini, 127);
 }
