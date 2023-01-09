@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/09 14:59:35 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:04:21 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int		ft_strncmp(const char *s1, const char *s2, int n);
 void	ut_bzero(void *s, int n);
 int		ut_within_long(char *str);
 char	*ut_itoa(int n);
+void	ut_putstr_fd(char *s, int fd);
 
 /* linked list utils and function */
 /*env utils*/

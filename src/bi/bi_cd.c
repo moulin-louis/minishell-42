@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:19:57 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/09 12:44:07 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:53:33 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,14 +75,45 @@ static void	change_oldpwd(t_cati **mini, t_cati *node)
 		full_exit(mini, errno);
 }
 
+int	cd_home(t_cati **mini)
+{
+	t_envp	*tmp;
+
+	tmp = (*mini)->envp;
+	while (tmp)
+	{
+		if (ut_strcmp("HOME", tmp->var[0]) && tmp->var[1])
+		{
+			if (chdir(tmp->var[1]) == -1)
+			{
+				ut_putstr_fd("shellnado: cd: ", 2);
+				ut_putstr_fd(tmp->var[1], 2);
+				ut_putstr_fd(": ", 2);
+				ut_putstr_fd(strerror(errno), 2);
+				ut_putstr_fd("\n", 2);
+				return (-1);
+			}
+		}
+		tmp = tmp->next;
+	}
+	return (0);
+}
+
 int	bi_cd(t_cati **mini, t_cati *node)
 {
 	g_status = 0;
-	if (!node->cmd || !node->cmd[1])
-		return (0);
-	if (chdir(node->cmd[1]) == -1)
+	if(!node->cmd[1])
 	{
-		printf("shellnado: cd: %s: %s\n", node->cmd[1], strerror(errno));
+		if(cd_home(mini) == -1)
+			return (1);
+	}
+	else if (chdir(node->cmd[1]) == -1)
+	{
+		ut_putstr_fd("shellnado: cd: ", 2);
+		ut_putstr_fd(node->cmd[1], 2);
+		ut_putstr_fd(": ", 2);
+		ut_putstr_fd(strerror(errno), 2);
+		ut_putstr_fd("\n", 2);
 		return (1);
 	}
 	change_oldpwd(mini, node);

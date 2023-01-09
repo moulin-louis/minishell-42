@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
+#    By: foster <foster@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/05 17:32:08 by loumouli          #+#    #+#              #
-#    Updated: 2023/01/09 15:07:42 by loumouli         ###   ########.fr        #
+#    Updated: 2023/01/09 17:04:39 by foster           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,6 +73,7 @@ C_FILES		= minishell.c					\
 			  ut/ut_itoa.c					\
 			  ut/ut_mini_list.c				\
 			  ut/ut_printfmini.c			\
+			  ut/ut_putstr_fd.c				\
 			  ut/ut_split_char.c			\
 			  ut/ut_strcmp.c				\
 			  ut/ut_strcpy.c				\
