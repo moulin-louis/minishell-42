@@ -6,7 +6,7 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:53:11 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/09 13:11:36 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/09 13:58:30 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,21 @@
 #include <wait.h>
 #include <fcntl.h>
 
-void	init_pipes(t_cati *node)
+void	init_pipes(t_cati *node, t_cati **mini)
 {
+	t_cati		*mini_cpy;
+
 	if (pipe(node->fds.pfd) == -1)
-		printf("Catastrophic error when opening pipes, goddbye\n");
+	{
+		perror("Catastrophic error when opening pipes, goddbye\n");
+		mini_cpy = *mini;
+		while (mini_cpy && (mini_cpy) != node)
+		{
+			close_pipes(&mini_cpy);
+			(mini_cpy) = (mini_cpy)->next;
+		}
+		full_exit(mini, errno);
+	}
 }
 
 void	close_pipes(t_cati **mini)
@@ -38,7 +49,7 @@ int	execute(t_cati **mini)
 	node = *mini;
 	while (node)
 	{
-		init_pipes(node);
+		init_pipes(node, mini);
 		node = node->next;
 	}
 	node = *mini;
@@ -54,8 +65,9 @@ int	execute(t_cati **mini)
 	{
 		waitpid(node->pid, &node->fds.status, 0);
 		if (!node->next)
-			g_status = node->fds.status;
+			g_status = WEXITSTATUS(node->fds.status);
 		node = node->next;
 	}
+	printf("%d\n", g_status);
 	return (0);
 }

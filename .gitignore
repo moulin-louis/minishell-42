@@ -5,6 +5,7 @@
 .DS_Store
 .nfs*
 *.d
+ft_mallocator
 
 # Compiled Object files
 *.slo
