@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:20:08 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/09 18:48:35 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/09 21:28:57 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	exec_cmd(t_cati **mini, t_cati *node)
 {
 	if (node->pid == 0)
 	{		
-		printf("pid = %d\n", getpid());
+		signal(SIGINT, SIG_DFL);
 		close(node->fds.pfd[1]);
 		set_path_cmd(mini, node);
 		if (node->in_file)
