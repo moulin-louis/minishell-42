@@ -6,10 +6,9 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:53:11 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/09 21:24:58 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/09 22:47:02 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "minishell.h"
 #include <stdlib.h>

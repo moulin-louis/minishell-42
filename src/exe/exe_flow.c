@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:20:08 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/09 21:28:57 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/09 22:46:19 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 static void	close_all_pipe(t_cati *node)
 {
 	if (node->in_fd)
-			close(node->in_fd);
+		close(node->in_fd);
 	if (node->out_fd)
-			close(node->out_fd);
+		close(node->out_fd);
 	node = node->next;
 	while (node)
 	{
@@ -35,7 +35,7 @@ static void	close_all_pipe(t_cati *node)
 	}
 }
 
-static void execve_cmd(t_cati *node, t_cati **mini)
+static	void	execve_cmd(t_cati *node, t_cati **mini)
 {
 	if (node->builtin)
 	{
@@ -53,13 +53,6 @@ static void execve_cmd(t_cati *node, t_cati **mini)
 		}
 		full_exit(mini, 127);
 	}
-
-}
-
-void	try_stuff(int sig)
-{
-	(void)sig;
-	exit(130);
 }
 
 void	exec_cmd(t_cati **mini, t_cati *node)
@@ -90,15 +83,12 @@ void	exec_cmd(t_cati **mini, t_cati *node)
 		close_all_pipe(node);
 		execve_cmd(node, mini);
 	}
-	else
-	{
-		clean_split(node->ev);
-		node->ev = NULL;
-		if (node->in_fd)
-			close(node->in_fd);
-		if (node->out_fd)
-			close(node->out_fd);
-	}
+	clean_split(node->ev);
+	node->ev = NULL;
+	if (node->in_fd)
+		close(node->in_fd);
+	if (node->out_fd)
+		close(node->out_fd);
 }
 
 int	exec_node(t_cati **mini, t_cati *node)
@@ -110,7 +100,6 @@ int	exec_node(t_cati **mini, t_cati *node)
 		node->fds.ret = exe_bi_launcher(mini, node);
 		return (node->fds.ret);
 	}
-	// node->ev = exe_parse_env(mini);
 	if (set_fds(mini, node) == -1)
 		return (-1);
 	node->pid = fork();
