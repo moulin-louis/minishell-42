@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_flow.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:20:08 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/09 17:38:20 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/09 18:48:35 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <errno.h>
 #include <string.h>
 #include <stdlib.h>
+#include <signal.h>
 
 static void	close_all_pipe(t_cati *node)
 {
@@ -55,10 +56,17 @@ static void execve_cmd(t_cati *node, t_cati **mini)
 
 }
 
+void	try_stuff(int sig)
+{
+	(void)sig;
+	exit(130);
+}
+
 void	exec_cmd(t_cati **mini, t_cati *node)
 {
 	if (node->pid == 0)
-	{
+	{		
+		printf("pid = %d\n", getpid());
 		close(node->fds.pfd[1]);
 		set_path_cmd(mini, node);
 		if (node->in_file)
