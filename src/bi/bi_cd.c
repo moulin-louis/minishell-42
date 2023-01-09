@@ -6,7 +6,7 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:19:57 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/09 17:53:33 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/09 18:04:19 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ int	cd_home(t_cati **mini)
 	tmp = (*mini)->envp;
 	while (tmp)
 	{
-		if (ut_strcmp("HOME", tmp->var[0]) && tmp->var[1])
+		if (ut_strcmp("HOME", tmp->var[0]) && tmp->var[1][0])
 		{
 			if (chdir(tmp->var[1]) == -1)
 			{
