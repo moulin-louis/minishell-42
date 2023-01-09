@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_parse_env.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 11:53:46 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/12/08 11:14:09 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/08 12:31:11 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,16 +17,26 @@
 
 static void	populate_ev(t_cati **mini, t_envp *tmp, char **arr, int i)
 {
+	char	*temp;
+
+	temp = arr[i];
 	arr[i] = ut_strcpy(tmp->var[0]);
+	free (temp);
 	if (!arr[i])
 		full_exit(mini, errno);
+	temp = arr[i];
 	arr[i] = ut_strjoin(arr[i], "=");
+	free(temp);
 	if (!arr[i])
 		full_exit(mini, errno);
 	if (tmp->var[1])
+	{
+		temp = arr[i];
 		arr[i] = ut_strjoin(arr[i], tmp->var[1]);
-	if (!arr[i])
-		full_exit(mini, errno);
+		free(temp);
+		if (!arr[i])
+			full_exit(mini, errno);
+	}
 }
 
 char	**exe_parse_env(t_cati **mini)

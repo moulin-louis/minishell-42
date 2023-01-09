@@ -6,7 +6,7 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:53:11 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/07 12:31:48 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/09 13:11:36 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@
 #include <wait.h>
 #include <fcntl.h>
 
-
-
-static void	init_pipes(t_cati *node)
+void	init_pipes(t_cati *node)
 {
 	if (pipe(node->fds.pfd) == -1)
 		printf("Catastrophic error when opening pipes, goddbye\n");

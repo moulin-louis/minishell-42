@@ -6,15 +6,13 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 10:41:05 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/05 19:02:01 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/08 16:09:51 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
 #include <errno.h>
-#include <string.h>
-#include <stdio.h>
 
 /*Split double quote token into node*/
 
@@ -43,7 +41,7 @@ void	split_dbl_quote(char *str, int *i, t_tok **lst, t_cati **mini)
 			nbr++;
 		(*i)++;
 	}
-	tok_addback(lst, tok_new(temp, mini, lst));
+	add_new(temp, lst, mini);
 }
 
 /*Split simple quote token into node*/
@@ -73,7 +71,7 @@ void	split_quote(char *str, int *i, t_tok **lst, t_cati **mini)
 			nbr++;
 		(*i)++;
 	}
-	tok_addback(lst, tok_new(temp, mini, lst));
+	add_new(temp, lst, mini);
 }
 
 /*Split simple token into node*/
@@ -93,13 +91,14 @@ void	split_token(char *str, int *i, t_tok **lst, t_cati **mini)
 		ut_clean_parsing_n_quit(mini, lst, errno);
 	temp[x] = '\0';
 	x = 0;
-	while (str[*i] && (str[*i] != ' ' && str[*i] != '\"' && str[*i] != '\''))
+	while (str[*i] && (str[*i] != ' ' && str[*i] != '\t'
+			&& str[*i] != '\"' && str[*i] != '\''))
 	{
 		temp[x] = str[*i];
 		(*i)++;
 		x++;
 	}
-	tok_addback(lst, tok_new(temp, mini, lst));
+	add_new(temp, lst, mini);
 }
 
 /*Create t_tok list based on user input*/
@@ -107,6 +106,7 @@ void	split_token(char *str, int *i, t_tok **lst, t_cati **mini)
 t_tok	*init_token_list(char *input, t_cati **mini)
 {
 	int		i;
+	int		temp;
 	t_tok	*lst;
 
 	i = 0;
@@ -114,12 +114,16 @@ t_tok	*init_token_list(char *input, t_cati **mini)
 	while (input[i])
 	{
 		if (input[i] == '\"')
+		{
+			temp = i;
 			split_dbl_quote(input, &i, &lst, mini);
+			check_flag_insert(input, temp, i, lst);
+		}
 		else if (input[i] == '\'')
-			split_quote(input, &i, &lst, mini);
+			call_fn_init_token_2(input, &i, &lst, mini);
 		else if (input[i] != '\"' && input[i] != '\'' && input[i] != ' '
 			&& input[i] != '\t' && input[i] != ':' && input[i] != '!')
-			split_token(input, &i, &lst, mini);
+			call_fn_init_token_1(input, &i, &lst, mini);
 		else
 			i++;
 	}

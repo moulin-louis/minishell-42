@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/29 13:15:26 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/05 21:24:24 by loumouli         ###   ########.fr       */
+/*   Created: 2023/01/08 12:26:44 by loumouli          #+#    #+#             */
+/*   Updated: 2023/01/08 12:56:00 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 /*Count the nbr of worf in string based on '='*/
 
-static int	word_count(char *str)
+int	word_count(char *str)
 {
 	int	i;
 
@@ -38,7 +38,7 @@ static int	word_count(char *str)
 
 /*Fill the 0 of the dbl array by the name of the var*/
 
-static int	fill_var(char **arr, char *str)
+int	fill_var(char **arr, char *str)
 {
 	int	i;
 
@@ -57,7 +57,7 @@ static int	fill_var(char **arr, char *str)
 
 /*Malloc of 1 if the value is null*/
 
-static int	fill_empty_val(char **arr)
+int	fill_empty_val(char **arr)
 {
 	arr[1] = ut_calloc(1, 1);
 	if (!arr[1])
@@ -67,7 +67,7 @@ static int	fill_empty_val(char **arr)
 
 /*Fill the 1 of the dbl array by the value*/
 
-static int	fill_value(char **arr, char *str)
+int	fill_value(char **arr, char *str)
 {
 	int	i;
 	int	j;
@@ -108,12 +108,12 @@ char	**ut_env_split(char *str)
 		return (perror("Ev_split malloc"), arr);
 	arr[words] = NULL;
 	if (!fill_var(arr, str))
-		return (arr);
+		return (free(arr), NULL);
 	if (words == 2)
 		if (!fill_empty_val(arr))
-			return (arr);
+			return (free(arr[0]), free(arr), NULL);
 	if (words == 3)
 		if (!fill_value(arr, str))
-			return (arr);
+			return (free(arr[0]), free(arr), NULL);
 	return (arr);
 }

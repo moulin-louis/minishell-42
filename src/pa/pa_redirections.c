@@ -6,12 +6,11 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 13:26:36 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/14 12:37:28 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/07 21:46:00 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
 
 /*Search for redir and trigger the right fn for it*/
 

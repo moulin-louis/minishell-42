@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:19:57 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/12/05 16:55:24 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/07 22:11:05 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,6 @@ int	bi_cd(t_cati **mini, t_cati *node)
 		return (0);
 	if (chdir(node->cmd[1]) == -1)
 	{
-		//perror("shellnado: cd: ");
 		printf("shellnado: cd: %s: %s\n", node->cmd[1], strerror(errno));
 		return (1);
 	}

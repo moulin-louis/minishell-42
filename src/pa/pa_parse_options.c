@@ -6,19 +6,17 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:55:44 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/05 21:48:06 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/08 17:06:39 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
-#include <stdio.h>
 #include <errno.h>
-#include <string.h>
 
 /*Fill double array of option based on t_tok list*/
 
-static void	fill_result(char **result, t_tok **lst, t_cati **mini, int nbr)
+void	fill_result(char **result, t_tok **lst, t_cati **mini, int nbr)
 {
 	int		i;
 	t_tok	*temp;
@@ -29,7 +27,10 @@ static void	fill_result(char **result, t_tok **lst, t_cati **mini, int nbr)
 	{
 		result[i] = ut_strdup(temp->str);
 		if (!result[i])
+		{
+			clean_split(result);
 			ut_clean_parsing_n_quit(mini, lst, errno);
+		}
 		temp = temp->next;
 		i++;
 	}
@@ -37,7 +38,7 @@ static void	fill_result(char **result, t_tok **lst, t_cati **mini, int nbr)
 
 /*clean each node involved in setup_node fn*/
 
-static void	clean_lst(t_tok **lst)
+void	clean_lst(t_tok **lst)
 {
 	t_tok	*temp;
 
@@ -57,7 +58,7 @@ static void	clean_lst(t_tok **lst)
 
 /*Create node for a cmd, fill double array cmd and cmd_path, call clean fn*/
 
-static void	setup_node(t_tok **lst, t_cati *node, t_cati **mini)
+void	setup_node(t_tok **lst, t_cati *node, t_cati **mini)
 {
 	char	**result;
 	int		nbr_opt;
@@ -87,6 +88,7 @@ void	parse_options(t_tok **lst, t_cati **mini)
 {
 	int		nbr_cmd;
 	t_tok	*temp;
+	t_cati	*new;
 
 	nbr_cmd = 1;
 	temp = *lst;
@@ -100,12 +102,13 @@ void	parse_options(t_tok **lst, t_cati **mini)
 	setup_redirection(lst, mini_lstlast(*mini), mini);
 	if (*lst && *mini)
 		setup_node(lst, mini_lstlast(*mini), mini);
-	nbr_cmd--;
-	while (*lst && *mini && nbr_cmd > 0)
+	while (*lst && *mini && --nbr_cmd > 0)
 	{
-		mini_lstaddback(mini, mini_lstnew());
+		new = mini_lstnew();
+		if (!new)
+			ut_clean_parsing_n_quit(mini, lst, errno);
+		mini_lstaddback(mini, new);
 		setup_redirection(lst, mini_lstlast(*mini), mini);
 		setup_node(lst, mini_lstlast(*mini), mini);
-		nbr_cmd--;
 	}
 }

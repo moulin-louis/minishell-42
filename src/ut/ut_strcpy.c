@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdlib.h>
 #include <stdio.h>
 
 /*another strdup (idk)*/

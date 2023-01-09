@@ -6,18 +6,17 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 15:37:24 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/06 13:47:45 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/08 16:27:45 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <errno.h>
-#include <stdio.h>
 #include <stdlib.h>
 
 /*Return the value found int the environement*/
 
-char	*find_var(char *str, t_tok **lst, t_cati **mini)
+char	*find_var(char *str, char *temp1, t_tok **lst, t_cati **mini)
 {
 	t_envp	*temp;
 	char	*result;
@@ -27,16 +26,9 @@ char	*find_var(char *str, t_tok **lst, t_cati **mini)
 		return (ut_itoa(g_status, mini, lst));
 	while (temp && !ut_strcmp(temp->var[0], str))
 		temp = temp->next;
-	if (!temp)
-	{
-		result = malloc(1);
-		if (!result)
-			ut_clean_parsing_n_quit(mini, lst, errno);
-		return (result[0] = '\0', result);
-	}
 	result = ut_strdup(temp->var[1]);
 	if (!result)
-		ut_clean_parsing_n_quit(mini, lst, errno);
+		return (free(str), free(temp1), NULL);
 	return (result);
 }
 
@@ -54,6 +46,31 @@ int	find_len(char *str, int i)
 		result++;
 	result = (result - i) - 1;
 	return (result);
+}
+
+void	insert_str(char *var, t_tok *node, t_tok **lst, t_cati **mini)
+{
+	char	*temp;
+	char	*temp2;
+	char	*temp3;
+
+	temp = ut_strjoin("$", var);
+	if (!temp)
+	{
+		free(var);
+		ut_clean_parsing_n_quit(mini, lst, errno);
+	}
+	temp2 = find_var(var, temp, lst, mini);
+	if (!temp2)
+		ut_clean_parsing_n_quit(mini, lst, errno);
+	temp3 = ut_strinsert(node->str, temp, temp2);
+	if (!temp3)
+	{
+		free(var);
+		ut_clean_parsing_n_quit(mini, lst, errno);
+	}
+	node->str = temp3;
+	free(var);
 }
 
 /*Insert the expanded value in the string*/
@@ -79,11 +96,7 @@ void	trigger_expand(t_tok *node, int i, t_tok **lst, t_cati **mini)
 		len++;
 		i++;
 	}
-	node->str = ut_strinsert(node->str, ut_strjoin("$", var),
-			find_var(var, lst, mini));
-	if (!node->str)
-		ut_clean_parsing_n_quit(mini, lst, errno);
-	free(var);
+	insert_str(var, node, lst, mini);
 }
 
 /*Make the expand happened*/

@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 19:42:18 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/05 21:23:35 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/07 21:45:16 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,9 @@ int	len_next_tok(char *str, int pos)
 		}
 		return (result);
 	}
-	if (str[pos] == '|' || str[pos] == '>' || str[pos] == '<')
+	if (str[pos] == '|' || (str[pos] == '>' && (str[pos + 1]
+				&& str[pos + 1] != '>')) || (str[pos] == '<'
+			&& (str[pos + 1] && str[pos + 1] != '<')))
 		return (1);
 	else
 		return (2);

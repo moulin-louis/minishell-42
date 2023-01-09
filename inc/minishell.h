@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/06 14:26:43 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/08 16:31:53 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ typedef struct s_cati
 typedef struct s_tok
 {
 	char			*str;
+	int				flag_insert;
 	struct s_tok	*next;
 }				t_tok;
 
@@ -88,7 +89,7 @@ int		ut_word_len(char *str);
 int		ft_strlen(char *str);
 char	*ut_strdup(char *str);
 int		ft_strncmp(const char *s1, const char *s2, int n);
-void	ft_bzero(void *s, int n);
+void	ut_bzero(void *s, int n);
 int		ut_within_long(char *str);
 char	*ut_itoa(int n, t_cati **mini, t_tok **lst);
 
@@ -98,6 +99,7 @@ void	env_lstaddback(t_envp **envp, t_envp *new);
 void	env_lstclear(t_envp **envp);
 void	env_lstdelone(t_envp **envp, t_envp *tmp);
 int		env_lstsize(t_envp **envp);
+void	env_delone(t_envp *node);
 
 /*mini utils*/
 t_cati	*mini_lstnew(void);
@@ -105,10 +107,10 @@ void	mini_lstaddback(t_cati **mini, t_cati *node);
 t_cati	*mini_lstlast(t_cati *mini);
 
 /*tok utils*/
-int		tok_len(t_tok *lst);
+t_tok	*tok_last(t_tok *lst);
 void	tok_delone(t_tok *node);
 void	tok_addback(t_tok **lst, t_tok *node);
-t_tok	*tok_new(char *str, t_cati **mini, t_tok **lst);
+t_tok	*tok_new(char *str);
 void	clean_tok(t_tok **lst);
 
 /* Environment */
@@ -126,7 +128,15 @@ void	clean_mini(t_cati **mini);
 void	full_exit(t_cati **mini, int i);
 
 /* Parsing */
+void	split_token(char *str, int *i, t_tok **lst, t_cati **mini);
+void	split_quote(char *str, int *i, t_tok **lst, t_cati **mini);
+void	call_fn_init_token_2(char *str, int *i, t_tok **lst, t_cati **mini);
+void	call_fn_init_token_1(char *str, int *i, t_tok **lst, t_cati **mini);
+void	check_flag_insert(char *str, int start, int end, t_tok *lst);
+void	add_new(char *str, t_tok **lst, t_cati **mini);
+void	insert_token_together(t_tok **lst, t_cati **mini);
 void	clean_quote(t_tok **lst, t_cati **mini);
+void	set_flag_insert(char *str, t_tok *lst);
 void	run_prompt(t_envp *envp, t_fds *fds);
 void	parsing(char *input, t_cati **mini);
 t_tok	*init_token_list(char *str, t_cati **mini);

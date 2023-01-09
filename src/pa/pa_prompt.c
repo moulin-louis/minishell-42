@@ -6,42 +6,31 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:51:41 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/04 16:20:29 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/08 16:10:53 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
 #include <stdlib.h>
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <signal.h>
-#include <unistd.h>
+#include <errno.h>
 
 /*Handle sigint signal : CTRL + C*/
 
-static void	handle_sigint(int sig)
+void	handle_sigint(int sig)
 {
 	(void)sig;
 	printf("\n");
 	rl_replace_line("", 0);
 	rl_on_new_line();
-	if (g_pid != 0)
-		rl_redisplay();
-}
-
-/*Create first node of t_cati list*/
-
-static void	ft_create_node(t_cati **mini, t_envp *envp, t_fds *fds)
-{
-	*mini = mini_lstnew();
-	(*mini)->envp = envp;
-	(void)fds;
+	rl_redisplay();
 }
 
 /*Handle sigint and ignore sigquit*/
 
-static void	setup_sig(void)
+void	setup_sig(void)
 {
 	struct sigaction	sa;
 
@@ -51,6 +40,33 @@ static void	setup_sig(void)
 	sigaction(SIGINT, &sa, NULL);
 	sa.sa_handler = SIG_IGN;
 	sigaction(SIGQUIT, &sa, NULL);
+}
+
+/*Create a new t_cati node and return its ptr, quit minishell if fail*/
+
+t_cati	*mini_lstnew_custom(void)
+{
+	t_cati	*result;
+
+	result = ut_calloc(1, sizeof(t_cati));
+	if (!result)
+		return (NULL);
+	return (result);
+}
+
+/*Create first node of t_cati list*/
+
+void	ft_create_node(t_cati **mini, t_envp *envp, t_fds *fds)
+{
+	*mini = mini_lstnew_custom();
+	if (!(*mini))
+	{
+		env_lstclear(&envp);
+		perror("shellnado");
+		full_exit(mini, errno);
+	}
+	(*mini)->envp = envp;
+	(void)fds;
 }
 
 /*init prompt with rl and call parsing fn when needed*/
@@ -79,7 +95,6 @@ void	run_prompt(t_envp *envp, t_fds *fds)
 				add_history(u_input);
 			}
 			free(u_input);
-			clean_mini(&mini);
 		}
 	}
 }

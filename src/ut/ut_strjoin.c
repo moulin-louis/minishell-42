@@ -6,27 +6,12 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:29:31 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/10 16:48:15 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/07 21:51:13 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdlib.h>
 #include <stdio.h>
-
-/*Protected strlen*/
-
-static int	len(char *s)
-{
-	int	i;
-
-	i = 0;
-	if (!s)
-		return (i);
-	while (s[i])
-		i++;
-	return (i);
-}
 
 /*Create a new string like s3 = s1 + s2 and return the mallocated ptr*/
 
@@ -37,8 +22,8 @@ char	*ut_strjoin(char *s1, char *s2)
 	int		ls2;
 	int		i;
 
-	ls1 = len(s1);
-	ls2 = len(s2);
+	ls1 = ft_strlen(s1);
+	ls2 = ft_strlen(s2);
 	str = ut_calloc(ls1 + ls2 + 1, 1);
 	if (!str)
 		return (printf("Malloc error in strjoin\n"), NULL);

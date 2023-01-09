@@ -1,35 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ut_strcmp.c                                        :+:      :+:    :+:   */
+/*   ut_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/06 15:12:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/07 21:39:43 by loumouli         ###   ########.fr       */
+/*   Created: 2023/01/07 21:43:15 by loumouli          #+#    #+#             */
+/*   Updated: 2023/01/07 21:43:44 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ut_strcmp(char *s1, char *s2)
-{
-	int	i;
-	int	ls1;
-	int	ls2;
+/*Set the n bytes of s as 0*/
 
-	if (!s1 || !s2)
-		return (0);
-	ls1 = ft_strlen(s1);
-	ls2 = ft_strlen(s2);
-	if (ls1 != ls2)
-		return (0);
-	i = 0;
-	while (s1[i] && s2[i])
+void	ut_bzero(void *s, int n)
+{
+	char	*temp;
+
+	temp = s;
+	while (n)
 	{
-		if (s1[i] != s2[i])
-			return (0);
-		i++;
+		*temp = 0;
+		temp++;
+		n--;
 	}
-	return (1);
 }

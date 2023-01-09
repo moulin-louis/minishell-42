@@ -6,13 +6,12 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 11:51:29 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/10 16:57:53 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/08 13:14:37 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
-#include <string.h>
 #include <errno.h>
 #include <stdio.h>
 
@@ -28,21 +27,6 @@ t_cati	*mini_lstlast(t_cati *mini)
 	while (temp->next)
 		temp = temp->next;
 	return (temp);
-}
-
-/*Set the n bytes of s as 0*/
-
-void	ft_bzero(void *s, int n)
-{
-	char	*temp;
-
-	temp = s;
-	while (n)
-	{
-		*temp = 0;
-		temp++;
-		n--;
-	}
 }
 
 /*Add the t_cati node to the back of the t_cati linked list*/
@@ -87,7 +71,6 @@ t_cati	*mini_lstnew(void)
 
 	result = ut_calloc(1, sizeof(t_cati));
 	if (!result)
-		return (perror("Malloc :"), full_exit(&result, errno), NULL);
-	ft_bzero(result, sizeof(t_cati));
+		return (NULL);
 	return (result);
 }

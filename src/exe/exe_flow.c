@@ -6,7 +6,7 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:20:08 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/07 12:31:36 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/09 13:12:30 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,9 @@
 #include <fcntl.h>
 #include <errno.h>
 #include <string.h>
+#include <stdlib.h>
 
-static void close_all_pipe(t_cati *node)
+static void	close_all_pipe(t_cati *node)
 {
 	if (node->in_fd)
 			close(node->in_fd);
@@ -65,6 +66,8 @@ void	exec_cmd(t_cati **mini, t_cati *node)
 	}
 	else
 	{
+		clean_split(node->ev);
+		node->ev = NULL;
 		if (node->in_fd)
 			close(node->in_fd);
 		if (node->out_fd)
@@ -76,11 +79,12 @@ int	exec_node(t_cati **mini, t_cati *node)
 {
 	if (node->builtin && !node->out_pipe)
 	{
+		close_pipes(mini);
 		node->fds.ret = exe_bi_launcher(mini, node);
 		return (node->fds.ret);
 	}
 	node->ev = exe_parse_env(mini);
-	if(set_fds(mini, node) == -1)
+	if (set_fds(mini, node) == -1)
 		return (-1);
 	node->pid = fork();
 	g_pid = node->pid;
