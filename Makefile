@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: foster <foster@student.42.fr>              +#+  +:+       +#+         #
+#    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/05 17:32:08 by loumouli          #+#    #+#              #
-#    Updated: 2023/01/09 13:17:13 by foster           ###   ########.fr        #
+#    Updated: 2023/01/09 15:07:42 by loumouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@
 # ################################## #
 #               COMMAND              #
 # ################################## #
-CC			= clang
+CC			= cc
 MKDIR		= mkdir -p
 RM			= rm -rf
 
@@ -74,7 +74,6 @@ C_FILES		= minishell.c					\
 			  ut/ut_mini_list.c				\
 			  ut/ut_printfmini.c			\
 			  ut/ut_split_char.c			\
-			  ut/ut_split.c					\
 			  ut/ut_strcmp.c				\
 			  ut/ut_strcpy.c				\
 			  ut/ut_strinsert.c				\
@@ -96,7 +95,7 @@ DEPS 		= $ $(C_FILES:.c=.d)
 # ################################## #
 #                FLAGS               #
 # ################################## #
-CFLAGS		= -Wall -Wextra -Werror -g3 -MMD
+CFLAGS		= -Wall -Wextra -Werror -g -MMD
 LFLAGS		=
 
 # ################################## #

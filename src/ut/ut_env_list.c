@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 09:55:52 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/08 12:35:07 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/09 14:11:11 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,22 +56,22 @@ void	env_delone(t_envp *node)
 
 /*Clean one node of t_envp linked list*/
 
-void	env_lstdelone(t_envp **envp, t_envp *tmp)
+void	env_lstdelone(t_envp **envp, t_envp *node)
 {
-	t_envp	*tmp2;
+	t_envp	*tmp;
 
-	tmp2 = *envp;
-	while (tmp2)
+	tmp = *envp;
+	while (tmp)
 	{
-		if (tmp2->next == tmp)
+		if (tmp->next == node)
 		{
-			tmp2->next = tmp->next;
-			if (tmp->var)
-				free(tmp->var);
-			free(tmp);
+			tmp->next = node->next;
+			if (node->var)
+				free(node->var);
+			free(node);
+			return ;
 		}
-		if (tmp2)
-			tmp2 = tmp2->next;
+		tmp = tmp->next;
 	}
 }
 

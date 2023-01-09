@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 19:42:18 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/07 21:45:16 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/09 14:10:27 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <errno.h>
 #include <stdlib.h>
 
-int	len_next_tok(char *str, int pos)
+int	len_next_tok(const char *str, int pos)
 {
 	int	result;
 
@@ -38,7 +38,7 @@ int	len_next_tok(char *str, int pos)
 	return (result);
 }
 
-char	*create_string(char *str, int *pos)
+char	*create_string(const char *str, int *pos)
 {
 	int		len;
 	char	*result;
@@ -59,7 +59,7 @@ char	*create_string(char *str, int *pos)
 	return (result);
 }
 
-char	**split_tok(char *str, int nbr_tok, t_tok **lst, t_cati **mini)
+char	**split_tok(const char *str, int nbr_tok, t_tok **lst, t_cati **mini)
 {
 	char	**result;
 	int		x;
@@ -69,7 +69,10 @@ char	**split_tok(char *str, int nbr_tok, t_tok **lst, t_cati **mini)
 	pos_string = 0;
 	result = malloc(sizeof(char *) * (nbr_tok + 1));
 	if (!result)
+	{
 		ut_clean_parsing_n_quit(mini, lst, errno);
+		exit (1);
+	}
 	result[nbr_tok] = NULL;
 	while (x < nbr_tok)
 	{

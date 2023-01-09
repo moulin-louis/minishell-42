@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 13:55:44 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/08 17:06:39 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/09 14:23:33 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	setup_node(t_tok **lst, t_cati *node, t_cati **mini)
 	t_tok	*temp;
 
 	nbr_opt = 0;
-	if (!*lst || !lst)
+	if (!lst || !*lst)
 		ut_clean_parsing_n_quit(mini, lst, errno);
 	temp = *lst;
 	while (temp && !ut_strcmp(temp->str, "|"))

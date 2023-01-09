@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 19:55:11 by loumouli          #+#    #+#             */
-/*   Updated: 2022/12/10 17:12:19 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/09 14:59:30 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static	char	*ft_nbr_0(char *result)
 /*Convert an int into a null terminated string
 Quit minishell if malloc failed*/
 
-char	*ut_itoa(int n, t_cati **mini, t_tok **lst)
+char	*ut_itoa(int n)
 {
 	long	nbr;
 	int		size_nbr;
@@ -99,7 +99,7 @@ char	*ut_itoa(int n, t_cati **mini, t_tok **lst)
 	size_nbr = ft_size_nbr(nbr);
 	result = malloc(sizeof(char) * ((size_nbr + minus) + 1));
 	if (!result)
-		ut_clean_parsing_n_quit(mini, lst, errno);
+		return (NULL);
 	if (nbr == 0)
 		return (ft_nbr_0(result));
 	ft_fill_result(result, size_nbr, nbr, minus);
