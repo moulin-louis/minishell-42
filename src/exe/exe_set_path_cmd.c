@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_set_path_cmd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/26 10:39:44 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/28 14:15:58 by bschoeff         ###   ########.fr       */
+/*   Updated: 2023/01/09 14:57:48 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,8 @@ static int	check_access(char **arr, t_cati **mini, t_cati *node)
 		str = ut_strjoin(str, "/");
 		if (!str)
 			return (clean_split(arr), full_exit(mini, 1), 1);
-		str = ut_strjoin(str, node->cmd[0]);
+		if (node->cmd)
+			str = ut_strjoin(str, node->cmd[0]);
 		if (!str)
 			return (clean_split(arr), full_exit(mini, 1), 1);
 		if (!access(str, R_OK || X_OK))
@@ -49,7 +50,6 @@ static int	check_access(char **arr, t_cati **mini, t_cati *node)
 static void	parse_env_path(char **arr, t_cati **mini, t_cati *node)
 {
 	t_envp	*tmp;
-
 	tmp = node->envp;
 	while (tmp && !ut_strcmp(tmp->var[0], "PATH"))
 		tmp = tmp->next;
@@ -92,10 +92,10 @@ static void	explicit_path_checks(t_cati **mini, t_cati *node)
 
 static int	explicit_path(t_cati **mini, t_cati *node)
 {
-	int			i;
+	int	i;
 
 	i = -1;
-	while (node->cmd[0][++i])
+	while (node->cmd && node->cmd[0][++i])
 	{
 		if (node->cmd[0][i] == '/')
 		{
@@ -114,7 +114,10 @@ void	set_path_cmd(t_cati **mini, t_cati *node)
 	char	**arr;
 
 	arr = NULL;
-	if (explicit_path(mini, node))
-		return ;
-	parse_env_path(arr, mini, node);
+	if (node->cmd)
+	{
+		if (explicit_path(mini, node))
+			return ;
+		parse_env_path(arr, mini, node);
+	}
 }

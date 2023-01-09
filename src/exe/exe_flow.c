@@ -6,7 +6,7 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:20:08 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/09 13:12:30 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/09 15:01:23 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,21 @@ static void	close_all_pipe(t_cati *node)
 		close(node->fds.pfd[0]);
 		close(node->fds.pfd[1]);
 		node = node->next;
+	}
+}
+
+static void execve_cmd(t_cati *node, t_cati **mini)
+{
+	int	access_auth;
+	if (!node->path_cmd && !node->outfile && !node->infile)
+		printf("Command '' not found\n");
+	else
+	{
+		access_auth = access(node->path_cmd, R_OK | X_OK) == 0;
+		if (access_auth)
+			execve(node->path_cmd, node->cmd, node->ev);
+		perror("shellnado");
+		full_exit(mini, 127);
 	}
 }
 
@@ -59,10 +74,7 @@ void	exec_cmd(t_cati **mini, t_cati *node)
 			dup2(node->next->fds.pfd[1], STDOUT_FILENO);
 		close(node->fds.pfd[0]);
 		close_all_pipe(node);
-		if (access(node->path_cmd, R_OK | X_OK) == 0)
-			execve(node->path_cmd, node->cmd, node->ev);
-		perror("shellnado");
-		full_exit(mini, 127);
+		execve_cmd(node, mini);
 	}
 	else
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_set_fds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 13:14:07 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/08 16:31:16 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/09 14:13:50 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	set_fds(t_cati **mini, t_cati *node)
 			printf("shellnado: %s: Is not a file or directory\n", node->infile);
 			return (-1);
 		}
-		printf("node->in_fd = %d\n", node->in_fd);
 	}
 	if (node->outfile)
 		set_out_fd(mini, node);

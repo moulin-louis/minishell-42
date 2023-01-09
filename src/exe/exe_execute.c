@@ -6,7 +6,7 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:53:11 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/09 13:58:30 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/09 14:08:52 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,5 @@ int	execute(t_cati **mini)
 			g_status = WEXITSTATUS(node->fds.status);
 		node = node->next;
 	}
-	printf("%d\n", g_status);
 	return (0);
 }
