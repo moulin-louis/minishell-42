@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:53:11 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/09 15:06:58 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:45:35 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	execute(t_cati **mini)
 		node = node->next;
 	}
 	node = *mini;
-	printfmini(*mini);
+	//printfmini(*mini);
 	while (node)
 	{
 		exec_node(mini, node);

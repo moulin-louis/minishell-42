@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 11:53:46 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/09 12:54:10 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:53:29 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,28 +15,32 @@
 #include <stdlib.h>
 #include <errno.h>
 
-static void	populate_ev(t_cati **mini, t_envp *tmp, char **arr, int i)
+int	populate_ev(t_cati **mini, t_envp *tmp, char **arr, int i)
 {
 	char	*temp;
 
 	temp = arr[i];
 	arr[i] = ut_strcpy(tmp->var[0]);
-	free (temp);
 	if (!arr[i])
-		full_exit(mini, errno);
+		return (arr[i] = temp, clean_split(arr), full_exit(mini, errno), 1);
+	free (temp);
 	temp = arr[i];
 	arr[i] = ut_strjoin(arr[i], "=");
-	free(temp);
 	if (!arr[i])
-		full_exit(mini, errno);
+		return (arr[i] = temp, clean_split(arr), full_exit(mini, errno), 1);
+	free(temp);
 	if (tmp->var[1])
 	{
 		temp = arr[i];
 		arr[i] = ut_strjoin(arr[i], tmp->var[1]);
-		free(temp);
 		if (!arr[i])
-			full_exit(mini, errno);
+		{
+			arr[i] = temp;
+			return (clean_split(arr), full_exit(mini, errno), 1);
+		}
+		free(temp);
 	}
+	return (0);
 }
 
 char	**exe_parse_env(t_cati **mini)
