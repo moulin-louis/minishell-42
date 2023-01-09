@@ -6,7 +6,11 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:53:11 by bschoeff          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2023/01/09 16:46:24 by foster           ###   ########.fr       */
+=======
+/*   Updated: 2023/01/09 16:45:35 by loumouli         ###   ########.fr       */
+>>>>>>> b68710790444c7310da59c23b2ecc117c6c53200
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +57,6 @@ int	execute(t_cati **mini)
 		node = node->next;
 	}
 	node = *mini;
-	// printfmini(*mini);
 	while (node)
 	{
 		exec_node(mini, node);

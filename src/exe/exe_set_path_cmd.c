@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_set_path_cmd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:13:25 by foster            #+#    #+#             */
-/*   Updated: 2023/01/09 15:26:04 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/09 16:54:23 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ static int	check_access(char **arr, t_cati **mini, t_cati *node)
 static void	parse_env_path(char **arr, t_cati **mini, t_cati *node)
 {
 	t_envp	*tmp;
+
 	tmp = node->envp;
 	while (tmp && !ut_strcmp(tmp->var[0], "PATH"))
 		tmp = tmp->next;
