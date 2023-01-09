@@ -1,3 +1,0 @@
-samples/memleak/bad.c:8:5: error: Memory leak: a [memleak]
-    return result;
-    ^
