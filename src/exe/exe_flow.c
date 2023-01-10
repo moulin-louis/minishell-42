@@ -5,10 +5,11 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 15:20:08 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/09 22:46:19 by loumouli         ###   ########.fr       */
+/*   Created: 2023/01/10 11:09:59 by loumouli          #+#    #+#             */
+/*   Updated: 2023/01/10 11:10:16 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "minishell.h"
 #include <unistd.h>
@@ -35,7 +36,7 @@ static void	close_all_pipe(t_cati *node)
 	}
 }
 
-static	void	execve_cmd(t_cati *node, t_cati **mini)
+static void	execve_cmd(t_cati *node, t_cati **mini)
 {
 	if (node->builtin)
 	{
@@ -45,6 +46,8 @@ static	void	execve_cmd(t_cati *node, t_cati **mini)
 	else
 	{
 		if (!node->path_cmd && !node->outfile && !node->infile)
+			printf("Command '' not found\n");
+		else if (node->cmd && node->cmd[0] && node->cmd[0][0] == 0)
 			printf("Command '' not found\n");
 		else
 		{
