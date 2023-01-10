@@ -6,11 +6,16 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/10 11:28:32 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/10 13:14:17 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+/*TO DO LIST:
+- REWORK THE SPLIT FN TO NOT SPLIT ANYMORE BASED ON QUOTE AND SIMPLE QUOTE
+- REWORK ALL THE PARSING FN FOR THE NEW SPLIT TOKEN
+*/
 
 int	mini_is_empty(t_cati *mini)
 {
