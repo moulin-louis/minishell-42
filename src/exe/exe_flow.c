@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 15:20:08 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/09 21:28:57 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/10 11:05:23 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 static void	close_all_pipe(t_cati *node)
 {
 	if (node->in_fd)
-			close(node->in_fd);
+		close(node->in_fd);
 	if (node->out_fd)
-			close(node->out_fd);
+		close(node->out_fd);
 	node = node->next;
 	while (node)
 	{
@@ -35,7 +35,7 @@ static void	close_all_pipe(t_cati *node)
 	}
 }
 
-static void execve_cmd(t_cati *node, t_cati **mini)
+static void	execve_cmd(t_cati *node, t_cati **mini)
 {
 	if (node->builtin)
 	{
@@ -46,6 +46,8 @@ static void execve_cmd(t_cati *node, t_cati **mini)
 	{
 		if (!node->path_cmd && !node->outfile && !node->infile)
 			printf("Command '' not found\n");
+		else if (node->cmd && node->cmd[0] && node->cmd[0][0] == 0)
+			printf("Command '' not found\n");
 		else
 		{
 			if (access(node->path_cmd, R_OK | X_OK) == 0)
@@ -53,13 +55,6 @@ static void execve_cmd(t_cati *node, t_cati **mini)
 		}
 		full_exit(mini, 127);
 	}
-
-}
-
-void	try_stuff(int sig)
-{
-	(void)sig;
-	exit(130);
 }
 
 void	exec_cmd(t_cati **mini, t_cati *node)

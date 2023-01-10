@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:19:57 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/09 17:53:33 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/10 10:34:37 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,9 +102,9 @@ int	cd_home(t_cati **mini)
 int	bi_cd(t_cati **mini, t_cati *node)
 {
 	g_status = 0;
-	if(!node->cmd[1])
+	if (!node->cmd[1])
 	{
-		if(cd_home(mini) == -1)
+		if (cd_home(mini) == -1)
 			return (1);
 	}
 	else if (chdir(node->cmd[1]) == -1)

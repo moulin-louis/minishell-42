@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:51:41 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/09 21:29:18 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/10 10:14:57 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,6 @@ void	run_prompt(t_envp *envp, t_fds *fds)
 
 	setup_sig();
 	mini = NULL;
-	printf("pid = %d\n", getpid());
 	while (1)
 	{
 		ft_create_node(&mini, envp, fds);
