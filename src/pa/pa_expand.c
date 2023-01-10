@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 15:37:24 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/09 15:00:21 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/10 12:46:03 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,10 @@ char	*find_var(char *str, char *temp1, t_cati **mini)
 			return (free(str), free(temp1), NULL);
 		return (result);
 	}
-	return (NULL);
+	result = ut_strdup("");
+	if (!result)
+		return (NULL);
+	return (result);
 }
 
 int	find_len(char *str, int i)
@@ -104,13 +107,43 @@ void	trigger_expand(t_tok *node, int i, t_tok **lst, t_cati **mini)
 	len = 0;
 	i++;
 	while (node->str[i] && (node->str[i] == '?' || ft_isalphanum(node->str[i]))
-		&& node->str[i] != ' ' && node->str[i] != '\"')
+		&& node->str[i] != ' ' && node->str[i] != '\"' && node->str[i] != '*')
 	{
 		var[len] = node->str[i];
 		len++;
 		i++;
 	}
 	insert_str(var, node, lst, mini);
+}
+
+void	trigger_empty_expand(t_tok *node, t_tok **lst, t_cati **mini)
+{
+	char	*var;
+	int		i;
+
+	var = malloc(ft_strlen(node->str));
+	if (!var)
+		ut_clean_parsing_n_quit(mini, lst, errno);
+	i = -1;
+	while (++i < ft_strlen(node->str) - 1)
+		var[i] = node->str[i];
+	var[i] = '\0';
+	free(node->str);
+	node->str = var;
+}
+
+int	check_expand_next(t_tok *node, int i)
+{
+	if (node->str[i] == '$' && !node->str[i + 1])
+	{
+		if (node->next->str[0] == '\"' && node->next->str[1] == '\"'
+			&& node->next->flag_insert == 1)
+			return (1);
+		if (node->next->str[0] == '\'' && node->next->str[1] == '\''
+			&& node->next->flag_insert == 1)
+			return (1);
+	}
+	return (0);
 }
 
 /*Make the expand happened*/
@@ -125,9 +158,17 @@ void	expand_lst(t_tok **lst, t_cati **mini)
 	{
 		i = -1;
 		if (temp->str[i + 1] == '\'')
-			return ;
+		{
+			temp = temp->next;
+			continue ;
+		}
 		while (temp->str[++i])
 		{
+			if (check_expand_next(temp, i))
+			{
+				trigger_empty_expand(temp, lst, mini);
+				continue ;
+			}
 			if (temp->str[i] == '$' && temp->str[i + 1])
 				trigger_expand(temp, i, lst, mini);
 		}
