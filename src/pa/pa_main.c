@@ -6,19 +6,26 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/10 11:05:56 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/10 11:28:32 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*TO DO LIST :
-- FIX CTRL + C DOUBLE SHELL WHEN CAT IS RUNNING
-*/
+int	mini_is_empty(t_cati *mini)
+{
+	t_cati	*temp;
+
+	temp = mini;
+	if (!mini)
+		return (1);
+	if (!temp->next && !temp->path_cmd && !temp->cmd)
+		if (!temp->outfile && !temp->infile)
+			return (1);
+	return (0);
+}
 
 /*Call all parsing fn and send t_cati linked list to execution*/
-
-#include <stdio.h>
 
 void	parsing(char *input, t_cati **mini)
 {
@@ -43,7 +50,8 @@ void	parsing(char *input, t_cati **mini)
 		check_builtin(*mini);
 	}
 	clean_tok(&lst);
-	execute(mini);
+	if (!mini_is_empty(*mini))
+		execute(mini);
 	clean_mini(mini);
 }
 
