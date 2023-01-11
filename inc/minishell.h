@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/11 19:30:52 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/11 20:57:36 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void	ut_bzero(void *s, int n);
 int		ut_within_long(char *str);
 char	*ut_itoa(int n);
 void	ut_putstr_fd(char *s, int fd);
+void	ut_cmd_not_found(char *s);
 
 /* linked list utils and function */
 /*env utils*/
