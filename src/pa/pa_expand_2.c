@@ -1,25 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ut_word_len.c                                      :+:      :+:    :+:   */
+/*   pa_expand_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/07 21:37:23 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/09 14:15:42 by loumouli         ###   ########.fr       */
+/*   Created: 2023/01/11 16:52:10 by loumouli          #+#    #+#             */
+/*   Updated: 2023/01/11 16:54:36 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-/*return the len to the next word*/
-
-int	ut_word_len(const char *str)
+int	find_len(char *str, int i)
 {
-	int	i;
+	int	result;
 
-	i = 0;
-	while (str[i] && str[i] != ' ')
-		i++;
-	return (i);
+	result = i + 1;
+	if (str[result] == '?')
+		return (1);
+	if (ft_isnum(str[result]) || !ft_isalpha(str[result]))
+		return (0);
+	while (ft_isalpha(str[result]) || ft_isnum(str[result]))
+		result++;
+	result = (result - i) - 1;
+	return (result);
 }

@@ -6,7 +6,7 @@
 #    By: foster <foster@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/05 17:32:08 by loumouli          #+#    #+#              #
-#    Updated: 2023/01/09 17:04:39 by foster           ###   ########.fr        #
+#    Updated: 2023/01/11 17:25:25 by foster           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ NAME		= minishell
 C_DIR		= src
 C_FILES		= minishell.c					\
 			  bi/bi_cd.c					\
+			  bi/bi_cd2.c					\
 			  bi/bi_echo.c					\
 			  bi/bi_env.c					\
 			  bi/bi_exit.c					\
@@ -53,10 +54,9 @@ C_FILES		= minishell.c					\
 			  pa/pa_check_tok.c				\
 			  pa/pa_clean_quote.c			\
 			  pa/pa_expand.c				\
+			  pa/pa_expand_2.c				\
 			  pa/pa_heredoc.c				\
 			  pa/pa_init_token.c			\
-			  pa/pa_init_token_2.c			\
-			  pa/pa_insert_token.c			\
 			  pa/pa_main.c					\
 			  pa/pa_parse_options.c			\
 			  pa/pa_prompt.c				\
@@ -81,7 +81,6 @@ C_FILES		= minishell.c					\
 			  ut/ut_strjoin.c				\
 			  ut/ut_strstuff.c				\
 			  ut/ut_token_list.c			\
-			  ut/ut_word_len.c				\
 
 SRCS		= $(patsubst %, $(C_DIR)/%, $(C_FILES))
 

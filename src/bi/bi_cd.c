@@ -6,10 +6,9 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:19:57 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/11 15:57:14 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/11 17:24:02 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include "minishell.h"
 #include <unistd.h>
@@ -74,30 +73,6 @@ static void	change_oldpwd(t_cati **mini, t_cati *node)
 	tmp_old->var[1] = ut_strcpy(tmp_pwd->var[1]);
 	if (!tmp_old->var[1])
 		full_exit(mini, errno);
-}
-
-int	cd_home(t_cati **mini)
-{
-	t_envp	*tmp;
-
-	tmp = (*mini)->envp;
-	while (tmp)
-	{
-		if (ut_strcmp("HOME", tmp->var[0]) && tmp->var[1][0])
-		{
-			if (chdir(tmp->var[1]) == -1)
-			{
-				ut_putstr_fd("shellnado: cd: ", 2);
-				ut_putstr_fd(tmp->var[1], 2);
-				ut_putstr_fd(": ", 2);
-				ut_putstr_fd(strerror(errno), 2);
-				ut_putstr_fd("\n", 2);
-				return (-1);
-			}
-		}
-		tmp = tmp->next;
-	}
-	return (0);
 }
 
 int	bi_cd(t_cati **mini, t_cati *node)

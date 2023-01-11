@@ -3,14 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   bi_exit2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 13:29:25 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/09 12:50:58 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/11 17:26:53 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	ut_word_len(const char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i] && str[i] != ' ')
+		i++;
+	return (i);
+}
 
 static int	check_neg(const char *str)
 {

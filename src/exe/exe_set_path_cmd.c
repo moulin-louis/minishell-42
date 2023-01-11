@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:13:25 by foster            #+#    #+#             */
-/*   Updated: 2023/01/09 16:54:23 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/10 11:40:19 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,17 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+char	*free_n_join(char *str1, char *str2)
+{
+	char	*temp;
+
+	temp = ut_strjoin(str1, str2);
+	free(str1);
+	if (!temp)
+		return (NULL);
+	return (temp);
+}
+
 static int	check_access(char **arr, t_cati **mini, t_cati *node)
 {
 	int		i;
@@ -30,11 +41,11 @@ static int	check_access(char **arr, t_cati **mini, t_cati *node)
 		str = ut_strcpy(arr[i]);
 		if (!str)
 			full_exit(mini, 1);
-		str = ut_strjoin(str, "/");
+		str = free_n_join(str, "/");
 		if (!str)
 			return (clean_split(arr), full_exit(mini, 1), 1);
 		if (node->cmd)
-			str = ut_strjoin(str, node->cmd[0]);
+			str = free_n_join(str, node->cmd[0]);
 		if (!str)
 			return (clean_split(arr), full_exit(mini, 1), 1);
 		if (!access(str, R_OK || X_OK))
@@ -76,21 +87,6 @@ static void	parse_env_path(char **arr, t_cati **mini, t_cati *node)
 	clean_split(arr);
 }
 
-static void	explicit_path_checks(t_cati **mini, t_cati *node)
-{
-	stat(node->path_cmd, &node->buff);
-	if (S_ISDIR(node->buff.st_mode))
-	{
-		printf("shellnado: %s: Is a directory\n", node->path_cmd);
-		full_exit(mini, 126);
-	}
-	if (access(node->path_cmd, R_OK || X_OK))
-	{
-		printf("shellnado: %s: %s\n", node->cmd[0], strerror(errno));
-		full_exit(mini, errno);
-	}
-}
-
 static int	explicit_path(t_cati **mini, t_cati *node)
 {
 	int	i;
@@ -103,8 +99,17 @@ static int	explicit_path(t_cati **mini, t_cati *node)
 			node->path_cmd = ut_strcpy(node->cmd[0]);
 			if (!node->path_cmd)
 				full_exit(mini, 1);
-			explicit_path_checks(mini, node);
-			return (1);
+			stat(node->path_cmd, &node->buff);
+			if (S_ISDIR(node->buff.st_mode))
+			{
+				printf("shellnado: %s: Is a directory\n", node->path_cmd);
+				full_exit(mini, 126);
+			}
+			if (access(node->path_cmd, R_OK || X_OK))
+			{
+				printf("shellnado: %s: %s\n", node->cmd[0], strerror(errno));
+				full_exit(mini, errno);
+			}
 		}
 	}
 	return (0);
@@ -115,6 +120,8 @@ void	set_path_cmd(t_cati **mini, t_cati *node)
 	char	**arr;
 
 	arr = NULL;
+	if (node->cmd && !node->cmd[0][0])
+		return ;
 	if (node->cmd)
 	{
 		if (explicit_path(mini, node))

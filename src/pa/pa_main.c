@@ -6,19 +6,32 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/10 11:05:56 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/11 15:52:45 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <stdio.h>
 
-/*TO DO LIST :
-- FIX CTRL + C DOUBLE SHELL WHEN CAT IS RUNNING
+/*TO DO LIST:
+- REWORK THE SPLIT FN TO NOT SPLIT ANYMORE BASED ON QUOTE AND SIMPLE QUOTE
+- REWORK ALL THE PARSING FN FOR THE NEW SPLIT TOKEN
 */
 
-/*Call all parsing fn and send t_cati linked list to execution*/
+int	mini_is_empty(t_cati *mini)
+{
+	t_cati	*temp;
 
-#include <stdio.h>
+	temp = mini;
+	if (!mini)
+		return (1);
+	if (!temp->next && !temp->path_cmd && !temp->cmd)
+		if (!temp->outfile && !temp->infile)
+			return (1);
+	return (0);
+}
+
+/*Call all parsing fn and send t_cati linked list to execution*/
 
 void	parsing(char *input, t_cati **mini)
 {
@@ -28,7 +41,6 @@ void	parsing(char *input, t_cati **mini)
 	split_lst_operator(&lst, mini);
 	expand_lst(&lst, mini);
 	clean_quote(&lst, mini);
-	insert_token_together(&lst, mini);
 	if (lst)
 	{
 		check_pipe_token(&lst, mini);
@@ -43,7 +55,8 @@ void	parsing(char *input, t_cati **mini)
 		check_builtin(*mini);
 	}
 	clean_tok(&lst);
-	execute(mini);
+	if (!mini_is_empty(*mini))
+		execute(mini);
 	clean_mini(mini);
 }
 
