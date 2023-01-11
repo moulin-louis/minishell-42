@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/09 17:04:21 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/11 15:53:06 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ typedef struct s_cati
 	char			*outfile;
 	t_fds			fds;
 	t_envp			*envp;
-	int				*pipe;
 	int				builtin;
 	int				in_fd;
 	int				out_fd;
@@ -59,7 +58,6 @@ typedef struct s_cati
 typedef struct s_tok
 {
 	char			*str;
-	int				flag_insert;
 	struct s_tok	*next;
 }				t_tok;
 
@@ -80,12 +78,10 @@ char	*ut_strinsert(const char *og, char *target, const char *payload);
 void	reset_ressources(t_tok **lst, t_cati **mini);
 void	ut_clean_parsing_n_quit(t_cati **mini, t_tok **lst, int error);
 void	*ut_calloc(int nb, int sz);
-char	**ut_split(const char *str);
 char	**ut_split_char(const char *str, char c);
 int		ut_strcmp(char *s1, char *s2);
 char	*ut_strcpy(char *s2);
 char	*ut_strjoin(char *s1, char *s2);
-int		ut_word_len(const char *str);
 int		ft_strlen(const char *str);
 char	*ut_strdup(char *str);
 int		ft_strncmp(const char *s1, const char *s2, int n);
@@ -108,7 +104,6 @@ void	mini_lstaddback(t_cati **mini, t_cati *node);
 t_cati	*mini_lstlast(t_cati *mini);
 
 /*tok utils*/
-t_tok	*tok_last(t_tok *lst);
 void	tok_delone(t_tok *node);
 void	tok_addback(t_tok **lst, t_tok *node);
 t_tok	*tok_new(char *str);
@@ -131,14 +126,7 @@ void	full_exit(t_cati **mini, int i);
 /* Parsing */
 void	trigger_error(t_tok **lst, t_cati **mini, char *str);
 void	split_token(const char *str, int *i, t_tok **lst, t_cati **mini);
-void	split_quote(const char *str, int *i, t_tok **lst, t_cati **mini);
-void	call_fn_init_token_2(char *str, int *i, t_tok **lst, t_cati **mini);
-void	call_fn_init_token_1(char *str, int *i, t_tok **lst, t_cati **mini);
-void	check_flag_insert(const char *str, int start, int end, t_tok *lst);
-void	add_new(char *str, t_tok **lst, t_cati **mini);
-void	insert_token_together(t_tok **lst, t_cati **mini);
 void	clean_quote(t_tok **lst, t_cati **mini);
-void	set_flag_insert(char *str, t_tok *lst);
 void	run_prompt(t_envp *envp, t_fds *fds);
 void	parsing(char *input, t_cati **mini);
 t_tok	*init_token_list(char *str, t_cati **mini);

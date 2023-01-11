@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 12:04:37 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/09 15:07:24 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/11 15:21:27 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,6 @@
 #include <stdio.h>
 
 /*All sort of utilts for t_tok linked list*/
-
-/*Return the len of the linked list*/
-
-t_tok	*tok_last(t_tok *lst)
-{
-	while (lst->next)
-		lst = lst->next;
-	return (lst);
-}
 
 /*Delete t_tok node*/
 

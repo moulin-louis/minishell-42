@@ -6,11 +6,12 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/10 13:14:17 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/11 15:52:45 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <stdio.h>
 
 /*TO DO LIST:
 - REWORK THE SPLIT FN TO NOT SPLIT ANYMORE BASED ON QUOTE AND SIMPLE QUOTE
@@ -40,7 +41,6 @@ void	parsing(char *input, t_cati **mini)
 	split_lst_operator(&lst, mini);
 	expand_lst(&lst, mini);
 	clean_quote(&lst, mini);
-	insert_token_together(&lst, mini);
 	if (lst)
 	{
 		check_pipe_token(&lst, mini);
