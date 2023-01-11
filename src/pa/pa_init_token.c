@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 10:41:05 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/11 15:04:50 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/11 16:43:25 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,11 @@ t_tok	*init_token_list(char *input, t_cati **mini)
 			&& input[i] != ':' && input[i] != '!')
 			split_token(input, &i, &lst, mini);
 		else
+		{
+			if (!input[i])
+				continue ;
 			i++;
+		}
 	}
 	return (lst);
 }

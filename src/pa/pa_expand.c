@@ -6,13 +6,36 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 15:37:24 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/09 15:00:21 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/11 16:58:45 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <errno.h>
 #include <stdlib.h>
+#include <stdio.h>
+
+void	delete_dollar(t_tok *node, t_tok **lst, t_cati **mini)
+{
+	int		len;
+	int		pos;
+	char	*result;
+
+	len = ft_strlen(node->str);
+	result = malloc(len);
+	if (!len)
+		ut_clean_parsing_n_quit(mini, lst, errno);
+	result[len - 1] = '\0';
+	pos = 0;
+	len = 0;
+	while (node->str[++len])
+	{
+		result[pos] = node->str[len];
+		pos++;
+	}
+	free(node->str);
+	node->str = result;
+}
 
 /*Return the value found int the environement*/
 
@@ -39,22 +62,6 @@ char	*find_var(char *str, char *temp1, t_cati **mini)
 		return (result);
 	}
 	return (NULL);
-}
-
-int	find_len(char *str, int i)
-{
-	int	result;
-
-	result = i + 1;
-	if (str[result] == '?')
-		return (1);
-	if ((str[result] >= '0' && str[result] <= '9') || !ft_isalpha(str[result]))
-		return (0);
-	while (ft_isalpha(str[result]) || (str[result] >= '0'
-			&& str[result] <= '9'))
-		result++;
-	result = (result - i) - 1;
-	return (result);
 }
 
 void	insert_str(char *var, t_tok *node, t_tok **lst, t_cati **mini)
@@ -93,13 +100,14 @@ void	trigger_expand(t_tok *node, int i, t_tok **lst, t_cati **mini)
 
 	len = find_len(node->str, i);
 	if (len == 0)
+	{
+		if (node->str[i + 1] == '\'' || node->str[i + 1] == '\"')
+			delete_dollar(node, lst, mini);
 		return ;
+	}
 	var = malloc(len + 1);
 	if (!var)
-	{
 		ut_clean_parsing_n_quit(mini, lst, errno);
-		exit (1);
-	}
 	var[len] = '\0';
 	len = 0;
 	i++;
@@ -124,10 +132,19 @@ void	expand_lst(t_tok **lst, t_cati **mini)
 	while (temp)
 	{
 		i = -1;
-		if (temp->str[i + 1] == '\'')
-			return ;
-		while (temp->str[++i])
+		if (temp->str[0] == '\'')
 		{
+			temp = temp->next;
+			continue ;
+		}
+		while (temp && temp->str[++i])
+		{
+			if (temp->str[i] == '\'')
+			{
+				while (temp->str[++i] && temp->str[i] != '\'')
+					i++;
+				i++;
+			}
 			if (temp->str[i] == '$' && temp->str[i + 1])
 				trigger_expand(temp, i, lst, mini);
 		}

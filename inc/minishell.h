@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/11 15:53:06 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/11 16:52:39 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -140,6 +140,7 @@ void	check_builtin(t_cati *mini);
 char	**split_tok(const char *str, int nbr_tok, t_tok **lst, t_cati **mini);
 void	check_double_redirection(t_tok **lst, t_cati **mini);
 void	check_pipe_token(t_tok **lst, t_cati **mini);
+int		find_len(char *str, int i);
 
 /*redirection in parsing*/
 void	in_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini);
