@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 15:01:04 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/11 19:22:54 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/11 22:34:47 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	wait_child(t_cati *node, t_cati **mini, t_tok **lst)
 			reset_ressources(lst, mini);
 			g_status = 130;
 			return (1);
-		};
+		}
 	}
 	node->infile = ut_strdup("/tmp/heredoc.tmp");
 	if (!node->infile)
@@ -93,14 +93,7 @@ void	heredoc_redir(t_tok *r_token, t_cati *c_node, t_tok **lst,
 {
 	int		fd;
 
-	if (!r_token->next)
-		trigger_error(lst, mini, "\\n");
-	if (!*lst || check_compliance_file(r_token->next->str))
-	{
-		reset_ressources(lst, mini);
-		g_status = 2;
-		return ;
-	}
+	check_compliance_file(r_token->next, lst, mini);
 	fd = open("/tmp/heredoc.tmp", O_TRUNC | O_CREAT | O_RDWR, 0644);
 	if (!fd)
 		ut_clean_parsing_n_quit(mini, lst, errno);

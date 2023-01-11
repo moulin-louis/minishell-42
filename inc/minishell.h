@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/11 20:57:36 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/11 22:37:02 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -146,6 +146,7 @@ char	**split_tok(const char *str, int nbr_tok, t_tok **lst, t_cati **mini);
 void	check_double_redirection(t_tok **lst, t_cati **mini);
 void	check_pipe_token(t_tok **lst, t_cati **mini);
 int		find_len(char *str, int i);
+void	reset_ressources(t_tok **lst, t_cati **mini);
 
 /*redirection in parsing*/
 void	in_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini);
@@ -154,8 +155,8 @@ void	app_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini);
 void	heredoc_redir(t_tok *r_token, t_cati *c_node, t_tok **lst,
 			t_cati **mini);
 void	delete_token_redir(t_tok *node, t_tok **lst);
-int		check_compliance_file(char *str);
-void	reset_ressources(t_tok **lst, t_cati **mini);
+int		check_compliance_file(t_tok *node, t_tok **lst, t_cati **mini);
+void	check_file(char *str, t_cati *node, t_tok **lst, t_cati **mini);
 
 /* Execute */
 int		execute(t_cati **mini);

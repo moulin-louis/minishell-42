@@ -6,28 +6,32 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:42:25 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/09 14:23:02 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/11 22:44:46 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <errno.h>
 #include <stdio.h>
+#include <fcntl.h>
+#include <stdlib.h>
 
-int	check_compliance_file(char *str)
+int	check_compliance_file(t_tok *node, t_tok **lst, t_cati **mini)
 {
-	if (!str && ft_strlen(str) < 2)
+	if (!node)
+		return (trigger_error(lst, mini, "\\n"), 1);
+	if (!node->str && ft_strlen(node->str) < 2)
 		return (1);
-	if (str[0] == '|')
-		return (printf("shellnado : invalid token syntax near '|'\n"), 1);
-	if (str[0] == '<' && str[1] != '<')
-		return (printf("shellnado : invalid token syntax near '<'\n"), 1);
-	if (str[0] == '<' && str[1] == '<')
-		return (printf("shellnado : invalid token syntax near '<<'\n"), 1);
-	if (str[0] == '>' && str[1] != '>')
-		return (printf("shellnado : invalid token syntax near '>'\n"), 1);
-	if (str[0] == '>' && str[1] == '>')
-		return (printf("shellnado : invalid token syntax near '>>'\n"), 1);
+	if (node->str[0] == '|')
+		return (trigger_error(lst, mini, "|"), 1);
+	if (node->str[0] == '<' && node->str[1] != '<')
+		return (trigger_error(lst, mini, "<"), 1);
+	if (node->str[0] == '<' && node->str[1] == '<')
+		return (trigger_error(lst, mini, ">"), 1);
+	if (node->str[0] == '>' && node->str[1] != '>')
+		return (trigger_error(lst, mini, ">>"), 1);
+	if (node->str[0] == '>' && node->str[1] == '>')
+		return (trigger_error(lst, mini, "<<"), 1);
 	return (0);
 }
 
@@ -62,24 +66,24 @@ void	delete_token_redir(t_tok *node, t_tok **lst)
 
 void	in_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini)
 {
-	if (!r_token->next)
-	{
-		printf("shellnado : invalid token syntax near '\\n'\n");
-		g_status = 2;
-		reset_ressources(lst, mini);
-		return ;
-	}
-	if (check_compliance_file(r_token->next->str))
-	{
-		reset_ressources(lst, mini);
-		g_status = 2;
-		return ;
-	}
+	int	fd;
+
+	check_compliance_file(r_token->next, lst, mini);
 	if (c_node)
 	{
+		if (c_node->infile)
+			free(c_node->infile);
 		c_node->infile = ut_strdup(r_token->next->str);
 		if (!c_node->infile)
 			ut_clean_parsing_n_quit(mini, lst, errno);
+		fd = open(c_node->infile, O_RDONLY);
+		if (fd < 0)
+		{
+			write(1, "shellnado: ", ft_strlen("shellnado: "));
+			perror(c_node->infile);
+			reset_ressources(lst, mini);
+			return ;
+		}
 		c_node->in_file = 1;
 	}
 	delete_token_redir(r_token, lst);
@@ -87,24 +91,15 @@ void	in_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini)
 
 void	out_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini)
 {
-	if (!r_token->next)
-	{
-		printf("shellnado : invalid token syntax near '\\n'\n");
-		g_status = 2;
-		reset_ressources(lst, mini);
-		return ;
-	}
-	if (check_compliance_file(r_token->next->str))
-	{
-		reset_ressources(lst, mini);
-		g_status = 2;
-		return ;
-	}
+	check_compliance_file(r_token->next, lst, mini);
 	if (c_node)
 	{
+		if (c_node->outfile)
+			free(c_node->outfile);
 		c_node->outfile = ut_strdup(r_token->next->str);
 		if (!c_node->outfile)
 			ut_clean_parsing_n_quit(mini, lst, errno);
+		check_file(c_node->outfile, c_node, lst, mini);
 		c_node->out_trunc = 1;
 	}
 	delete_token_redir(r_token, lst);
@@ -112,24 +107,15 @@ void	out_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini)
 
 void	app_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini)
 {
-	if (!r_token->next)
-	{
-		printf("shellnado : invalid token syntax near '\\n'\n");
-		g_status = 2;
-		reset_ressources(lst, mini);
-		return ;
-	}
-	if (check_compliance_file(r_token->next->str))
-	{
-		reset_ressources(lst, mini);
-		g_status = 2;
-		return ;
-	}
+	check_compliance_file(r_token->next, lst, mini);
 	if (c_node)
 	{
+		if (c_node->outfile)
+			free(c_node->outfile);
 		c_node->outfile = ut_strdup(r_token->next->str);
 		if (!c_node->outfile)
 			ut_clean_parsing_n_quit(mini, lst, errno);
+		check_file(c_node->outfile, c_node, lst, mini);
 		c_node->out_append = 1;
 	}
 	delete_token_redir(r_token, lst);

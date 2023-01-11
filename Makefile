@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: foster <foster@student.42.fr>              +#+  +:+       +#+         #
+#    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/05 17:32:08 by loumouli          #+#    #+#              #
-#    Updated: 2023/01/11 17:25:25 by foster           ###   ########.fr        #
+#    Updated: 2023/01/11 22:36:08 by loumouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,7 @@ C_FILES		= minishell.c					\
 			  pa/pa_prompt.c				\
 			  pa/pa_redirections.c			\
 			  pa/pa_setup_redir.c			\
+			  pa/pa_setup_redir_2.c			\
 			  pa/pa_split_lst_operator.c	\
 			  pa/pa_split_token.c			\
 			  ut/ut_bzero.c					\
