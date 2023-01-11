@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 14:23:28 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/07 13:03:29 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/10 11:47:09 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	check_double_redirection(t_tok **lst, t_cati **mini)
 		if (ut_strcmp(temp->str, "<") && (temp->next
 				&& ut_strcmp(temp->next->str, ">")))
 		{
-			trigger_error(lst, mini, "\n");
+			trigger_error(lst, mini, "\\n");
 			return ;
 		}
 		temp = temp->next;
