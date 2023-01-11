@@ -6,7 +6,7 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 11:09:59 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/11 20:31:08 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/11 20:41:19 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	exec_cmd(t_cati **mini, t_cati *node)
 int	exec_node(t_cati **mini, t_cati *node)
 {
 	node->ev = exe_parse_env(mini);
-	if (node->builtin && !node->out_pipe && !node->outfile)
+	if (node->builtin && !node->out_pipe && !node->outfile && !node->in_pipe)
 	{
 		close_pipes(mini);
 		node->fds.ret = exe_bi_launcher(mini, node);
