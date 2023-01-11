@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   exe_flow.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/25 15:20:08 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/09 17:38:20 by foster           ###   ########.fr       */
+/*   Created: 2023/01/10 11:09:59 by loumouli          #+#    #+#             */
+/*   Updated: 2023/01/10 11:10:16 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "minishell.h"
 #include <unistd.h>
@@ -18,13 +19,14 @@
 #include <errno.h>
 #include <string.h>
 #include <stdlib.h>
+#include <signal.h>
 
 static void	close_all_pipe(t_cati *node)
 {
 	if (node->in_fd)
-			close(node->in_fd);
+		close(node->in_fd);
 	if (node->out_fd)
-			close(node->out_fd);
+		close(node->out_fd);
 	node = node->next;
 	while (node)
 	{
@@ -34,7 +36,7 @@ static void	close_all_pipe(t_cati *node)
 	}
 }
 
-static void execve_cmd(t_cati *node, t_cati **mini)
+static void	execve_cmd(t_cati *node, t_cati **mini)
 {
 	if (node->builtin)
 	{
@@ -45,6 +47,8 @@ static void execve_cmd(t_cati *node, t_cati **mini)
 	{
 		if (!node->path_cmd && !node->outfile && !node->infile)
 			printf("Command '' not found\n");
+		else if (node->cmd && node->cmd[0] && node->cmd[0][0] == 0)
+			printf("Command '' not found\n");
 		else
 		{
 			if (access(node->path_cmd, R_OK | X_OK) == 0)
@@ -52,13 +56,13 @@ static void execve_cmd(t_cati *node, t_cati **mini)
 		}
 		full_exit(mini, 127);
 	}
-
 }
 
 void	exec_cmd(t_cati **mini, t_cati *node)
 {
 	if (node->pid == 0)
-	{
+	{		
+		signal(SIGINT, SIG_DFL);
 		close(node->fds.pfd[1]);
 		set_path_cmd(mini, node);
 		if (node->in_file)
@@ -82,15 +86,12 @@ void	exec_cmd(t_cati **mini, t_cati *node)
 		close_all_pipe(node);
 		execve_cmd(node, mini);
 	}
-	else
-	{
-		clean_split(node->ev);
-		node->ev = NULL;
-		if (node->in_fd)
-			close(node->in_fd);
-		if (node->out_fd)
-			close(node->out_fd);
-	}
+	clean_split(node->ev);
+	node->ev = NULL;
+	if (node->in_fd)
+		close(node->in_fd);
+	if (node->out_fd)
+		close(node->out_fd);
 }
 
 int	exec_node(t_cati **mini, t_cati *node)
@@ -102,7 +103,6 @@ int	exec_node(t_cati **mini, t_cati *node)
 		node->fds.ret = exe_bi_launcher(mini, node);
 		return (node->fds.ret);
 	}
-	// node->ev = exe_parse_env(mini);
 	if (set_fds(mini, node) == -1)
 		return (-1);
 	node->pid = fork();

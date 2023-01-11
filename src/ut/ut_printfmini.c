@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 11:57:44 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/06 13:53:40 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/10 11:04:26 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,12 @@ void	printfmini(t_cati *mini)
 		{
 			i = -1;
 			while (tmp->cmd[++i])
-				printf("cmd[%d] = [%s]\t", i, tmp->cmd[i]);
+			{
+				if (tmp->cmd[i][0] == 0)
+					printf("cmd[%d] = [empty_string]", i);
+				else
+					printf("cmd[%d] = [%s]\t", i, tmp->cmd[i]);
+			}
 			printf("\n");
 		}
 		printf("infile = %s\noutfile = %s\n", tmp->infile, tmp->outfile);

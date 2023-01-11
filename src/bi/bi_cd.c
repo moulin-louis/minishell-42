@@ -6,9 +6,10 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:19:57 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/09 18:04:19 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/11 15:57:14 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "minishell.h"
 #include <unistd.h>
@@ -102,9 +103,9 @@ int	cd_home(t_cati **mini)
 int	bi_cd(t_cati **mini, t_cati *node)
 {
 	g_status = 0;
-	if(!node->cmd[1])
+	if (!node->cmd[1])
 	{
-		if(cd_home(mini) == -1)
+		if (cd_home(mini) == -1)
 			return (1);
 	}
 	else if (chdir(node->cmd[1]) == -1)

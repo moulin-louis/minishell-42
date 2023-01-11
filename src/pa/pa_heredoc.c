@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 15:01:04 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/09 14:46:42 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/10 10:33:24 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,28 @@
 #include <sys/wait.h>
 #include <stdio.h>
 
+void	do_heredoc(int sig)
+{
+	(void)sig;
+	write(1, "\b\b", 3);
+	exit(130);
+}
+
+void	sigint_heredoc(void)
+{
+	struct sigaction	sa;
+
+	sigemptyset(&sa.sa_mask);
+	sa.sa_handler = &do_heredoc;
+	sa.sa_flags = SA_RESTART;
+	sigaction(SIGINT, &sa, NULL);
+}
+
 /*Read user input and breaf when sep is input*/
 
 int	write_line_infile(char *buffer, char *sep, int fd, t_cati *node)
 {
-	signal(SIGINT, SIG_DFL);
+	sigint_heredoc();
 	while (1)
 	{
 		buffer = readline("> ");
@@ -44,14 +61,15 @@ int	write_line_infile(char *buffer, char *sep, int fd, t_cati *node)
 	return (0);
 }
 
-int	wait_child(pid_t pid, t_cati *node, t_cati **mini, t_tok **lst)
+int	wait_child(t_cati *node, t_cati **mini, t_tok **lst)
 {
 	int	status;
 
-	waitpid(pid, &status, 0);
-	if (WIFSIGNALED(status))
+	waitpid(g_pid, &status, 0);
+	if (WIFEXITED(status))
 	{
-		if (WTERMSIG(status) == SIGINT)
+		status = WEXITSTATUS(status);
+		if (status == 130)
 		{
 			reset_ressources(lst, mini);
 			g_status = 130;
@@ -69,7 +87,6 @@ void	heredoc_redir(t_tok *r_token, t_cati *c_node, t_tok **lst,
 {
 	int		fd;
 	char	*buffer;
-	pid_t	pid;
 
 	buffer = NULL;
 	if (!r_token->next)
@@ -83,11 +100,11 @@ void	heredoc_redir(t_tok *r_token, t_cati *c_node, t_tok **lst,
 	fd = open("/tmp/heredoc.tmp", O_TRUNC | O_CREAT | O_RDWR, 0644);
 	if (!fd)
 		ut_clean_parsing_n_quit(mini, lst, errno);
-	pid = fork();
-	if (pid == 0)
+	g_pid = fork();
+	if (g_pid == 0)
 		if (write_line_infile(buffer, r_token->next->str, fd, c_node))
 			ut_clean_parsing_n_quit(mini, lst, errno);
 	close(fd);
-	if (!wait_child(pid, c_node, mini, lst))
+	if (!wait_child(c_node, mini, lst))
 		delete_token_redir(r_token, lst);
 }
