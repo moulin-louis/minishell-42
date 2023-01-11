@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ut_env_list.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 09:55:52 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/09 14:11:11 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/11 20:12:37 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	env_lstdelone(t_envp **envp, t_envp *node)
 		{
 			tmp->next = node->next;
 			if (node->var)
-				free(node->var);
+				clean_split(node->var);
 			free(node);
 			return ;
 		}
