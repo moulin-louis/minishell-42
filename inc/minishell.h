@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/11 17:25:08 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/11 19:30:52 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,9 @@ int		do_the_expt(t_cati *node, char *str);
 void	clean_split(char **arr);
 void	clean_mini(t_cati **mini);
 void	full_exit(t_cati **mini, int i);
+
+/*Signal*/
+void	setup_sig(void);
 
 /* Parsing */
 void	trigger_error(t_tok **lst, t_cati **mini, char *str);
