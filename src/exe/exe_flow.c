@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_flow.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 11:09:59 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/11 19:34:27 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/11 19:48:43 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static void	execve_cmd(t_cati *node, t_cati **mini)
 			printf("Command '' not found\n");
 		else if (node->cmd && node->cmd[0] && node->cmd[0][0] == 0)
 			printf("Command '' not found\n");
-		else
+		else if (node->cmd)
 		{
 			if (access(node->path_cmd, R_OK | X_OK) == 0)
 				execve(node->path_cmd, node->cmd, node->ev);
