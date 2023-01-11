@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 15:01:04 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/11 19:07:59 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/11 19:22:54 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,10 @@ void	sigint_heredoc(void)
 
 /*Read user input and breaf when sep is input*/
 
-int	write_line_infile(char *buffer, char *sep, int fd)
+int	write_line_infile(char *sep, int fd, t_tok **lst, t_cati **mini)
 {
+	char	*buffer;
+
 	sigint_heredoc();
 	while (1)
 	{
@@ -55,7 +57,10 @@ int	write_line_infile(char *buffer, char *sep, int fd)
 		write(fd, "\n", 1);
 		free(buffer);
 	}
-	exit (0);
+	close(fd);
+	env_lstclear(&(*mini)->envp);
+	reset_ressources(lst, mini);
+	exit (1);
 }
 
 int	wait_child(t_cati *node, t_cati **mini, t_tok **lst)
@@ -87,9 +92,7 @@ void	heredoc_redir(t_tok *r_token, t_cati *c_node, t_tok **lst,
 			t_cati **mini)
 {
 	int		fd;
-	char	*buffer;
 
-	buffer = NULL;
 	if (!r_token->next)
 		trigger_error(lst, mini, "\\n");
 	if (!*lst || check_compliance_file(r_token->next->str))
@@ -103,7 +106,7 @@ void	heredoc_redir(t_tok *r_token, t_cati *c_node, t_tok **lst,
 		ut_clean_parsing_n_quit(mini, lst, errno);
 	g_pid = fork();
 	if (g_pid == 0)
-		write_line_infile(buffer, r_token->next->str, fd);
+		write_line_infile(r_token->next->str, fd, lst, mini);
 	close(fd);
 	if (!wait_child(c_node, mini, lst))
 		delete_token_redir(r_token, lst);
