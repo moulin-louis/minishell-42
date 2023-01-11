@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 15:37:24 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/11 17:00:10 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/11 17:01:18 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,36 +122,6 @@ void	trigger_expand(t_tok *node, int i, t_tok **lst, t_cati **mini)
 		i++;
 	}
 	insert_str(var, node, lst, mini);
-}
-
-void	trigger_empty_expand(t_tok *node, t_tok **lst, t_cati **mini)
-{
-	char	*var;
-	int		i;
-
-	var = malloc(ft_strlen(node->str));
-	if (!var)
-		ut_clean_parsing_n_quit(mini, lst, errno);
-	i = -1;
-	while (++i < ft_strlen(node->str) - 1)
-		var[i] = node->str[i];
-	var[i] = '\0';
-	free(node->str);
-	node->str = var;
-}
-
-int	check_expand_next(t_tok *node, int i)
-{
-	if (node->str[i] == '$' && !node->str[i + 1])
-	{
-		if (node->next->str[0] == '\"' && node->next->str[1] == '\"'
-			&& node->next->flag_insert == 1)
-			return (1);
-		if (node->next->str[0] == '\'' && node->next->str[1] == '\''
-			&& node->next->flag_insert == 1)
-			return (1);
-	}
-	return (0);
 }
 
 /*Make the expand happened*/
