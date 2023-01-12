@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:42:25 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/12 16:16:02 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/12 16:18:26 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,8 +66,6 @@ void	delete_token_redir(t_tok *node, t_tok **lst)
 
 void	in_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini)
 {
-	int	fd;
-
 	if (check_compliance_file(r_token->next, lst, mini) == 1)
 		return ;
 	if (c_node)
