@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:13:25 by foster            #+#    #+#             */
-/*   Updated: 2023/01/10 11:40:19 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/12 12:39:06 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,12 +102,12 @@ static int	explicit_path(t_cati **mini, t_cati *node)
 			stat(node->path_cmd, &node->buff);
 			if (S_ISDIR(node->buff.st_mode))
 			{
-				printf("shellnado: %s: Is a directory\n", node->path_cmd);
+				printf("bash: %s: Is a directory\n", node->path_cmd);
 				full_exit(mini, 126);
 			}
 			if (access(node->path_cmd, R_OK || X_OK))
 			{
-				printf("shellnado: %s: %s\n", node->cmd[0], strerror(errno));
+				printf("bash: %s: %s\n", node->cmd[0], strerror(errno));
 				full_exit(mini, errno);
 			}
 		}

@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/09 12:52:37 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/12 14:27:30 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,9 @@
 static int	error_msg(char *str)
 {
 	g_status = 1;
-	printf("shellnado: export: \"%s\": not a valid identifier\n", str);
+	ut_putstr_fd("shellnado: export: \"", 2);
+	ut_putstr_fd(str, 2);
+	ut_putstr_fd("\": not a valid identifier\n", 2);
 	return (0);
 }
 

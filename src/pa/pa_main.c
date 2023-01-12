@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 13:12:30 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/11 22:38:52 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/12 14:17:44 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 #include <stdio.h>
 
 /*TO DO LIST:
-- REWORK THE SPLIT FN TO NOT SPLIT ANYMORE BASED ON QUOTE AND SIMPLE QUOTE
-- REWORK ALL THE PARSING FN FOR THE NEW SPLIT TOKEN
+- fix expand str insert like minishell> echo '$USER'"$USER"'$USER'
+- check exit "+102" or exit '42'"42"42
+- fix export
 */
 
 int	mini_is_empty(t_cati *mini)
@@ -55,7 +56,6 @@ void	parsing(char *input, t_cati **mini)
 		check_builtin(*mini);
 	}
 	clean_tok(&lst);
-	printfmini(*mini);
 	if (!mini_is_empty(*mini))
 		execute(mini);
 	clean_mini(mini);

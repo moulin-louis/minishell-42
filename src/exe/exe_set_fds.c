@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_set_fds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 13:14:07 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/09 14:13:50 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/12 14:26:02 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ static void	set_out_fd(t_cati **mini, t_cati *node)
 	stat(node->outfile, &node->buff);
 	if (S_ISDIR(node->buff.st_mode))
 	{
-		printf("%s: Is a directory\n", node->outfile);
+		ut_putstr_fd(node->outfile, 2);
+		ut_putstr_fd(": Is a directory\n", 2);
 		full_exit(mini, 127);
 	}
 	if (node->out_trunc)
@@ -54,13 +55,16 @@ int	set_fds(t_cati **mini, t_cati *node)
 		stat(node->infile, &node->buff);
 		if (S_ISDIR(node->buff.st_mode))
 		{
-			printf("%s: Is a directory\n", node->infile);
+			ut_putstr_fd(node->infile, 2);
+			ut_putstr_fd(": Is a directory\n", 2);
 			return (-1);
 		}
 		node->in_fd = open(node->infile, O_RDONLY);
 		if (node->in_fd == -1)
 		{
-			printf("shellnado: %s: Is not a file or directory\n", node->infile);
+			ut_putstr_fd("bash: ", 2);
+			ut_putstr_fd(node->infile, 2);
+			ut_putstr_fd(": Is not a file or directory\n", 2);
 			return (-1);
 		}
 	}

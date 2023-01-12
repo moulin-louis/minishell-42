@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:42:25 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/11 22:44:46 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/12 12:10:02 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ int	check_compliance_file(t_tok *node, t_tok **lst, t_cati **mini)
 	if (node->str[0] == '<' && node->str[1] != '<')
 		return (trigger_error(lst, mini, "<"), 1);
 	if (node->str[0] == '<' && node->str[1] == '<')
-		return (trigger_error(lst, mini, ">"), 1);
-	if (node->str[0] == '>' && node->str[1] != '>')
-		return (trigger_error(lst, mini, ">>"), 1);
-	if (node->str[0] == '>' && node->str[1] == '>')
 		return (trigger_error(lst, mini, "<<"), 1);
+	if (node->str[0] == '>' && node->str[1] != '>')
+		return (trigger_error(lst, mini, ">"), 1);
+	if (node->str[0] == '>' && node->str[1] == '>')
+		return (trigger_error(lst, mini, ">>"), 1);
 	return (0);
 }
 
@@ -68,7 +68,8 @@ void	in_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini)
 {
 	int	fd;
 
-	check_compliance_file(r_token->next, lst, mini);
+	if (check_compliance_file(r_token->next, lst, mini) == 1)
+		return ;
 	if (c_node)
 	{
 		if (c_node->infile)
@@ -91,7 +92,8 @@ void	in_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini)
 
 void	out_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini)
 {
-	check_compliance_file(r_token->next, lst, mini);
+	if (check_compliance_file(r_token->next, lst, mini) == 1)
+		return ;
 	if (c_node)
 	{
 		if (c_node->outfile)
@@ -107,7 +109,8 @@ void	out_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini)
 
 void	app_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini)
 {
-	check_compliance_file(r_token->next, lst, mini);
+	if (check_compliance_file(r_token->next, lst, mini) == 1)
+		return ;
 	if (c_node)
 	{
 		if (c_node->outfile)

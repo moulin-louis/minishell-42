@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/11 22:37:02 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/12 11:58:50 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,7 @@ void	env_delone(t_envp *node);
 t_cati	*mini_lstnew(void);
 void	mini_lstaddback(t_cati **mini, t_cati *node);
 t_cati	*mini_lstlast(t_cati *mini);
+void	ft_create_node(t_cati **mini, t_envp *envp, t_fds *fds);
 
 /*tok utils*/
 void	tok_delone(t_tok *node);

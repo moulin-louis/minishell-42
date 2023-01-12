@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:53:11 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/11 22:45:29 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/12 14:38:47 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ int	execute(t_cati **mini)
 	node = *mini;
 	while (node)
 	{
-		exec_node(mini, node);
+		if (exec_node(mini, node))
+			return (0);
 		close_pipes(&node);
 		node = node->next;
 	}
@@ -66,6 +67,5 @@ int	execute(t_cati **mini)
 			g_status = WEXITSTATUS(node->fds.status);
 		node = node->next;
 	}
-	g_pid = 1;
-	return (0);
+	return (g_pid = 1, 0);
 }

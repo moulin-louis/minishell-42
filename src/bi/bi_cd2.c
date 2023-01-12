@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_cd2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:23:48 by foster            #+#    #+#             */
-/*   Updated: 2023/01/11 17:26:44 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/12 12:56:35 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,12 @@ int	cd_home(t_cati **mini)
 		{
 			if (chdir(tmp->var[1]) == -1)
 			{
-				ut_putstr_fd("shellnado: cd: ", 2);
+				ut_putstr_fd("bash: cd: ", 2);
 				ut_putstr_fd(tmp->var[1], 2);
 				ut_putstr_fd(": ", 2);
 				ut_putstr_fd(strerror(errno), 2);
 				ut_putstr_fd("\n", 2);
+				g_status = 1;
 				return (-1);
 			}
 		}

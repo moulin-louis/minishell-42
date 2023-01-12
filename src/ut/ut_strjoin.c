@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ut_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 17:29:31 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/09 14:38:57 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/12 14:30:24 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*ut_strjoin(char *s1, char *s2)
 	ls2 = ft_strlen(s2);
 	str = ut_calloc(ls1 + ls2 + 1, 1);
 	if (!str)
-		return (printf("Malloc error in strjoin\n"), NULL);
+		return (ut_putstr_fd("Malloc error in strjoin\n", 2), NULL);
 	i = -1;
 	if (s1)
 		while (s1[++i])

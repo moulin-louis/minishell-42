@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 11:53:46 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/09 16:53:29 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/12 14:30:37 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ char	**exe_parse_env(t_cati **mini)
 	arr = ut_calloc(size + 1, sizeof(char *));
 	if (!arr)
 	{
-		printf("Malloc error when parsing environement\n");
+		ut_putstr_fd("Malloc error when parsing environement\n", 2);
 		full_exit(mini, 2);
 	}
 	i = 0;

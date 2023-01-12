@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 22:35:33 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/11 22:44:58 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/12 14:29:47 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,9 @@ void	check_file(char *str, t_cati *node, t_tok **lst, t_cati **mini)
 	stat(str, &node->buff);
 	if (S_ISDIR(node->buff.st_mode))
 	{
-		printf("shellnado : %s: Is a directory\n", str);
+		ut_putstr_fd("bash : ", 2);
+		ut_putstr_fd(str, 2);
+		ut_putstr_fd(": Is a directory\n", 2);
 		reset_ressources(lst, mini);
 		return ;
 	}

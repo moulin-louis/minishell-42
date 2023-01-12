@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 10:41:05 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/11 16:43:25 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/12 10:32:31 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ int	find_len_tok(const char *str, int pos)
 	{
 		if (str[pos] == '\'' || str[pos] == '\"')
 		{
-			while (str[pos] && (str[pos] != '\'' || str[pos] != '\"'))
+			pos++;
+			result++;
+			while (str[pos] && str[pos] != '\'' && str[pos] != '\"')
 			{
 				pos++;
 				result++;

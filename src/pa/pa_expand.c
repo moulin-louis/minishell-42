@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 15:37:24 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/11 17:01:18 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/12 14:37:42 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,20 +67,21 @@ char	*find_var(char *str, char *temp1, t_cati **mini)
 	return (result);
 }
 
-void	insert_str(char *var, t_tok *node, t_tok **lst, t_cati **mini)
+int	insert_str(char *var, t_tok *node, t_tok **lst, t_cati **mini)
 {
 	char	*temp;
 	char	*temp2;
 	char	*temp3;
+	int		len;
 
 	temp = ut_strjoin("$", var);
 	if (!temp)
 	{
 		free(var);
 		ut_clean_parsing_n_quit(mini, lst, errno);
-		exit (1);
 	}
 	temp2 = find_var(var, temp, mini);
+	len = ft_strlen(temp2);
 	if (!temp2)
 		ut_clean_parsing_n_quit(mini, lst, errno);
 	temp3 = ut_strinsert(node->str, temp, temp2);
@@ -88,69 +89,65 @@ void	insert_str(char *var, t_tok *node, t_tok **lst, t_cati **mini)
 	{
 		free(var);
 		ut_clean_parsing_n_quit(mini, lst, errno);
-		exit (1);
 	}
 	node->str = temp3;
 	free(var);
+	return (len);
 }
 
 /*Insert the expanded value in the string*/
 
-void	trigger_expand(t_tok *node, int i, t_tok **lst, t_cati **mini)
+int	trigger_expand(t_tok *node, int i, t_tok **lst, t_cati **mini)
 {
 	char	*var;
 	int		len;
+	int		x;
 
 	len = find_len(node->str, i);
 	if (len == 0)
 	{
 		if (node->str[i + 1] == '\'' || node->str[i + 1] == '\"')
 			delete_dollar(node, lst, mini);
-		return ;
+		return (0);
 	}
 	var = malloc(len + 1);
 	if (!var)
 		ut_clean_parsing_n_quit(mini, lst, errno);
 	var[len] = '\0';
-	len = 0;
+	x = 0;
 	i++;
-	while (node->str[i] && (node->str[i] == '?' || ft_isalphanum(node->str[i]))
-		&& node->str[i] != ' ' && node->str[i] != '\"' && node->str[i] != '*')
+	while (x < len)
 	{
-		var[len] = node->str[i];
-		len++;
+		var[x] = node->str[i];
+		x++;
 		i++;
 	}
-	insert_str(var, node, lst, mini);
+	return (insert_str(var, node, lst, mini));
 }
 
 /*Make the expand happened*/
-
 void	expand_lst(t_tok **lst, t_cati **mini)
 {
 	t_tok	*temp;
 	int		i;
+	int		mode_quote;
+	int		mode_dbl_quote;
 
 	temp = *lst;
+	mode_quote = 2;
+	mode_dbl_quote = 2;
 	while (temp)
 	{
 		i = -1;
-		if (temp->str[0] == '\'')
+		while (temp->str[++i])
 		{
-			temp = temp->next;
-			continue ;
-		}
-		while (temp && temp->str[++i])
-		{
-			if (temp->str[i] == '\'')
-			{
-				while (temp->str[++i] && temp->str[i] != '\'')
-					i++;
-				i++;
-			}
-			if (temp->str[i] == '$' && temp->str[i + 1])
-				trigger_expand(temp, i, lst, mini);
+			if (temp->str[i] == '\"')
+				mode_dbl_quote++;
+			if (temp->str[i] == '\'' && !(mode_dbl_quote % 2))
+				mode_quote++;
+			if (temp->str[i] == '$' && !(mode_quote % 2))
+				i += trigger_expand(temp, i, lst, mini) - 1;
 		}
 		temp = temp->next;
 	}
-}
+}	

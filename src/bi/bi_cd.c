@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:19:57 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/11 17:24:02 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/12 12:56:28 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,11 +85,12 @@ int	bi_cd(t_cati **mini, t_cati *node)
 	}
 	else if (chdir(node->cmd[1]) == -1)
 	{
-		ut_putstr_fd("shellnado: cd: ", 2);
+		ut_putstr_fd("bash: cd: ", 2);
 		ut_putstr_fd(node->cmd[1], 2);
 		ut_putstr_fd(": ", 2);
 		ut_putstr_fd(strerror(errno), 2);
 		ut_putstr_fd("\n", 2);
+		g_status = 1;
 		return (1);
 	}
 	change_oldpwd(mini, node);

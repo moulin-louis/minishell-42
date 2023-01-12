@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_flow.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 11:09:59 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/11 20:57:12 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/12 14:38:30 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ static void	execve_cmd(t_cati *node, t_cati **mini)
 	else
 	{
 		if (!node->path_cmd && !node->outfile && !node->infile)
-			printf("Command '' not found\n");
+			ut_cmd_not_found("''");
 		else if (node->cmd && node->cmd[0] && node->cmd[0][0] == 0)
-			printf("Command '' not found\n");
+			ut_cmd_not_found("''");
 		else if (node->cmd)
 		{
 			if (access(node->path_cmd, R_OK | X_OK) == 0)
@@ -89,18 +89,16 @@ int	exec_node(t_cati **mini, t_cati *node)
 {
 	node->ev = exe_parse_env(mini);
 	if (node->builtin && !node->out_pipe && !node->outfile && !node->in_pipe)
-	{
-		close_pipes(mini);
-		node->fds.ret = exe_bi_launcher(mini, node);
-		return (node->fds.ret);
-	}
+		return (close_pipes(mini), g_status = exe_bi_launcher(mini, node), 1);
 	if (set_fds(mini, node) == -1)
 		return (-1);
 	node->pid = fork();
 	g_pid = node->pid;
 	if (node->pid == -1)
 	{
-		printf("fork: %s, goodbye\n", strerror(errno));
+		ut_putstr_fd("fork :", 2);
+		ut_putstr_fd(strerror(errno), 2);
+		ut_putstr_fd("\n", 2);
 		g_status = errno;
 		full_exit(mini, g_status);
 	}

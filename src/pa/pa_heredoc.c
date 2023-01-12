@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 15:01:04 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/11 22:34:47 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/12 10:17:52 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,8 @@ void	heredoc_redir(t_tok *r_token, t_cati *c_node, t_tok **lst,
 {
 	int		fd;
 
-	check_compliance_file(r_token->next, lst, mini);
+	if (check_compliance_file(r_token->next, lst, mini) == 1)
+		return ;
 	fd = open("/tmp/heredoc.tmp", O_TRUNC | O_CREAT | O_RDWR, 0644);
 	if (!fd)
 		ut_clean_parsing_n_quit(mini, lst, errno);
