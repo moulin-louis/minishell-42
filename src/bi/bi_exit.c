@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:12:28 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/12 14:33:28 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/12 17:12:01 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	bi_exit(t_cati **mini, t_cati *node)
 	if (node->cmd[1])
 	{
 		if (ut_strcmp(node->cmd[1], "-0") || ut_strcmp(node->cmd[1], "+0"))
-			exit (0);
+			full_exit(mini, 0);
 		status = statouc(node->cmd[1]);
 	}
 	return (g_status = status, full_exit(mini, g_status), g_status);
