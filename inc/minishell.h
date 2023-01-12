@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/12 11:58:50 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/12 20:17:52 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ typedef struct s_fds
 	int		pfd[2];
 	int		ret;
 	int		status;
-}			t_fds;
+}		t_fds;
 
 typedef struct s_envp
 {

@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 18:54:39 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/12 12:03:00 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/12 20:18:14 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ int	main(int ac, char **av, char **env)
 {
 	t_envp	*envp;
 	t_fds	fds;
+	t_cati	*mini;
 
 	memset(&fds, 0, sizeof(fds));
 	if (ac >= 3)
 	{
-		t_cati	*mini;
 		envp = NULL;
 		if (!ev_build_env(env, &envp))
 			return (env_lstclear(&envp), 2);

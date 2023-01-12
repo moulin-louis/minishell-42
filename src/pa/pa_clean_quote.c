@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/05 15:54:12 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/12 14:35:30 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/12 20:35:00 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ int	trigger_cleaning(int *pos, t_tok *node, t_cati **mini, t_tok **lst)
 		while (node->str[*pos] && node->str[*pos] != '\"')
 			(*pos)++;
 		shift_backward_string(*pos, node);
+		(*pos)--;
 	}
 	else if (node->str[*pos] == '\'')
 	{
@@ -59,6 +60,7 @@ int	trigger_cleaning(int *pos, t_tok *node, t_cati **mini, t_tok **lst)
 		while (node->str[*pos] && node->str[*pos] != '\'')
 			(*pos)++;
 		shift_backward_string(*pos, node);
+		(*pos)--;
 	}
 	return (0);
 }
