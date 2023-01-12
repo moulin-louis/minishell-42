@@ -6,7 +6,7 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:12:28 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/12 17:14:09 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/12 18:23:58 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@ static unsigned char	statouc(char *str)
 		sign *= -1;
 		i++;
 	}
+	else if (str[0] == '+')
+		i++;
 	while (str[++i])
 	{
 		n *= 10;
