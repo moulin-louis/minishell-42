@@ -6,7 +6,7 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:12:28 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/12 17:12:01 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/12 17:14:09 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,7 @@ int	bi_exit(t_cati **mini, t_cati *node)
 		ut_putstr_fd("bash: exit: ", 2);
 		ut_putstr_fd(node->cmd[1], 2);
 		ut_putstr_fd(": numeric argument required\n", 2);
-		clean_mini(mini);
-		exit(2);
+		full_exit(mini, 2);
 	}
 	if (len_option(node->cmd) != 1 && len_option(node->cmd) != 2)
 		return (ut_putstr_fd("bash: exit: too many arguments\n", 2), 1);
