@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:42:25 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/12 16:18:26 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/12 16:21:17 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	in_redir(t_tok *r_token, t_cati *c_node, t_tok **lst, t_cati **mini)
 		c_node->infile = ut_strdup(r_token->next->str);
 		if (!c_node->infile)
 			ut_clean_parsing_n_quit(mini, lst, errno);
-		check_file(c_node->outfile, c_node, lst, mini);
+		check_file(c_node->infile, c_node, lst, mini);
 		c_node->in_file = 1;
 	}
 	delete_token_redir(r_token, lst);
