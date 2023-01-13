@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:42:25 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/13 12:27:06 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:38:19 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	check_compliance_file(t_tok *node, t_tok **lst, t_cati **mini)
 {
 	if (!node)
 		return (trigger_error(lst, mini, "\\n"), 1);
-	if (!node->str && ft_strlen(node->str) < 2)
+	if (!node->str || ft_strlen(node->str) < 2)
 		return (1);
 	if (node->str[0] == '|')
 		return (trigger_error(lst, mini, "|"), 1);
