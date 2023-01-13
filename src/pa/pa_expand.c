@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 15:37:24 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/12 14:37:42 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/13 11:26:45 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,9 +81,9 @@ int	insert_str(char *var, t_tok *node, t_tok **lst, t_cati **mini)
 		ut_clean_parsing_n_quit(mini, lst, errno);
 	}
 	temp2 = find_var(var, temp, mini);
-	len = ft_strlen(temp2);
 	if (!temp2)
 		ut_clean_parsing_n_quit(mini, lst, errno);
+	len = ft_strlen(temp2);
 	temp3 = ut_strinsert(node->str, temp, temp2);
 	if (!temp3)
 	{
@@ -106,9 +106,8 @@ int	trigger_expand(t_tok *node, int i, t_tok **lst, t_cati **mini)
 	len = find_len(node->str, i);
 	if (len == 0)
 	{
-		if (node->str[i + 1] == '\'' || node->str[i + 1] == '\"')
-			delete_dollar(node, lst, mini);
-		return (0);
+		delete_dollar(node, lst, mini);
+		return (1);
 	}
 	var = malloc(len + 1);
 	if (!var)

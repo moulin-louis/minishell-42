@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:09:51 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/09 14:19:00 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/13 11:56:25 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,27 @@
 #include <stdlib.h>
 #include <string.h>
 
+void	custom_strlen(const char *str, int *x)
+{
+	*x += ft_strlen(str);
+}
+
 /*insert target in result starting at index i*/
 
-void	trigger_insert(char *result, int *i, const char *target, int *status)
+void	trigger_insert(char *result, int var[], const char *pld,
+		const char *trgt)
 {
 	int	x;
 
 	x = 0;
-	while (target[x])
+	while (pld[x])
 	{
-		result[*i] = target[x];
-		(*i)++;
+		result[var[0]] = pld[x];
+		var[0]++;
 		x++;
 	}
-	*status = 1;
+	var[2] = 1;
+	custom_strlen(trgt, &var[1]);
 }
 
 /*check if target str is in og str from i position*/
@@ -47,17 +54,12 @@ int	is_target(const char *og, int i, const char *target)
 	return (1);
 }
 
-void	custom_strlen(char *str, int *x)
-{
-	*x += ft_strlen(str);
-}
-
 /*Replace target str in og str by payload str*/
 
 char	*ut_strinsert(const char *og, char *trgt, const char *pld)
 {
 	char	*result;
-	int		var[3];
+	int		var[5];
 
 	result = malloc(((ft_strlen(og) - ft_strlen(trgt)) + ft_strlen(pld)) + 1);
 	if (!result)
@@ -66,13 +68,14 @@ char	*ut_strinsert(const char *og, char *trgt, const char *pld)
 	memset(var, 0, sizeof(var));
 	while (var[0] < ((ft_strlen(og) - ft_strlen(trgt)) + ft_strlen(pld)))
 	{
-		if (og[var[1]] == '$' && !var[2])
+		if (og[var[1]] == '\"')
+			var[4]++;
+		if (og[var[1]] == '\'' && !(var[4] % 2))
+			var[3]++;
+		if (og[var[1]] == '$' && !var[2] && !(var[3] % 2))
 		{
-			if (is_target(og, var[0], trgt))
-			{
-				trigger_insert(result, &var[0], pld, &var[2]);
-				custom_strlen(trgt, &var[1]);
-			}
+			if (is_target(og, var[0], trgt) && !(var[3] % 2))
+				trigger_insert(result, var, pld, trgt);
 		}
 		else
 			result[var[0]++] = og[var[1]++];
