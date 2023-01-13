@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 13:29:22 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/06 13:32:07 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:04:21 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,6 @@ int	ft_isalpha(char c)
 int	ft_isnum(char c)
 {
 	if (c >= '0' && c <= '9')
-		return (1);
-	return (0);
-}
-
-int	ft_isalphanum(char c)
-{
-	if (ft_isnum(c) || ft_isalpha(c))
 		return (1);
 	return (0);
 }
