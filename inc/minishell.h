@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/13 16:32:06 by foster           ###   ########.fr       */
+/*   Created: 2022/10/24 14:20:54 by foster	           #+#    #+#             */
+/*   Updated: 2023/01/13 16:54:51 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ void	ut_putstr_fd(char *s, int fd);
 void	ut_cmd_not_found(char *s);
 char	**ut_split_char(const char *str, char c);
 int		ut_strcmp(char *s1, char *s2);
+int		ut_strcmp2(char *s1, char *s2);
 char	*ut_strcpy(char *s2);
 char	*ut_strinsert(const char *og, char *target, const char *payload);
 char	*ut_strjoin(char *s1, char *s2);
