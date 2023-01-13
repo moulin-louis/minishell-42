@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/12 14:27:30 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/13 16:14:16 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,26 +21,6 @@ static int	error_msg(char *str)
 	ut_putstr_fd(str, 2);
 	ut_putstr_fd("\": not a valid identifier\n", 2);
 	return (0);
-}
-
-static void	display_expt_ev(t_cati *node)
-{
-	t_envp	*tmp;
-
-	tmp = node->envp;
-	while (tmp)
-	{
-		printf("declare -x ");
-		printf("%s", tmp->var[0]);
-		if (tmp->var[1])
-		{
-			printf("=\"");
-			printf("%s", tmp->var[1]);
-			printf("\"");
-		}
-		printf("\n");
-		tmp = tmp->next;
-	}
 }
 
 static int	already_exists(t_cati *node, char *str)
@@ -91,7 +71,10 @@ int	bi_export(t_cati *node)
 
 	g_status = 0;
 	if (!node->cmd[1])
-		return (display_expt_ev(node), g_status);
+	{
+		ut_env_split_tri(node);
+		return (g_status);
+	}
 	i = 0;
 	while (node->cmd[++i])
 	{

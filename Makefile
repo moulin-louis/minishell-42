@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
+#    By: foster <foster@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/05 17:32:08 by loumouli          #+#    #+#              #
-#    Updated: 2023/01/11 22:36:08 by loumouli         ###   ########.fr        #
+#    Updated: 2023/01/13 14:36:38 by foster           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,6 +71,7 @@ C_FILES		= minishell.c					\
 			  ut/ut_clean_all.c				\
 			  ut/ut_env_list.c				\
 			  ut/ut_env_split.c				\
+			  ut/ut_env_split_tri.c			\
 			  ut/ut_itoa.c					\
 			  ut/ut_mini_list.c				\
 			  ut/ut_printfmini.c			\
