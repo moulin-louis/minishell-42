@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/13 12:15:27 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/13 16:32:06 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -158,6 +158,7 @@ void	clean_tok(t_tok **lst);
 /* ENVIRONEMENTS */
 int		ev_build_env(char **env, t_envp **envp);
 char	**ut_env_split(char *str);
+void    ut_env_split_tri(t_cati *env);
 int		set_new1(t_envp *new1);
 int		set_new2(t_envp *new2);
 int		set_new3(t_envp *new3);
