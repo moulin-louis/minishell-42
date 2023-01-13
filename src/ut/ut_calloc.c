@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 14:25:02 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/13 13:00:04 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/13 13:02:05 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	*ut_calloc(int nb, int sz)
 	ptr = NULL;
 	if (!nb || !sz)
 		return (ptr);
-	ptr = malloc(nb * sz);
+	ptr = malloc(result);
 	if (!ptr)
 		return (NULL);
 	ut_bzero(ptr, result);
