@@ -3,16 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   bi_export2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: bschoeff <bschoeff@student.42.fr>          +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:47:45 by bschoeff          #+#    #+#             */
-/*   Updated: 2022/10/21 10:07:58 by bschoeff         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:19:30 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdio.h>
-#include <stdlib.h>
 
 static int	handle_plus_change(t_envp *tmp, char *str)
 {

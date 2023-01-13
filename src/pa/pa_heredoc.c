@@ -6,20 +6,17 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 15:01:04 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/12 10:17:52 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:24:41 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <fcntl.h>
 #include <readline/readline.h>
-#include <readline/history.h>
 #include <stdlib.h>
 #include <errno.h>
-#include <signal.h>
-#include <sys/types.h>
 #include <sys/wait.h>
-#include <stdio.h>
+#include <unistd.h>
 
 void	sig_heredoc(int sig)
 {

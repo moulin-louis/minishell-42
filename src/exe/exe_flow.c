@@ -6,18 +6,14 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 11:09:59 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/12 14:38:30 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:22:04 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <unistd.h>
-#include <stdio.h>
-#include <wait.h>
-#include <fcntl.h>
 #include <errno.h>
 #include <string.h>
-#include <stdlib.h>
 #include <signal.h>
 
 static void	close_all_pipe(t_cati *node)

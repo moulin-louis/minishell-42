@@ -6,15 +6,12 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 12:45:07 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/09 12:45:10 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:18:22 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <unistd.h>
-#include <stdio.h>
-#include <errno.h>
-#include <sys/wait.h>
 
 static int	is_arg(char *str)
 {

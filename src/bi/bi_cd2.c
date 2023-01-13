@@ -6,14 +6,12 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:23:48 by foster            #+#    #+#             */
-/*   Updated: 2023/01/12 12:56:35 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:18:03 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <unistd.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include <errno.h>
 

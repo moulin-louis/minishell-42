@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 15:13:25 by foster            #+#    #+#             */
-/*   Updated: 2023/01/12 12:39:06 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:23:28 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@
 #include <stdio.h>
 #include <errno.h>
 #include <string.h>
-#include <sys/types.h>
-#include <sys/stat.h>
 
 char	*free_n_join(char *str1, char *str2)
 {

@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 12:36:37 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/08 11:44:34 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:27:57 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <stdlib.h>
 #include <errno.h>
 #include <readline/readline.h>
+#include <unistd.h>
 
 /*All the cleaning stuff*/
 

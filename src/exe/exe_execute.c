@@ -6,17 +6,15 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:53:11 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/12 14:38:47 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:21:30 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdlib.h>
 #include <stdio.h>
 #include <errno.h>
 #include <unistd.h>
 #include <wait.h>
-#include <fcntl.h>
 
 void	init_pipes(t_cati *node, t_cati **mini)
 {

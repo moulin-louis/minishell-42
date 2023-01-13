@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:51:41 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/11 19:39:13 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:26:27 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <readline/history.h>
 #include <signal.h>
 #include <errno.h>
+#include <unistd.h>
 
 /*Handle sigint signal : CTRL + C*/
 

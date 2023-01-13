@@ -6,18 +6,14 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 13:14:07 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/12 14:26:02 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:22:46 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <unistd.h>
 #include <stdio.h>
 #include <fcntl.h>
 #include <errno.h>
-#include <string.h>
-#include <sys/types.h>
-#include <sys/stat.h>
 
 static void	set_out_fd(t_cati **mini, t_cati *node)
 {

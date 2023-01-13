@@ -6,14 +6,13 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 15:37:24 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/13 11:26:45 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:23:57 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <errno.h>
 #include <stdlib.h>
-#include <stdio.h>
 
 void	delete_dollar(t_tok *node, t_tok **lst, t_cati **mini)
 {

@@ -6,12 +6,11 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 14:23:28 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/12 14:20:19 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:23:40 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
 
 void	trigger_error(t_tok **lst, t_cati **mini, char *token_error)
 {

@@ -6,13 +6,12 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/15 14:25:02 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/08 13:04:27 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:27:36 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
-#include <stdio.h>
 
 /*Custom calloc*/
 

@@ -6,14 +6,13 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 12:04:37 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/11 15:21:27 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:29:09 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
 #include <errno.h>
-#include <stdio.h>
 
 /*All sort of utilts for t_tok linked list*/
 

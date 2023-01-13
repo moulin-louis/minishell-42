@@ -6,13 +6,12 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 14:21:42 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/08 12:18:19 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:20:38 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <stdlib.h>
-#include <stdio.h>
 #include <unistd.h>
 
 char	*ft_getpwd(void)

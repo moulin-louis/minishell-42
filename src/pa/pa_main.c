@@ -6,12 +6,11 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:21:46 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/12 16:21:50 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:25:46 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-#include <stdio.h>
 
 /*TO DO LIST:
 - fix expand str insert like minishell> echo '$USER'"$USER"'$USER'

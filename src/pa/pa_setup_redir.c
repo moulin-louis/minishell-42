@@ -6,14 +6,12 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:42:25 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/12 16:21:17 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:27:06 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 #include <errno.h>
-#include <stdio.h>
-#include <fcntl.h>
 #include <stdlib.h>
 
 int	check_compliance_file(t_tok *node, t_tok **lst, t_cati **mini)
