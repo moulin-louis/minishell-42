@@ -6,7 +6,7 @@
 #    By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/05 17:32:08 by loumouli          #+#    #+#              #
-#    Updated: 2023/01/13 11:04:24 by loumouli         ###   ########.fr        #
+#    Updated: 2023/01/13 12:00:40 by loumouli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -71,7 +71,6 @@ C_FILES		= minishell.c					\
 			  ut/ut_env_split.c				\
 			  ut/ut_itoa.c					\
 			  ut/ut_mini_list.c				\
-			  ut/ut_printfmini.c			\
 			  ut/ut_putstr_fd.c				\
 			  ut/ut_split_char.c			\
 			  ut/ut_strcmp.c				\

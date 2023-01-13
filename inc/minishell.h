@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/12 20:17:52 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/13 12:00:47 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,8 +168,5 @@ void	exec_cmd(t_cati **mini, t_cati *node);
 int		exe_bi_launcher(t_cati **mini, t_cati *node);
 char	**exe_parse_env(t_cati **mini);
 void	set_path_cmd(t_cati **mini, t_cati *node);
-
-/* UTILITAIRE TEMP */
-void	printfmini(t_cati *mini);
 
 #endif
