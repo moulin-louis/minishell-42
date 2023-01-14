@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/14 16:05:26 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/14 16:11:13 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,8 +69,6 @@ int		bi_exit(t_cati **mini, t_cati *node);
 int		bi_export(t_cati *node);
 int		bi_pwd(t_cati *node);
 int		bi_unset(t_cati **mini, t_cati *node);
-
-
 
 /* PARSING */
 /*signal*/
