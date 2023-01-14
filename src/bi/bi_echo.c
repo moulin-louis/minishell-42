@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/09 12:45:07 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/13 12:18:22 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/14 16:32:30 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,9 @@ int	bi_echo(t_cati *node)
 {
 	int	n_line;
 
-	g_status = 0;
+	g_var.g_status = 0;
 	n_line = write_stuff(node);
 	if (n_line)
 		write(1, "\n", 1);
-	return (g_status);
+	return (g_var.g_status);
 }

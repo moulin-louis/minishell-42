@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 15:01:04 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/13 12:24:41 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/14 16:33:12 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,14 +65,14 @@ int	wait_child(t_cati *node, t_cati **mini, t_tok **lst)
 	int	status;
 
 	status = 0;
-	waitpid(g_pid, &status, 0);
+	waitpid(g_var.g_pid, &status, 0);
 	if (WIFEXITED(status))
 	{
 		status = WEXITSTATUS(status);
 		if (status == 130)
 		{
 			reset_ressources(lst, mini);
-			g_status = 130;
+			g_var.g_status = 130;
 			return (1);
 		}
 	}
@@ -95,8 +95,8 @@ void	heredoc_redir(t_tok *r_token, t_cati *c_node, t_tok **lst,
 	fd = open("/tmp/heredoc.tmp", O_TRUNC | O_CREAT | O_RDWR, 0644);
 	if (!fd)
 		ut_clean_parsing_n_quit(mini, lst, errno);
-	g_pid = fork();
-	if (g_pid == 0)
+	g_var.g_pid = fork();
+	if (g_var.g_pid == 0)
 		write_line_infile(r_token->next->str, fd, lst, mini);
 	close(fd);
 	if (!wait_child(c_node, mini, lst))

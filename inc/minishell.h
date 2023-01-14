@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 14:20:54 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/14 16:11:13 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/14 16:30:39 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,20 @@
 # include <sys/types.h>
 # include <sys/stat.h>
 
-extern int	g_status;
-extern int	g_pid;
-
 typedef struct s_fds
 {
 	int		pfd[2];
 	int		ret;
 	int		status;
 }		t_fds;
+
+typedef struct s_glob
+{
+	int		g_status;
+	pid_t	g_pid;
+}				t_glob;
+
+extern t_glob	g_var;
 
 typedef struct s_envp
 {

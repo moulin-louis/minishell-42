@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/06 14:23:28 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/13 12:23:40 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/14 16:32:00 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	trigger_error(t_tok **lst, t_cati **mini, char *token_error)
 	ut_putstr_fd(token_error, 2);
 	ut_putstr_fd("'\n", 2);
 	reset_ressources(lst, mini);
-	g_status = 2;
+	g_var.g_status = 2;
 }
 
 /*Ugly function to check if there is a < > in my linked list of token*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   bi_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
+/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/14 16:15:30 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/14 16:32:14 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 static int	error_msg(char *str)
 {
-	g_status = 1;
+	g_var.g_status = 1;
 	ut_putstr_fd("shellnado: export: \"", 2);
 	ut_putstr_fd(str, 2);
 	ut_putstr_fd("\": not a valid identifier\n", 2);
@@ -68,11 +68,11 @@ int	bi_export(t_cati *node)
 {
 	int	i;
 
-	g_status = 0;
+	g_var.g_status = 0;
 	if (!node->cmd[1] || ut_strcmp(node->cmd[1], "\n") == 0)
 	{
 		ut_env_split_tri(node);
-		return (g_status);
+		return (g_var.g_status);
 	}
 	i = 0;
 	while (node->cmd[++i])
@@ -82,12 +82,12 @@ int	bi_export(t_cati *node)
 			if (already_exists(node, node->cmd[i]))
 			{
 				if (!change_content(node, node->cmd[i]))
-					return (g_status);
+					return (g_var.g_status);
 			}
 			else
 				if (!do_the_expt(node, node->cmd[i]))
-					return (g_status);
+					return (g_var.g_status);
 		}
 	}
-	return (g_status);
+	return (g_var.g_status);
 }

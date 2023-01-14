@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/10 11:09:59 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/13 12:22:04 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/14 16:34:20 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ static void	execve_cmd(t_cati *node, t_cati **mini)
 {
 	if (node->builtin)
 	{
-		g_status = exe_bi_launcher(mini, node);
-		full_exit(mini, g_status);
+		g_var.g_status = exe_bi_launcher(mini, node);
+		full_exit(mini, g_var.g_status);
 	}
 	else
 	{
@@ -85,18 +85,19 @@ int	exec_node(t_cati **mini, t_cati *node)
 {
 	node->ev = exe_parse_env(mini);
 	if (node->builtin && !node->out_pipe && !node->outfile && !node->in_pipe)
-		return (close_pipes(mini), g_status = exe_bi_launcher(mini, node), 1);
+		return (close_pipes(mini),
+			g_var.g_status = exe_bi_launcher(mini, node), 1);
 	if (set_fds(mini, node) == -1)
 		return (-1);
 	node->pid = fork();
-	g_pid = node->pid;
+	g_var.g_pid = node->pid;
 	if (node->pid == -1)
 	{
 		ut_putstr_fd("fork :", 2);
 		ut_putstr_fd(strerror(errno), 2);
 		ut_putstr_fd("\n", 2);
-		g_status = errno;
-		full_exit(mini, g_status);
+		g_var.g_status = errno;
+		full_exit(mini, g_var.g_status);
 	}
 	exec_cmd(mini, node);
 	clean_split(node->ev);

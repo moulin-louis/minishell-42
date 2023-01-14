@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 13:19:57 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/13 12:17:40 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/14 16:32:58 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ static void	change_oldpwd(t_cati **mini, t_cati *node)
 
 int	bi_cd(t_cati **mini, t_cati *node)
 {
-	g_status = 0;
+	g_var.g_status = 0;
 	if (!node->cmd[1])
 	{
 		if (cd_home(mini) == -1)
@@ -90,10 +90,10 @@ int	bi_cd(t_cati **mini, t_cati *node)
 		ut_putstr_fd(": ", 2);
 		ut_putstr_fd(strerror(errno), 2);
 		ut_putstr_fd("\n", 2);
-		g_status = 1;
+		g_var.g_status = 1;
 		return (1);
 	}
 	change_oldpwd(mini, node);
 	change_newpwd(node);
-	return (g_status);
+	return (g_var.g_status);
 }

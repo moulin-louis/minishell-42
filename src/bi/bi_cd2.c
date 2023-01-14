@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 17:23:48 by foster            #+#    #+#             */
-/*   Updated: 2023/01/13 12:18:03 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/14 16:32:43 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	cd_home(t_cati **mini)
 				ut_putstr_fd(": ", 2);
 				ut_putstr_fd(strerror(errno), 2);
 				ut_putstr_fd("\n", 2);
-				g_status = 1;
+				g_var.g_status = 1;
 				return (-1);
 			}
 		}

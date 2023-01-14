@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 15:37:24 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/13 12:23:57 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/14 16:31:59 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ char	*find_var(char *str, char *temp1, t_cati **mini)
 	temp = (*mini)->envp;
 	if (ut_strcmp(str, "?"))
 	{
-		result = ut_itoa(g_status);
+		result = ut_itoa(g_var.g_status);
 		if (!result)
 			return (free(str), free(temp1), NULL);
 		return (result);

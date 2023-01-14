@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 12:51:41 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/13 12:26:27 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/14 16:33:13 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@
 void	handle_sigint(int sig)
 {
 	(void)sig;
-	if (g_pid != 1 && g_pid != 0)
+	if (g_var.g_pid != 1 && g_var.g_pid != 0)
 	{
-		kill(g_pid, SIGINT);
+		kill(g_var.g_pid, SIGINT);
 		printf("\n");
 	}
 	else

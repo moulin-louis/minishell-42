@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/03 13:42:31 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/13 12:20:14 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/14 16:32:07 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	bi_unset(t_cati **mini, t_cati *node)
 {
 	int		i;
 
-	g_status = 0;
+	g_var.g_status = 0;
 	if (!node->cmd[1])
 		return (0);
 	if (ft_strlen(node->cmd[1]) >= 2)
@@ -44,12 +44,12 @@ int	bi_unset(t_cati **mini, t_cati *node)
 			write(2, &node->cmd[1][0], 2);
 			ut_putstr_fd(": ", 2);
 			ut_putstr_fd("invalid option\n", 2);
-			g_status = 2;
+			g_var.g_status = 2;
 			return (2);
 		}
 	}
 	i = 0;
 	while (node->cmd[++i])
 		already_exists(mini, node->cmd[i]);
-	return (g_status);
+	return (g_var.g_status);
 }

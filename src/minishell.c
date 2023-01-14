@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 18:54:39 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/13 12:29:38 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/14 16:31:23 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-int	g_status = 0;
-int	g_pid = 1;
+t_glob	g_var;
 
 int	main(int ac, char **av, char **env)
 {
