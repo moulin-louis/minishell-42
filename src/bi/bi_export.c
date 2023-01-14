@@ -6,7 +6,7 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/13 16:14:16 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/14 16:13:22 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ int	bi_export(t_cati *node)
 	int	i;
 
 	g_status = 0;
-	if (!node->cmd[1])
+	if (!node->cmd[1] || ut_strcmp(node->cmd[1], "\n") == 0)
 	{
 		ut_env_split_tri(node);
 		return (g_status);
