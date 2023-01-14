@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_set_fds.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 13:14:07 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/12 14:26:02 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/14 17:22:45 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static void	set_out_fd(t_cati **mini, t_cati *node)
 	}
 	if (node->out_append)
 	{
-		node->out_fd = open(node->outfile, O_APPEND | O_CREAT, 0644);
+		node->out_fd = open(node->outfile, O_CREAT | O_WRONLY | O_APPEND, 0644);
 		if (node->out_fd == -1)
 		{
 			perror(node->outfile);
