@@ -6,7 +6,7 @@
 /*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 11:12:28 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/12 18:23:58 by foster           ###   ########.fr       */
+/*   Updated: 2023/01/14 19:47:47 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	alphanum(char *str)
 	if (str[0] == '-' || str[0] == '+')
 		i++;
 	while (str[++i])
-		if (str[i] < '0' || str[i] > '9')
+		if ((str[i] < '0' || str[i] > '9') && (str[i] != 39 && str[i] != 34))
 			return (0);
 	return (1);
 }
@@ -47,8 +47,11 @@ static unsigned char	statouc(char *str)
 		i++;
 	while (str[++i])
 	{
-		n *= 10;
-		n += str[i] - '0';
+		if (str[i] != '\'' && str[i] != '"')
+		{
+			n *= 10;
+			n += str[i] - '0';	
+		}
 	}
 	return (n * sign);
 }

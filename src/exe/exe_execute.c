@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exe_execute.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
+/*   By: foster <foster@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/10 09:53:11 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/12 14:38:47 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/14 19:23:19 by foster           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	execute(t_cati **mini)
 	t_cati	*node;
 
 	node = *mini;
+	printfmini(*mini);
 	while (node)
 	{
 		init_pipes(node, mini);
