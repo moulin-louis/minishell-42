@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:21:46 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/13 12:25:46 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/14 20:01:29 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	mini_is_empty(t_cati *mini)
 			return (1);
 	return (0);
 }
+
+#include <stdio.h>
 
 /*Call all parsing fn and send t_cati linked list to execution*/
 
