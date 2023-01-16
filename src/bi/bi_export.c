@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/04 09:32:09 by bschoeff          #+#    #+#             */
-/*   Updated: 2023/01/14 16:32:14 by loumouli         ###   ########.fr       */
+/*   Created: 2022/10/04 09:32:09 by loumouli          #+#    #+#             */
+/*   Updated: 2023/01/16 17:10:05 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ static int	check_compliance(char *str)
 	int		k;
 	char	*ref;
 
+	if (ut_strcmp(str, "="))
+		return (error_msg(str));
 	if (str[0] >= '0' && str[0] <= '9')
 		return (error_msg(str));
 	j = -1;
@@ -61,6 +63,8 @@ static int	check_compliance(char *str)
 				return (error_msg(str));
 		}
 	}
+	if (j == 0)
+		return (error_msg(str));
 	return (1);
 }
 
@@ -69,7 +73,7 @@ int	bi_export(t_cati *node)
 	int	i;
 
 	g_var.g_status = 0;
-	if (!node->cmd[1] || ut_strcmp(node->cmd[1], "\n") == 0)
+	if (!node->cmd[1] || ut_strcmp(node->cmd[1], "\n") == 1)
 	{
 		ut_env_split_tri(node);
 		return (g_var.g_status);

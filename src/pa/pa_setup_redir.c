@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/17 14:42:25 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/14 20:32:45 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/16 14:36:31 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	delete_token_redir(t_tok *node, t_tok **lst)
 		return ;
 	}
 	temp = *lst;
-	while (!ut_strcmp(temp->next->next->str, node->str))
+	while (!ut_strcmp(temp->next->str, node->str))
 		temp = temp->next;
 	temp2 = temp->next->next;
 	tok_delone(temp->next);

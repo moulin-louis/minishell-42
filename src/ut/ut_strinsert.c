@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/06 16:09:51 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/13 12:28:47 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/16 13:23:40 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,11 +72,9 @@ char	*ut_strinsert(const char *og, char *trgt, const char *pld)
 			var[4]++;
 		if (og[var[1]] == '\'' && !(var[4] % 2))
 			var[3]++;
-		if (og[var[1]] == '$' && !var[2] && !(var[3] % 2))
-		{
-			if (is_target(og, var[0], trgt) && !(var[3] % 2))
-				trigger_insert(result, var, pld, trgt);
-		}
+		if (og[var[1]] == '$' && !var[2] && !(var[3] % 2)
+			&& is_target(og, var[0], trgt) && !(var[3] % 2))
+			trigger_insert(result, var, pld, trgt);
 		else
 			result[var[0]++] = og[var[1]++];
 	}

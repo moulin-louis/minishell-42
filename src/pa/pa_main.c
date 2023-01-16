@@ -6,12 +6,12 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/12 16:21:46 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/14 20:27:08 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/16 14:46:40 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
+#include <stdio.h>
 /*TO DO LIST:
 - fix expand str insert like minishell> echo '$USER'"$USER"'$USER'
 - check exit "+102" or exit '42'"42"42

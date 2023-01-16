@@ -6,7 +6,7 @@
 /*   By: loumouli <loumouli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/21 15:37:24 by loumouli          #+#    #+#             */
-/*   Updated: 2023/01/14 16:31:59 by loumouli         ###   ########.fr       */
+/*   Updated: 2023/01/16 13:24:01 by loumouli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,8 @@ void	expand_lst(t_tok **lst, t_cati **mini)
 				mode_dbl_quote++;
 			if (temp->str[i] == '\'' && !(mode_dbl_quote % 2))
 				mode_quote++;
-			if (temp->str[i] == '$' && !(mode_quote % 2))
+			if (temp->str[i] == '$' && !(mode_quote % 2)
+				&& !(temp->str[i + 1] == '\"'))
 				i += trigger_expand(temp, i, lst, mini) - 1;
 		}
 		temp = temp->next;
